@@ -1,0 +1,222 @@
+/* PLUGINS */
+/* BASE STYLES */
+body {
+  font-size: 18px;
+  line-height: 1.6;
+  font-family: sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%; }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  margin: 4rem 0 2rem 0;
+  font-weight: 400; }
+
+h1 {
+  font-size: 41.4px; }
+  @media (max-width: 550px) {
+    h1 {
+      font-size: 26px; } }
+
+h2 {
+  font-size: 26px; }
+
+p {
+  margin-bottom: 1rem; }
+
+a {
+  color: #2e72b9;
+  text-decoration: none; }
+  a:hover {
+    color: white;
+    background: #2e72b9;
+    cursor: pointer; }
+
+/* LAYOUTS */
+.sup-footer {
+  background: #ECEEF2;
+  height: 50px; }
+
+footer {
+  background: #2e72b9; }
+
+header {
+  background: #2e72b9;
+  height: 74px; }
+
+.home-header {
+  background: #dbeaf5;
+  font-size: 18px; }
+
+.main-content, .home-main-content, .header-container, .footer-container, .home-header-holder {
+  width: 640px;
+  margin: 0 auto; }
+  @media (max-width: 680px) {
+    .main-content, .home-main-content, .header-container, .footer-container, .home-header-holder {
+      width: 100%;
+      padding: 0 20px; } }
+
+.main-content, .home-main-content {
+  margin-top: 3rem;
+  margin-bottom: 3rem; }
+
+.home-header-holder {
+  padding-top: 3rem;
+  padding-bottom: 3rem; }
+
+.home-header-holder p:last-child {
+  margin-bottom: 0; }
+
+@media (max-width: 550px) {
+  .main-content {
+    margin-top: 6rem; }
+
+  .home-header, .home-main-content {
+    margin-top: 3rem; } }
+/* MODULES */
+.nplogo {
+  display: inline-block; }
+
+.nplogo a {
+  color: white;
+  line-height: 74px;
+  font-size: 30px; }
+
+.nav {
+  display: inline-block;
+  float: right; }
+  .nav::after {
+    clear: both;
+    content: "";
+    display: block; }
+
+.nav ul {
+  list-style: none;
+  line-height: 74px; }
+
+.nav ul li {
+  display: inline-block;
+  margin-left: 20px; }
+
+.nav ul li a {
+  color: white;
+  text-transform: uppercase;
+  font-size: 16px; }
+  .nav ul li a:hover {
+    color: #abc7e3;
+    background: none; }
+
+@media (max-width: 550px) {
+  .nav {
+    position: absolute;
+    top: 74px;
+    right: 0;
+    background: #2196f3;
+    width: 100%; }
+    .nav::after {
+      clear: both;
+      content: "";
+      display: block; }
+
+  .nav ul {
+    line-height: 54px; } }
+.footer-container ul {
+  list-style: none;
+  text-align: center; }
+
+.footer-container ul li {
+  display: inline-block;
+  margin-right: 20px;
+  line-height: 84px; }
+  .footer-container ul li:last-child {
+    margin-right: 0; }
+
+.footer-container ul li a {
+  color: white;
+  font-size: 16px; }
+  .footer-container ul li a:hover {
+    color: #abc7e3;
+    background: none; }
+
+@media (max-width: 550px) {
+  .footer-container ul {
+    padding: 1rem 0; }
+
+  .footer-container ul li {
+    display: block;
+    margin-right: 0;
+    line-height: 44.4px; } }
+.byline {
+  padding-bottom: 1rem;
+  color: white;
+  font-size: 12px;
+  margin-bottom: 0;
+  text-align: center; }
+
+.byline span {
+  color: red; }
+
+.img-responsive {
+  width: 100%;
+  margin-bottom: 2rem; }
+
+.caption-container {
+  margin-bottom: 2rem; }
+
+.caption-image img {
+  width: 100%;
+  display: block; }
+
+.caption-text {
+  background: #111; }
+
+.caption-text p {
+  color: #ececec;
+  font-size: 14px;
+  padding: 1rem; }
+
+blockquote {
+  border-left: 3px solid #cbddee;
+  color: #777;
+  font-family: Georgia, serif;
+  padding-left: 25px;
+  margin: 2rem 0 2rem 2rem; }
+
+.crta {
+  border-bottom: 1px solid #ccc;
+  margin: 1rem 0; }
+
+.small {
+  font-size: 14px; }
+
+.social {
+  margin-top: 3rem;
+  margin-bottom: 2rem; }
+
+.social a {
+  padding: 10px;
+  border: 1px solid #2e72b9;
+  font-size: 16px;
+  background-color: #e9f0f7;
+  margin-right: 0.5rem;
+  border-radius: 5px; }
+  .social a:hover {
+    color: #1c5590;
+    background-color: #a9c2da; }
+
+code {
+  margin: 1rem 0;
+  background-color: #e9f0f7;
+  display: block;
+  padding: 1.5rem;
+  font-size: 14px; }
+
+/*# sourceMappingURL=app.css.map */
