@@ -24,10 +24,10 @@ h1 {
   font-size: 41.4px; }
   @media (max-width: 550px) {
     h1 {
-      font-size: 26px; } }
+      font-size: 37px; } }
 
 h2 {
-  font-size: 26px; }
+  font-size: 37px; }
 
 p {
   margin-bottom: 1rem; }
