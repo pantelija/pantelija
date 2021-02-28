@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <html lang="sr">
+    <title>Photo timeline | Nenad Pantelić</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="noindex" />
+    <!-- <script>'use strict'; window.dataLayer = window.dataLayer || [];window.dataLayer.push({ 'contentType': "Blog", 'funnelStage': "Awareness" });</script> -->
+    <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KWH5ZT6'); </script> -->
+    <style>
+        body {
+            font-size: 19px;
+            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Helvetica, Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            line-height: 1.1;
+            letter-spacing: -0.025rem;
+            margin: 6rem 0 2rem 0;
+            font-weight: bold;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Helvetica, Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 34px;
+        }
+
+        @media (max-width: 550px) {
+            h1 {
+                font-size: 31px;
+            }
+        }
+
+        h2 {
+            font-size: 27px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: #2e72b9;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: white;
+            background: #2e72b9;
+            cursor: pointer;
+        }
+
+        /* LAYOUTS */
+
+        .sup-footer {
+            background: #ECEEF2;
+            height: 50px;
+        }
+
+        footer {
+            background: #2e72b9;
+        }
+
+        header {
+            background: #2e72b9;
+            height: 74px;
+        }
+
+        .home-header {
+            background: #dbeaf5;
+            font-size: 18px;
+        }
+
+        .main-content,
+        .home-main-content,
+        .header-container,
+        .footer-container,
+        .home-header-holder {
+            width: 640px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 680px) {
+            .main-content,
+            .home-main-content,
+            .header-container,
+            .footer-container,
+            .home-header-holder {
+                width: 100%;
+                padding: 0 20px;
+            }
+        }
+
+        .main-content,
+        .home-main-content {
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .home-header-holder {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        .home-header-holder p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 550px) {
+            .main-content {
+                margin-top: 6rem;
+            }
+            .home-header,
+            .home-main-content {
+                margin-top: 3rem;
+            }
+        }
+
+        /* MODULES */
+
+        .nplogo {
+            display: inline-block;
+        }
+
+        .nplogo a {
+            color: white;
+            line-height: 74px;
+            font-size: 30px;
+        }
+
+        .nav {
+            display: inline-block;
+            float: right;
+        }
+
+        .nav::after {
+            clear: both;
+            content: "";
+            display: block;
+        }
+
+        .nav ul {
+            list-style: none;
+            line-height: 74px;
+        }
+
+        .nav ul li {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .nav ul li a {
+            color: white;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        .nav ul li a:hover {
+            color: #abc7e3;
+            background: none;
+        }
+
+        @media (max-width: 550px) {
+            .nav {
+                position: absolute;
+                top: 74px;
+                right: 0;
+                background: #2196f3;
+                width: 100%;
+            }
+            .nav::after {
+                clear: both;
+                content: "";
+                display: block;
+            }
+            .nav ul {
+                line-height: 54px;
+            }
+        }
+
+        .footer-container ul {
+            list-style: none;
+            text-align: center;
+        }
+
+        .footer-container ul li {
+            display: inline-block;
+            margin-right: 17px;
+            line-height: 84px;
+        }
+
+        .footer-container ul li:last-child {
+            margin-right: 0;
+        }
+
+        .footer-container ul li a {
+            color: white;
+            font-size: 16px;
+        }
+
+        .footer-container ul li a:hover {
+            color: #abc7e3;
+            background: none;
+        }
+
+        @media (max-width: 550px) {
+            .footer-container ul {
+                padding: 1rem 0;
+            }
+            .footer-container ul li {
+                display: block;
+                margin-right: 0;
+                line-height: 44.4px;
+            }
+        }
+
+        .byline {
+            padding-bottom: 1rem;
+            color: white;
+            font-size: 12px;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        .byline span {
+            color: red;
+        }
+
+        .img-responsive {
+            width: 100%;
+            margin-bottom: 4rem;
+			border: 1px solid #ccc;
+        }
+
+        .caption-container {
+            margin: 3rem 0;
+        }
+
+        .caption-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .caption-text {
+            background: #333;
+        }
+
+        .caption-text p {
+            color: #ececec;
+            font-size: 14px;
+            padding: 1rem;
+        }
+
+        .facebook-responsive {
+            overflow: hidden;
+            padding-bottom: 78%;
+            position: relative;
+            height: 0;
+        }
+
+        .facebook-responsive iframe {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+
+        blockquote {
+            border-left: 3px solid #cbddee;
+            color: #777;
+            font-family: Georgia, serif;
+            padding-left: 25px;
+            margin: 3rem 0 3rem 2rem;
+        }
+
+        .crta {
+            border-bottom: 1px solid #ccc;
+            margin: 1rem 0;
+        }
+
+        .small {
+            font-size: 14px;
+        }
+
+        .share {
+            margin-top: 3rem;
+            border-top: 1px dashed #ccc;
+            border-bottom: 1px dashed #ccc;
+            padding: 2rem 0 3rem;
+        }
+
+        .social {
+            padding: 12px;
+            font-size: 16px;
+            background-color: #3b5998;
+            margin-right: 0.5rem;
+            color: white;
+        }
+
+        .social:hover {
+            background-color: #2d4373;
+        }
+
+        .tw {
+            background-color: #1da1f2;
+        }
+
+        .tw:hover {
+            background-color: #0c85d0;
+        }
+
+        code {
+            margin: 2rem 0;
+            background-color: #e9f0f7;
+            display: block;
+            padding: 1.5rem;
+            font-size: 14px;
+        }
+
+        @media (max-width: 500px) {
+            blockquote {
+                margin: 3rem 0 3rem 0;
+            }
+        }
+
+        .autor {
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+            margin-top: 20px;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: row;
+            padding-top: 2rem;
+        }
+
+        .autor-levo img {
+            border-radius: 50%;
+            border: none;
+            width: 69px;
+            height: 69px;
+            margin-right: 20px;
+        }
+
+        .autor-desno h2 {
+            margin: 0;
+            font-size: 25px;
+            margin-bottom: 1rem;
+        }
+
+        .autor-desno h2 a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .autor-desno h2 a:hover {
+            color: white;
+        }
+
+        @media (max-width: 550px) {
+            .autor {
+                flex-direction: column;
+            }
+        }
+		
+   
+    </style>
+    <meta name="theme-color" content="#2e72b9">
+</head>
+
+<body>
+    <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KWH5ZT6"height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+    <header>
+        <div class="header-container">
+            <div class="nplogo"><a href="https://www.nenadpantelic.com/">Nenad Pantelić</a></div>
+            <div class="nav">
+                <ul>
+                    <li><a href="https://www.nenadpantelic.com/usluge.html">Usluge</a></li>
+                    <li><a href="https://www.nenadpantelic.com/o.html">O autoru</a></li>
+                    <li><a href="https://www.nenadpantelic.com/kontakt.html">Kontakt</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <section class="main-content">
+        <h1>Photo timeline</h1>
+        <p>Ove sam ubacio migrirane fotke sa Instagrama koje prikazujem u obrnutom hronološkom redosledu. Nije dozvoljeno preuzimanje sadržaja za lične i komercijalne potrebe.</p>
+		
+		<p>Kontakt na pantelic@hey.com</p>
+		<br>
+		
+		
+		<img class="img-responsive" src="slike/ig-103.jpg" loading="lazy" alt="insta ig-103" />
+		<img class="img-responsive" src="slike/ig-102.jpg" loading="lazy" alt="insta ig-102" />
+		<img class="img-responsive" src="slike/ig-101.jpg" loading="lazy" alt="insta ig-101" />
+		<img class="img-responsive" src="slike/ig-100.jpg" loading="lazy" alt="insta ig-100" />
+		<img class="img-responsive" src="slike/ig-099.jpg" loading="lazy" alt="insta ig-099" />
+		<img class="img-responsive" src="slike/ig-094.jpg" loading="lazy" alt="insta ig-094" />
+		<img class="img-responsive" src="slike/ig-092.jpg" loading="lazy" alt="insta ig-092" />
+		<img class="img-responsive" src="slike/ig-091.jpg" loading="lazy" alt="insta ig-091" />
+		<img class="img-responsive" src="slike/ig-090.jpg" loading="lazy" alt="insta ig-090" />
+		<img class="img-responsive" src="slike/ig-089.jpg" loading="lazy" alt="insta ig-089" />
+		<img class="img-responsive" src="slike/ig-086.jpg" loading="lazy" alt="insta ig-086" />
+		<img class="img-responsive" src="slike/ig-085.jpg" loading="lazy" alt="insta ig-085" />
+		<img class="img-responsive" src="slike/ig-084.jpg" loading="lazy" alt="insta ig-084" />
+		<img class="img-responsive" src="slike/ig-083.jpg" loading="lazy" alt="insta ig-083" />
+		<img class="img-responsive" src="slike/ig-082.jpg" loading="lazy" alt="insta ig-082" />
+		<img class="img-responsive" src="slike/ig-081.jpg" loading="lazy" alt="insta ig-081" />
+		<img class="img-responsive" src="slike/ig-079.jpg" loading="lazy" alt="insta ig-079" />
+		<img class="img-responsive" src="slike/ig-078.jpg" loading="lazy" alt="insta ig-078" />
+		<img class="img-responsive" src="slike/ig-077.jpg" loading="lazy" alt="insta ig-077" />
+		<img class="img-responsive" src="slike/ig-076.jpg" loading="lazy" alt="insta ig-076" />
+		<img class="img-responsive" src="slike/ig-075.jpg" loading="lazy" alt="insta ig-075" />
+		<img class="img-responsive" src="slike/ig-074.jpg" loading="lazy" alt="insta ig-074" />
+		<img class="img-responsive" src="slike/ig-073.jpg" loading="lazy" alt="insta ig-073" />
+		<img class="img-responsive" src="slike/ig-070.jpg" loading="lazy" alt="insta ig-070" />
+		<img class="img-responsive" src="slike/ig-069.jpg" loading="lazy" alt="insta ig-069" />
+		<img class="img-responsive" src="slike/ig-068.jpg" loading="lazy" alt="insta ig-068" />
+		<img class="img-responsive" src="slike/ig-067.jpg" loading="lazy" alt="insta ig-067" />
+		<img class="img-responsive" src="slike/ig-064.jpg" loading="lazy" alt="insta ig-064" />
+		<img class="img-responsive" src="slike/ig-063.jpg" loading="lazy" alt="insta ig-063" />
+		<img class="img-responsive" src="slike/ig-061.jpg" loading="lazy" alt="insta ig-061" />
+		<img class="img-responsive" src="slike/ig-060.jpg" loading="lazy" alt="insta ig-060" />
+		<img class="img-responsive" src="slike/ig-059.jpg" loading="lazy" alt="insta ig-059" />
+		<img class="img-responsive" src="slike/ig-058.jpg" loading="lazy" alt="insta ig-058" />
+		<img class="img-responsive" src="slike/ig-057.jpg" loading="lazy" alt="insta ig-057" />
+		<img class="img-responsive" src="slike/ig-056.jpg" loading="lazy" alt="insta ig-056" />
+		<img class="img-responsive" src="slike/ig-055.jpg" loading="lazy" alt="insta ig-055" />
+		<img class="img-responsive" src="slike/ig-054.jpg" loading="lazy" alt="insta ig-054" />
+		<img class="img-responsive" src="slike/ig-053.jpg" loading="lazy" alt="insta ig-053" />
+		<img class="img-responsive" src="slike/ig-052.jpg" loading="lazy" alt="insta ig-052" />
+		<img class="img-responsive" src="slike/ig-050.jpg" loading="lazy" alt="insta ig-050" />
+		<img class="img-responsive" src="slike/ig-049.jpg" loading="lazy" alt="insta ig-049" />
+		<img class="img-responsive" src="slike/ig-048.jpg" loading="lazy" alt="insta ig-048" />
+		<img class="img-responsive" src="slike/ig-047.jpg" loading="lazy" alt="insta ig-047" />
+		<img class="img-responsive" src="slike/ig-044.jpg" loading="lazy" alt="insta ig-044" />
+		<img class="img-responsive" src="slike/ig-043.jpg" loading="lazy" alt="insta ig-043" />
+		<img class="img-responsive" src="slike/ig-042.jpg" loading="lazy" alt="insta ig-042" />
+		<img class="img-responsive" src="slike/ig-040.jpg" loading="lazy" alt="insta ig-040" />
+		<img class="img-responsive" src="slike/ig-038.jpg" loading="lazy" alt="insta ig-038" />
+		<img class="img-responsive" src="slike/ig-037.jpg" loading="lazy" alt="insta ig-037" />
+		<img class="img-responsive" src="slike/ig-035.jpg" loading="lazy" alt="insta ig-035" />
+		<img class="img-responsive" src="slike/ig-034.jpg" loading="lazy" alt="insta ig-034" />
+		<img class="img-responsive" src="slike/ig-033.jpg" loading="lazy" alt="insta ig-033" />
+		<img class="img-responsive" src="slike/ig-031.jpg" loading="lazy" alt="insta ig-031" />
+		<img class="img-responsive" src="slike/ig-030.jpg" loading="lazy" alt="insta ig-030" />
+		<img class="img-responsive" src="slike/ig-028.jpg" loading="lazy" alt="insta ig-028" />
+		<img class="img-responsive" src="slike/ig-025.jpg" loading="lazy" alt="insta ig-025" />
+		<img class="img-responsive" src="slike/ig-024.jpg" loading="lazy" alt="insta ig-024" />
+		<img class="img-responsive" src="slike/ig-023.jpg" loading="lazy" alt="insta ig-023" />
+		<img class="img-responsive" src="slike/ig-022.jpg" loading="lazy" alt="insta ig-022" />
+		<img class="img-responsive" src="slike/ig-020.jpg" loading="lazy" alt="insta ig-020" />
+		<img class="img-responsive" src="slike/ig-019.jpg" loading="lazy" alt="insta ig-019" />
+		<img class="img-responsive" src="slike/ig-018.jpg" loading="lazy" alt="insta ig-018" />
+		<img class="img-responsive" src="slike/ig-017.jpg" loading="lazy" alt="insta ig-017" />
+		<img class="img-responsive" src="slike/ig-016.jpg" loading="lazy" alt="insta ig-016" />
+		<img class="img-responsive" src="slike/ig-015.jpg" loading="lazy" alt="insta ig-015" />
+		<img class="img-responsive" src="slike/ig-014.jpg" loading="lazy" alt="insta ig-014" />
+		<img class="img-responsive" src="slike/ig-013.jpg" loading="lazy" alt="insta ig-013" />
+		<img class="img-responsive" src="slike/ig-008.jpg" loading="lazy" alt="insta ig-008" />
+		<img class="img-responsive" src="slike/ig-007.jpg" loading="lazy" alt="insta ig-007" />
+		 
+
+            <div class="autor">
+                <div class="autor-levo"><img src="slike/nenad-avatar.jpg" loading="lazy" alt=""></div>
+                <div class="autor-desno">
+                    <h2><a href="o.html">Nenad Pantelić</a></h2>
+                    <p>Nenad je stručnjak za SEO, PPC i web analitiku. Od 2009. godine kroz ruke mu je prošlo na stotine sajtova kojima je pomogao da dođu do pozicija, poseta, konverzija i profita. Piše za <a href="https://www.netokracija.rs/author/nenadpantelic"
+                            rel="noopener" target="_blank">Netokraciju</a> i <a href="https://www.domen.rs/sr-latn/nenad-pantelic" rel="noopener" target="_blank">RNIDS</a>. Do sada je izlagao na preko dvadeset konferencija na teme digitalnog marketinga. Vlasnik
+                        je kompanije <a href="https://www.blueberrydigital.rs" rel="noopener" target="_blank">Blueberry Digital</a>, kao i projekata <a href="https://www.marketingalati.com" rel="noopener" target="_blank">Marketing alati</a> i <a href="https://www.napisimisajt.com"
+                            rel="noopener" target="_blank">Napiši mi sajt</a>.</p>
+                </div>
+            </div>
+    </section>
+    <section class="sup-footer"></section>
+    <footer>
+        <div class="footer-container">
+            <ul>
+                <li><a href="https://www.nenadpantelic.com/">Početna</a></li>
+                <li><a href="https://www.nenadpantelic.com/usluge.html">Usluge</a></li>
+                <li><a href="https://www.nenadpantelic.com/politika-privatnosti.html">Politika privatnosti</a></li>
+                <li><a href="https://www.nenadpantelic.com/uslovi-koriscenja.html">Uslovi korišćenja</a></li>
+                <li><a href="https://www.nenadpantelic.com/kontakt.html">Kontakt</a></li>
+            </ul>
+            <div class='byline'> &copy; Copyright 2021 · Handcrafted with <span>♥</span> in Belgrade </div>
+        </div>
+    </footer>
+</body>
+
+</html>
