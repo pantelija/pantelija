@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.nenadpantelic.com/o.html</loc>
+    <xhtml:link rel="alternate" hreflang="sr-Cyrl-rs" href="https://www.nenadpantelic.com/%D0%BE-%D0%B0%D1%83%D1%82%D0%BE%D1%80%D1%83.html" />
+    <lastmod>2021-12-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.nenadpantelic.com/%D0%BE-%D0%B0%D1%83%D1%82%D0%BE%D1%80%D1%83.html</loc>
+    <xhtml:link rel="alternate" hreflang="sr-Latn-rs" href="https://www.nenadpantelic.com/o.html" />
+    <lastmod>2021-12-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
