@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+<urlset
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+    http://www.w3.org/1999/xhtml http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd"
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"  >
   <url>
     <loc>https://www.nenadpantelic.com/o.html</loc>
     <xhtml:link rel="alternate" hreflang="sr-Cyrl-rs" href="https://www.nenadpantelic.com/%D0%BE-%D0%B0%D1%83%D1%82%D0%BE%D1%80%D1%83.html" />
