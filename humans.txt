@@ -12,5 +12,4 @@ Dali ste mi poverenje, vreme, iskustvo & znanje i na tome sam vam najiskrenije z
 /* Kontakt */
 /****************/
 
-email: pantelic@hey.com
-twitter: @nenadpantelic
+email: info@nenadpantelic.com
