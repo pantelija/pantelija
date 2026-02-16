@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge, Combine and Concatenate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f8fafc;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 200px;
+        }
+        /* Capping the result box height */
+        #boxResult {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl font-bold text-slate-800">Merge, Combine and Concatenate</h1>
+            <p class="text-slate-600 mt-2">Generate all possible combinations between two lists.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <!-- Box 1 -->
+            <div class="flex flex-col gap-2">
+                <label class="font-semibold text-slate-700">List A (One per line)</label>
+                <textarea id="boxA" class="w-full p-4 border border-slate-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="Enter first list..."></textarea>
+                <p class="text-xs text-slate-500" id="countA">0 lines</p>
+            </div>
+
+            <!-- Box 2 -->
+            <div class="flex flex-col gap-2">
+                <label class="font-semibold text-slate-700">List B (One per line)</label>
+                <textarea id="boxB" class="w-full p-4 border border-slate-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="Enter second list..."></textarea>
+                <p class="text-xs text-slate-500" id="countB">0 lines</p>
+            </div>
+        </div>
+
+        <!-- Options Panel -->
+        <div class="glass-panel p-6 rounded-2xl shadow-sm mb-8 border border-slate-200">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-start">
+                <!-- Separator Selection -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Separator</label>
+                    <div class="flex flex-col gap-2">
+                        <label class="flex items-center cursor-pointer group">
+                            <input type="radio" name="separator" value="none" checked class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+                            <span class="ml-2 text-sm text-slate-600 group-hover:text-slate-900">None</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer group">
+                            <input type="radio" name="separator" value="space" class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+                            <span class="ml-2 text-sm text-slate-600 group-hover:text-slate-900">Space</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer group">
+                            <input type="radio" name="separator" value="custom" class="w-4 h-4 text-blue-600 focus:ring-blue-500" id="customSepRadio">
+                            <input type="text" id="customSepValue" placeholder="Custom..." class="ml-2 w-full px-2 py-1 text-xs border rounded border-slate-300 outline-none focus:ring-1 focus:ring-blue-500">
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Wrap Selection -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Result Wrapping</label>
+                    <div class="flex flex-col gap-2">
+                        <label class="flex items-center cursor-pointer group">
+                            <input type="radio" name="wrap" value="none" checked class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+                            <span class="ml-2 text-sm text-slate-600 group-hover:text-slate-900">None</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer group">
+                            <input type="radio" name="wrap" value="quotes" class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+                            <span class="ml-2 text-sm text-slate-600 group-hover:text-slate-900">Quotes ("")</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Transformations -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Transformations</label>
+                    <div class="flex flex-col gap-2">
+                        <label class="flex items-center cursor-pointer group">
+                            <input type="checkbox" id="replaceSpaces" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500">
+                            <span class="ml-2 text-sm text-slate-600 group-hover:text-slate-900">Spaces to %20</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <div class="flex flex-col justify-end h-full">
+                    <button onclick="generateStrings()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl transition-colors shadow-lg shadow-blue-200 active:scale-95 transform">
+                        Generate Combinations
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Section -->
+        <div id="resultArea" class="hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div class="flex justify-between items-center mb-2">
+                <label class="font-semibold text-slate-700">Resulting Combinations</label>
+                <div class="flex gap-2">
+                    <span id="resultCount" class="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded-md">0 combinations</span>
+                    <button onclick="copyToClipboard()" class="text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 px-3 py-1 rounded-md transition-colors">
+                        Copy to Clipboard
+                    </button>
+                </div>
+            </div>
+            <textarea id="boxResult" readonly class="w-full p-4 bg-slate-100 border border-slate-300 rounded-xl shadow-inner text-slate-800 font-mono text-sm" placeholder="Results will appear here..."></textarea>
+            
+            <div id="toast" class="hidden mt-4 p-3 bg-emerald-100 text-emerald-700 rounded-lg text-center text-sm font-medium">
+                Copied to clipboard!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getLines(id) {
+            const text = document.getElementById(id).value.trim();
+            if (!text) return [];
+            return text.split(/\r?\n/).filter(line => line.length > 0);
+        }
+
+        function updateCounts() {
+            document.getElementById('countA').innerText = `${getLines('boxA').length} lines`;
+            document.getElementById('countB').innerText = `${getLines('boxB').length} lines`;
+        }
+
+        document.getElementById('boxA').addEventListener('input', updateCounts);
+        document.getElementById('boxB').addEventListener('input', updateCounts);
+
+        function generateStrings() {
+            const listA = getLines('boxA');
+            const listB = getLines('boxB');
+            const resultArea = document.getElementById('resultArea');
+            const resultTextarea = document.getElementById('boxResult');
+            const resultCount = document.getElementById('resultCount');
+
+            if (listA.length === 0 || listB.length === 0) {
+                resultArea.classList.remove('hidden');
+                resultTextarea.value = "Please ensure both input boxes contain at least one line of text.";
+                resultCount.innerText = "0 combinations";
+                return;
+            }
+
+            // Get Separator
+            const sepType = document.querySelector('input[name="separator"]:checked').value;
+            let sep = "";
+            if (sepType === "space") sep = " ";
+            if (sepType === "custom") sep = document.getElementById('customSepValue').value;
+
+            // Get Wrap
+            const wrapType = document.querySelector('input[name="wrap"]:checked').value;
+            
+            // Get Transformations
+            const shouldReplaceSpaces = document.getElementById('replaceSpaces').checked;
+
+            const combined = [];
+            for (let a of listA) {
+                for (let b of listB) {
+                    let combinedStr = `${a}${sep}${b}`;
+                    
+                    // Apply transformation before wrapping
+                    if (shouldReplaceSpaces) {
+                        combinedStr = combinedStr.split(' ').join('%20');
+                    }
+
+                    // Apply wrap
+                    if (wrapType === "quotes") {
+                        combinedStr = `"${combinedStr}"`;
+                    }
+                    
+                    combined.push(combinedStr);
+                }
+            }
+
+            resultTextarea.value = combined.join('\n');
+            resultCount.innerText = `${combined.length} combinations`;
+            resultArea.classList.remove('hidden');
+            
+            // Adjust height up to the max-height set in CSS
+            resultTextarea.style.height = 'auto';
+            const targetHeight = Math.min(resultTextarea.scrollHeight + 10, 400);
+            resultTextarea.style.height = targetHeight + 'px';
+            
+            resultArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function copyToClipboard() {
+            const copyText = document.getElementById("boxResult");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+
+            try {
+                document.execCommand("copy");
+                const toast = document.getElementById('toast');
+                toast.classList.remove('hidden');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 2000);
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+        }
+    </script>
+</body>
+</html>
