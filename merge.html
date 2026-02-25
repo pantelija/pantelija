@@ -209,7 +209,7 @@
         function copyToClipboard() {
             const copyText = document.getElementById("boxResult");
             copyText.select();
-            copyText.setSelectionRange(0, 99999);
+            copyText.setSelectionRange(0, copyText.value.length); 
 
             try {
                 document.execCommand("copy");
