@@ -95,6 +95,10 @@
                             <input type="checkbox" id="replaceSpaces" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500">
                             <span class="ml-2 text-sm text-slate-600 group-hover:text-slate-900">Spaces to %20</span>
                         </label>
+                        <label class="flex items-center cursor-pointer group">
+                            <input type="checkbox" id="replaceSpacesPlus" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500">
+                            <span class="ml-2 text-sm text-slate-600 group-hover:text-slate-900">Spaces to +</span>
+                        </label>
                     </div>
                 </div>
 
@@ -166,15 +170,19 @@
             
             // Get Transformations
             const shouldReplaceSpaces = document.getElementById('replaceSpaces').checked;
+            const shouldReplaceSpacesPlus = document.getElementById('replaceSpacesPlus').checked;
 
             const combined = [];
             for (let a of listA) {
                 for (let b of listB) {
                     let combinedStr = `${a}${sep}${b}`;
                     
-                    // Apply transformation before wrapping
+                    // Apply transformations before wrapping
                     if (shouldReplaceSpaces) {
                         combinedStr = combinedStr.split(' ').join('%20');
+                    }
+                    if (shouldReplaceSpacesPlus) {
+                        combinedStr = combinedStr.split(' ').join('+');
                     }
 
                     // Apply wrap
