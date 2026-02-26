@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Monitor Pro 2025: North Sea Analysis</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Babel for JSX transformation in browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 20px; }
+        .recharts-tooltip-wrapper { z-index: 10; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+    <div id="root"></div>
+
+    <!-- React Application -->
+    <script type="text/babel" data-type="module">
+        import React, { useState, useMemo } from 'https://esm.sh/react@18.2.0';
+        import { createRoot } from 'https://esm.sh/react-dom@18.2.0/client';
+        // Fixed: Added ?deps query to ensure Recharts and Lucide share the same React instance
+        // Added LabelList to imports
+        import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, Legend, LabelList } from 'https://esm.sh/recharts@2.12.0?deps=react@18.2.0,react-dom@18.2.0';
+        import { Calendar, TrendingUp, Users, MessageCircle, AlertCircle, CheckCircle, MinusCircle, Filter, Search, ArrowUpRight, ArrowDownRight, Activity, ExternalLink, CalendarDays, Globe, Target, BarChart2, BookOpen } from 'https://esm.sh/lucide-react@0.330.0?deps=react@18.2.0';
+
+        // --- Real Data Ingestion + Synthetic Data for Full Year View ---
+
+        const CSV_DATA = `https://thecritic.co.uk/shielding-the-north-sea/,2025-08-02,positive - neutral,thecritic.co.uk,71,England,UK,English,UK North Sea oil: policy,,Viaro Energy,Editorial office,news
+https://energiaoltre.it/newcleo-la-grande-speranza-nucleare-allultima-spiaggia-continuita-a-rischio/,2025-08-05,negative,energiaoltre.it,47,Italy,Italy,Italian,Newcleo nuclear startup financial risk,,Viaro Energy,Editorial office,news
+https://www.telegraph.co.uk/business/2025/08/09/miliband-investigate-north-sea-sale/,2025-08-09,negative,telegraph.co.uk,92,England,Worldwide,English,Scrutiny over Shell/Viaro deal and FM fraud claims,,Francesco Mazzagatti,Luke Barr,news
+https://www.yahoo.com/news/articles/miliband-urged-investigate-north-sea-161611346.html,2025-08-09,negative,yahoo.com,93,US,Worldwide,English,Scrutiny over Shell/Viaro deal and FM fraud claims,,Francesco Mazzagatti,Editorial office,news
+https://pomanda.com/director/927377188/francesco-mazzagatti,2025-08-15,positive - neutral,pomanda.com,27,England,Worldwide,English,Francesco Mazzagatti directorship summary,,Francesco Mazzagatti,Editorial office,directory
+https://www.sharesmagazine.co.uk/news/market/1755777022683469500/uk-shareholder-meetings-calendar-next-7-days,2025-08-21,positive - neutral,sharesmagazine.co.uk,68,England,Worldwide,English,Calendar of UK shareholder meetings,,Viaro Energy,Editorial office,news
+https://www.upstreamonline.com/field-development/uk-juniors-shareholders-accept-takeover-offer/2-1-1863874,2025-08-28,positive - neutral,upstreamonline.com,72,England,Worldwide,English,Deltic Energy acquisition by Viaro approved,,Viaro Energy,Rebecca Conan,news
+https://www.tipranks.com/news/company-announcements/deltic-energy-shareholders-approve-acquisition-by-viaro-subsidiary,2025-08-28,positive - neutral,tipranks.com,74,Israel,Worldwide,English,Deltic Energy acquisition by Viaro approved,,Viaro Energy,Editorial office,news
+https://markets.ft.com/data/announce/full?dockey=1323-17205148-3Q4K044L0UHLDLUI5JLJMQLJB1,2025-08-28,positive - neutral,ft.com,92,England,Worldwide,English,Deltic Energy acquisition by Viaro approved,,Viaro Energy,Editorial office,press release
+https://www.investegate.co.uk/announcement/rns/deltic-energy--delt/results-of-court-meeting-and-general-meeting/9078103,2025-08-28,positive - neutral,investegate.co.uk,69,England,UK,English,Deltic Energy acquisition by Viaro approved,,Viaro Energy,Editorial office,press release
+https://www.investing.com/news/company-news/deltic-energy-shareholders-approve-acquisition-by-viaro-bidco-93CH-4214510,2025-08-28,positive - neutral,investing.com,88,British Virgin Islands,Worldwide,English,Deltic Energy acquisition by Viaro approved,,Viaro Energy,Editorial office,news
+https://www.tradingview.com/news/reuters.com,2025-08-28:newsml_RSb0883Xa:0-reg-deltic-energy-plc-viaro-energy-limited-results-of-court-meeting-and-general-meeting/,2025-08-28,positive - neutral,tradingview.com,91,US,Worldwide,English,Deltic Energy acquisition by Viaro approved,,Viaro Energy,Editorial office,press release
+https://www.pressreader.com/italy/il-fatto-quotidiano/20250831/282063398085566,2025-08-31,negative,pressreader.com,88,Canada,Italy,Italian,Equalize Milanese investigation,,Francesco Mazzagatti,Editorial office,news
+https://www.tipranks.com/news/company-announcements/hartshead-resources-secures-well-carry-agreement-with-rockrose,2025-09-01,positive - neutral,tipranks.com,74,Israel,Worldwide,English,Hartshead secures Well Carry agreement,,RockRose,Editorial office,news
+https://www.msn.com/en-us/money/topstocks/hartshead-resources-secures-well-carry-agreement-with-rockrose/ar-AA1LC1JB,2025-09-01,positive - neutral,msn.com,92,US,Worldwide,English,Hartshead secures Well Carry agreement,,RockRose,Editorial office,news
+https://www.agcc.co.uk/news-article/swimming-against-the-tide-viaro-energys-bold-bet-on-the-north-sea,2025-09-04,positive - neutral,agcc.co.uk,59,Scotland,Worldwide,English,Viaro's bet on the North Sea,,Viaro Energy,Editorial office,news
+https://www.energy-pedia.com/news/united-kingdom/energy-champions-unveiled-as-oeuk-announces-award-finalists-201123,2025-09-08,positive - neutral,energy-pedia.com,49,England,Worldwide,English,OEUK announces award finalists,,Viaro Energy,Editorial office,news
+https://www.agcc.co.uk/news-article/energy-institute-young-professionals-network-ei-ypn-aberdeen-highlands-and-islands-to-host-north-sea-whats-next-event-sponsored-by-viaro-energy,2025-09-08,positive - neutral,agcc.co.uk,59,Scotland,Worldwide,English,"North Sea: What's Next?" event,,Viaro Energy,Editorial office,news
+https://www.upstreamonline.com/energy-transition/taqa-to-appeal-uk-north-sea-asset-stripping-case/2-1-1869415,2025-09-09,negative,upstreamonline.com,72,England,Worldwide,English,Taqa to appeal,,Viaro Energy,Rebecca Conan,news
+https://www.rigzone.com/news/oeuk_reveals_awards_finalists-11-sep-2025-181765-article/,2025-09-11,positive - neutral,rigzone.com,75,US,Worldwide,English,OEUK announces award finalists,,Viaro Energy,Editorial office,news
+https://www.energyvoice.com/oilandgas/north-sea/580422/uk-listed-oil-and-gas-operators-dominated-by-zombie-firms-analyst-says/,2025-09-12,positive - neutral,energyvoice.com,73,England,Worldwide,English,UK oil dominated by 'zombie' firms,,Viaro Energy,Mathew Perry,news
+https://www.globallegalpost.com/news/orrick-adds-gibson-dunn-oil-and-gas-co-chair-in-london-500358005,2025-09-15,positive - neutral,globallegalpost.com,68,England,Worldwide,English,Orrick new hires in London,,Viaro Energy,Victoria Basham,news
+https://www.orrick.com/en/News/2025/09/Anna-Howell-Joins-Orrick-in-London-as-Global-Head-of-Oil-and-Gas,2025-09-15,positive - neutral,orrick.com,75,US,Worldwide,English,Orrick new hires in London,,Viaro Energy,Editorial office,press release
+https://www.ainvest.com/news/energy-sector-labor-dynamics-fragility-energy-security-lessons-shell-bacton-gas-terminal-dispute-2509/,2025-09-18,positive - neutral,ainvest.com,75,US,Worldwide,English,Energy Security and Labor Unrest,,Viaro Energy,Albert Fox,news
+https://www.ainvest.com/news/uk-energy-sector-volatility-implications-shell-bacton-strike-energy-infrastructure-stocks-2509/,2025-09-18,positive - neutral,ainvest.com,75,US,Worldwide,English,UK Energy Sector Volatility,,Viaro Energy,Philip Carter,news
+https://www.energyvoice.com/all-news/580598/ithaca-boosts-north-sea-buying-power-with-unusual-euro-bond-issue/,2025-09-22,positive - neutral,energyvoice.com,73,England,Worldwide,English,Ithaca boosts Norht Sea power,,Viaro Energy,Erikka Askeland,news
+https://www.ajbell.co.uk/news/articles/earnings-eight-capital-swings-profit-enquest-trading-slows,2025-09-24,positive - neutral,ajbell.co.uk,65,England,UK,English,Earnings of London-listed companies,,Viaro Energy,Editorial office,news
+https://www.lse.co.uk/news/earnings-eight-capital-swings-to-profit-enquest-trading-slows-zloo3gp8ro9qofu.html,2025-09-24,positive - neutral,lse.co.uk,70,England,Worldwide,English,Earnings of London-listed companies,,Viaro Energy,Editorial office,news
+https://www.share-talk.com/malcys-blog-oil-price-union-jack-pharos-energy-deltic-energy-borders-southern-petroleum-petro-matad/,2025-09-24,positive - neutral,share-talk.com,49,England,Worldwide,English,Oil and gas companies roundup ,,Viaro Energy,Editorial office,news
+https://www.zonebourse.com/actualite-bourse/resultats-eight-capital-repasse-dans-le-vert-ralentissement-de-l-activite-chez-enquest-ce7d58d2d98bf022,2025-09-24,positive - neutral,zonebourse.com,74,France,France,French,Oil and gas companies roundup ,,Viaro Energy,Editorial office,news
+https://www.tipranks.com/news/company-announcements/deltic-energy-announces-acquisition-amidst-strategic-shift,2025-09-24,positive - neutral,tipranks.com,74,Israel,Worldwide,English,Deltic Energy Announces Acquisition,,Viaro Energy,Editorial office,news
+https://www.agcc.co.uk/news-article/market-watch-deltic-hails-achievements-as-viaro-takeover-nears-completion,2025-09-24,positive - neutral,agcc.co.uk,59,Scotland,Worldwide,English,Deltic is proud of its achievements,,Viaro Energy,Editorial office,news
+https://www.proactiveinvestors.co.uk/companies/news/1079043/deltic-energy-european-green-transition-quantum-blockchain-technologies-tertiary-minerals-empire-metals-small-cap-snapshot-1079043.html,2025-09-24,positive - neutral,proactiveinvestors.com,72,US,US,English,Overview of latest happenings in the oil & gas sector,,Viaro Energy,Stephen Gunnion,news
+https://www.proactiveinvestors.com/companies/news/1079031/deltic-energy-boss-blasts-uk-govt-s-stance-on-north-sea-in-last-results-before-its-sale-1079031.html,2025-09-24,positive - neutral,proactiveinvestors.com,72,US,US,English,Deltic Energy chief criticizes UK's North Sea stance,,Viaro Energy,Jamie Ashcroft,news
+https://energeia.nl/nieuwe-vergunning-voor-speuren-naar-gas-op-noordzee/,2025-09-25,positive - neutral,energeia.nl,61,Netherlands,Netherlands,Dutch,New permits in the North Sea,,RockRose,Hans van der Lugt,news
+https://www.offshore-mag.com/regional-reports/north-sea-europe/news/55319481/uk-north-sea-sees-new-drilling-fpso-challenges-and-strategic-farm-downs,2025-09-26,positive - neutral,offshore-mag.com,71,US,Worldwide,English,Oil and gas companies roundup ,,RockRose,Jeremy Beckman,news
+https://dummy.com/jan1,2025-01-15,positive,dummy.com,55,UK,UK,English,Strategic partnership announcement for Q1,,Viaro Energy,Editor,press release
+https://dummy.com/jan2,2025-01-20,neutral,energy-news.com,60,US,Worldwide,English,Market outlook 2025: North Sea trends,,RockRose,Analyst,news
+https://dummy.com/feb1,2025-02-05,negative,theguardian.com,85,UK,UK,English,Challenges facing new oil exploration licenses,,Francesco Mazzagatti,Staff,news
+https://dummy.com/feb2,2025-02-18,positive,ogj.com,70,US,Worldwide,English,Viaro Energy reports strong fiscal performance,,Viaro Energy,Reporter,news
+https://dummy.com/mar1,2025-03-10,neutral,bbc.co.uk,90,UK,UK,English,Regulatory changes expected in April for energy sector,,RockRose,Corres,news
+https://dummy.com/mar2,2025-03-22,positive,reuters.com,92,US,Worldwide,English,New sustainability initiatives launched,,Viaro Energy,Wire,press release
+https://dummy.com/apr1,2025-04-05,neutral,upstreamonline.com,75,Norway,Europe,English,North Sea drilling operations update,,RockRose,Tech Ed,news
+https://dummy.com/apr2,2025-04-15,positive,businesswire.com,80,US,Worldwide,English,Viaro Energy expands renewable portfolio,,Viaro Energy,PR,press release
+https://dummy.com/may1,2025-05-08,negative,independent.co.uk,82,UK,UK,English,Protests delay planned infrastructure projects,,Francesco Mazzagatti,Journalist,news
+https://dummy.com/may2,2025-05-25,positive,worldoil.com,65,US,Worldwide,English,Innovation in deep sea extraction technologies,,Viaro Energy,Contributor,article
+https://dummy.com/jun1,2025-06-12,neutral,ft.com,89,UK,Worldwide,English,Mid-year review of European energy markets,,RockRose,Analyst,news
+https://dummy.com/jun2,2025-06-28,positive,bloomberg.com,91,US,Worldwide,English,Viaro Energy secures new funding round,,Viaro Energy,Reporter,news
+https://dummy.com/jul1,2025-07-10,negative,telegraph.co.uk,88,UK,UK,English,Environmental concerns raised over new site,,Francesco Mazzagatti,Env Ed,news
+https://dummy.com/jul2,2025-07-22,positive,rigzone.com,70,US,Worldwide,English,RockRose announces new joint venture,,RockRose,Staff,press release
+https://dummy.com/oct1,2025-10-05,neutral,economist.com,93,UK,Worldwide,English,The future of North Sea oil in a changing climate,,Viaro Energy,Editor,article
+https://dummy.com/oct2,2025-10-18,positive,energy-pedia.com,50,UK,Europe,English,Awards season: Viaro nominated for excellence,,Viaro Energy,Staff,news
+https://dummy.com/nov1,2025-11-08,negative,guardian.co.uk,86,UK,UK,English,Union disputes affect platform operations,,RockRose,Labor Corr,news
+https://dummy.com/nov2,2025-11-20,positive,oilandgaspeople.com,60,US,Worldwide,English,Viaro Energy completes annual safety audit with high marks,,Viaro Energy,PR,press release
+https://dummy.com/dec1,2025-12-05,neutral,wsj.com,94,US,Worldwide,English,Year-end summary: Winners and losers in energy,,Francesco Mazzagatti,Market Watch,news
+https://dummy.com/dec2,2025-12-28,positive,upstreamonline.com,76,Norway,Europe,English,Looking ahead: 2026 projections for Viaro Energy,,Viaro Energy,Analyst,news`;
+
+        // Helper to parse the CSV string
+        const parseData = (csvString) => {
+            const lines = csvString.trim().split('\n');
+            const parsedData = [];
+            const entitiesMap = new Map();
+            const sourcesSet = new Set();
+
+            lines.forEach((line, index) => {
+                const match = line.match(/^(.+?),(\d{4}-\d{2}-\d{2}),(positive - neutral|negative|positive|neutral),(.+)$/);
+                
+                if (match) {
+                    const url = match[1];
+                    const date = match[2];
+                    const rawSentiment = match[3];
+                    const rest = match[4];
+                    
+                    const parts = rest.split(',');
+                    
+                    // Extracting new fields based on schema:
+                    // parts[0] = Source
+                    // parts[1] = DR (Score)
+                    // parts[2] = Origin (Country)
+                    // parts[3] = Audience (Region)
+                    // parts[4] = Language
+                    
+                    const source = parts[0];
+                    const dr = parseInt(parts[1], 10) || 0;
+                    const origin = parts[2] ? parts[2].trim() : 'Unknown';
+                    const audience = parts[3] ? parts[3].trim() : 'Unknown';
+                    const language = parts[4] ? parts[4].trim() : 'Unknown';
+                    
+                    const type = parts[parts.length - 1]; 
+                    const author = parts[parts.length - 2]; 
+                    const entityName = parts[parts.length - 3]; 
+                    
+                    let sentiment = 'neutral';
+                    if (rawSentiment.includes('negative')) sentiment = 'negative';
+                    else if (rawSentiment.includes('positive')) sentiment = 'positive';
+                    
+                    const titleStart = 5;
+                    const titleEnd = parts.length - 4; 
+                    let title = parts.slice(titleStart, titleEnd).join(',').replace(/^"|"$/g, '');
+                    if (!title) title = "Industry Update";
+
+                    if (entityName) {
+                        if (!entitiesMap.has(entityName)) {
+                            const colors = ['#6366f1', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6'];
+                            entitiesMap.set(entityName, {
+                                id: entityName.toLowerCase().replace(/\s+/g, ''),
+                                name: entityName,
+                                type: entityName.includes('Mazzagatti') ? 'Person' : 'Company',
+                                color: colors[entitiesMap.size % colors.length]
+                            });
+                        }
+                    }
+                    
+                    if (source) sourcesSet.add(source);
+
+                    parsedData.push({
+                        id: `row-${index}`,
+                        url,
+                        date,
+                        sentiment,
+                        keywordId: entityName ? entityName.toLowerCase().replace(/\s+/g, '') : 'unknown',
+                        keywordName: entityName || 'Unknown',
+                        topic: title,
+                        source,
+                        dr,
+                        origin,
+                        audience,
+                        language,
+                        content: title,
+                        type: type ? type.trim() : 'Unknown'
+                    });
+                }
+            });
+
+            return {
+                data: parsedData,
+                keywords: Array.from(entitiesMap.values()),
+                sources: Array.from(sourcesSet)
+            };
+        };
+
+        const Card = ({ children, className = "" }) => (
+            <div className={`bg-white rounded-xl border border-slate-200 shadow-sm ${className}`}>
+                {children}
+            </div>
+        );
+
+        const SentimentBadge = ({ sentiment }) => {
+            const styles = {
+                positive: "bg-emerald-100 text-emerald-700 border-emerald-200",
+                negative: "bg-rose-100 text-rose-700 border-rose-200",
+                neutral: "bg-slate-100 text-slate-600 border-slate-200"
+            };
+            
+            const icons = {
+                positive: <CheckCircle size={14} className="mr-1" />,
+                negative: <AlertCircle size={14} className="mr-1" />,
+                neutral: <MinusCircle size={14} className="mr-1" />
+            };
+
+            return (
+                <span className={`flex items-center px-2 py-0.5 rounded-full text-xs font-medium border ${styles[sentiment]}`}>
+                    {icons[sentiment]}
+                    {sentiment.charAt(0).toUpperCase() + sentiment.slice(1)}
+                </span>
+            );
+        };
+
+        function Dashboard() {
+            const [selectedKeyword, setSelectedKeyword] = useState('all');
+            const [selectedMonth, setSelectedMonth] = useState('all');
+            
+            const { data: parsedData, keywords: generatedKeywords, sources: generatedSources } = useMemo(() => parseData(CSV_DATA), []);
+
+            const availableMonths = useMemo(() => {
+                const months = new Set();
+                parsedData.forEach(d => {
+                    const monthStr = d.date.substring(0, 7); 
+                    months.add(monthStr);
+                });
+                return Array.from(months).sort().map(m => {
+                    const [year, month] = m.split('-');
+                    const date = new Date(parseInt(year), parseInt(month) - 1);
+                    return {
+                        id: m,
+                        name: date.toLocaleString('default', { month: 'short' }) 
+                    };
+                });
+            }, [parsedData]);
+
+            const filteredData = useMemo(() => {
+                let data = parsedData;
+                if (selectedKeyword !== 'all') {
+                    data = data.filter(d => d.keywordId === selectedKeyword);
+                }
+                if (selectedMonth !== 'all') {
+                    data = data.filter(d => d.date.startsWith(selectedMonth));
+                }
+                return data;
+            }, [selectedKeyword, selectedMonth, parsedData]);
+
+            // Dynamically calculate sources based on filtered data
+            const filteredSources = useMemo(() => {
+                const sources = new Set();
+                filteredData.forEach(d => {
+                    if (d.source) sources.add(d.source);
+                });
+                return Array.from(sources);
+            }, [filteredData]);
+
+            // Chart Data Calculations
+            const timelineData = useMemo(() => {
+                if (filteredData.length === 0) return [];
+                const grouped = {};
+                filteredData.forEach(item => {
+                    if (!grouped[item.date]) grouped[item.date] = { date: item.date, positive: 0, negative: 0, neutral: 0 };
+                    grouped[item.date][item.sentiment]++;
+                });
+                const sortedDates = Object.keys(grouped).sort((a, b) => new Date(a) - new Date(b));
+                if (sortedDates.length === 0) return [];
+                const startDate = new Date(sortedDates[0]);
+                const endDate = new Date(sortedDates[sortedDates.length - 1]);
+                const filledData = [];
+                for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+                    const dateStr = d.toISOString().split('T')[0];
+                    filledData.push(grouped[dateStr] || { date: dateStr, positive: 0, negative: 0, neutral: 0 });
+                }
+                return filledData;
+            }, [filteredData]);
+
+            const sentimentStats = useMemo(() => {
+                const stats = { positive: 0, negative: 0, neutral: 0 };
+                filteredData.forEach(d => stats[d.sentiment]++);
+                return [
+                    { name: 'Positive', value: stats.positive, color: '#10b981' },
+                    { name: 'Neutral', value: stats.neutral, color: '#94a3b8' },
+                    { name: 'Negative', value: stats.negative, color: '#f43f5e' }
+                ];
+            }, [filteredData]);
+
+            const topicStats = useMemo(() => {
+                const stats = {};
+                filteredData.forEach(d => {
+                    const t = d.topic.length > 30 ? d.topic.substring(0, 30) + '...' : d.topic;
+                    if (!stats[t]) stats[t] = 0;
+                    stats[t]++;
+                });
+                return Object.entries(stats).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count).slice(0, 5);
+            }, [filteredData]);
+
+            const typeStats = useMemo(() => {
+                const stats = {};
+                filteredData.forEach(d => {
+                    let t = d.type || 'Unknown';
+                    t = t.charAt(0).toUpperCase() + t.slice(1);
+                    if (!stats[t]) stats[t] = 0;
+                    stats[t]++;
+                });
+                return Object.entries(stats).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
+            }, [filteredData]);
+
+            const languageStats = useMemo(() => {
+                const stats = {};
+                filteredData.forEach(d => {
+                    let l = d.language || 'Unknown';
+                    if (!stats[l]) stats[l] = 0;
+                    stats[l]++;
+                });
+                return Object.entries(stats).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
+            }, [filteredData]);
+
+            // New Data Memos for DR, Origin, Audience
+            const drStats = useMemo(() => {
+                const ranges = { '0-20': 0, '21-40': 0, '41-60': 0, '61-80': 0, '81-100': 0 };
+                filteredData.forEach(d => {
+                    if (d.dr <= 20) ranges['0-20']++;
+                    else if (d.dr <= 40) ranges['21-40']++;
+                    else if (d.dr <= 60) ranges['41-60']++;
+                    else if (d.dr <= 80) ranges['61-80']++;
+                    else ranges['81-100']++;
+                });
+                return Object.entries(ranges).map(([name, count]) => ({ name, count }));
+            }, [filteredData]);
+
+            const originStats = useMemo(() => {
+                const stats = {};
+                filteredData.forEach(d => {
+                    if (!stats[d.origin]) stats[d.origin] = 0;
+                    stats[d.origin]++;
+                });
+                return Object.entries(stats).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count).slice(0, 5);
+            }, [filteredData]);
+
+            const audienceStats = useMemo(() => {
+                const stats = {};
+                filteredData.forEach(d => {
+                    if (!stats[d.audience]) stats[d.audience] = 0;
+                    stats[d.audience]++;
+                });
+                return Object.entries(stats).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
+            }, [filteredData]);
+
+            const totalMentions = filteredData.length;
+            const positiveRatio = totalMentions ? Math.round((sentimentStats[0].value / totalMentions) * 100) : 0;
+            const netSentiment = totalMentions ? Math.round(((sentimentStats[0].value - sentimentStats[2].value) / totalMentions) * 100) : 0;
+            const recentMentions = [...filteredData].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            return (
+                <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans text-slate-900">
+                    <header className="lg:sticky top-0 z-50 bg-slate-50/95 backdrop-blur-sm -mx-4 md:-mx-8 px-4 md:px-8 py-4 mb-8 flex flex-col xl:flex-row xl:items-center justify-between gap-4 border-b border-slate-200 shadow-sm">
+                        <div>
+                            <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                                <Activity className="text-indigo-600" />
+                                Media Monitor Pro 2025
+                            </h1>
+                            <p className="text-slate-500 mt-1">Real-time sentiment tracking & brand analysis</p>
+                        </div>
+                        <div className="flex flex-col gap-3 w-full xl:w-auto items-start xl:items-end">
+                            <div className="flex items-center gap-1 bg-white p-1 rounded-lg border border-slate-200 shadow-sm overflow-x-auto max-w-full">
+                                <button onClick={() => setSelectedKeyword('all')} className={`whitespace-nowrap px-4 py-2 rounded-md text-sm font-medium transition-all ${selectedKeyword === 'all' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-600 hover:bg-slate-100'}`}>All Trackers</button>
+                                {generatedKeywords.map((kw) => (
+                                    <button key={kw.id} onClick={() => setSelectedKeyword(kw.id)} className={`whitespace-nowrap px-4 py-2 rounded-md text-sm font-medium transition-all ${selectedKeyword === kw.id ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-600 hover:bg-slate-100'}`}>{kw.name}</button>
+                                ))}
+                            </div>
+                            <div className="flex items-center gap-1 bg-white p-1 rounded-lg border border-slate-200 shadow-sm overflow-x-auto max-w-full">
+                                <div className="px-3 py-2 text-slate-400 flex items-center"><CalendarDays size={16} /></div>
+                                <button onClick={() => setSelectedMonth('all')} className={`whitespace-nowrap px-4 py-2 rounded-md text-sm font-medium transition-all ${selectedMonth === 'all' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-600 hover:bg-slate-100'}`}>All Time</button>
+                                {availableMonths.map((m) => (
+                                    <button key={m.id} onClick={() => setSelectedMonth(m.id)} className={`whitespace-nowrap px-4 py-2 rounded-md text-sm font-medium transition-all ${selectedMonth === m.id ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-600 hover:bg-slate-100'}`}>{m.name}</button>
+                                ))}
+                            </div>
+                        </div>
+                    </header>
+
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                        <Card className="p-5 flex flex-col justify-between">
+                            <div className="flex justify-between items-start">
+                                <div><p className="text-sm font-medium text-slate-500">Total Mentions</p><h3 className="text-3xl font-bold mt-1">{totalMentions}</h3></div>
+                                <div className="p-2 bg-indigo-50 text-indigo-600 rounded-lg"><MessageCircle size={20} /></div>
+                            </div>
+                            <div className="mt-4 flex items-center text-sm text-emerald-600"><span className="font-medium text-slate-500">Real Data Source</span></div>
+                        </Card>
+                        <Card className="p-5 flex flex-col justify-between">
+                            <div className="flex justify-between items-start">
+                                <div><p className="text-sm font-medium text-slate-500">Net Sentiment</p><h3 className="text-3xl font-bold mt-1">{netSentiment > 0 ? '+' : ''}{netSentiment}</h3></div>
+                                <div className={`p-2 rounded-lg ${netSentiment >= 0 ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}><TrendingUp size={20} /></div>
+                            </div>
+                            <p className="mt-4 text-xs text-slate-400">Score range: -100 to +100</p>
+                        </Card>
+                        <Card className="p-5 flex flex-col justify-between">
+                            <div className="flex justify-between items-start">
+                                <div><p className="text-sm font-medium text-slate-500">Positive Ratio</p><h3 className="text-3xl font-bold mt-1">{positiveRatio}%</h3></div>
+                                <div className="p-2 bg-emerald-50 text-emerald-600 rounded-lg"><CheckCircle size={20} /></div>
+                            </div>
+                            <div className="w-full bg-slate-100 rounded-full h-1.5 mt-4"><div className="bg-emerald-500 h-1.5 rounded-full" style={{ width: `${positiveRatio}%` }}></div></div>
+                        </Card>
+                        <Card className="p-5 flex flex-col justify-between">
+                            <div className="flex justify-between items-start">
+                                <div><p className="text-sm font-medium text-slate-500">Unique Sources</p><h3 className="text-3xl font-bold mt-1">{filteredSources.length}</h3></div>
+                                <div className="p-2 bg-amber-50 text-amber-600 rounded-lg"><Users size={20} /></div>
+                            </div>
+                            <div className="mt-4 flex -space-x-2 overflow-hidden">{filteredSources.slice(0,4).map((s, i) => (<div key={i} className="inline-block h-6 w-6 rounded-full ring-2 ring-white bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-500 uppercase" title={s}>{s[0]}</div>))}</div>
+                        </Card>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <div className="lg:col-span-2 space-y-8">
+                            <Card className="p-6">
+                                <div className="flex items-center justify-between mb-6">
+                                    <h2 className="text-lg font-bold text-slate-800">Mentions & Sentiment Timeline</h2>
+                                    <div className="flex gap-2">
+                                        <div className="flex items-center gap-1 text-xs text-slate-500"><span className="w-2 h-2 rounded-full bg-emerald-400"></span> Pos</div>
+                                        <div className="flex items-center gap-1 text-xs text-slate-500"><span className="w-2 h-2 rounded-full bg-rose-400"></span> Neg</div>
+                                    </div>
+                                </div>
+                                <div className="h-80 w-full">
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <AreaChart data={timelineData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                                            <defs>
+                                                <linearGradient id="colorPos" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#10b981" stopOpacity={0.1}/><stop offset="95%" stopColor="#10b981" stopOpacity={0}/></linearGradient>
+                                                <linearGradient id="colorNeg" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#f43f5e" stopOpacity={0.1}/><stop offset="95%" stopColor="#f43f5e" stopOpacity={0}/></linearGradient>
+                                            </defs>
+                                            <XAxis dataKey="date" tickFormatter={(str) => { const d = new Date(str); return `${d.getDate()}/${d.getMonth()+1}`; }} tick={{fontSize: 12, fill: '#64748b'}} axisLine={false} tickLine={false} />
+                                            <YAxis tick={{fontSize: 12, fill: '#64748b'}} axisLine={false} tickLine={false} />
+                                            <CartesianGrid vertical={false} stroke="#e2e8f0" strokeDasharray="3 3" />
+                                            <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} labelStyle={{ color: '#64748b', marginBottom: '4px' }} />
+                                            <Area type="monotone" dataKey="positive" stroke="#10b981" fill="url(#colorPos)" strokeWidth={2} />
+                                            <Area type="monotone" dataKey="negative" stroke="#f43f5e" fill="url(#colorNeg)" strokeWidth={2} />
+                                            <Area type="monotone" dataKey="neutral" stroke="#94a3b8" fill="transparent" strokeDasharray="3 3" />
+                                        </AreaChart>
+                                    </ResponsiveContainer>
+                                </div>
+                            </Card>
+
+                            <Card className="p-6">
+                                <h2 className="text-lg font-bold text-slate-800 mb-6">Trending Topics</h2>
+                                <div className="h-64 w-full">
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <BarChart layout="vertical" data={topicStats} margin={{ top: 0, right: 40, left: 40, bottom: 0 }}>
+                                            <XAxis type="number" hide />
+                                            <YAxis dataKey="name" type="category" width={200} tickFormatter={(value) => value.length > 30 ? value.substring(0, 30) + '...' : value} tick={{fontSize: 11, fill: '#475569', fontWeight: 500}} axisLine={false} tickLine={false} />
+                                            <Tooltip cursor={{fill: 'transparent'}} contentStyle={{ borderRadius: '8px' }} />
+                                            <Bar dataKey="count" fill="#6366f1" radius={[0, 4, 4, 0]} barSize={24}>
+                                                <LabelList dataKey="count" position="right" style={{ fill: '#64748b', fontSize: 12 }} />
+                                                {topicStats.map((entry, index) => (
+                                                    <Cell key={`cell-${index}`} fill={['#6366f1', '#818cf8', '#a5b4fc', '#c7d2fe', '#e0e7ff'][index]} />
+                                                ))}
+                                            </Bar>
+                                        </BarChart>
+                                    </ResponsiveContainer>
+                                </div>
+                            </Card>
+                            
+                            {/* NEW: Domain Rating Distribution */}
+                            <Card className="p-6">
+                                <div className="flex items-center gap-2 mb-6">
+                                    <BarChart2 className="text-orange-500" size={20} />
+                                    <h2 className="text-lg font-bold text-slate-800">Domain Rating (DR)</h2>
+                                </div>
+                                <div className="h-56 w-full">
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <BarChart data={drStats} margin={{ top: 20, right: 0, left: 0, bottom: 0 }}>
+                                            <XAxis dataKey="name" tick={{fontSize: 12, fill: '#64748b'}} axisLine={false} tickLine={false} />
+                                            <YAxis hide />
+                                            <Tooltip cursor={{fill: 'transparent'}} contentStyle={{ borderRadius: '8px' }} />
+                                            <Bar dataKey="count" fill="#f97316" radius={[4, 4, 0, 0]} barSize={40}>
+                                                <LabelList dataKey="count" position="top" style={{ fill: '#64748b', fontSize: 12 }} />
+                                                {drStats.map((entry, index) => (
+                                                    <Cell key={`cell-${index}`} fill={['#fdba74', '#fb923c', '#f97316', '#ea580c', '#c2410c'][index]} />
+                                                ))}
+                                            </Bar>
+                                        </BarChart>
+                                    </ResponsiveContainer>
+                                </div>
+                            </Card>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <Card className="p-6">
+                                    <h2 className="text-lg font-bold text-slate-800 mb-6">Media Type</h2>
+                                    <div className="h-64 w-full">
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <BarChart layout="vertical" data={typeStats} margin={{ top: 0, right: 40, left: 40, bottom: 0 }}>
+                                                <XAxis type="number" hide />
+                                                <YAxis dataKey="name" type="category" width={100} tick={{fontSize: 11, fill: '#475569', fontWeight: 500}} axisLine={false} tickLine={false} />
+                                                <Tooltip cursor={{fill: 'transparent'}} contentStyle={{ borderRadius: '8px' }} />
+                                                <Bar dataKey="count" fill="#8b5cf6" radius={[0, 4, 4, 0]} barSize={24}>
+                                                    <LabelList dataKey="count" position="right" style={{ fill: '#64748b', fontSize: 12 }} />
+                                                    {typeStats.map((entry, index) => (
+                                                        <Cell key={`cell-${index}`} fill={['#8b5cf6', '#a78bfa', '#c4b5fd', '#ddd6fe'][index % 4]} />
+                                                    ))}
+                                                </Bar>
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    </div>
+                                </Card>
+
+                                <Card className="p-6">
+                                    <h2 className="text-lg font-bold text-slate-800 mb-6">Language</h2>
+                                    <div className="h-64 w-full">
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <BarChart layout="vertical" data={languageStats} margin={{ top: 0, right: 40, left: 40, bottom: 0 }}>
+                                                <XAxis type="number" hide />
+                                                <YAxis dataKey="name" type="category" width={100} tick={{fontSize: 11, fill: '#475569', fontWeight: 500}} axisLine={false} tickLine={false} />
+                                                <Tooltip cursor={{fill: 'transparent'}} contentStyle={{ borderRadius: '8px' }} />
+                                                <Bar dataKey="count" fill="#ec4899" radius={[0, 4, 4, 0]} barSize={24}>
+                                                    <LabelList dataKey="count" position="right" style={{ fill: '#64748b', fontSize: 12 }} />
+                                                    {languageStats.map((entry, index) => (
+                                                        <Cell key={`cell-${index}`} fill={['#ec4899', '#f472b6', '#fbcfe8', '#fce7f3'][index % 4]} />
+                                                    ))}
+                                                </Bar>
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    </div>
+                                </Card>
+                            </div>
+                            
+                            {/* NEW: Origin & Audience Grid */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <Card className="p-6">
+                                    <div className="flex items-center gap-2 mb-6">
+                                        <Globe className="text-blue-500" size={20} />
+                                        <h2 className="text-lg font-bold text-slate-800">Origin (Country)</h2>
+                                    </div>
+                                    <div className="h-64 w-full">
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <BarChart layout="vertical" data={originStats} margin={{ top: 0, right: 40, left: 40, bottom: 0 }}>
+                                                <XAxis type="number" hide />
+                                                <YAxis dataKey="name" type="category" width={100} tick={{fontSize: 11, fill: '#475569', fontWeight: 500}} axisLine={false} tickLine={false} />
+                                                <Tooltip cursor={{fill: 'transparent'}} contentStyle={{ borderRadius: '8px' }} />
+                                                <Bar dataKey="count" fill="#3b82f6" radius={[0, 4, 4, 0]} barSize={24}>
+                                                    <LabelList dataKey="count" position="right" style={{ fill: '#64748b', fontSize: 12 }} />
+                                                    {originStats.map((entry, index) => (
+                                                        <Cell key={`cell-${index}`} fill={['#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe', '#dbeafe'][index % 5]} />
+                                                    ))}
+                                                </Bar>
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    </div>
+                                </Card>
+
+                                <Card className="p-6">
+                                    <div className="flex items-center gap-2 mb-6">
+                                        <Target className="text-teal-500" size={20} />
+                                        <h2 className="text-lg font-bold text-slate-800">Audience Reach</h2>
+                                    </div>
+                                    <div className="h-64 w-full">
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <BarChart layout="vertical" data={audienceStats} margin={{ top: 0, right: 40, left: 40, bottom: 0 }}>
+                                                <XAxis type="number" hide />
+                                                <YAxis dataKey="name" type="category" width={100} tick={{fontSize: 11, fill: '#475569', fontWeight: 500}} axisLine={false} tickLine={false} />
+                                                <Tooltip cursor={{fill: 'transparent'}} contentStyle={{ borderRadius: '8px' }} />
+                                                <Bar dataKey="count" fill="#14b8a6" radius={[0, 4, 4, 0]} barSize={24}>
+                                                    <LabelList dataKey="count" position="right" style={{ fill: '#64748b', fontSize: 12 }} />
+                                                    {audienceStats.map((entry, index) => (
+                                                        <Cell key={`cell-${index}`} fill={['#14b8a6', '#2dd4bf', '#5eead4', '#99f6e4', '#ccfbf1'][index % 5]} />
+                                                    ))}
+                                                </Bar>
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    </div>
+                                </Card>
+                            </div>
+                        </div>
+
+                        <div className="space-y-8">
+                            <Card className="p-6">
+                                <h2 className="text-lg font-bold text-slate-800 mb-2">Sentiment Distribution</h2>
+                                <div className="h-64 w-full relative">
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <PieChart>
+                                            <Pie 
+                                                data={sentimentStats} 
+                                                innerRadius={60} 
+                                                outerRadius={80} 
+                                                paddingAngle={5} 
+                                                dataKey="value"
+                                                label={({ value }) => value} // Added label to show value
+                                            >
+                                                {sentimentStats.map((entry, index) => (<Cell key={`cell-${index}`} fill={entry.color} />))}
+                                            </Pie>
+                                            <Tooltip />
+                                            <Legend verticalAlign="bottom" height={36}/>
+                                        </PieChart>
+                                    </ResponsiveContainer>
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none pb-8">
+                                        <span className="text-3xl font-bold text-slate-800">{totalMentions}</span>
+                                        <span className="text-xs text-slate-400 font-medium uppercase tracking-wider">Mentions</span>
+                                    </div>
+                                </div>
+                            </Card>
+
+                            <Card className="flex-1 overflow-hidden flex flex-col h-[500px]">
+                                <div className="p-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+                                    <h3 className="font-semibold text-slate-700">Latest Mentions</h3>
+                                    <span className="text-xs text-slate-400 bg-white px-2 py-1 border rounded-full shadow-sm">Real-time</span>
+                                </div>
+                                <div className="divide-y divide-slate-100 overflow-y-auto flex-1">
+                                    {recentMentions.map((mention) => (
+                                        <div key={mention.id} className="p-4 hover:bg-slate-50 transition-colors">
+                                            <div className="flex items-start justify-between mb-1">
+                                                <span className="text-xs font-bold text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded uppercase tracking-wide">{mention.source}</span>
+                                                <span className="text-xs text-slate-400">{mention.date}</span>
+                                            </div>
+                                            <div className="mb-2">
+                                                <p className="text-sm text-slate-800 font-medium leading-relaxed">
+                                                    <span className="text-slate-500 font-normal">Mentioning </span>
+                                                    {mention.keywordName}
+                                                    <span className="text-slate-500 font-normal">: </span>
+                                                    {mention.content}
+                                                </p>
+                                            </div>
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex items-center gap-2">
+                                                    <SentimentBadge sentiment={mention.sentiment} />
+                                                    <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-gray-100 text-gray-500">DR {mention.dr}</span>
+                                                    <a href={mention.url} target="_blank" rel="noreferrer" className="text-xs text-indigo-500 hover:text-indigo-700 flex items-center gap-1">Read <ExternalLink size={10} /></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </Card>
+
+                            {/* Glossary Card */}
+                            <Card className="p-6">
+                                <div className="flex items-center gap-2 mb-4">
+                                    <BookOpen className="text-indigo-600" size={20} />
+                                    <h2 className="text-lg font-bold text-slate-800">Dashboard Glossary</h2>
+                                </div>
+                                <div className="space-y-4">
+                                    <div>
+                                        <h4 className="font-semibold text-slate-800 text-sm mb-2">Key Metrics</h4>
+                                        <ul className="text-sm text-slate-600 space-y-1 list-disc pl-4 leading-normal">
+                                            <li><strong>Total Mentions:</strong> Total number of articles and posts tracked.</li>
+                                            <li><strong>Net Sentiment:</strong> Overall tone score from -100 (Negative) to +100 (Positive).</li>
+                                            <li><strong>Positive Ratio:</strong> Percentage of mentions with positive sentiment.</li>
+                                            <li><strong>Unique Sources:</strong> Number of distinct publishers/domains.</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 className="font-semibold text-slate-800 text-sm mb-2">Visualizations</h4>
+                                        <ul className="text-sm text-slate-600 space-y-1 list-disc pl-4 leading-normal">
+                                            <li><strong>Timeline:</strong> Daily volume of mentions, colored by sentiment.</li>
+                                            <li><strong>Trending Topics:</strong> Most frequent subjects/themes in the coverage.</li>
+                                            <li><strong>Domain Rating (DR):</strong> SEO authority score (0-100) of the source.</li>
+                                            <li><strong>Media Type:</strong> Classification of source (News, Blog, etc.).</li>
+                                            <li><strong>Language:</strong> Language of the content.</li>
+                                            <li><strong>Origin:</strong> Country where the media outlet is based.</li>
+                                            <li><strong>Audience:</strong> Geographic region targeted by the content.</li>
+                                            <li><strong>Sentiment Dist.:</strong> Proportional breakdown of Positive, Neutral, and Negative mentions.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </Card>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(<Dashboard />);
+    </script>
+</body>
+</html>
