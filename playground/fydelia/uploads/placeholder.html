@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fydelia – Guest WiFi Marketing Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════
+   RESET & VARIABLES
+   ══════════════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f7f7f9;
+  --bg-dark: #141520;
+  --text: #1e1e2f;
+  --text-secondary: #555568;
+  --text-light: #8a8a9a;
+  --accent: #ca2d2c;
+  --accent-hover: #b02524;
+  --accent-soft: #ca2d2c18;
+  --accent-glow: #ca2d2c33;
+  --accent-light: #fef2f2;
+  --border: #e4e4ec;
+  --border-light: #f0f0f5;
+  --white: #ffffff;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+  --shadow: 0 4px 20px rgba(0,0,0,0.06);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.09);
+  --shadow-accent: 0 8px 30px rgba(202,45,44,0.18);
+  --font-heading: 'Sora', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════════════════════
+   UTILITIES & TYPE SCALE
+   ══════════════════════════════════════════════════════ */
+.container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+.section { padding: 100px 0; }
+.section-alt { background: var(--bg-alt); }
+.section-dark { background: var(--bg-dark); color: var(--white); }
+.text-center { text-align: center; }
+
+h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--text); }
+h1 { font-size: 50px; font-weight: 800; line-height: 1.12; letter-spacing: -1.2px; }
+h2 { font-size: 38px; font-weight: 700; line-height: 1.2; letter-spacing: -0.6px; margin-bottom: 16px; }
+h3 { font-size: 24px; font-weight: 600; line-height: 1.35; margin-bottom: 12px; }
+p { color: var(--text-secondary); font-size: 16.5px; line-height: 1.7; }
+.section-subtitle { font-size: 17.5px; max-width: 580px; margin: 0 auto; color: var(--text-light); }
+
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 32px; background: var(--accent); color: var(--white);
+  border: none; border-radius: 10px; font-size: 16px;
+  font-weight: 600; cursor: pointer; font-family: var(--font-body);
+  transition: all var(--transition); position: relative; overflow: hidden;
+}
+.btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+  opacity: 0; transition: opacity var(--transition);
+}
+.btn:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: var(--shadow-accent); }
+.btn:hover::before { opacity: 1; }
+.btn:active { transform: translateY(0); }
+.btn svg { width: 18px; height: 18px; }
+
+.placeholder-img {
+  background: linear-gradient(135deg, #f0f0f5 0%, #e8e8f0 100%);
+  border: 2px dashed var(--border); border-radius: var(--radius-lg);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-light); font-size: 15px; font-weight: 500;
+  min-height: 280px; width: 100%; transition: border-color var(--transition);
+}
+.placeholder-img:hover { border-color: var(--accent); }
+
+.input-field {
+  padding: 14px 18px; border: 1.5px solid var(--border); border-radius: 10px;
+  font-size: 16px; font-family: var(--font-body); outline: none;
+  transition: all var(--transition); width: 100%; background: var(--white);
+}
+.input-field:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+
+/* Badge / pill */
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px; background: var(--accent-soft); color: var(--accent);
+  border-radius: 100px; font-size: 13px; font-weight: 600;
+  letter-spacing: 0.3px; margin-bottom: 16px;
+}
+.text-center .badge { display: flex; width: fit-content; margin-left: auto; margin-right: auto; margin-bottom: 16px; }
+
+/* Accent decorative line — keep heading block-level in centered contexts */
+.section-heading { position: relative; }
+.text-center .section-heading { display: block; }
+.section-heading::after {
+  content: ''; display: block; width: 48px; height: 3.5px; background: var(--accent);
+  border-radius: 4px; margin: 14px auto 0;
+}
+.badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+
+
+/* ══════════════════════════════════════════════════════
+   NAV
+   ══════════════════════════════════════════════════════ */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid var(--border-light);
+  padding: 0 28px; height: 68px; display: flex; align-items: center;
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 1px 12px rgba(0,0,0,0.06); }
+nav .container { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.nav-logo {
+  font-family: var(--font-heading); font-size: 24px; font-weight: 800;
+  color: var(--accent); text-decoration: none; letter-spacing: -0.5px;
+}
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  text-decoration: none; color: var(--text-secondary); font-size: 15px;
+  font-weight: 500; transition: color var(--transition); position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+  background: var(--accent); border-radius: 2px; transition: width var(--transition);
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta { padding: 10px 22px; font-size: 14px; border-radius: 8px; }
+
+/* ══════════════════════════════════════════════════════
+   SECTION 1 – HERO
+   ══════════════════════════════════════════════════════ */
+.hero {
+  padding: 72px 0 88px;
+  background: linear-gradient(180deg, var(--white) 0%, var(--bg-alt) 100%);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--border-light) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-light) 1px, transparent 1px);
+  background-size: 64px 64px; opacity: 0.5; pointer-events: none;
+}
+.hero::after {
+  content: ''; position: absolute; top: -120px; right: -60px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px;
+  align-items: center; position: relative; z-index: 1;
+}
+.hero h1 { margin-bottom: 18px; }
+.hero .subheading { font-size: 19px; color: var(--accent); font-weight: 600; margin-bottom: 18px; font-family: var(--font-body); }
+.hero .desc { font-size: 17px; margin-bottom: 14px; }
+.hero ul { list-style: none; margin-bottom: 32px; padding-left: 2px; }
+.hero ul li {
+  padding: 6px 0; font-size: 16.5px; color: var(--text); display: flex;
+  align-items: center; gap: 10px;
+}
+.hero ul li .check-icon {
+  width: 8px; height: 8px; background: var(--accent);
+  border-radius: 50%; display: inline-block;
+  flex-shrink: 0;
+}
+.hero-form label {
+  font-size: 15px; font-weight: 600; display: block; margin-bottom: 10px; color: var(--text);
+}
+.hero-form-row { display: flex; gap: 10px; }
+.hero-form-row .input-field { flex: 1; }
+.hero-right .placeholder-img { min-height: 400px; border-radius: var(--radius-lg); }
+
+/* ══════════════════════════════════════════════════════
+   SECTION 2 – LOGO CAROUSEL
+   ══════════════════════════════════════════════════════ */
+.logos-section {
+  padding: 36px 0; border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light); overflow: hidden; background: var(--white);
+}
+.logo-track-wrapper { overflow: hidden; position: relative; }
+.logo-track-wrapper::before, .logo-track-wrapper::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 100px; z-index: 2;
+}
+.logo-track-wrapper::before { left: 0; background: linear-gradient(90deg, var(--white), transparent); }
+.logo-track-wrapper::after { right: 0; background: linear-gradient(270deg, var(--white), transparent); }
+.logo-track {
+  display: flex; gap: 52px; align-items: center;
+  animation: scroll-logos 28s linear infinite; width: max-content;
+}
+.logo-track:hover { animation-play-state: paused; }
+.logo-track .logo-item {
+  flex-shrink: 0; width: 130px; height: 48px;
+  background: var(--bg-alt); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; color: var(--text-light);
+  transition: all var(--transition);
+}
+.logo-track .logo-item:hover { background: var(--accent-light); color: var(--accent); }
+@keyframes scroll-logos {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ══════════════════════════════════════════════════════
+   SECTION 3 – HUMAN SUPPORT
+   ══════════════════════════════════════════════════════ */
+.human-section .human-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 48px;
+}
+.human-card {
+  text-align: center; padding: 40px 30px; border: 1px solid var(--border);
+  border-radius: var(--radius-lg); background: var(--white);
+  transition: all var(--transition); position: relative; overflow: hidden;
+}
+.human-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--accent), #e85d5c); opacity: 0;
+  transition: opacity var(--transition);
+}
+.human-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.human-card:hover::before { opacity: 1; }
+.human-icon {
+  width: 64px; height: 64px; background: var(--accent-light); border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; margin: 0 auto 20px; transition: all var(--transition);
+}
+.human-card:hover .human-icon { background: var(--accent-soft); transform: scale(1.06); }
+.human-card h3 { font-size: 20px; }
+.human-card p { font-size: 15.5px; }
+
+/* ══════════════════════════════════════════════════════
+   SECTION 4 – ZIG-ZAG CONTENT
+   ══════════════════════════════════════════════════════ */
+.zigzag-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+  align-items: center; margin-bottom: 64px;
+}
+.zigzag-row:last-child { margin-bottom: 0; }
+.zigzag-row.reverse .zigzag-text { order: 2; }
+.zigzag-row.reverse .zigzag-img { order: 1; }
+.zigzag-text h3 { font-size: 28px; }
+.zigzag-text p { font-size: 17px; line-height: 1.75; }
+.zigzag-img .placeholder-img { min-height: 310px; border-radius: var(--radius-lg); }
+.zigzag-text h3::before {
+  content: ''; display: block; width: 36px; height: 3px; background: var(--accent);
+  border-radius: 4px; margin-bottom: 14px;
+}
+.zigzag-row.reverse .zigzag-text h3::before { margin-left: auto; margin-right: 0; }
+
+/* ══════════════════════════════════════════════════════
+   SECTION 5 – FEATURES
+   ══════════════════════════════════════════════════════ */
+.features-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+  margin-top: 48px; margin-bottom: 40px;
+}
+.feature-card {
+  padding: 36px 30px; border: 1px solid var(--border); border-radius: var(--radius-lg);
+  background: var(--white); transition: all var(--transition);
+  position: relative; overflow: hidden;
+}
+.feature-card::after {
+  content: ''; position: absolute; bottom: -40px; right: -40px;
+  width: 100px; height: 100px; border-radius: 50%;
+  background: var(--accent-soft); transition: all 0.5s ease; pointer-events: none;
+}
+.feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: transparent; }
+.feature-card:hover::after { width: 160px; height: 160px; bottom: -60px; right: -60px; }
+.feature-card .feature-icon {
+  width: 48px; height: 48px; background: var(--accent-light); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 18px;
+}
+.feature-card h3 { font-size: 21px; position: relative; z-index: 1; }
+.feature-card p { font-size: 15.5px; position: relative; z-index: 1; }
+.features-more { font-size: 17px; color: var(--text-secondary); }
+.features-more a {
+  color: var(--accent); text-decoration: none; font-weight: 600;
+  border-bottom: 2px solid var(--accent-glow); transition: border-color var(--transition);
+}
+.features-more a:hover { border-color: var(--accent); }
+
+/* Tooltip on feature cards */
+.feature-card .tooltip {
+  position: absolute; top: 16px; right: 16px;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--bg-alt); color: var(--text-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; cursor: help;
+  transition: all var(--transition); z-index: 2;
+}
+.feature-card .tooltip:hover { background: var(--accent); color: var(--white); }
+.feature-card .tooltip .tooltip-text {
+  visibility: hidden; opacity: 0; position: absolute; bottom: calc(100% + 8px); right: 0;
+  background: var(--bg-dark); color: var(--white); font-size: 12.5px; font-weight: 500;
+  padding: 8px 14px; border-radius: 8px; white-space: nowrap;
+  transition: all var(--transition); pointer-events: none;
+  box-shadow: var(--shadow-lg);
+}
+.feature-card .tooltip .tooltip-text::after {
+  content: ''; position: absolute; top: 100%; right: 12px;
+  border: 5px solid transparent; border-top-color: var(--bg-dark);
+}
+.feature-card .tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+
+/* ══════════════════════════════════════════════════════
+   SECTION 6 – STATS
+   ══════════════════════════════════════════════════════ */
+.stats-section { position: relative; overflow: hidden; }
+.stats-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(202,45,44,0.12) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 50%, rgba(202,45,44,0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+.stats-section .stats-quote {
+  max-width: 700px; margin: 0 auto 56px; text-align: center;
+  font-size: 20px; font-style: italic; color: rgba(255,255,255,0.75); line-height: 1.75;
+  position: relative; z-index: 1;
+}
+.stats-quote cite {
+  display: block; font-style: normal; font-size: 14.5px; margin-top: 14px;
+  color: rgba(255,255,255,0.4); font-weight: 600;
+}
+.stats-row {
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 48px;
+  align-items: center; max-width: 760px; margin: 0 auto; position: relative; z-index: 1;
+}
+.stat-box { text-align: center; }
+.stat-box .stat-number {
+  font-family: var(--font-heading); font-size: 72px; font-weight: 800;
+  line-height: 1; letter-spacing: -2px;
+}
+.stat-box .stat-label { font-size: 15px; color: rgba(255,255,255,0.5); margin-top: 10px; line-height: 1.4; }
+.stat-box.highlight .stat-number { color: #5edb8e; }
+.stat-box.highlight { position: relative; }
+.stat-box.highlight::before {
+  content: ''; position: absolute; inset: -20px; border-radius: var(--radius-lg);
+  background: rgba(94,219,142,0.06); border: 1px solid rgba(94,219,142,0.12);
+}
+.stat-vs {
+  font-family: var(--font-heading); font-size: 15px; font-weight: 800;
+  color: rgba(255,255,255,0.2); text-transform: uppercase; letter-spacing: 3px;
+}
+
+/* ══════════════════════════════════════════════════════
+   SECTION 7 – WHY WE ARE DIFFERENT
+   ══════════════════════════════════════════════════════ */
+.why-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 48px;
+}
+.why-card {
+  display: flex; gap: 18px; padding: 30px; border: 1px solid var(--border);
+  border-radius: var(--radius-lg); background: var(--white);
+  transition: all var(--transition);
+}
+.why-card:hover { border-color: var(--accent-glow); box-shadow: var(--shadow); transform: translateY(-2px); }
+.why-number {
+  flex-shrink: 0; width: 40px; height: 40px; background: var(--accent);
+  color: var(--white); border-radius: 10px; display: flex;
+  align-items: center; justify-content: center; font-weight: 700;
+  font-size: 16px; font-family: var(--font-heading);
+}
+.why-card h3 { font-size: 19px; margin-bottom: 6px; }
+.why-card p { font-size: 15.5px; }
+
+/* ══════════════════════════════════════════════════════
+   SECTION 8 – TABBED CAROUSEL
+   ══════════════════════════════════════════════════════ */
+.tabs-nav {
+  display: inline-flex; gap: 6px; justify-content: center;
+  margin-bottom: 40px; flex-wrap: wrap;
+  border-radius: 100px; padding: 5px;
+}
+.tabs-nav-wrap { text-align: center; }
+.tab-btn {
+  padding: 11px 24px; border: 1.5px solid var(--border); background: transparent;
+  border-radius: 100px; font-size: 15px; font-weight: 600; cursor: pointer;
+  color: var(--text-light); transition: all var(--transition); font-family: var(--font-body);
+}
+.tab-btn.active { background: var(--accent); color: var(--white); border-color: var(--accent); box-shadow: var(--shadow-accent); }
+.tab-btn:not(.active):hover { background: var(--bg-alt); color: var(--text); border-color: var(--border); }
+.tab-panel {
+  display: none; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+  opacity: 0; transform: translateY(12px);
+}
+.tab-panel.active {
+  display: grid;
+  animation: tab-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes tab-in { to { opacity: 1; transform: translateY(0); } }
+.tab-panel h3 { font-size: 26px; margin-bottom: 14px; }
+.tab-panel p { font-size: 16.5px; line-height: 1.75; }
+.tab-panel .placeholder-img { min-height: 320px; border-radius: var(--radius-lg); }
+
+/* ══════════════════════════════════════════════════════
+   SECTION 9 – CTA + TESTIMONIALS
+   ══════════════════════════════════════════════════════ */
+.cta-section {
+  background: linear-gradient(135deg, #ca2d2c 0%, #9e2221 50%, #7a1a19 100%);
+  color: var(--white); padding: 88px 0; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute; top: -200px; left: -200px;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: rgba(255,255,255,0.04); pointer-events: none;
+}
+.cta-section::after {
+  content: ''; position: absolute; bottom: -150px; right: -150px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: rgba(255,255,255,0.03); pointer-events: none;
+}
+.cta-section h2 { color: var(--white); }
+.cta-section p { color: rgba(255,255,255,0.8); font-size: 18px; }
+.cta-form {
+  display: flex; gap: 10px; max-width: 540px; margin: 32px auto 0;
+  position: relative; z-index: 1;
+}
+.cta-form .input-field {
+  flex: 1; border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1); color: var(--white);
+}
+.cta-form .input-field::placeholder { color: rgba(255,255,255,0.45); }
+.cta-form .input-field:focus { border-color: rgba(255,255,255,0.5); box-shadow: 0 0 0 3px rgba(255,255,255,0.1); }
+.cta-form .btn { background: var(--white); color: var(--accent); }
+.cta-form .btn:hover { background: #fff5f5; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+
+.testimonial-carousel {
+  position: relative; max-width: 640px; margin: 56px auto 0;
+  min-height: 110px; z-index: 1;
+}
+.testimonial-item {
+  position: absolute; inset: 0; text-align: center;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.testimonial-item.active { opacity: 1; transform: translateY(0); position: relative; }
+.testimonial-item blockquote {
+  font-size: 17px; font-style: italic; color: rgba(255,255,255,0.88);
+  line-height: 1.75; margin-bottom: 14px;
+}
+.testimonial-item cite {
+  font-style: normal; font-size: 14px; color: rgba(255,255,255,0.45); font-weight: 600;
+}
+.testimonial-dots {
+  display: flex; justify-content: center; gap: 8px; margin-top: 24px;
+  z-index: 1; position: relative;
+}
+.testimonial-dots span {
+  width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.25);
+  transition: all var(--transition); cursor: pointer;
+}
+.testimonial-dots span.active { background: var(--white); width: 24px; border-radius: 4px; }
+
+/* ══════════════════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════════════════ */
+footer {
+  background: #0c0d14; color: rgba(255,255,255,0.4); padding: 48px 0;
+  text-align: center; font-size: 14px;
+}
+footer a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color var(--transition); }
+footer a:hover { color: var(--white); }
+footer .footer-brand {
+  font-family: var(--font-heading); font-size: 20px; font-weight: 800;
+  color: rgba(255,255,255,0.7); margin-bottom: 12px;
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  h1 { font-size: 36px; }
+  h2 { font-size: 30px; }
+  .hero-grid, .zigzag-row, .tab-panel.active, .stats-row { grid-template-columns: 1fr; }
+  .zigzag-row.reverse .zigzag-text, .zigzag-row.reverse .zigzag-img { order: unset; }
+  .human-section .human-grid, .features-grid, .why-grid { grid-template-columns: 1fr; }
+  .hero-form-row, .cta-form { flex-direction: column; }
+  .stats-row { gap: 28px; }
+  .stat-vs { text-align: center; }
+  .stat-box .stat-number { font-size: 52px; }
+  .nav-links { display: none; }
+  .tabs-nav { display: flex; border-radius: var(--radius); }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="main-nav">
+  <div class="container">
+    <a class="nav-logo" href="#">fydelia</a>
+    <ul class="nav-links">
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Pricing</a></li>
+      <li><a href="#">Case Studies</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <button class="btn nav-cta">Get Started <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg></button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     SECTION 1 – HERO
+     ══════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="badge"><span class="badge-dot"></span> AI-Powered WiFi Marketing</div>
+        <h1>MAKE YOUR GUEST WIFI MARKETING OUTSTANDING</h1>
+        <p class="subheading">AI-Powered Guest WiFi Splash Pages<br>Try out our instant WiFi splash page generator!</p>
+        <p class="desc">Give your guests a beautiful, branded Wi-Fi login page with:</p>
+        <ul>
+          <li><span class="check-icon"></span> Fully customizable design</li>
+          <li><span class="check-icon"></span> Live marketing CRM integration</li>
+          <li><span class="check-icon"></span> AdCard popups</li>
+          <li><span class="check-icon"></span> Social media integration</li>
+          <li><span class="check-icon"></span> And much more…</li>
+        </ul>
+        <div class="hero-form">
+          <label>Enter your website here:</label>
+          <div class="hero-form-row">
+            <input class="input-field" type="url" placeholder="https://yourwebsite.com">
+            <button class="btn">Generate <svg viewBox="0 0 20 20" fill="currentColor" style="width:16px;height:16px"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="placeholder-img" style="min-height:400px;">📱 Hero Image / Product Screenshot</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 2 – LOGO CAROUSEL
+     ══════════════════════════════════════ -->
+<section class="logos-section">
+  <div class="logo-track-wrapper">
+    <div class="logo-track">
+      <div class="logo-item">Logo 1</div><div class="logo-item">Logo 2</div>
+      <div class="logo-item">Logo 3</div><div class="logo-item">Logo 4</div>
+      <div class="logo-item">Logo 5</div><div class="logo-item">Logo 6</div>
+      <div class="logo-item">Logo 7</div><div class="logo-item">Logo 8</div>
+      <div class="logo-item">Logo 9</div><div class="logo-item">Logo 10</div>
+      <div class="logo-item">Logo 1</div><div class="logo-item">Logo 2</div>
+      <div class="logo-item">Logo 3</div><div class="logo-item">Logo 4</div>
+      <div class="logo-item">Logo 5</div><div class="logo-item">Logo 6</div>
+      <div class="logo-item">Logo 7</div><div class="logo-item">Logo 8</div>
+      <div class="logo-item">Logo 9</div><div class="logo-item">Logo 10</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 3 – HUMAN SUPPORT
+     ══════════════════════════════════════ -->
+<section class="section human-section">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="badge"><span class="badge-dot"></span> Real People, Real Support</div>
+      <h2 class="section-heading">We're Real People, Not Just Software</h2>
+      <p class="section-subtitle">Behind Fydelia is a team that picks up the phone, knows your name, and genuinely cares about your success. You'll never talk to a chatbot when you need help.</p>
+    </div>
+    <div class="human-grid">
+      <div class="human-card reveal reveal-delay-1">
+        <div class="human-icon">👤</div>
+        <h3>Dedicated Human Support</h3>
+        <p>Every account gets a real person you can call, email, or message. No ticket queues, no runaround — just fast, friendly help from someone who knows your setup.</p>
+      </div>
+      <div class="human-card reveal reveal-delay-2">
+        <div class="human-icon">🧠</div>
+        <h3>Industry Know-How</h3>
+        <p>Our team has years of hands-on hospitality and marketing experience. We don't just give you tools — we help you build strategies that actually drive footfall.</p>
+      </div>
+      <div class="human-card reveal reveal-delay-3">
+        <div class="human-icon">⚡</div>
+        <h3>Fast &amp; Responsive</h3>
+        <p>Average response time under 2 hours. We treat your questions like our own — because when your WiFi marketing works, we all win.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 4 – ZIG-ZAG CONTENT
+     ══════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:56px;">
+      <h2 class="section-heading">How Fydelia Works for Your Venue</h2>
+      <p class="section-subtitle">Three simple steps from WiFi login to loyal customer.</p>
+    </div>
+
+    <div class="zigzag-row reveal">
+      <div class="zigzag-text">
+        <h3>Capture Every Guest Automatically</h3>
+        <p>When a guest connects to your WiFi, Fydelia captures their details through a beautifully branded splash page. No awkward clipboard sign-ups, no friction — just a seamless first impression that feeds your marketing database in real time.</p>
+      </div>
+      <div class="zigzag-img">
+        <div class="placeholder-img">📸 Image / Screenshot</div>
+      </div>
+    </div>
+
+    <div class="zigzag-row reverse reveal">
+      <div class="zigzag-text">
+        <h3>Engage with Targeted Campaigns</h3>
+        <p>Segment your guests by visit frequency, location, or preferences and send personalised emails, SMS, or push notifications. Turn one-time visitors into regulars with offers that actually feel relevant to them.</p>
+      </div>
+      <div class="zigzag-img">
+        <div class="placeholder-img">📸 Image / Screenshot</div>
+      </div>
+    </div>
+
+    <div class="zigzag-row reveal">
+      <div class="zigzag-text">
+        <h3>Measure, Learn, and Grow</h3>
+        <p>Track footfall, repeat visits, campaign performance, and customer lifetime value from a single dashboard. Fydelia turns your guest WiFi from a cost centre into a measurable revenue channel.</p>
+      </div>
+      <div class="zigzag-img">
+        <div class="placeholder-img">📸 Image / Screenshot</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 5 – FEATURES
+     ══════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center reveal">
+      <h2 class="section-heading">Features That Set Us Apart</h2>
+      <p class="section-subtitle">The tools you need to turn WiFi guests into loyal, paying customers.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal reveal-delay-1">
+    
+        <div class="feature-icon">🔥</div>
+        <h3>Flash Offers</h3>
+        <p>Send time-limited deals to guests the moment they connect to WiFi. Drive immediate action with countdown offers, happy-hour specials, and limited-stock promotions that create real urgency.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+       
+        <div class="feature-icon">🎮</div>
+        <h3>Gamification</h3>
+        <p>Turn guest engagement into a game. Spin-the-wheel prizes, scratch cards, trivia challenges, and streak rewards keep guests interacting with your brand — and coming back for more.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        
+        <div class="feature-icon">📣</div>
+        <h3>Ad Cards</h3>
+        <p>Display targeted promotional cards on the splash page and during the WiFi session. Highlight new menu items, upcoming events, partner offers, or seasonal campaigns — right where attention is highest.</p>
+      </div>
+    </div>
+    <p class="text-center features-more reveal">… and much more!<br><a href="#">Click here for the full list of features →</a></p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 6 – STATS
+     ══════════════════════════════════════ -->
+<section class="section section-dark stats-section">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);"><span class="badge-dot" style="background:rgba(255,255,255,0.5);"></span> Industry Data</div>
+      <h2 style="color:#fff;">The Numbers Speak for Themselves</h2>
+    </div>
+    <div class="stats-quote reveal">
+      "The average restaurant customer visits just 1.2 times per year. Most venues are leaving repeat revenue on the table."
+      <cite>— National Restaurant Association / Industry Benchmark</cite>
+    </div>
+    <div class="stats-row reveal">
+      <div class="stat-box">
+        <div class="stat-number" data-target="1.2">0</div>
+        <div class="stat-label">Industry Average<br>Visits per Year</div>
+      </div>
+      <div class="stat-vs">VS</div>
+      <div class="stat-box highlight">
+        <div class="stat-number" data-target="2.8">0</div>
+        <div class="stat-label">With Fydelia<br>Visits per Year</div>
+      </div>
+    </div>
+    <p class="text-center reveal" style="margin-top:36px;color:rgba(255,255,255,0.45);font-size:15px;">Venues using Fydelia's guest WiFi marketing and loyalty platform see over 2× the repeat visit rate.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 7 – WHY WE ARE DIFFERENT
+     ══════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center reveal">
+      <h2 class="section-heading">Why We Are Different</h2>
+      <p class="section-subtitle">Most WiFi marketing tools give you software and wish you luck. Fydelia gives you a partnership.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-number">1</div>
+        <div>
+          <h3>Built for Hospitality, Not Tech</h3>
+          <p>We designed every feature around the daily reality of running a venue — not around what looks good in a demo.</p>
+        </div>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-number">2</div>
+        <div>
+          <h3>No Long-Term Contracts</h3>
+          <p>We earn your loyalty monthly. If we're not delivering, you're free to leave — but our retention rate says you won't.</p>
+        </div>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-number">3</div>
+        <div>
+          <h3>All-In-One Platform</h3>
+          <p>WiFi login, CRM, email, SMS, loyalty, analytics — one login, one bill, one team to call. No duct-taping five tools together.</p>
+        </div>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-number">4</div>
+        <div>
+          <h3>Setup in Under 30 Minutes</h3>
+          <p>Our onboarding team walks you through everything. Most venues are live and collecting guest data in a single afternoon.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 8 – TABBED CAROUSEL
+     ══════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:36px;">
+      <h2 class="section-heading">Explore the Platform</h2>
+      <p class="section-subtitle">Click through to see what's under the hood.</p>
+    </div>
+    <div class="tabs-nav-wrap reveal">
+      <div class="tabs-nav">
+        <button class="tab-btn active" data-tab="tab-splash">Splash Pages</button>
+        <button class="tab-btn" data-tab="tab-crm">CRM Integrations</button>
+        <button class="tab-btn" data-tab="tab-hardware">Hardware Support</button>
+        <button class="tab-btn" data-tab="tab-campaigns">Campaigns</button>
+      </div>
+    </div>
+
+    <div class="tab-panel active" id="tab-splash">
+      <div>
+        <h3>Beautiful Splash Pages in Minutes</h3>
+        <p>Use our AI-powered builder to generate a fully branded WiFi login page from your website URL. Customise colours, logos, copy, and calls-to-action — or let Fydelia handle it all automatically. Every page is mobile-first and lightning fast.</p>
+      </div>
+      <div class="placeholder-img">📸 Splash Page Builder Screenshot</div>
+    </div>
+    <div class="tab-panel" id="tab-crm">
+      <div>
+        <h3>Connects to the Tools You Already Use</h3>
+        <p>Fydelia integrates natively with leading CRMs, POS systems, email platforms, and booking tools. Sync guest data automatically with Salesforce, HubSpot, Mailchimp, and dozens more — no manual imports, no data silos.</p>
+      </div>
+      <div class="placeholder-img">📸 CRM Integrations Screenshot</div>
+    </div>
+    <div class="tab-panel" id="tab-hardware">
+      <div>
+        <h3>Works with Virtually Any Access Point</h3>
+        <p>Fydelia supports a massive range of WiFi hardware — from enterprise-grade Cisco, Aruba, and Ruckus setups to small-venue UniFi and TP-Link routers. No proprietary hardware lock-in. If it broadcasts WiFi, chances are we support it.</p>
+      </div>
+      <div class="placeholder-img">📸 Hardware Compatibility Screenshot</div>
+    </div>
+    <div class="tab-panel" id="tab-campaigns">
+      <div>
+        <h3>Campaigns That Run Themselves</h3>
+        <p>Set up automated email and SMS sequences triggered by guest behaviour — first visit, birthday, absence, review request. Drag-and-drop editor, pre-built templates, and performance tracking baked in.</p>
+      </div>
+      <div class="placeholder-img">📸 Campaign Builder Screenshot</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 9 – CTA + TESTIMONIALS
+     ══════════════════════════════════════ -->
+<section class="cta-section">
+  <div class="container text-center">
+    <div class="reveal">
+      <h2>Build Your Splash Page in Seconds</h2>
+      <p>Paste your website URL below and let our AI generate a beautiful, branded WiFi login page — free, instant, no sign-up required.</p>
+      <div class="cta-form">
+        <input class="input-field" type="url" placeholder="https://yourwebsite.com">
+        <button class="btn">Generate</button>
+      </div>
+    </div>
+
+    <div class="testimonial-carousel">
+      <div class="testimonial-item active" data-index="0">
+        <blockquote>"Fydelia transformed our guest WiFi from a cost line into our most effective marketing channel. We've seen a 40% increase in repeat visits since launching."</blockquote>
+        <cite>— Sarah M., Operations Director, The Ivy Collection</cite>
+      </div>
+      <div class="testimonial-item" data-index="1">
+        <blockquote>"The setup was painless and the support team is incredibly responsive. We had everything running across 12 locations in a single week."</blockquote>
+        <cite>— James T., Head of Marketing, BrewDog</cite>
+      </div>
+      <div class="testimonial-item" data-index="2">
+        <blockquote>"We tried three other WiFi marketing platforms before Fydelia. None of them came close in terms of ease of use and genuine customer support."</blockquote>
+        <cite>— Priya K., Venue Manager, Dishoom</cite>
+      </div>
+      <div class="testimonial-item" data-index="3">
+        <blockquote>"The loyalty programme alone paid for the entire platform within the first month. Our regulars love it."</blockquote>
+        <cite>— David R., Owner, The Alchemist</cite>
+      </div>
+    </div>
+    <div class="testimonial-dots">
+      <span class="active" data-index="0"></span>
+      <span data-index="1"></span>
+      <span data-index="2"></span>
+      <span data-index="3"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-brand">fydelia</div>
+    <p>&copy; 2026 Fydelia. All rights reserved. &nbsp;·&nbsp; <a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Service</a> &nbsp;·&nbsp; <a href="#">Contact</a></p>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════
+     SCRIPTS
+     ══════════════════════════════════════ -->
+<script>
+// ── Nav scroll shadow ──
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+
+// ── Tabs ──
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const panel = document.getElementById(btn.dataset.tab);
+    panel.style.animation = 'none';
+    panel.offsetHeight;
+    panel.style.animation = '';
+    panel.classList.add('active');
+  });
+});
+
+// ── Testimonial fade carousel with dots ──
+let currentT = 0;
+const tItems = document.querySelectorAll('.testimonial-item');
+const tDots = document.querySelectorAll('.testimonial-dots span');
+
+function showTestimonial(index) {
+  tItems[currentT].classList.remove('active');
+  tDots[currentT].classList.remove('active');
+  currentT = index;
+  tItems[currentT].classList.add('active');
+  tDots[currentT].classList.add('active');
+}
+
+tDots.forEach(dot => {
+  dot.addEventListener('click', () => showTestimonial(parseInt(dot.dataset.index)));
+});
+
+setInterval(() => showTestimonial((currentT + 1) % tItems.length), 5000);
+
+// ── Animated stat counters ──
+const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseFloat(el.dataset.target);
+      const duration = 1600;
+      const start = performance.now();
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        el.textContent = (target * eased).toFixed(1) + '×';
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      statsObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+statNumbers.forEach(el => statsObserver.observe(el));
+</script>
+
+</body>
+</html>
