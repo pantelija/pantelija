@@ -44,8 +44,48 @@
         <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
       </a>
     </div>
+    <!-- Mobile burger -->
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
   </div>
 </nav>
+
+<!-- Mobile drawer + backdrop -->
+<div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+<aside id="menuDrawer" class="menu-drawer" aria-hidden="true">
+  <div class="menu-drawer-head">
+    <span class="menu-drawer-title">Menu</span>
+    <button id="menuClose" class="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu-drawer-nav">
+    <a href="#features">Features</a>
+    <a href="#integrations">Integrations</a>
+    <a href="#hardware">Hardware</a>
+    <a href="#customers">Customers</a>
+    <a href="#pricing">Pricing</a>
+  </nav>
+  <div class="menu-drawer-foot">
+    <div class="menu-drawer-theme">
+      <span class="menu-drawer-theme-label">Dark mode</span>
+      <button id="themeToggleMobile" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+    </div>
+    <a class="btn-ghost menu-drawer-signin" href="#">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="#cta">Try free for 14 days
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
+</aside>
 
 <main id="top">
 

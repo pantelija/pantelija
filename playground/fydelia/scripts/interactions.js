@@ -21,6 +21,61 @@ window.addEventListener('scroll', () => {
   nav.style.boxShadow = window.scrollY > 20 ? '0 10px 30px -10px rgba(0,0,0,0.5)' : 'none';
 }, { passive: true });
 
+/* ---------- Mobile menu drawer ---------- */
+(function() {
+  const toggle   = document.getElementById('menuToggle');
+  const drawer   = document.getElementById('menuDrawer');
+  const backdrop = document.getElementById('menuBackdrop');
+  const closeBtn = document.getElementById('menuClose');
+  if (!toggle || !drawer) return;
+
+  const drawerLinks = drawer.querySelectorAll('.menu-drawer-nav a, .menu-drawer-signin, .menu-drawer-cta');
+
+  function openMenu() {
+    toggle.setAttribute('aria-expanded', 'true');
+    drawer.classList.add('active');
+    drawer.setAttribute('aria-hidden', 'false');
+    backdrop.classList.add('active');
+    backdrop.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-open');
+  }
+
+  function closeMenu() {
+    toggle.setAttribute('aria-expanded', 'false');
+    drawer.classList.remove('active');
+    drawer.setAttribute('aria-hidden', 'true');
+    backdrop.classList.remove('active');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-open');
+  }
+
+  toggle.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  closeBtn.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+
+  // Close on nav link click
+  drawerLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('active')) closeMenu();
+  });
+
+  // Sync mobile theme toggle with desktop
+  const mobileThemeBtn = document.getElementById('themeToggleMobile');
+  if (mobileThemeBtn) {
+    mobileThemeBtn.addEventListener('click', () => {
+      // Trigger the desktop toggle so the theme logic stays centralized
+      const desktopBtn = document.getElementById('themeToggle');
+      if (desktopBtn) desktopBtn.click();
+    });
+  }
+})();
+
 /* ---------- Animated counters ---------- */
 function animateCount(el) {
   const target = parseFloat(el.dataset.count);

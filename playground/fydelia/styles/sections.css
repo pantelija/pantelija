@@ -671,7 +671,7 @@
   padding: 140px 0;
   position: relative;
   overflow: hidden;
-  border-top: 1px solid var(--line);
+  /*border-top: 1px solid var(--line);*/
 }
 .cta-box {
   position: relative;

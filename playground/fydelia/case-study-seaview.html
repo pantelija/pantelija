@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fydelia — Seaview Holidays Resort Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/core.css">
+<link rel="stylesheet" href="styles/sections.css">
+<style>
+/* ======================= CASE STUDY SINGLE ======================= */
+
+/* ---------- Hero ---------- */
+.csh {
+  position: relative;
+  padding: 96px 0 80px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.csh .hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.csh .hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+}
+.csh .hero-glow {
+  position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.45;
+}
+.csh .hero-glow--a {
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(0,140,210,0.25) 0%, transparent 70%);
+  top: -300px; right: -100px;
+}
+.csh .hero-glow--b {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(0,212,126,0.18) 0%, transparent 70%);
+  bottom: -200px; left: -100px;
+}
+
+.csh-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.csh-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-3);
+  margin-bottom: 28px;
+  transition: color 0.2s var(--ease), gap 0.2s var(--ease);
+}
+.csh-back:hover { color: var(--fg); gap: 8px; }
+.csh-back svg { width: 14px; height: 14px; transform: rotate(180deg); }
+
+.csh-logo {
+  width: 100px; height: 56px;
+  margin-bottom: 24px;
+}
+.csh-logo img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.csh h1 {
+  font-size: clamp(36px, 4.2vw, 60px);
+  margin-bottom: 20px;
+  line-height: 1.05;
+}
+.csh-sub {
+  font-size: 18px;
+  color: var(--fg-2);
+  line-height: 1.6;
+  max-width: 500px;
+  margin-bottom: 32px;
+}
+
+/* Stats card */
+.csh-stats {
+  background: var(--bg-1);
+  border: 1px solid var(--line-strong);
+  border-radius: 20px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.csh-stats::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 10%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 10%, transparent 70%);
+  pointer-events: none;
+}
+.csh-stats::after {
+  content: ''; position: absolute;
+  top: -1px; left: 20%; right: 20%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,140,210,0.6), transparent);
+}
+.csh-stats > * { position: relative; }
+
+.csh-stats-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--fg-4);
+  margin-bottom: 28px;
+}
+
+.csh-stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.csh-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.csh-stat-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--fg-4);
+}
+.csh-stat-value {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--fg);
+}
+.csh-stat-value a {
+  color: var(--red);
+  text-decoration: underline;
+  text-decoration-color: rgba(255,43,43,0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
+}
+.csh-stat-value a:hover { text-decoration-color: var(--red); }
+
+/* ---------- Quote banner ---------- */
+.csq {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.csq::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 80% at 50% 50%, rgba(0,140,210,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.csq-inner {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.csq-mark {
+  font-size: 72px;
+  line-height: 1;
+  color: rgba(0,140,210,0.25);
+  font-family: Georgia, serif;
+  margin-bottom: -10px;
+}
+.csq blockquote {
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--fg);
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+.csq-attr {
+  font-size: 14px;
+  color: var(--fg-3);
+}
+.csq-attr strong {
+  color: var(--fg-2);
+  font-weight: 600;
+}
+
+/* ---------- Results strip ---------- */
+.csr {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-1);
+}
+.csr-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.csr-card {
+  position: relative;
+  padding: 36px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--bg);
+  text-align: center;
+  overflow: hidden;
+}
+.csr-card::after {
+  content: '';
+  position: absolute;
+  top: -1px; left: 20%; right: 20%; height: 1px;
+}
+.csr-card:nth-child(1)::after { background: linear-gradient(90deg, transparent, var(--red), transparent); }
+.csr-card:nth-child(2)::after { background: linear-gradient(90deg, transparent, rgba(0,140,210,1), transparent); }
+.csr-card:nth-child(3)::after { background: linear-gradient(90deg, transparent, var(--green), transparent); }
+
+.csr-icon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  display: grid; place-items: center;
+  margin: 0 auto 18px;
+  font-size: 22px;
+}
+.csr-icon--red { background: rgba(255,43,43,0.1); color: var(--red); }
+.csr-icon--blue { background: rgba(0,140,210,0.1); color: #008CD2; }
+.csr-icon--green { background: rgba(0,212,126,0.1); color: var(--green); }
+
+.csr-stat {
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--fg);
+  margin-bottom: 6px;
+}
+.csr-desc {
+  font-size: 14px;
+  color: var(--fg-3);
+  line-height: 1.5;
+}
+
+/* ---------- Review Impact section ---------- */
+.csri {
+  padding: 100px 0;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.csri::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 60% at 50% 100%, rgba(0,212,126,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.csri-inner {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.csri-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 64px;
+}
+.csri-header h2 { margin-top: 16px; }
+.csri-header p { margin-top: 14px; }
+
+/* The review-flow diagram */
+.csri-flow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 0;
+  align-items: center;
+}
+.csri-step {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 32px 28px;
+  text-align: center;
+  transition: border-color 0.3s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.csri-step:hover { border-color: var(--line-strong); }
+.csri-step-icon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  display: grid; place-items: center;
+  margin: 0 auto 16px;
+}
+.csri-step-icon svg { width: 22px; height: 22px; }
+.csri-step-icon--red { background: rgba(255,43,43,0.1); color: var(--red); }
+.csri-step-icon--blue { background: rgba(0,140,210,0.1); color: #008CD2; }
+.csri-step-icon--green { background: rgba(0,212,126,0.1); color: var(--green); }
+
+.csri-step-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.csri-step-desc {
+  font-size: 13.5px;
+  color: var(--fg-3);
+  line-height: 1.55;
+}
+
+.csri-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  color: var(--fg-4);
+}
+.csri-arrow svg { width: 28px; height: 28px; }
+
+/* Outcome badge below the flow */
+.csri-outcome {
+  margin-top: 48px;
+  text-align: center;
+}
+.csri-outcome-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: rgba(0,212,126,0.08);
+  border: 1px solid rgba(0,212,126,0.2);
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--green);
+}
+.csri-outcome-badge svg { width: 20px; height: 20px; }
+
+/* ---------- Journey / Timeline ---------- */
+.csj {
+  padding: 100px 0;
+  border-bottom: 1px solid var(--line);
+}
+.csj-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 72px;
+}
+.csj-header h2 { margin-top: 16px; }
+.csj-header p {
+  margin-top: 14px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.csj-timeline {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.csj-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 32px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--line-strong) 0%, rgba(0,140,210,0.4) 50%, var(--green) 100%);
+  border-radius: 2px;
+}
+
+.csj-step {
+  position: relative;
+  padding-left: 88px;
+  padding-bottom: 64px;
+}
+.csj-step:last-child { padding-bottom: 0; }
+
+.csj-node {
+  position: absolute;
+  left: 17px; top: 4px;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 2;
+}
+.csj-node--before {
+  background: var(--bg-3);
+  border: 2px solid var(--line-strong);
+  color: var(--fg-3);
+}
+.csj-node--during {
+  background: rgba(0,140,210,0.12);
+  border: 2px solid rgba(0,140,210,0.4);
+  color: #008CD2;
+}
+.csj-node--after {
+  background: rgba(0,212,126,0.15);
+  border: 2px solid rgba(0,212,126,0.5);
+  color: var(--green);
+}
+
+.csj-card {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 36px 40px;
+  transition: border-color 0.3s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.csj-card:hover { border-color: var(--line-strong); }
+.csj-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(0,140,210,0.04) 0%, transparent 50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+.csj-card:hover::before { opacity: 1; }
+
+.csj-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+}
+.csj-label--before { color: var(--fg-4); }
+.csj-label--during { color: #008CD2; }
+.csj-label--after { color: var(--green); }
+
+.csj-question {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--fg);
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+.csj-answer {
+  font-size: 16px;
+  color: var(--fg-2);
+  line-height: 1.65;
+}
+
+/* ---------- Venues ---------- */
+.csv {
+  padding: 100px 0;
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+.csv-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 56px;
+}
+.csv-header h2 { margin-top: 16px; }
+.csv-header p { margin-top: 14px; }
+
+.csv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.csv-pin {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--fg-2);
+  transition: all 0.25s var(--ease);
+}
+.csv-pin:hover {
+  border-color: var(--line-strong);
+  color: var(--fg);
+  transform: translateY(-2px);
+}
+.csv-pin-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px rgba(0,212,126,0.5);
+  flex-shrink: 0;
+  animation: pulse-green 2.5s ease-in-out infinite;
+}
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.8); }
+}
+.csv-pin:nth-child(2) .csv-pin-dot { animation-delay: 0.4s; }
+.csv-pin:nth-child(3) .csv-pin-dot { animation-delay: 0.8s; }
+
+.csv-legend {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 20px;
+}
+.csv-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-4);
+}
+.csv-legend-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.csv-legend-dot--green { background: var(--green); box-shadow: 0 0 6px rgba(0,212,126,0.4); }
+
+.csv-count {
+  margin-top: 40px;
+  text-align: center;
+}
+.csv-count-num {
+  font-size: clamp(48px, 5vw, 72px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--fg);
+  line-height: 1;
+}
+.csv-count-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--fg-4);
+  margin-top: 8px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px) {
+  .csh-inner { grid-template-columns: 1fr; gap: 48px; }
+  .csr-grid { grid-template-columns: 1fr; }
+  .csri-flow {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .csri-arrow { transform: rotate(90deg); padding: 4px 0; }
+}
+@media (max-width: 600px) {
+  .csh { padding: 72px 0 56px; }
+  .csj-timeline::before { left: 16px; }
+  .csj-node { left: 1px; width: 32px; height: 32px; }
+  .csj-step { padding-left: 60px; padding-bottom: 48px; }
+  .csj-card { padding: 28px; }
+  .csv-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Grain overlay -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Fydelia home">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+      <span class="brand-text">fydelia</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#integrations">Integrations</a></li>
+      <li><a href="index.html#hardware">Hardware</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="new-pricing.html">Pricing</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+      <a class="btn-ghost" href="#">Sign in</a>
+      <a class="btn-solid" href="#cta">Try free for 14 days
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer + backdrop -->
+<div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+<aside id="menuDrawer" class="menu-drawer" aria-hidden="true">
+  <div class="menu-drawer-head">
+    <span class="menu-drawer-title">Menu</span>
+    <button id="menuClose" class="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu-drawer-nav">
+    <a href="index.html#features">Features</a>
+    <a href="index.html#integrations">Integrations</a>
+    <a href="index.html#hardware">Hardware</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="new-pricing.html">Pricing</a>
+  </nav>
+  <div class="menu-drawer-foot">
+    <div class="menu-drawer-theme">
+      <span class="menu-drawer-theme-label">Dark mode</span>
+      <button id="themeToggleMobile" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+    </div>
+    <a class="btn-ghost menu-drawer-signin" href="#">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="#cta">Try free for 14 days
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
+</aside>
+
+<main>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="csh">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-grid"></div>
+      <div class="hero-glow hero-glow--a"></div>
+      <div class="hero-glow hero-glow--b"></div>
+    </div>
+
+    <div class="wrap csh-inner">
+      <div class="csh-meta">
+        <a class="csh-back reveal" href="case-studies.html">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          All case studies
+        </a>
+        <div class="csh-logo reveal d1">
+          <img src="images/seaview.jpg" alt="Seaview Holidays Resort logo">
+        </div>
+        <h1 class="reveal d2">How Seaview turned WiFi into <em>higher guest ratings</em></h1>
+        <p class="csh-sub reveal d3">A holiday resort that discovered seamless WiFi doesn't just keep guests connected — it directly drives better reviews and repeat bookings.</p>
+      </div>
+
+      <div class="csh-stats reveal d2">
+        <p class="csh-stats-title">At a glance</p>
+        <div class="csh-stat-grid">
+          <div class="csh-stat">
+            <span class="csh-stat-label">Company</span>
+            <span class="csh-stat-value">Seaview Holidays Resort</span>
+          </div>
+          <div class="csh-stat">
+            <span class="csh-stat-label">Industry</span>
+            <span class="csh-stat-value">Hospitality</span>
+          </div>
+          <div class="csh-stat">
+            <span class="csh-stat-label">Location</span>
+            <span class="csh-stat-value">England</span>
+          </div>
+          <div class="csh-stat">
+            <span class="csh-stat-label">Properties</span>
+            <span class="csh-stat-value">3 luxury cottages & houses</span>
+          </div>
+          <div class="csh-stat">
+            <span class="csh-stat-label">Product</span>
+            <span class="csh-stat-value">Captive Portal WiFi</span>
+          </div>
+          <div class="csh-stat">
+            <span class="csh-stat-label">Website</span>
+            <span class="csh-stat-value"><a href="https://www.seaview-holidays.co.uk/" target="_blank" rel="noopener">seaview-holidays.co.uk</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= QUOTE ======================= -->
+  <section class="csq">
+    <div class="wrap csq-inner reveal">
+      <div class="csq-mark" aria-hidden="true">"</div>
+      <blockquote>"Fydelia have built a solution which gives businesses the ability to obtain customer data and provide a great service through a seamless splash page."</blockquote>
+      <p class="csq-attr"><strong>Josh Catton</strong> · Resort Director, Seaview Holidays</p>
+    </div>
+  </section>
+
+
+  <!-- ======================= RESULTS STRIP ======================= -->
+  <section class="csr">
+    <div class="wrap">
+      <div class="csr-grid">
+        <div class="csr-card reveal">
+          <div class="csr-icon csr-icon--red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+          </div>
+          <div class="csr-stat">Higher ratings</div>
+          <p class="csr-desc">Better guest reviews and online listing scores driven by seamless WiFi</p>
+        </div>
+        <div class="csr-card reveal d1">
+          <div class="csr-icon csr-icon--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div class="csr-stat">Free + paid</div>
+          <p class="csr-desc">Dual-tier WiFi access with both complimentary and chargeable packages</p>
+        </div>
+        <div class="csr-card reveal d2">
+          <div class="csr-icon csr-icon--green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="csr-stat">Tailored</div>
+          <p class="csr-desc">Fully custom splash page built collaboratively with Seaview's team</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= REVIEW IMPACT ======================= -->
+  <section class="csri">
+    <div class="wrap csri-inner">
+      <div class="csri-header">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-dot"></span>
+          <span>The WiFi–Review Connection</span>
+        </div>
+        <h2 class="reveal d1">How painless WiFi leads to <em>better reviews</em></h2>
+        <p class="reveal d2">Guests expect WiFi to work like it does at home. When it doesn't, they notice — and they write about it. Seaview turned this into a competitive advantage.</p>
+      </div>
+
+      <div class="csri-flow reveal">
+        <!-- Step 1 -->
+        <div class="csri-step">
+          <div class="csri-step-icon csri-step-icon--red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg>
+          </div>
+          <h4 class="csri-step-title">Guest connects</h4>
+          <p class="csri-step-desc">Painless one-tap sign-up via Fydelia's branded splash page</p>
+        </div>
+
+        <div class="csri-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="csri-step">
+          <div class="csri-step-icon csri-step-icon--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+          </div>
+          <h4 class="csri-step-title">Happy stay</h4>
+          <p class="csri-step-desc">Fast, reliable connection throughout their private holiday cottage</p>
+        </div>
+
+        <div class="csri-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="csri-step">
+          <div class="csri-step-icon csri-step-icon--green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h4 class="csri-step-title">Positive review</h4>
+          <p class="csri-step-desc">Guests mention strong WiFi in post-stay reviews, boosting listing ratings</p>
+        </div>
+      </div>
+
+      <div class="csri-outcome reveal">
+        <div class="csri-outcome-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          Higher listing ratings = more bookings
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= JOURNEY / TIMELINE ======================= -->
+  <section class="csj">
+    <div class="wrap">
+      <div class="csj-header">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-dot"></span>
+          <span>The Journey</span>
+        </div>
+        <h2 class="reveal d1">From no portal to<br><em>review-driving</em> WiFi</h2>
+        <p class="reveal d2">Josh Catton, Resort Director, walks us through how Seaview went from having no splash page control to a WiFi experience that directly impacts their bottom line.</p>
+      </div>
+
+      <div class="csj-timeline">
+
+        <!-- Step 1: Before -->
+        <div class="csj-step reveal">
+          <div class="csj-node csj-node--before">1</div>
+          <div class="csj-card">
+            <p class="csj-label csj-label--before">The Challenge</p>
+            <h3 class="csj-question">What was life like before Fydelia?</h3>
+            <p class="csj-answer">Prior to integration with Fydelia, we were unable to find a means to manage and customise a splash page for our customer-facing WiFi portal. We also needed a solution which offered both free and chargeable access. With Fydelia, the engineers worked with us to build a splash page which was user-friendly, simple to manage, and offered both free and chargeable packages.</p>
+          </div>
+        </div>
+
+        <!-- Step 2: Getting started -->
+        <div class="csj-step reveal">
+          <div class="csj-node csj-node--during">2</div>
+          <div class="csj-card">
+            <p class="csj-label csj-label--during">Getting Started</p>
+            <h3 class="csj-question">How was the onboarding experience?</h3>
+            <p class="csj-answer">I was regularly consulted by Fydelia's engineers during the integration process to ensure the product being delivered was tailored and meeting all of my requested features. The support team were always very helpful and prompt in response times — it felt like a genuine collaboration rather than an off-the-shelf install.</p>
+          </div>
+        </div>
+
+        <!-- Step 3: After -->
+        <div class="csj-step reveal">
+          <div class="csj-node csj-node--after">3</div>
+          <div class="csj-card">
+            <p class="csj-label csj-label--after">The Results</p>
+            <h3 class="csj-question">What is life like now?</h3>
+            <p class="csj-answer">Customers demand WiFi on holiday — especially in their own private area following the COVID-19 pandemic. Seeing reviews online about a holiday village's strong WiFi is hugely beneficial for attracting business customers and guests who greatly desire connectivity. It's integral to have a simple, quick and painless sign-up on your splash page. When a customer struggles accessing a network, it creates a bad tone for their entire holiday — and many post reviews mentioning WiFi specifically. Having a painless, simple customer-facing splash page backed up by good speeds means the customer is pleased and will post a positive review, leaving a higher rating on our online listings. The team is helpful, responsive and very prompt through set-up and the after-sales period.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= VENUES =======================
+  <section class="csv">
+    <div class="wrap">
+      <div class="csv-header">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-dot"></span>
+          <span>Live Properties</span>
+        </div>
+        <h2 class="reveal d1">Fydelia across<br><em>3</em> luxury properties</h2>
+        <p class="reveal d2">Each Seaview holiday cottage and house runs Fydelia's captive portal WiFi with both free and chargeable guest access tiers.</p>
+        <div class="csv-legend reveal d3">
+          <span class="csv-legend-item"><span class="csv-legend-dot csv-legend-dot--green"></span> Operational</span>
+        </div>
+      </div>
+
+      <div class="csv-grid">
+        <div class="csv-pin reveal"><span class="csv-pin-dot"></span> Luxury Cottage 1</div>
+        <div class="csv-pin reveal"><span class="csv-pin-dot"></span> Luxury Cottage 2</div>
+        <div class="csv-pin reveal"><span class="csv-pin-dot"></span> Luxury House</div>
+      </div>
+
+      <div class="csv-count reveal">
+        <div class="csv-count-num" data-count="3">0</div>
+        <div class="csv-count-label">Properties connected</div>
+      </div>
+    </div>
+  </section>
+-->
+
+  <!-- ======================= CTA ======================= -->
+  <section class="cta-sec" id="cta">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <h2>Want results like Seaview?</h2>
+        <p>Start your free 14-day trial today. Full access, zero risk — we'll even handle the setup.</p>
+        <form class="cta-form" onsubmit="return false;">
+          <input type="email" placeholder="you@venue.com" aria-label="Email address">
+          <button class="btn-solid" type="submit">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </button>
+        </form>
+        <p class="cta-meta">No credit card required · Setup in &lt;2 minutes · Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="ft">
+    <div class="wrap-wide">
+      <div class="ft-grid">
+        <div class="ft-brand-col">
+          <a class="brand" href="index.html" aria-label="Fydelia home">
+            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+            <span class="brand-text">fydelia</span>
+          </a>
+          <p>We help venues start a conversation with customers and collect valuable user data through lead generation and loyalty.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="#">Splash Pages</a></li>
+            <li><a href="index.html#integrations">Integrations</a></li>
+            <li><a href="index.html#hardware">Hardware</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Knowledge Base</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Downloads</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li>Brighton, United Kingdom</li>
+            <li>Dubai, UAE</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <span>&copy; 2026 Fydelia</span>
+        <span>All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+// ===== Theme toggle =====
+const toggle = document.getElementById('themeToggle');
+if (toggle) {
+  const saved = localStorage.getItem('fy-theme');
+  if (saved) document.body.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.body.setAttribute('data-theme', next);
+    localStorage.setItem('fy-theme', next);
+  });
+}
+
+// ===== Nav shadow =====
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.style.boxShadow = window.scrollY > 20 ? '0 10px 30px -10px rgba(0,0,0,0.5)' : 'none';
+}, { passive: true });
+
+// ===== Scroll reveal =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+reveals.forEach(el => io.observe(el));
+
+// ===== Journey card mouse glow =====
+document.querySelectorAll('.csj-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+});
+
+// ===== Animated counter for property count =====
+function animateCount(el) {
+  const target = parseInt(el.dataset.count, 10);
+  const duration = 1400;
+  const start = performance.now();
+  function tick(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 4);
+    el.textContent = Math.floor(target * eased);
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const countObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { animateCount(e.target); countObs.unobserve(e.target); }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
+
+// ===== Mobile menu drawer =====
+(function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const drawer     = document.getElementById('menuDrawer');
+  const backdrop   = document.getElementById('menuBackdrop');
+  const closeBtn   = document.getElementById('menuClose');
+  if (!menuToggle || !drawer) return;
+
+  const drawerLinks = drawer.querySelectorAll('.menu-drawer-nav a, .menu-drawer-signin, .menu-drawer-cta');
+
+  function openMenu() {
+    menuToggle.setAttribute('aria-expanded', 'true');
+    drawer.classList.add('active');
+    drawer.setAttribute('aria-hidden', 'false');
+    backdrop.classList.add('active');
+    backdrop.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-open');
+  }
+  function closeMenu() {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    drawer.classList.remove('active');
+    drawer.setAttribute('aria-hidden', 'true');
+    backdrop.classList.remove('active');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-open');
+  }
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+  });
+  closeBtn.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  drawerLinks.forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('active')) closeMenu();
+  });
+
+  const mobileThemeBtn = document.getElementById('themeToggleMobile');
+  if (mobileThemeBtn) {
+    mobileThemeBtn.addEventListener('click', () => {
+      const desktopBtn = document.getElementById('themeToggle');
+      if (desktopBtn) desktopBtn.click();
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

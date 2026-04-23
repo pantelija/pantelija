@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fydelia — Costa Coffee Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/core.css">
+<link rel="stylesheet" href="styles/sections.css">
+<style>
+/* ======================= CASE STUDY SINGLE ======================= */
+
+/* ---------- Hero ---------- */
+.csh {
+  position: relative;
+  padding: 96px 0 80px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.csh .hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.csh .hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+}
+.csh .hero-glow {
+  position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.45;
+}
+.csh .hero-glow--a {
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(88,68,209,0.3) 0%, transparent 70%);
+  top: -300px; right: -100px;
+}
+.csh .hero-glow--b {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, var(--red-glow) 0%, transparent 70%);
+  bottom: -200px; left: -100px;
+}
+
+.csh-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+/* Left: meta */
+.csh-meta {}
+.csh-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-3);
+  margin-bottom: 28px;
+  transition: color 0.2s var(--ease), gap 0.2s var(--ease);
+}
+.csh-back:hover { color: var(--fg); gap: 8px; }
+.csh-back svg { width: 14px; height: 14px; transform: rotate(180deg); }
+
+.csh-logo {
+  width: 120px; height: 56px;
+  margin-bottom: 24px;
+}
+.csh-logo img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.csh h1 {
+  font-size: clamp(36px, 4.2vw, 60px);
+  margin-bottom: 20px;
+  line-height: 1.05;
+}
+.csh-sub {
+  font-size: 18px;
+  color: var(--fg-2);
+  line-height: 1.6;
+  max-width: 500px;
+  margin-bottom: 32px;
+}
+
+/* Right: stats card */
+.csh-stats {
+  background: var(--bg-1);
+  border: 1px solid var(--line-strong);
+  border-radius: 20px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.csh-stats::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 10%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 10%, transparent 70%);
+  pointer-events: none;
+}
+.csh-stats::after {
+  content: ''; position: absolute;
+  top: -1px; left: 20%; right: 20%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(88,68,209,0.6), transparent);
+}
+.csh-stats > * { position: relative; }
+
+.csh-stats-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--fg-4);
+  margin-bottom: 28px;
+}
+
+.csh-stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.csh-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.csh-stat-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--fg-4);
+}
+.csh-stat-value {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--fg);
+}
+.csh-stat-value a {
+  color: var(--red);
+  text-decoration: underline;
+  text-decoration-color: rgba(255,43,43,0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
+}
+.csh-stat-value a:hover { text-decoration-color: var(--red); }
+
+/* ---------- Quote banner ---------- */
+.csq {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.csq::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse 50% 80% at 50% 50%, rgba(88,68,209,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.csq-inner {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.csq-mark {
+  font-size: 72px;
+  line-height: 1;
+  color: rgba(88,68,209,0.3);
+  font-family: Georgia, serif;
+  margin-bottom: -10px;
+}
+.csq blockquote {
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--fg);
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+.csq-attr {
+  font-size: 14px;
+  color: var(--fg-3);
+}
+.csq-attr strong {
+  color: var(--fg-2);
+  font-weight: 600;
+}
+
+/* ---------- Journey / Timeline ---------- */
+.csj {
+  padding: 100px 0;
+  border-bottom: 1px solid var(--line);
+}
+.csj-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 72px;
+}
+.csj-header h2 {
+  margin-top: 16px;
+}
+.csj-header p {
+  margin-top: 14px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.csj-timeline {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+}
+/* Vertical connector line */
+.csj-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 32px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--line-strong) 0%, rgba(88,68,209,0.4) 50%, var(--green) 100%);
+  border-radius: 2px;
+}
+
+.csj-step {
+  position: relative;
+  padding-left: 88px;
+  padding-bottom: 64px;
+}
+.csj-step:last-child { padding-bottom: 0; }
+
+/* Timeline node */
+.csj-node {
+  position: absolute;
+  left: 17px;
+  top: 4px;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 2;
+}
+.csj-node--before {
+  background: var(--bg-3);
+  border: 2px solid var(--line-strong);
+  color: var(--fg-3);
+}
+.csj-node--during {
+  background: rgba(88,68,209,0.15);
+  border: 2px solid rgba(88,68,209,0.5);
+  color: #9A6CFF;
+}
+.csj-node--after {
+  background: rgba(0,212,126,0.15);
+  border: 2px solid rgba(0,212,126,0.5);
+  color: var(--green);
+}
+
+.csj-card {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 36px 40px;
+  transition: border-color 0.3s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.csj-card:hover { border-color: var(--line-strong); }
+.csj-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(88,68,209,0.05) 0%, transparent 50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+.csj-card:hover::before { opacity: 1; }
+
+.csj-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+}
+.csj-label--before { color: var(--fg-4); }
+.csj-label--during { color: #9A6CFF; }
+.csj-label--after { color: var(--green); }
+
+.csj-question {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--fg);
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+.csj-answer {
+  font-size: 16px;
+  color: var(--fg-2);
+  line-height: 1.65;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px) {
+  .csh-inner { grid-template-columns: 1fr; gap: 48px; }
+}
+@media (max-width: 600px) {
+  .csh { padding: 72px 0 56px; }
+  .csj-timeline::before { left: 16px; }
+  .csj-node { left: 1px; width: 32px; height: 32px; }
+  .csj-step { padding-left: 60px; padding-bottom: 48px; }
+  .csj-card { padding: 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Grain overlay -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Fydelia home">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+      <span class="brand-text">fydelia</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#integrations">Integrations</a></li>
+      <li><a href="index.html#hardware">Hardware</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="new-pricing.html">Pricing</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+      <a class="btn-ghost" href="#">Sign in</a>
+      <a class="btn-solid" href="#cta">Try free for 14 days
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer + backdrop -->
+<div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+<aside id="menuDrawer" class="menu-drawer" aria-hidden="true">
+  <div class="menu-drawer-head">
+    <span class="menu-drawer-title">Menu</span>
+    <button id="menuClose" class="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu-drawer-nav">
+    <a href="index.html#features">Features</a>
+    <a href="index.html#integrations">Integrations</a>
+    <a href="index.html#hardware">Hardware</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="new-pricing.html">Pricing</a>
+  </nav>
+  <div class="menu-drawer-foot">
+    <div class="menu-drawer-theme">
+      <span class="menu-drawer-theme-label">Dark mode</span>
+      <button id="themeToggleMobile" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+    </div>
+    <a class="btn-ghost menu-drawer-signin" href="#">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="#cta">Try free for 14 days
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
+</aside>
+
+<main>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="csh">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-grid"></div>
+      <div class="hero-glow hero-glow--a"></div>
+      <div class="hero-glow hero-glow--b"></div>
+    </div>
+
+    <div class="wrap csh-inner">
+      <div class="csh-meta">
+        <a class="csh-back reveal" href="case-studies.html">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          All case studies
+        </a>
+        <div class="csh-logo reveal d1">
+          <img src="images/costa-coffee.png" alt="Costa Coffee logo">
+        </div>
+        <h1 class="reveal d2">How Costa Coffee stores got <em>faster WiFi</em> and happier customers</h1>
+        <p class="csh-sub reveal d3">When their O2 WiFi contract ended, Red and RACZ Ltd needed a turnkey replacement for their Costa Coffee outlets. Fydelia delivered — affordable, scalable, and live within the hour.</p>
+      </div>
+
+      <div class="csh-stats reveal d2">
+        <p class="csh-stats-title">At a glance</p>
+        <div class="csh-stat-grid">
+          <div class="csh-stat">
+            <span class="csh-stat-label">Brand</span>
+            <span class="csh-stat-value">Costa Coffee</span>
+          </div>
+          <div class="csh-stat">
+            <span class="csh-stat-label">Industry</span>
+            <span class="csh-stat-value">Food & Beverage</span>
+          </div>
+          <div class="csh-stat">
+            <span class="csh-stat-label">Operated by</span>
+            <span class="csh-stat-value">Red and RACZ Ltd</span>
+          </div>
+          <div class="csh-stat">
+            <span class="csh-stat-label">Partner since</span>
+            <span class="csh-stat-value">2022</span>
+          </div>
+          <div class="csh-stat">
+            <span class="csh-stat-label">Product</span>
+            <span class="csh-stat-value">Guest WiFi Solution</span>
+          </div>
+          <div class="csh-stat">
+            <span class="csh-stat-label">Website</span>
+            <span class="csh-stat-value"><a href="https://www.costa.co.uk/" target="_blank" rel="noopener">costa.co.uk</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= QUOTE ======================= -->
+  <section class="csq">
+    <div class="wrap csq-inner reveal">
+      <div class="csq-mark" aria-hidden="true">"</div>
+      <blockquote>"Simple, straightforward, easy to use and scalable at an affordable price — what more do you need?"</blockquote>
+      <p class="csq-attr"><strong>Tom Glass</strong> · Red and RACZ Ltd</p>
+    </div>
+  </section>
+
+
+  <!-- ======================= JOURNEY / TIMELINE ======================= -->
+  <section class="csj">
+    <div class="wrap">
+      <div class="csj-header">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-dot"></span>
+          <span>The Journey</span>
+        </div>
+        <h2 class="reveal d1">From expired contract to <em>better</em> customer experience</h2>
+        <p class="reveal d2">In 2022, Fydelia began working with Red and RACZ Ltd, providing guest WiFi for a large number of Costa Coffee outlets. Here's how it went.</p>
+      </div>
+
+      <div class="csj-timeline">
+
+        <!-- Step 1: Before -->
+        <div class="csj-step reveal">
+          <div class="csj-node csj-node--before">1</div>
+          <div class="csj-card">
+            <p class="csj-label csj-label--before">The Challenge</p>
+            <h3 class="csj-question">What was a challenge before using Fydelia?</h3>
+            <p class="csj-answer">We used O2 WiFi in our Costa Coffee stores, but this contract came to an end and we needed an immediate turnkey solution. We had experience with UniFi, so we scheduled installation and deployment of Fydelia. It was easy, affordable, and a breeze to use.</p>
+          </div>
+        </div>
+
+        <!-- Step 2: Getting started -->
+        <div class="csj-step reveal">
+          <div class="csj-node csj-node--during">2</div>
+          <div class="csj-card">
+            <p class="csj-label csj-label--during">Getting Started</p>
+            <h3 class="csj-question">How did you find the process of getting started with Fydelia?</h3>
+            <p class="csj-answer">Very straightforward. Steve and the team were incredibly helpful, and the pages designed were great and ready for production instantly. We have since onboarded other brands within an hour.</p>
+          </div>
+        </div>
+
+        <!-- Step 3: After -->
+        <div class="csj-step reveal">
+          <div class="csj-node csj-node--after">3</div>
+          <div class="csj-card">
+            <p class="csj-label csj-label--after">The Results</p>
+            <h3 class="csj-question">What is life like now?</h3>
+            <p class="csj-answer">The improvement to the customer journey and ability to control the user flow has massively improved our customers' experience in the store. Pairing this with the ability to deploy Fydelia on whatever broadband service we provide has allowed for much faster guest WiFi and a better customer experience.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= CTA ======================= -->
+  <section class="cta-sec" id="cta">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <h2>Want results like Costa Coffee?</h2>
+        <p>Start your free 14-day trial today. Full access, zero risk — we'll even handle the setup.</p>
+        <form class="cta-form" onsubmit="return false;">
+          <input type="email" placeholder="you@venue.com" aria-label="Email address">
+          <button class="btn-solid" type="submit">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </button>
+        </form>
+        <p class="cta-meta">No credit card required · Setup in &lt;2 minutes · Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="ft">
+    <div class="wrap-wide">
+      <div class="ft-grid">
+        <div class="ft-brand-col">
+          <a class="brand" href="index.html" aria-label="Fydelia home">
+            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+            <span class="brand-text">fydelia</span>
+          </a>
+          <p>We help venues start a conversation with customers and collect valuable user data through lead generation and loyalty.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="#">Splash Pages</a></li>
+            <li><a href="index.html#integrations">Integrations</a></li>
+            <li><a href="index.html#hardware">Hardware</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Knowledge Base</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Downloads</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li>Brighton, United Kingdom</li>
+            <li>Dubai, UAE</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <span>&copy; 2026 Fydelia</span>
+        <span>All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+// ===== Theme toggle =====
+const toggle = document.getElementById('themeToggle');
+if (toggle) {
+  const saved = localStorage.getItem('fy-theme');
+  if (saved) document.body.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.body.setAttribute('data-theme', next);
+    localStorage.setItem('fy-theme', next);
+  });
+}
+
+// ===== Nav shadow =====
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.style.boxShadow = window.scrollY > 20 ? '0 10px 30px -10px rgba(0,0,0,0.5)' : 'none';
+}, { passive: true });
+
+// ===== Scroll reveal =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+reveals.forEach(el => io.observe(el));
+
+// ===== Journey card mouse glow =====
+document.querySelectorAll('.csj-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+});
+
+// ===== Mobile menu drawer =====
+(function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const drawer     = document.getElementById('menuDrawer');
+  const backdrop   = document.getElementById('menuBackdrop');
+  const closeBtn   = document.getElementById('menuClose');
+  if (!menuToggle || !drawer) return;
+
+  const drawerLinks = drawer.querySelectorAll('.menu-drawer-nav a, .menu-drawer-signin, .menu-drawer-cta');
+
+  function openMenu() {
+    menuToggle.setAttribute('aria-expanded', 'true');
+    drawer.classList.add('active');
+    drawer.setAttribute('aria-hidden', 'false');
+    backdrop.classList.add('active');
+    backdrop.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-open');
+  }
+  function closeMenu() {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    drawer.classList.remove('active');
+    drawer.setAttribute('aria-hidden', 'true');
+    backdrop.classList.remove('active');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-open');
+  }
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+  });
+  closeBtn.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  drawerLinks.forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('active')) closeMenu();
+  });
+
+  const mobileThemeBtn = document.getElementById('themeToggleMobile');
+  if (mobileThemeBtn) {
+    mobileThemeBtn.addEventListener('click', () => {
+      const desktopBtn = document.getElementById('themeToggle');
+      if (desktopBtn) desktopBtn.click();
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fydelia — Case Studies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/core.css">
+<link rel="stylesheet" href="styles/sections.css">
+<style>
+/* ======================= CASE STUDIES PAGE ======================= */
+
+/* --- Hero --- */
+.cs-hero {
+  position: relative;
+  padding: 100px 0 80px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+.cs-hero .hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.cs-hero .hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+}
+.cs-hero .hero-glow {
+  position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5;
+}
+.cs-hero .hero-glow--a {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, var(--red-glow) 0%, transparent 70%);
+  top: -250px; left: 50%; transform: translateX(-50%);
+}
+.cs-hero-inner { position: relative; max-width: 700px; margin: 0 auto; }
+.cs-hero h1 {
+  font-size: clamp(40px, 5vw, 72px);
+  margin: 20px 0 18px;
+}
+.cs-hero .lead {
+  margin: 0 auto;
+  max-width: 560px;
+}
+
+/* --- Featured card --- */
+.cs-featured {
+  padding: 80px 0 0;
+}
+.cs-featured-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 56px;
+  align-items: center;
+  padding: 56px;
+  background:
+    radial-gradient(ellipse 60% 80% at 20% 0%, rgba(255,43,43,0.08) 0%, transparent 60%),
+    var(--bg-1);
+  border: 1px solid var(--line-strong);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: border-color 0.3s var(--ease);
+}
+.cs-featured-card:hover { border-color: rgba(255,43,43,0.25); }
+.cs-featured-card::after {
+  content: ''; position: absolute;
+  top: -1px; left: 15%; right: 15%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+}
+
+.cs-featured-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+/* Logo containers — unified approach for mixed aspect ratios */
+.cs-logo-img {
+  width: 80px; height: 80px;
+  border-radius: 16px;
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  display: grid; place-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: 10px;
+}
+.cs-logo-img img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  display: block;
+}
+/* Logos with their own solid background — no padding, fill the box */
+.cs-logo-img--fill {
+  padding: 0;
+}
+/* Logos on white/light backgrounds — give them a clean white container */
+.cs-logo-img--light-bg {
+  background: #fff;
+  border-color: rgba(0,0,0,0.08);
+}
+/* Fallback text initials for missing logos */
+.cs-logo-placeholder {
+  width: 80px; height: 80px;
+  border-radius: 16px;
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  display: grid; place-items: center;
+  flex-shrink: 0;
+}
+.cs-logo-placeholder span {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--fg-3);
+}
+.cs-featured-name {
+  font-size: clamp(26px, 2.8vw, 38px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.cs-featured-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--red);
+  padding: 5px 12px;
+  background: rgba(255,43,43,0.08);
+  border: 1px solid rgba(255,43,43,0.2);
+  border-radius: 100px;
+}
+.cs-featured-tag::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.cs-featured-body {}
+.cs-featured-quote {
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.6;
+  color: var(--fg-2);
+  margin-bottom: 28px;
+  position: relative;
+  padding-left: 24px;
+  border-left: 2px solid var(--red);
+}
+.cs-featured-read {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--red);
+  transition: gap 0.25s var(--ease), color 0.2s var(--ease);
+}
+.cs-featured-read:hover { gap: 12px; }
+.cs-featured-read svg { width: 16px; height: 16px; }
+
+/* --- Grid --- */
+.cs-grid-section {
+  padding: 80px 0 0;
+}
+.cs-grid-title {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--fg-3);
+  margin-bottom: 32px;
+}
+.cs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.cs-card {
+  position: relative;
+  padding: 36px;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+  overflow: hidden;
+}
+.cs-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-3px);
+}
+.cs-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(255,43,43,0.06) 0%, transparent 60%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+.cs-card:hover::before { opacity: 1; }
+
+.cs-card-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.cs-card-logo {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  display: grid; place-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: 6px;
+}
+.cs-card-logo img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.cs-card-logo--fill { padding: 0; }
+.cs-card-logo--light-bg {
+  background: #fff;
+  border-color: rgba(0,0,0,0.08);
+}
+.cs-card-logo span {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--fg-3);
+}
+.cs-card-name {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--fg);
+}
+
+.cs-card-quote {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--fg-3);
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cs-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--red);
+  transition: gap 0.25s var(--ease);
+  margin-top: auto;
+}
+.cs-card-link:hover { gap: 10px; }
+.cs-card-link svg { width: 14px; height: 14px; }
+
+/* --- Results / horizontal scroll --- */
+.cs-results {
+  padding: 100px 0 0;
+  border-top: 1px solid var(--line);
+}
+.cs-results-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 48px;
+}
+.cs-results-header h2 {
+  font-size: clamp(28px, 3vw, 42px);
+  margin: 16px 0 14px;
+}
+.cs-results-header p {
+  color: var(--fg-3);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Scroll track */
+.cs-results-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 max(24px, calc((100vw - var(--wrap)) / 2)) 40px;
+  scrollbar-width: none;
+}
+.cs-results-track::-webkit-scrollbar { display: none; }
+
+/* Individual panel */
+.cs-panel {
+  flex: 0 0 min(520px, 85vw);
+  scroll-snap-align: start;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 0;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: border-color 0.3s var(--ease);
+}
+.cs-panel:hover { border-color: var(--line-strong); }
+
+/* Viz area — top half */
+.cs-panel-viz {
+  position: relative;
+  height: 220px;
+  padding: 28px 32px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 90% at 30% 100%, rgba(255,43,43,0.06) 0%, transparent 60%),
+    var(--bg-2);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Text area — bottom half */
+.cs-panel-body {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cs-panel-metric {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--fg);
+}
+.cs-panel-metric em { color: var(--red); font-style: normal; }
+.cs-panel-desc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--fg-3);
+}
+
+/* Source footer */
+.cs-panel-foot {
+  padding: 16px 32px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-4);
+}
+
+/* Scroll controls row (arrows + dots) */
+.cs-scroll-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 28px 0 0;
+}
+.cs-scroll-arrow {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: var(--bg-1);
+  color: var(--fg-3);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease), background 0.25s var(--ease), transform 0.2s var(--ease);
+  flex-shrink: 0;
+}
+.cs-scroll-arrow:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: rgba(255,43,43,0.06);
+}
+.cs-scroll-arrow:active { transform: scale(0.92); }
+.cs-scroll-arrow.disabled {
+  opacity: 0.25;
+  pointer-events: none;
+}
+.cs-scroll-arrow svg {
+  width: 18px; height: 18px;
+}
+
+/* Scroll hint dots */
+.cs-scroll-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Drag state */
+.cs-results-track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+.cs-results-track.is-dragging .cs-panel {
+  pointer-events: none;
+}
+.cs-scroll-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--fg-4);
+  opacity: 0.3;
+  transition: opacity 0.3s, background 0.3s;
+}
+.cs-scroll-dot.active {
+  opacity: 1;
+  background: var(--red);
+}
+
+/* ---- Data viz elements (pure CSS) ---- */
+
+/* 1 — Bar chart (audience building) */
+.viz-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+}
+.viz-bar {
+  flex: 1;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  transform-origin: bottom;
+  animation: barGrow 1s var(--ease) forwards;
+  animation-play-state: paused;
+}
+.viz-bar--muted {
+  background: var(--bg-4);
+  border: 1px solid var(--line);
+  border-bottom: none;
+}
+.viz-bar--accent {
+  background: linear-gradient(180deg, var(--red) 0%, var(--red-700) 100%);
+  border: 1px solid rgba(255,43,43,0.3);
+  border-bottom: none;
+  box-shadow: 0 0 24px rgba(255,43,43,0.15);
+}
+.viz-bar-label {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--fg-4);
+  white-space: nowrap;
+}
+.viz-bar--accent .viz-bar-label { color: var(--red); font-weight: 600; }
+.in .viz-bar { animation-play-state: running; }
+
+@keyframes barGrow {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+/* 2 — Clock / radial timer */
+.viz-clock {
+  width: 160px; height: 160px;
+  margin: 0 auto;
+  position: relative;
+}
+.viz-clock-ring {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  position: relative;
+}
+.viz-clock-fill {
+  position: absolute; inset: -2px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: var(--red);
+  border-right-color: var(--red);
+  transform: rotate(-90deg);
+  animation: clockSweep 1.5s var(--ease) forwards;
+  animation-play-state: paused;
+}
+.in .viz-clock-fill { animation-play-state: running; }
+@keyframes clockSweep {
+  from { transform: rotate(-90deg); }
+  to   { transform: rotate(90deg); }
+}
+.viz-clock-center {
+  position: absolute;
+  inset: 20px;
+  border-radius: 50%;
+  background: var(--bg-2);
+  display: grid;
+  place-items: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--red);
+  letter-spacing: -0.03em;
+}
+.viz-clock-center small {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 2px;
+}
+
+/* 3 — Trend line (SVG sparkline) */
+.viz-trend {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.viz-trend svg {
+  width: 100%;
+  height: 100%;
+}
+.viz-trend-line {
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: drawLine 2s var(--ease) forwards;
+  animation-play-state: paused;
+}
+.in .viz-trend-line { animation-play-state: running; }
+.viz-trend-area {
+  fill: url(#redFade);
+  opacity: 0;
+  animation: fadeInArea 1s 1s var(--ease) forwards;
+  animation-play-state: paused;
+}
+.in .viz-trend-area { animation-play-state: running; }
+@keyframes drawLine {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes fadeInArea {
+  to { opacity: 1; }
+}
+.viz-trend-dot {
+  r: 5;
+  fill: var(--red);
+  stroke: var(--bg-2);
+  stroke-width: 3;
+  opacity: 0;
+  animation: popDot 0.3s 1.8s var(--ease) forwards;
+  animation-play-state: paused;
+}
+.in .viz-trend-dot { animation-play-state: running; }
+@keyframes popDot {
+  from { opacity: 0; r: 0; }
+  to   { opacity: 1; r: 5; }
+}
+
+/* 4 — Donut / ring chart */
+.viz-donut {
+  width: 160px; height: 160px;
+  margin: 0 auto;
+  position: relative;
+}
+.viz-donut svg {
+  width: 100%; height: 100%;
+  transform: rotate(-90deg);
+}
+.viz-donut-bg {
+  fill: none;
+  stroke: var(--bg-4);
+  stroke-width: 10;
+}
+.viz-donut-fill {
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  animation: donutFill 1.5s 0.3s var(--ease) forwards;
+  animation-play-state: paused;
+  filter: drop-shadow(0 0 6px rgba(255,43,43,0.4));
+}
+.in .viz-donut-fill { animation-play-state: running; }
+@keyframes donutFill {
+  to { stroke-dashoffset: 0; }
+}
+.viz-donut-label {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--fg);
+  letter-spacing: -0.03em;
+}
+.viz-donut-label em { color: var(--red); font-style: normal; }
+
+/* 5 — Consolidation / funnel (3 → 1) */
+.viz-funnel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.viz-funnel-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.viz-funnel-block {
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg-4);
+  border: 1px solid var(--line);
+  background: var(--bg-3);
+  padding: 0 18px;
+  opacity: 0;
+  animation: slideInBlock 0.5s var(--ease) forwards;
+  animation-play-state: paused;
+}
+.in .viz-funnel-block { animation-play-state: running; }
+.viz-funnel-block:nth-child(1) { animation-delay: 0s; width: 150px; }
+.viz-funnel-block:nth-child(2) { animation-delay: 0.15s; width: 130px; }
+.viz-funnel-block:nth-child(3) { animation-delay: 0.3s; width: 110px; }
+@keyframes slideInBlock {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.viz-funnel-arrow {
+  font-size: 28px;
+  color: var(--fg-4);
+  opacity: 0;
+  animation: fadeArrow 0.4s 0.5s var(--ease) forwards;
+  animation-play-state: paused;
+}
+.in .viz-funnel-arrow { animation-play-state: running; }
+@keyframes fadeArrow {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 0.5; transform: translateX(0); }
+}
+.viz-funnel-result {
+  height: 120px;
+  width: 120px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255,43,43,0.12) 0%, rgba(255,43,43,0.04) 100%);
+  border: 1px solid rgba(255,43,43,0.2);
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  animation: popResult 0.5s 0.7s var(--ease) forwards;
+  animation-play-state: paused;
+}
+.in .viz-funnel-result { animation-play-state: running; }
+@keyframes popResult {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.viz-funnel-result span {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--red);
+  letter-spacing: -0.03em;
+}
+
+/* 6 — Star rating */
+.viz-stars {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 16px;
+}
+.viz-stars-row {
+  display: flex;
+  gap: 8px;
+}
+.viz-star {
+  width: 36px; height: 36px;
+  color: var(--fg-4);
+  opacity: 0;
+  transform: scale(0) rotate(-30deg);
+  animation: starPop 0.4s var(--ease) forwards;
+  animation-play-state: paused;
+}
+.viz-star--filled { color: #FFB020; }
+.in .viz-star { animation-play-state: running; }
+.viz-star:nth-child(1) { animation-delay: 0.1s; }
+.viz-star:nth-child(2) { animation-delay: 0.25s; }
+.viz-star:nth-child(3) { animation-delay: 0.4s; }
+.viz-star:nth-child(4) { animation-delay: 0.55s; }
+.viz-star:nth-child(5) { animation-delay: 0.7s; }
+@keyframes starPop {
+  from { opacity: 0; transform: scale(0) rotate(-30deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+.viz-stars-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--fg-4);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* --- Responsive --- */
+@media (max-width: 980px) {
+  .cs-featured-card {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 40px;
+  }
+  .cs-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .cs-hero { padding: 72px 0 56px; }
+  .cs-featured-card { padding: 28px; }
+  .cs-grid { grid-template-columns: 1fr; }
+  .cs-grid-section { padding: 56px 0 0; }
+  .cs-results { padding: 64px 0 0; }
+  .cs-panel { flex: 0 0 88vw; }
+  .cs-panel-viz { height: 180px; padding: 20px 24px; }
+  .cs-panel-body { padding: 24px; }
+  .cs-panel-foot { padding: 14px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Grain overlay -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Fydelia home">
+      <span class="brand-mark" aria-hidden="true">
+        <span class="brand-dot"></span>
+      </span>
+      <span class="brand-text">fydelia</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#integrations">Integrations</a></li>
+      <li><a href="index.html#hardware">Hardware</a></li>
+      <li><a href="#">Case Studies</a></li>
+      <li><a href="new-pricing.html">Pricing</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+      <a class="btn-ghost" href="#">Sign in</a>
+      <a class="btn-solid" href="#cta">Try free for 14 days
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <!-- Mobile burger -->
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer + backdrop -->
+<div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+<aside id="menuDrawer" class="menu-drawer" aria-hidden="true">
+  <div class="menu-drawer-head">
+    <span class="menu-drawer-title">Menu</span>
+    <button id="menuClose" class="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu-drawer-nav">
+    <a href="index.html#features">Features</a>
+    <a href="index.html#integrations">Integrations</a>
+    <a href="index.html#hardware">Hardware</a>
+    <a href="#">Case Studies</a>
+    <a href="new-pricing.html">Pricing</a>
+  </nav>
+  <div class="menu-drawer-foot">
+    <div class="menu-drawer-theme">
+      <span class="menu-drawer-theme-label">Dark mode</span>
+      <button id="themeToggleMobile" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+    </div>
+    <a class="btn-ghost menu-drawer-signin" href="#">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="#cta">Try free for 14 days
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
+</aside>
+
+<main>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="cs-hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-grid"></div>
+      <div class="hero-glow hero-glow--a"></div>
+    </div>
+    <div class="wrap cs-hero-inner">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-dot"></span>
+        <span>Case Studies</span>
+      </div>
+      <h1 class="reveal d1">Real results from<br><em>real</em> businesses</h1>
+      <p class="lead reveal d2">See how hospitality, leisure, and retail brands use Fydelia to turn guest WiFi into their most powerful marketing channel.</p>
+    </div>
+  </section>
+
+
+  <!-- ======================= FEATURED ======================= -->
+  <section class="cs-featured">
+    <div class="wrap">
+      <div class="cs-featured-card reveal">
+        <div class="cs-featured-logo">
+          <div class="cs-logo-img cs-logo-img--light-bg"><img src="images/wahaca.png" alt="Wahaca logo" loading="lazy"></div>
+          <h2 class="cs-featured-name">Wahaca</h2>
+          <span class="cs-featured-tag">Featured</span>
+        </div>
+        <div class="cs-featured-body">
+          <blockquote class="cs-featured-quote">"Fydelia have lived up to their promise of delivering us much improved opt-in rates for our wifi users, becoming the biggest source of database opt-ins. The team are great to work with, proactive with recommendations and always looking to optimize further."</blockquote>
+          <a class="cs-featured-read" href="case-study-wahaca.html">
+            Read the full story
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= GRID ======================= -->
+  <section class="cs-grid-section">
+    <div class="wrap">
+      <p class="cs-grid-title reveal">More case studies</p>
+      <div class="cs-grid">
+
+        <!-- Costa Coffee -->
+        <article class="cs-card reveal">
+          <div class="cs-card-head">
+            <div class="cs-card-logo cs-card-logo--light-bg"><img src="images/costa-coffee.png" alt="Costa Coffee logo" loading="lazy"></div>
+            <h3 class="cs-card-name">Costa Coffee</h3>
+          </div>
+          <p class="cs-card-quote">"Simple, Straightforward, Easy to use and scalable at an affordable price, what more do you need?"</p>
+          <a class="cs-card-link" href="#">
+            Read case study
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+        </article>
+
+        <!-- Great Northern Group -->
+        <article class="cs-card reveal d1">
+          <div class="cs-card-head">
+            <div class="cs-card-logo cs-card-logo--fill"><img src="images/gng.jpg" alt="Great Northern Group logo" loading="lazy"></div>
+            <h3 class="cs-card-name">Great Northern Group</h3>
+          </div>
+          <p class="cs-card-quote">"Fydelia worked with us to find ways it could work and we've created a really powerful marketing tool for our businesses."</p>
+          <a class="cs-card-link" href="#">
+            Read case study
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+        </article>
+
+        <!-- Ping Pong Restaurants -->
+        <article class="cs-card reveal d2">
+          <div class="cs-card-head">
+            <div class="cs-card-logo cs-card-logo--light-bg"><img src="images/ping-pong.png" alt="Ping Pong Restaurants logo" loading="lazy"></div>
+            <h3 class="cs-card-name">Ping Pong Restaurants</h3>
+          </div>
+          <p class="cs-card-quote">"I highly recommend working with Fydelia, not just for their innovative system but for the responsiveness, knowledge, and personable approach of the team. Steve & Tom are top people to work with!"</p>
+          <a class="cs-card-link" href="case-study-ping-pong.html">
+            Read case study
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+        </article>
+
+        <!-- Seaview Holidays Resort -->
+        <article class="cs-card reveal">
+          <div class="cs-card-head">
+            <div class="cs-card-logo cs-card-logo--light-bg"><img src="images/seaview.jpg" alt="Seaview Holidays Resort logo" loading="lazy"></div>
+            <h3 class="cs-card-name">Seaview Holidays Resort</h3>
+          </div>
+          <p class="cs-card-quote">"Fydelia have built a solution which gives businesses the ability to obtain customer data and provide a great service through a seamless splash page."</p>
+          <a class="cs-card-link" href="#">
+            Read case study
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+        </article>
+
+        <!-- Meraki Restaurant -->
+        <article class="cs-card reveal d1">
+          <div class="cs-card-head">
+            <div class="cs-card-logo cs-card-logo--light-bg"><img src="images/meraki.png" alt="meraki Restaurants logo" loading="lazy"></div>
+            <h3 class="cs-card-name">Meraki Restaurant</h3>
+          </div>
+          <p class="cs-card-quote">"Very happy we switched to Fydelia, the team are responsive which is a 5* in our book these days and we haven't had any issues, everything works as expected."</p>
+          <a class="cs-card-link" href="#">
+            Read case study
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+        </article>
+
+        <!-- Awen Cultural Trust -->
+        <article class="cs-card reveal d2">
+          <div class="cs-card-head">
+            <div class="cs-card-logo cs-card-logo--fill"><img src="images/awen.jpg" alt="Awen Cultural Trust logo" loading="lazy"></div>
+            <h3 class="cs-card-name">Awen Cultural Trust</h3>
+          </div>
+          <p class="cs-card-quote">"Friendly and prompt service, tailored to our needs. No hard sell."</p>
+          <a class="cs-card-link" href="#">
+            Read case study
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= RESULTS ======================= -->
+  <section class="cs-results">
+    <div class="wrap">
+      <div class="cs-results-header">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-dot"></span>
+          <span>Proven Results</span>
+        </div>
+        <h2 class="reveal d1">What our clients <em>actually</em> achieved</h2>
+        <p class="reveal d2">Real outcomes pulled straight from the case studies above — no fluff, just what happened after going live with Fydelia.</p>
+      </div>
+    </div>
+
+    <div class="cs-results-track" id="resultsTrack">
+
+      <!-- Panel 1 — Audience building (bar chart) -->
+      <article class="cs-panel reveal">
+        <div class="cs-panel-viz">
+          <div class="viz-bars">
+            <div class="viz-bar viz-bar--muted" style="height:35%"><span class="viz-bar-label">Email</span></div>
+            <div class="viz-bar viz-bar--muted" style="height:45%"><span class="viz-bar-label">Social</span></div>
+            <div class="viz-bar viz-bar--muted" style="height:28%"><span class="viz-bar-label">Web</span></div>
+            <div class="viz-bar viz-bar--accent" style="height:90%"><span class="viz-bar-label">WiFi</span></div>
+            <div class="viz-bar viz-bar--muted" style="height:20%"><span class="viz-bar-label">Events</span></div>
+          </div>
+        </div>
+        <div class="cs-panel-body">
+          <h3 class="cs-panel-metric">Facebook audiences from <em>physical</em> visitors</h3>
+          <p class="cs-panel-desc">GNG targets Facebook ads at people who physically visited their restaurants and used WiFi — calling this capability "gold dust" for their marketing strategy.</p>
+        </div>
+        <div class="cs-panel-foot">Great Northern Group</div>
+      </article>
+
+      <!-- Panel 2 — Onboarding speed (clock) -->
+      <article class="cs-panel reveal">
+        <div class="cs-panel-viz">
+          <div class="viz-clock">
+            <div class="viz-clock-ring">
+              <div class="viz-clock-fill"></div>
+            </div>
+            <div class="viz-clock-center">&lt;1h<small>to go live</small></div>
+          </div>
+        </div>
+        <div class="cs-panel-body">
+          <h3 class="cs-panel-metric">New brands onboarded in <em>&lt; 1 hour</em></h3>
+          <p class="cs-panel-desc">After initial Costa Coffee setup, Red and RACZ Ltd onboarded additional brands within an hour — from page design to production-ready deployment.</p>
+        </div>
+        <div class="cs-panel-foot">Costa Coffee / Red and RACZ</div>
+      </article>
+
+      <!-- Panel 3 — Conversion trend (sparkline) -->
+      <article class="cs-panel reveal">
+        <div class="cs-panel-viz">
+          <div class="viz-trend">
+            <svg viewBox="0 0 460 170" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="redFade" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="var(--red)" stop-opacity="0.15"/>
+                  <stop offset="100%" stop-color="var(--red)" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path class="viz-trend-area" d="M0,140 C40,130 80,125 120,115 C160,105 200,90 240,80 C280,65 320,50 360,35 C400,22 440,15 460,10 L460,170 L0,170 Z"/>
+              <path class="viz-trend-line" d="M0,140 C40,130 80,125 120,115 C160,105 200,90 240,80 C280,65 320,50 360,35 C400,22 440,15 460,10"/>
+              <circle class="viz-trend-dot" cx="460" cy="10"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cs-panel-body">
+          <h3 class="cs-panel-metric">Conversion rates growing <em>week on week</em></h3>
+          <p class="cs-panel-desc">Ping Pong saw return visits and conversions climb steadily after launching their Chinese New Year campaign through Fydelia's splash pages.</p>
+        </div>
+        <div class="cs-panel-foot">Ping Pong Restaurants</div>
+      </article>
+
+      <!-- Panel 4 — #1 opt-in source (donut) -->
+      <article class="cs-panel reveal">
+        <div class="cs-panel-viz">
+          <div class="viz-donut">
+            <svg viewBox="0 0 100 100">
+              <circle class="viz-donut-bg" cx="50" cy="50" r="45"/>
+              <circle class="viz-donut-fill" cx="50" cy="50" r="45"/>
+            </svg>
+            <div class="viz-donut-label"><em>#1</em></div>
+          </div>
+        </div>
+        <div class="cs-panel-body">
+          <h3 class="cs-panel-metric"><em>#1</em> source of database opt-ins</h3>
+          <p class="cs-panel-desc">Wahaca's guest WiFi became their single biggest channel for marketing opt-ins — outperforming every other data collection method across their group.</p>
+        </div>
+        <div class="cs-panel-foot">Wahaca</div>
+      </article>
+
+      <!-- Panel 5 — Consolidation (funnel 3→1) -->
+      <article class="cs-panel reveal">
+        <div class="cs-panel-viz">
+          <div class="viz-funnel">
+            <div class="viz-funnel-stack">
+              <div class="viz-funnel-block">Provider A</div>
+              <div class="viz-funnel-block">Provider B</div>
+              <div class="viz-funnel-block">Provider C</div>
+            </div>
+            <span class="viz-funnel-arrow">→</span>
+            <div class="viz-funnel-result"><span>1</span></div>
+          </div>
+        </div>
+        <div class="cs-panel-body">
+          <h3 class="cs-panel-metric"><em>3</em> WiFi solutions consolidated into <em>1</em></h3>
+          <p class="cs-panel-desc">Awen Cultural Trust replaced three separate guest WiFi providers — each with different costs and quirks — with a single Fydelia deployment.</p>
+        </div>
+        <div class="cs-panel-foot">Awen Cultural Trust</div>
+      </article>
+
+      <!-- Panel 6 — Review scores (stars) -->
+      <article class="cs-panel reveal">
+        <div class="cs-panel-viz">
+          <div class="viz-stars">
+            <div class="viz-stars-row">
+              <svg class="viz-star viz-star--filled" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="viz-star viz-star--filled" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="viz-star viz-star--filled" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="viz-star viz-star--filled" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="viz-star viz-star--filled" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <span class="viz-stars-label">Guest review impact</span>
+          </div>
+        </div>
+        <div class="cs-panel-body">
+          <h3 class="cs-panel-metric">WiFi quality driving <em>higher review scores</em></h3>
+          <p class="cs-panel-desc">Seaview found that a seamless WiFi sign-up directly led to better guest reviews and higher ratings on their online listings — a tangible revenue driver.</p>
+        </div>
+        <div class="cs-panel-foot">Seaview Holidays Resort</div>
+      </article>
+
+    </div>
+
+    <!-- Scroll controls: arrows + dots -->
+    <div class="cs-scroll-controls">
+      <button class="cs-scroll-arrow disabled" id="scrollPrev" aria-label="Previous result">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="cs-scroll-hint" id="scrollDots">
+        <span class="cs-scroll-dot active"></span>
+        <span class="cs-scroll-dot"></span>
+        <span class="cs-scroll-dot"></span>
+        <span class="cs-scroll-dot"></span>
+        <span class="cs-scroll-dot"></span>
+        <span class="cs-scroll-dot"></span>
+      </div>
+      <button class="cs-scroll-arrow" id="scrollNext" aria-label="Next result">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </section>
+
+
+  <!-- ======================= CTA ======================= -->
+  <section class="cta-sec" id="cta">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <h2>Ready to get started?</h2>
+        <p>Start your free 14-day trial today. Full access, zero risk — we'll even handle the setup.</p>
+        <form class="cta-form" onsubmit="return false;">
+          <input type="email" placeholder="you@venue.com" aria-label="Email address">
+          <button class="btn-solid" type="submit">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </button>
+        </form>
+        <p class="cta-meta">No credit card required · Setup in &lt;2 minutes · Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="ft">
+    <div class="wrap-wide">
+      <div class="ft-grid">
+        <div class="ft-brand-col">
+          <a class="brand" href="index.html" aria-label="Fydelia home">
+            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+            <span class="brand-text">fydelia</span>
+          </a>
+          <p>We help venues start a conversation with customers and collect valuable user data through lead generation and loyalty.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="#">Splash Pages</a></li>
+            <li><a href="index.html#integrations">Integrations</a></li>
+            <li><a href="index.html#hardware">Hardware</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Knowledge Base</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Downloads</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li>Brighton, United Kingdom</li>
+            <li>Dubai, UAE</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <span>&copy; 2026 Fydelia</span>
+        <span>All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+// ===== Theme toggle =====
+const toggle = document.getElementById('themeToggle');
+if (toggle) {
+  const saved = localStorage.getItem('fy-theme');
+  if (saved) document.body.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.body.setAttribute('data-theme', next);
+    localStorage.setItem('fy-theme', next);
+  });
+}
+
+// ===== Nav shadow on scroll =====
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.style.boxShadow = window.scrollY > 20 ? '0 10px 30px -10px rgba(0,0,0,0.5)' : 'none';
+}, { passive: true });
+
+// ===== Scroll reveal =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+reveals.forEach(el => io.observe(el));
+
+// ===== Card mouse-follow glow =====
+document.querySelectorAll('.cs-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+});
+
+// ===== Results scroll: dots, arrows & drag =====
+(function() {
+  const track = document.getElementById('resultsTrack');
+  const dots  = document.querySelectorAll('.cs-scroll-dot');
+  const prev  = document.getElementById('scrollPrev');
+  const next  = document.getElementById('scrollNext');
+  if (!track || !dots.length) return;
+  const panels = track.querySelectorAll('.cs-panel');
+  let currentIdx = 0;
+
+  function getPanelWidth() {
+    return panels[0].offsetWidth + 24; // 24 = gap
+  }
+
+  function getMaxIdx() {
+    return panels.length - 1;
+  }
+
+  function updateControls() {
+    const pw = getPanelWidth();
+    currentIdx = Math.round(track.scrollLeft / pw);
+    currentIdx = Math.max(0, Math.min(currentIdx, getMaxIdx()));
+    dots.forEach((d, i) => d.classList.toggle('active', i === currentIdx));
+    prev.classList.toggle('disabled', currentIdx === 0);
+    next.classList.toggle('disabled', currentIdx === getMaxIdx());
+  }
+
+  function scrollToIdx(i) {
+    i = Math.max(0, Math.min(i, getMaxIdx()));
+    track.scrollTo({ left: i * getPanelWidth(), behavior: 'smooth' });
+  }
+
+  track.addEventListener('scroll', updateControls, { passive: true });
+
+  // Dot clicks
+  dots.forEach((dot, i) => {
+    dot.style.cursor = 'pointer';
+    dot.addEventListener('click', () => scrollToIdx(i));
+  });
+
+  // Arrow clicks
+  prev.addEventListener('click', () => scrollToIdx(currentIdx - 1));
+  next.addEventListener('click', () => scrollToIdx(currentIdx + 1));
+
+  // Keyboard arrows when track is in viewport
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+      const rect = track.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (!inView) return;
+      if (e.key === 'ArrowLeft') scrollToIdx(currentIdx - 1);
+      if (e.key === 'ArrowRight') scrollToIdx(currentIdx + 1);
+    }
+  });
+
+  // Drag-to-scroll (mouse)
+  let isDragging = false, startX = 0, scrollStart = 0;
+
+  track.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.pageX;
+    scrollStart = track.scrollLeft;
+    track.classList.add('is-dragging');
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const dx = e.pageX - startX;
+    track.scrollLeft = scrollStart - dx;
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.classList.remove('is-dragging');
+    // Re-enable snap: let it settle to nearest panel
+    track.style.scrollSnapType = 'x mandatory';
+    scrollToIdx(Math.round(track.scrollLeft / getPanelWidth()));
+  });
+
+  // Set initial cursor
+  track.style.cursor = 'grab';
+})();
+
+// ===== Mobile menu drawer =====
+(function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const drawer     = document.getElementById('menuDrawer');
+  const backdrop   = document.getElementById('menuBackdrop');
+  const closeBtn   = document.getElementById('menuClose');
+  if (!menuToggle || !drawer) return;
+
+  const drawerLinks = drawer.querySelectorAll('.menu-drawer-nav a, .menu-drawer-signin, .menu-drawer-cta');
+
+  function openMenu() {
+    menuToggle.setAttribute('aria-expanded', 'true');
+    drawer.classList.add('active');
+    drawer.setAttribute('aria-hidden', 'false');
+    backdrop.classList.add('active');
+    backdrop.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-open');
+  }
+
+  function closeMenu() {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    drawer.classList.remove('active');
+    drawer.setAttribute('aria-hidden', 'true');
+    backdrop.classList.remove('active');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-open');
+  }
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+  });
+  closeBtn.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  drawerLinks.forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('active')) closeMenu();
+  });
+
+  const mobileThemeBtn = document.getElementById('themeToggleMobile');
+  if (mobileThemeBtn) {
+    mobileThemeBtn.addEventListener('click', () => {
+      const desktopBtn = document.getElementById('themeToggle');
+      if (desktopBtn) desktopBtn.click();
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
