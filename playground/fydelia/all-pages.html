@@ -442,6 +442,25 @@
 
 </main>
 
-<script src="js/core.js"></script>
+<script>
+// ===== Theme toggle =====
+document.querySelectorAll('#themeToggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.body.setAttribute('data-theme', next);
+    localStorage.setItem('fy-theme', next);
+  });
+});
+(function() {
+  const saved = localStorage.getItem('fy-theme');
+  if (saved) document.body.setAttribute('data-theme', saved);
+})();
+
+// ===== Nav shadow on scroll =====
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.style.boxShadow = window.scrollY > 20 ? '0 10px 30px -10px rgba(0,0,0,0.5)' : 'none';
+}, { passive: true });
+</script>
 </body>
 </html>
