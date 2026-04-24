@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fydelia — Supported Hardware</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/core.css">
+<link rel="stylesheet" href="styles/sections.css">
+<style>
+/* ======================= HARDWARE PAGE ======================= */
+
+/* --- Hero --- */
+.hw-hero {
+  position: relative;
+  padding: 120px 0 80px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+.hw-hero .hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.hw-hero .hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+}
+.hw-hero .hero-glow {
+  position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.45;
+}
+.hw-hero .hero-glow--a {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, var(--red-glow) 0%, transparent 70%);
+  top: -200px; left: 50%; transform: translateX(-50%);
+}
+.hw-hero .hero-glow--b {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(154,108,255,0.25) 0%, transparent 70%);
+  bottom: -100px; right: -100px;
+}
+.hw-hero-inner {
+  position: relative;
+  max-width: 780px;
+  margin: 0 auto;
+}
+.hw-hero h1 {
+  font-size: clamp(38px, 5vw, 64px);
+  margin: 20px 0 18px;
+}
+.hw-hero .lead {
+  margin: 0 auto;
+  max-width: 620px;
+}
+
+/* --- WiFi pulse icon in hero --- */
+.hw-wifi-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: rgba(255,43,43,0.08);
+  border: 1px solid rgba(255,43,43,0.2);
+  margin-bottom: 8px;
+  position: relative;
+}
+.hw-wifi-icon svg {
+  width: 32px; height: 32px;
+  color: var(--red);
+}
+.hw-wifi-icon::before,
+.hw-wifi-icon::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(255,43,43,0.35);
+  animation: wifi-ping 3s var(--ease-out) infinite;
+}
+[data-theme="light"] .hw-wifi-icon::before,
+[data-theme="light"] .hw-wifi-icon::after {
+  border-color: rgba(200,20,20,0.3);
+}
+.hw-wifi-icon::before {
+  inset: -14px;
+  animation-delay: 0s;
+}
+.hw-wifi-icon::after {
+  inset: -30px;
+  animation-delay: 0.6s;
+}
+@keyframes wifi-ping {
+  0%   { opacity: 0.6; transform: scale(0.85); }
+  50%  { opacity: 0.15; transform: scale(1); }
+  100% { opacity: 0.6; transform: scale(0.85); }
+}
+
+/* --- Featured Vendors (top 6) --- */
+.hw-featured {
+  padding: 100px 0 0;
+}
+.hw-featured-title {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--fg-3);
+  margin-bottom: 40px;
+  text-align: center;
+}
+.hw-featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.hw-vendor-card {
+  position: relative;
+  padding: 36px 32px;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  overflow: hidden;
+}
+.hw-vendor-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px -8px rgba(0,0,0,0.25);
+}
+.hw-vendor-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(255,43,43,0.06) 0%, transparent 60%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+.hw-vendor-card:hover::before { opacity: 1; }
+
+.hw-vendor-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: var(--fg-3);
+}
+.hw-vendor-icon svg {
+  width: 24px; height: 24px;
+}
+.hw-vendor-name {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--fg);
+}
+.hw-vendor-models {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+.hw-vendor-chip {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-3);
+  padding: 4px 10px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  white-space: nowrap;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.hw-vendor-card:hover .hw-vendor-chip {
+  border-color: var(--line-2);
+}
+.hw-vendor-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--green);
+  margin-top: auto;
+}
+.hw-vendor-status::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse-green 2s ease-in-out infinite;
+}
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* --- Full vendor list --- */
+.hw-all {
+  padding: 100px 0 120px;
+}
+.hw-all-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.hw-all-header h2 {
+  font-size: clamp(28px, 3vw, 42px);
+  margin-top: 18px;
+}
+
+/* Vendor list grid */
+.hw-vendor-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.hw-vendor-tile {
+  padding: 24px;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  transition: border-color 0.3s var(--ease), transform 0.2s var(--ease);
+}
+.hw-vendor-tile:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+}
+.hw-vendor-tile-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hw-vendor-tile-name::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green);
+  flex-shrink: 0;
+}
+.hw-vendor-tile-subs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.hw-vendor-tile-subs li {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--fg-4);
+  padding: 4px 0;
+  padding-left: 14px;
+  position: relative;
+}
+.hw-vendor-tile-subs li::before {
+  content: '└';
+  position: absolute;
+  left: 0;
+  color: var(--line-strong);
+}
+
+/* --- Animated WiFi wave section divider --- */
+.hw-wave-divider {
+  position: relative;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hw-wave-divider::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+  top: 50%;
+}
+.hw-wave-center {
+  position: relative;
+  z-index: 1;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  display: grid;
+  place-items: center;
+}
+.hw-wave-center svg {
+  width: 22px; height: 22px;
+  color: var(--red);
+  position: relative;
+  top: -2px;
+}
+.hw-wave-rings span {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(255,43,43,0.35);
+  animation: wave-expand 4s ease-out infinite;
+}
+[data-theme="light"] .hw-wave-rings span {
+  border-color: rgba(200,20,20,0.3);
+}
+.hw-wave-rings span:nth-child(1) {
+  inset: -20px;
+  animation-delay: 0s;
+}
+.hw-wave-rings span:nth-child(2) {
+  inset: -45px;
+  animation-delay: 1s;
+}
+.hw-wave-rings span:nth-child(3) {
+  inset: -75px;
+  animation-delay: 2s;
+}
+.hw-wave-rings span:nth-child(4) {
+  inset: -110px;
+  animation-delay: 3s;
+}
+@keyframes wave-expand {
+  0%   { opacity: 0.8; transform: scale(0.9); }
+  60%  { opacity: 0.3; }
+  100% { opacity: 0; transform: scale(1.25); }
+}
+
+/* --- Stats strip --- */
+.hw-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 56px;
+}
+.hw-stat {
+  padding: 36px 28px;
+  text-align: center;
+  background: var(--bg-1);
+}
+.hw-stat-num {
+  font-size: clamp(32px, 3vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+  line-height: 1;
+}
+.hw-stat-num em {
+  color: var(--red);
+  font-style: normal;
+}
+.hw-stat-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg-4);
+  margin-top: 10px;
+}
+
+/* --- CTA / Contact strip --- */
+.hw-cta {
+  padding: 80px 0;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse 50% 60% at 50% 100%, var(--red-glow-soft), transparent 70%),
+    var(--bg-1);
+}
+.hw-cta-inner {
+  max-width: 560px;
+  margin: 0 auto;
+}
+.hw-cta h2 {
+  font-size: clamp(24px, 2.8vw, 36px);
+  margin-bottom: 12px;
+}
+.hw-cta p {
+  margin-bottom: 28px;
+}
+.hw-cta .btn-solid {
+  font-size: 16px;
+  padding: 14px 24px;
+  border-radius: 12px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 980px) {
+  .hw-featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hw-vendor-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hw-stats {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .hw-featured-grid {
+    grid-template-columns: 1fr;
+  }
+  .hw-vendor-grid {
+    grid-template-columns: 1fr;
+  }
+  .hw-hero {
+    padding: 100px 0 60px;
+  }
+  .hw-featured {
+    padding: 64px 0 0;
+  }
+  .hw-all {
+    padding: 64px 0 80px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Grain overlay -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Fydelia home">
+      <span class="brand-mark" aria-hidden="true">
+        <span class="brand-dot"></span>
+      </span>
+      <span class="brand-text">fydelia</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#integrations">Integrations</a></li>
+      <li><a href="hardware.html" class="active">Hardware</a></li>
+      <li><a href="case-studies.html">Customers</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+      <a class="btn-ghost" href="#">Sign in</a>
+      <a class="btn-solid" href="index.html#cta">Try free for 14 days
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <!-- Mobile burger -->
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer + backdrop -->
+<div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+<aside id="menuDrawer" class="menu-drawer" aria-hidden="true">
+  <div class="menu-drawer-head">
+    <span class="menu-drawer-title">Menu</span>
+    <button id="menuClose" class="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu-drawer-nav">
+    <a href="index.html#features">Features</a>
+    <a href="index.html#integrations">Integrations</a>
+    <a href="hardware.html">Hardware</a>
+    <a href="case-studies.html">Customers</a>
+    <a href="index.html#pricing">Pricing</a>
+  </nav>
+  <div class="menu-drawer-foot">
+    <div class="menu-drawer-theme">
+      <span class="menu-drawer-theme-label">Dark mode</span>
+      <button id="themeToggleMobile" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+    </div>
+    <a class="btn-ghost menu-drawer-signin" href="#" style="width:100%; text-align:center;">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="index.html#cta" style="width:100%; text-align:center;">Try free for 14 days</a>
+  </div>
+</aside>
+
+<main>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="hw-hero">
+    <div class="hero-bg">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow--a" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow--b" aria-hidden="true"></div>
+    </div>
+    <div class="hw-hero-inner wrap">
+      <div class="reveal">
+        <div class="hw-wifi-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+            <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+            <line x1="12" y1="20" x2="12.01" y2="20"/>
+          </svg>
+        </div>
+      </div>
+      <div class="eyebrow reveal d1"><span class="eyebrow-dot"></span><span>Hardware compatibility</span></div>
+      <h1 class="reveal d2">See our massive range of <em>supported hardware</em></h1>
+      <p class="lead reveal d3">You do not need additional hardware specifically for Fydelia. However for any External Captive Portal system like Fydelia, you will need the basics. We support most popular vendors for guest WiFi systems.</p>
+
+      <!-- Stats strip -->
+      <div class="hw-stats reveal d4">
+        <div class="hw-stat">
+          <div class="hw-stat-num"><em>20+</em></div>
+          <div class="hw-stat-label">Vendors supported</div>
+        </div>
+        <div class="hw-stat">
+          <div class="hw-stat-num"><em>40+</em></div>
+          <div class="hw-stat-label">Device models</div>
+        </div>
+        <div class="hw-stat">
+          <div class="hw-stat-num"><em>0</em></div>
+          <div class="hw-stat-label">New boxes needed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= FEATURED VENDORS ======================= -->
+  <section class="hw-featured">
+    <div class="wrap">
+      <div class="hw-featured-title reveal">Most popular integrations</div>
+      <div class="hw-featured-grid">
+
+        <!-- Aruba -->
+        <div class="hw-vendor-card reveal">
+          <div class="hw-vendor-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 18v2M17 18v2M5 18h14"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg>
+          </div>
+          <div class="hw-vendor-name">Aruba</div>
+          <div class="hw-vendor-models">
+            <span class="hw-vendor-chip">Central</span>
+            <span class="hw-vendor-chip">InstantOn</span>
+          </div>
+          <span class="hw-vendor-status">Fully supported</span>
+        </div>
+
+        <!-- Cisco Meraki -->
+        <div class="hw-vendor-card reveal d1">
+          <div class="hw-vendor-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="hw-vendor-name">Cisco Meraki</div>
+          <div class="hw-vendor-models">
+            <span class="hw-vendor-chip">Cloud Dashboard</span>
+            <span class="hw-vendor-chip">MR Series</span>
+          </div>
+          <span class="hw-vendor-status">Fully supported</span>
+        </div>
+
+        <!-- Ubiquiti UniFi -->
+        <div class="hw-vendor-card reveal d2">
+          <div class="hw-vendor-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/><path d="M12 3a9 9 0 0 1 6 9 9 9 0 0 1-6 9"/><path d="M12 3a9 9 0 0 0-6 9 9 9 0 0 0 6 9"/></svg>
+          </div>
+          <div class="hw-vendor-name">Ubiquiti UniFi</div>
+          <div class="hw-vendor-models">
+            <span class="hw-vendor-chip">UDM</span>
+            <span class="hw-vendor-chip">AP AC Lite</span>
+            <span class="hw-vendor-chip">AP Pro</span>
+            <span class="hw-vendor-chip">AP LR</span>
+            <span class="hw-vendor-chip">AP Mesh</span>
+          </div>
+          <span class="hw-vendor-status">Fully supported</span>
+        </div>
+
+        <!-- TP-Link Omada -->
+        <div class="hw-vendor-card reveal d1">
+          <div class="hw-vendor-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/><path d="M12 2v6"/><path d="M8 4h8"/></svg>
+          </div>
+          <div class="hw-vendor-name">TP-Link Omada</div>
+          <div class="hw-vendor-models">
+            <span class="hw-vendor-chip">Omada Controller</span>
+            <span class="hw-vendor-chip">Cloud SDN</span>
+          </div>
+          <span class="hw-vendor-status">Fully supported</span>
+        </div>
+
+        <!-- Ruckus -->
+        <div class="hw-vendor-card reveal d2">
+          <div class="hw-vendor-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12C2 6.48 6.48 2 12 2s10 4.48 10 10"/><path d="M6 12c0-3.31 2.69-6 6-6s6 2.69 6 6"/><path d="M10 12a2 2 0 1 1 4 0"/><path d="M12 14v4"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>
+          </div>
+          <div class="hw-vendor-name">Ruckus</div>
+          <div class="hw-vendor-models">
+            <span class="hw-vendor-chip">ZoneDirector</span>
+            <span class="hw-vendor-chip">SmartZone</span>
+            <span class="hw-vendor-chip">Virtual SmartZone</span>
+          </div>
+          <span class="hw-vendor-status">Fully supported</span>
+        </div>
+
+        <!-- EnGenius -->
+        <div class="hw-vendor-card reveal d3">
+          <div class="hw-vendor-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 4v16"/><path d="M15 4v16"/><path d="M4 9h16"/><path d="M4 15h16"/></svg>
+          </div>
+          <div class="hw-vendor-name">EnGenius</div>
+          <div class="hw-vendor-models">
+            <span class="hw-vendor-chip">Cloud Managed</span>
+            <span class="hw-vendor-chip">FitXpress</span>
+          </div>
+          <span class="hw-vendor-status">Fully supported</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= WAVE DIVIDER ======================= -->
+  <div class="hw-wave-divider" aria-hidden="true">
+    <div class="hw-wave-center">
+      <div class="hw-wave-rings">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+        <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+        <line x1="12" y1="20" x2="12.01" y2="20"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ======================= ALL VENDORS ======================= -->
+  <section class="hw-all">
+    <div class="wrap">
+      <div class="hw-all-header">
+        <div class="eyebrow reveal"><span class="eyebrow-dot"></span><span>Full compatibility list</span></div>
+        <h2 class="reveal d1">Every vendor, every model</h2>
+        <p class="lead reveal d2" style="max-width:560px; margin: 12px auto 0;">If it broadcasts WiFi, chances are Fydelia runs on it. From enterprise controllers down to a single access point — we plug in remotely in minutes.</p>
+      </div>
+
+      <div class="hw-vendor-grid">
+
+        <div class="hw-vendor-tile reveal">
+          <div class="hw-vendor-tile-name">AeroHive</div>
+        </div>
+
+        <div class="hw-vendor-tile reveal">
+          <div class="hw-vendor-tile-name">Aruba</div>
+          <ul class="hw-vendor-tile-subs">
+            <li>Central (local controller)</li>
+            <li>Aruba InstantOn</li>
+          </ul>
+        </div>
+
+        <div class="hw-vendor-tile reveal">
+          <div class="hw-vendor-tile-name">Cambium</div>
+        </div>
+
+        <div class="hw-vendor-tile reveal">
+          <div class="hw-vendor-tile-name">Cisco</div>
+          <ul class="hw-vendor-tile-subs">
+            <li>Aeronet</li>
+            <li>Meraki</li>
+            <li>Mobility Express</li>
+          </ul>
+        </div>
+
+        <div class="hw-vendor-tile reveal d1">
+          <div class="hw-vendor-tile-name">Datto / Openmesh</div>
+        </div>
+
+        <div class="hw-vendor-tile reveal d1">
+          <div class="hw-vendor-tile-name">D-Link</div>
+          <ul class="hw-vendor-tile-subs">
+            <li>Nuclias Cloud</li>
+          </ul>
+        </div>
+
+        <div class="hw-vendor-tile reveal d1">
+          <div class="hw-vendor-tile-name">DrayTek</div>
+        </div>
+
+        <div class="hw-vendor-tile reveal d1">
+          <div class="hw-vendor-tile-name">EnGenius</div>
+        </div>
+
+        <div class="hw-vendor-tile reveal d2">
+          <div class="hw-vendor-tile-name">MikroTik Routerboard</div>
+        </div>
+
+        <div class="hw-vendor-tile reveal d2">
+          <div class="hw-vendor-tile-name">Motorola Wing 5X</div>
+        </div>
+
+        <div class="hw-vendor-tile reveal d2">
+          <div class="hw-vendor-tile-name">Peplink</div>
+        </div>
+
+        <div class="hw-vendor-tile reveal d2">
+          <div class="hw-vendor-tile-name">PlasmaCloud</div>
+        </div>
+
+        <div class="hw-vendor-tile reveal d3">
+          <div class="hw-vendor-tile-name">Ruckus</div>
+          <ul class="hw-vendor-tile-subs">
+            <li>ZoneDirector</li>
+            <li>SmartZone</li>
+            <li>VirtualSmartzone</li>
+          </ul>
+        </div>
+
+        <div class="hw-vendor-tile reveal d3">
+          <div class="hw-vendor-tile-name">SonicWall</div>
+          <ul class="hw-vendor-tile-subs">
+            <li>APL-41</li>
+          </ul>
+        </div>
+
+        <div class="hw-vendor-tile reveal d3">
+          <div class="hw-vendor-tile-name">TP-Link</div>
+          <ul class="hw-vendor-tile-subs">
+            <li>Omada</li>
+          </ul>
+        </div>
+
+        <div class="hw-vendor-tile reveal d3">
+          <div class="hw-vendor-tile-name">Ubiquiti UniFi</div>
+          <ul class="hw-vendor-tile-subs">
+            <li>UDM – Dream Machine</li>
+            <li>UniFi AP AC Lite</li>
+            <li>UniFi AP Pro</li>
+            <li>UniFi AP LR</li>
+            <li>UniFi AP Mesh</li>
+          </ul>
+        </div>
+
+        <div class="hw-vendor-tile reveal d4">
+          <div class="hw-vendor-tile-name">Xirrus</div>
+        </div>
+
+        <div class="hw-vendor-tile reveal d4">
+          <div class="hw-vendor-tile-name">ZyXel Nebula</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= CTA ======================= -->
+  <section class="hw-cta">
+    <div class="wrap">
+      <div class="hw-cta-inner reveal">
+        <div class="eyebrow"><span class="eyebrow-dot"></span><span>Can't find yours?</span></div>
+        <h2 style="margin-top:18px;">Don't see your hardware here?</h2>
+        <p class="lead">We're always adding new vendors. Get in touch and our team will check compatibility for your setup — usually within a few hours.</p>
+        <a class="btn-solid btn-lg" href="#">Contact Support
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="ft">
+    <div class="wrap-wide">
+      <div class="ft-grid">
+        <div class="ft-brand-col">
+          <a class="brand" href="index.html" aria-label="Fydelia home">
+            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+            <span class="brand-text">fydelia</span>
+          </a>
+          <p>We help venues start a conversation with customers and collect valuable user data through lead generation and loyalty.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="#">Splash Pages</a></li>
+            <li><a href="index.html#integrations">Integrations</a></li>
+            <li><a href="hardware.html">Hardware</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Knowledge Base</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Downloads</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li>Brighton, United Kingdom</li>
+            <li>Dubai, UAE</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <span>&copy; 2026 Fydelia</span>
+        <span>All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+// ===== Theme toggle =====
+const toggle = document.getElementById('themeToggle');
+if (toggle) {
+  const saved = localStorage.getItem('fy-theme');
+  if (saved) document.body.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.body.setAttribute('data-theme', next);
+    localStorage.setItem('fy-theme', next);
+  });
+}
+
+// ===== Nav shadow on scroll =====
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.style.boxShadow = window.scrollY > 20 ? '0 10px 30px -10px rgba(0,0,0,0.5)' : 'none';
+}, { passive: true });
+
+// ===== Scroll reveal =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+reveals.forEach(el => io.observe(el));
+
+// ===== Card mouse-follow glow =====
+document.querySelectorAll('.hw-vendor-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+});
+
+// ===== Mobile menu drawer =====
+(function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const drawer     = document.getElementById('menuDrawer');
+  const backdrop   = document.getElementById('menuBackdrop');
+  const closeBtn   = document.getElementById('menuClose');
+  if (!menuToggle || !drawer) return;
+
+  const drawerLinks = drawer.querySelectorAll('.menu-drawer-nav a, .menu-drawer-signin, .menu-drawer-cta');
+
+  function openMenu() {
+    menuToggle.setAttribute('aria-expanded', 'true');
+    drawer.classList.add('active');
+    drawer.setAttribute('aria-hidden', 'false');
+    backdrop.classList.add('active');
+    backdrop.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-open');
+  }
+
+  function closeMenu() {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    drawer.classList.remove('active');
+    drawer.setAttribute('aria-hidden', 'true');
+    backdrop.classList.remove('active');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-open');
+  }
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+  });
+  closeBtn.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  drawerLinks.forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('active')) closeMenu();
+  });
+
+  const mobileThemeBtn = document.getElementById('themeToggleMobile');
+  if (mobileThemeBtn) {
+    mobileThemeBtn.addEventListener('click', () => {
+      const desktopBtn = document.getElementById('themeToggle');
+      if (desktopBtn) desktopBtn.click();
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

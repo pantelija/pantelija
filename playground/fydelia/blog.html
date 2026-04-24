@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fydelia — Blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/core.css">
+<link rel="stylesheet" href="styles/sections.css">
+<style>
+/* ======================= BLOG ARCHIVE PAGE ======================= */
+
+/* --- Hero --- */
+.bl-hero {
+  position: relative;
+  padding: 100px 0 80px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+.bl-hero .hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.bl-hero .hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+}
+.bl-hero .hero-glow {
+  position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5;
+}
+.bl-hero .hero-glow--a {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, var(--red-glow) 0%, transparent 70%);
+  top: -250px; left: 50%; transform: translateX(-50%);
+}
+.bl-hero-inner { position: relative; max-width: 700px; margin: 0 auto; }
+.bl-hero h1 {
+  font-size: clamp(40px, 5vw, 72px);
+  margin: 20px 0 18px;
+}
+.bl-hero .lead {
+  margin: 0 auto;
+  max-width: 560px;
+}
+
+/* --- Post list --- */
+.bl-list-section {
+  padding: 64px 0 0;
+}
+.bl-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Individual post row */
+.bl-post {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  transition: background 0.25s var(--ease);
+  position: relative;
+}
+.bl-post:first-child {
+  border-top: 1px solid var(--line);
+}
+.bl-post:hover {
+  background: var(--bg-1);
+}
+.bl-post:hover .bl-post-title {
+  color: var(--red);
+}
+
+/* Left side: title + meta */
+.bl-post-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.bl-post-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Tag pill */
+.bl-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--red);
+  background: var(--red-glow-soft);
+  border: 1px solid rgba(255,43,43,0.18);
+  border-radius: 100px;
+  padding: 4px 12px;
+  flex-shrink: 0;
+}
+.bl-tag-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+}
+
+.bl-post-title {
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--fg);
+  transition: color 0.25s var(--ease);
+}
+
+/* Meta row */
+.bl-post-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.bl-post-author {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.bl-post-author-avatar {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.bl-post-author-avatar svg {
+  width: 14px; height: 14px;
+  color: var(--fg-4);
+}
+.bl-post-author-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-3);
+}
+.bl-meta-sep {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--fg-4);
+  flex-shrink: 0;
+}
+.bl-post-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--fg-4);
+  letter-spacing: 0.04em;
+}
+
+/* Right side: arrow */
+.bl-post-arrow {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: var(--fg-4);
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease), background 0.25s var(--ease);
+}
+.bl-post-arrow svg {
+  width: 16px; height: 16px;
+}
+.bl-post:hover .bl-post-arrow {
+  border-color: var(--red);
+  color: var(--red);
+  background: rgba(255,43,43,0.06);
+}
+
+/* --- Responsive --- */
+@media (max-width: 700px) {
+  .bl-hero { padding: 72px 0 56px; }
+  .bl-post {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 24px 0;
+  }
+  .bl-post-arrow {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Grain overlay -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Fydelia home">
+      <span class="brand-mark" aria-hidden="true">
+        <span class="brand-dot"></span>
+      </span>
+      <span class="brand-text">fydelia</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#integrations">Integrations</a></li>
+      <li><a href="index.html#hardware">Hardware</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="new-pricing.html">Pricing</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+      <a class="btn-ghost" href="#">Sign in</a>
+      <a class="btn-solid" href="index.html#cta">Try free for 14 days
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <!-- Mobile burger -->
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer + backdrop -->
+<div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+<aside id="menuDrawer" class="menu-drawer" aria-hidden="true">
+  <div class="menu-drawer-head">
+    <span class="menu-drawer-title">Menu</span>
+    <button id="menuClose" class="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu-drawer-nav">
+    <a href="index.html#features">Features</a>
+    <a href="index.html#integrations">Integrations</a>
+    <a href="index.html#hardware">Hardware</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="new-pricing.html">Pricing</a>
+  </nav>
+  <div class="menu-drawer-foot">
+    <div class="menu-drawer-theme">
+      <span class="menu-drawer-theme-label">Dark mode</span>
+      <button id="themeToggleMobile" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+    </div>
+    <a class="btn-ghost menu-drawer-signin" href="#">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="index.html#cta">Try free for 14 days
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
+</aside>
+
+<main>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="bl-hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-grid"></div>
+      <div class="hero-glow hero-glow--a"></div>
+    </div>
+    <div class="wrap bl-hero-inner">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-dot"></span>
+        <span>Blog</span>
+      </div>
+      <h1 class="reveal d1">Insights, tutorials<br>&amp; <em>news</em></h1>
+      <p class="lead reveal d2">Tips on guest WiFi, marketing automation, and making the most of every customer connection.</p>
+    </div>
+  </section>
+
+
+  <!-- ======================= POST LIST ======================= -->
+  <section class="bl-list-section">
+    <div class="wrap">
+      <div class="bl-list">
+
+        <!-- 1 — Fydelia eyes the skies -->
+        <a class="bl-post reveal" href="fydelia-eyes-the-skies.html">
+          <div class="bl-post-body">
+            <div class="bl-post-top">
+              <span class="bl-tag"><span class="bl-tag-dot" aria-hidden="true"></span>World of WiFi</span>
+            </div>
+            <h2 class="bl-post-title">Fydelia eyes the skies</h2>
+            <div class="bl-post-meta">
+              <span class="bl-post-author">
+                <span class="bl-post-author-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+                </span>
+                <span class="bl-post-author-name">Fydelia Team</span>
+              </span>
+              <span class="bl-meta-sep" aria-hidden="true"></span>
+              <div class="bl-post-info">
+                <time datetime="2025-04-01">Apr 1, 2025</time>
+                <span aria-hidden="true">&middot;</span>
+                <span>2 min read</span>
+              </div>
+            </div>
+          </div>
+          <span class="bl-post-arrow" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </span>
+        </a>
+
+        <!-- 2 — Connecting your TP-Link EAP -->
+        <a class="bl-post reveal" href="connecting-your-tp-link-eap-access-point-to-the-fydelia-controller.html">
+          <div class="bl-post-body">
+            <div class="bl-post-top">
+              <span class="bl-tag"><span class="bl-tag-dot" aria-hidden="true"></span>Tutorial</span>
+            </div>
+            <h2 class="bl-post-title">Connecting your TP-Link EAP access point to the Fydelia controller</h2>
+            <div class="bl-post-meta">
+              <span class="bl-post-author">
+                <span class="bl-post-author-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+                </span>
+                <span class="bl-post-author-name">Fydelia Team</span>
+              </span>
+              <span class="bl-meta-sep" aria-hidden="true"></span>
+              <div class="bl-post-info">
+                <time datetime="2025-02-05">Feb 5, 2025</time>
+                <span aria-hidden="true">&middot;</span>
+                <span>5 min read</span>
+              </div>
+            </div>
+          </div>
+          <span class="bl-post-arrow" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </span>
+        </a>
+
+        <!-- 3 — Top 3 most loved features of a hospitality CRM -->
+        <a class="bl-post reveal" href="what-are-the-top-3-most-loved-features-of-a-hospitality-crm.html">
+          <div class="bl-post-body">
+            <div class="bl-post-top">
+              <span class="bl-tag"><span class="bl-tag-dot" aria-hidden="true"></span>Hospitality</span>
+            </div>
+            <h2 class="bl-post-title">What are the top 3 most loved features of a hospitality CRM?</h2>
+            <div class="bl-post-meta">
+              <span class="bl-post-author">
+                <span class="bl-post-author-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+                </span>
+                <span class="bl-post-author-name">Tom Savic</span>
+              </span>
+              <span class="bl-meta-sep" aria-hidden="true"></span>
+              <div class="bl-post-info">
+                <time datetime="2023-11-06">Nov 6, 2023</time>
+                <span aria-hidden="true">&middot;</span>
+                <span>2 min read</span>
+              </div>
+            </div>
+          </div>
+          <span class="bl-post-arrow" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </span>
+        </a>
+
+        <!-- 4 — Don't steal data, ask for it -->
+        <a class="bl-post reveal" href="dont-steal-data-ask-for-it.html">
+          <div class="bl-post-body">
+            <div class="bl-post-top">
+              <span class="bl-tag"><span class="bl-tag-dot" aria-hidden="true"></span>Guest WiFi</span>
+            </div>
+            <h2 class="bl-post-title">Don't steal data, ask for it</h2>
+            <div class="bl-post-meta">
+              <span class="bl-post-author">
+                <span class="bl-post-author-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+                </span>
+                <span class="bl-post-author-name">Steve Parkinson</span>
+              </span>
+              <span class="bl-meta-sep" aria-hidden="true"></span>
+              <div class="bl-post-info">
+                <time datetime="2021-04-29">Apr 29, 2021</time>
+                <span aria-hidden="true">&middot;</span>
+                <span>3 min read</span>
+              </div>
+            </div>
+          </div>
+          <span class="bl-post-arrow" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </span>
+        </a>
+
+        <!-- 5 — Ubiquiti UniFi removes support for older devices -->
+        <a class="bl-post reveal" href="ubiquiti-unifi-removes-support-for-older-devices.html">
+          <div class="bl-post-body">
+            <div class="bl-post-top">
+              <span class="bl-tag"><span class="bl-tag-dot" aria-hidden="true"></span>News</span>
+            </div>
+            <h2 class="bl-post-title">Ubiquiti UniFi removes support for older devices</h2>
+            <div class="bl-post-meta">
+              <span class="bl-post-author">
+                <span class="bl-post-author-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+                </span>
+                <span class="bl-post-author-name">Alojz Jakob</span>
+              </span>
+              <span class="bl-meta-sep" aria-hidden="true"></span>
+              <div class="bl-post-info">
+                <time datetime="2021-03-01">Mar 1, 2021</time>
+                <span aria-hidden="true">&middot;</span>
+                <span>1 min read</span>
+              </div>
+            </div>
+          </div>
+          <span class="bl-post-arrow" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </span>
+        </a>
+
+        <!-- 6 — Instant Provisioning with PlasmaCloud -->
+        <a class="bl-post reveal" href="instant-provisioning-with-plasmacloud-a-world-first.html">
+          <div class="bl-post-body">
+            <div class="bl-post-top">
+              <span class="bl-tag"><span class="bl-tag-dot" aria-hidden="true"></span>Features</span>
+            </div>
+            <h2 class="bl-post-title">Instant Provisioning with PlasmaCloud &ndash; A world first</h2>
+            <div class="bl-post-meta">
+              <span class="bl-post-author">
+                <span class="bl-post-author-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+                </span>
+                <span class="bl-post-author-name">Fydelia Team</span>
+              </span>
+              <span class="bl-meta-sep" aria-hidden="true"></span>
+              <div class="bl-post-info">
+                <time datetime="2020-08-03">Aug 3, 2020</time>
+                <span aria-hidden="true">&middot;</span>
+                <span>3 min read</span>
+              </div>
+            </div>
+          </div>
+          <span class="bl-post-arrow" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </span>
+        </a>
+
+        <!-- 7 — Marketing Automation is the key -->
+        <a class="bl-post reveal" href="marketing-automation-is-the-key.html">
+          <div class="bl-post-body">
+            <div class="bl-post-top">
+              <span class="bl-tag"><span class="bl-tag-dot" aria-hidden="true"></span>Features</span>
+            </div>
+            <h2 class="bl-post-title">Marketing Automation is the key</h2>
+            <div class="bl-post-meta">
+              <span class="bl-post-author">
+                <span class="bl-post-author-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+                </span>
+                <span class="bl-post-author-name">Fydelia Team</span>
+              </span>
+              <span class="bl-meta-sep" aria-hidden="true"></span>
+              <div class="bl-post-info">
+                <time datetime="2020-03-25">Mar 25, 2020</time>
+                <span aria-hidden="true">&middot;</span>
+                <span>2 min read</span>
+              </div>
+            </div>
+          </div>
+          <span class="bl-post-arrow" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </span>
+        </a>
+
+        <!-- 8 — Restaurant WiFi – Getting the right balance -->
+        <a class="bl-post reveal" href="restaurant-wifi-getting-the-right-balance.html">
+          <div class="bl-post-body">
+            <div class="bl-post-top">
+              <span class="bl-tag"><span class="bl-tag-dot" aria-hidden="true"></span>Guest WiFi</span>
+            </div>
+            <h2 class="bl-post-title">Restaurant WiFi &ndash; Getting the right balance</h2>
+            <div class="bl-post-meta">
+              <span class="bl-post-author">
+                <span class="bl-post-author-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+                </span>
+                <span class="bl-post-author-name">Steve Parkinson</span>
+              </span>
+              <span class="bl-meta-sep" aria-hidden="true"></span>
+              <div class="bl-post-info">
+                <time datetime="2020-02-29">Feb 29, 2020</time>
+                <span aria-hidden="true">&middot;</span>
+                <span>4 min read</span>
+              </div>
+            </div>
+          </div>
+          <span class="bl-post-arrow" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= CTA ======================= -->
+  <section class="cta-sec" id="cta">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <h2>Ready to get started?</h2>
+        <p>Start your free 14-day trial today. Full access, zero risk — we'll even handle the setup.</p>
+        <form class="cta-form" onsubmit="return false;">
+          <input type="email" placeholder="you@venue.com" aria-label="Email address">
+          <button class="btn-solid" type="submit">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </button>
+        </form>
+        <p class="cta-meta">No credit card required · Setup in &lt;2 minutes · Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="ft">
+    <div class="wrap-wide">
+      <div class="ft-grid">
+        <div class="ft-brand-col">
+          <a class="brand" href="index.html" aria-label="Fydelia home">
+            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+            <span class="brand-text">fydelia</span>
+          </a>
+          <p>We help venues start a conversation with customers and collect valuable user data through lead generation and loyalty.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="splash-pages.html">Splash Pages</a></li>
+            <li><a href="index.html#integrations">Integrations</a></li>
+            <li><a href="index.html#hardware">Hardware</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Knowledge Base</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#">Downloads</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="new-Privacy-Policy.html">Privacy Policy</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li>Brighton, United Kingdom</li>
+            <li>Dubai, UAE</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <span>&copy; 2026 Fydelia</span>
+        <span>All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+// ===== Theme toggle =====
+const toggle = document.getElementById('themeToggle');
+if (toggle) {
+  const saved = localStorage.getItem('fy-theme');
+  if (saved) document.body.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.body.setAttribute('data-theme', next);
+    localStorage.setItem('fy-theme', next);
+  });
+}
+
+// ===== Nav shadow on scroll =====
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.style.boxShadow = window.scrollY > 20 ? '0 10px 30px -10px rgba(0,0,0,0.5)' : 'none';
+}, { passive: true });
+
+// ===== Scroll reveal =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+reveals.forEach(el => io.observe(el));
+
+// ===== Mobile menu drawer =====
+(function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const drawer     = document.getElementById('menuDrawer');
+  const backdrop   = document.getElementById('menuBackdrop');
+  const closeBtn   = document.getElementById('menuClose');
+  if (!menuToggle || !drawer) return;
+
+  const drawerLinks = drawer.querySelectorAll('.menu-drawer-nav a, .menu-drawer-signin, .menu-drawer-cta');
+
+  function openMenu() {
+    menuToggle.setAttribute('aria-expanded', 'true');
+    drawer.classList.add('active');
+    drawer.setAttribute('aria-hidden', 'false');
+    backdrop.classList.add('active');
+    backdrop.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-open');
+  }
+
+  function closeMenu() {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    drawer.classList.remove('active');
+    drawer.setAttribute('aria-hidden', 'true');
+    backdrop.classList.remove('active');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-open');
+  }
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+  });
+  closeBtn.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  drawerLinks.forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('active')) closeMenu();
+  });
+
+  const mobileThemeBtn = document.getElementById('themeToggleMobile');
+  if (mobileThemeBtn) {
+    mobileThemeBtn.addEventListener('click', () => {
+      const desktopBtn = document.getElementById('themeToggle');
+      if (desktopBtn) desktopBtn.click();
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

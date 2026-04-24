@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fydelia — Innovations for Modern Venues</title>
+<title>Marketing Automation is the key — Fydelia Blog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles/core.css">
 <link rel="stylesheet" href="styles/sections.css">
 <style>
-/* ======================= TEXT PAGE TEMPLATE ======================= */
+/* ======================= BLOG POST TEMPLATE ======================= */
 
 /* ---------- Hero ---------- */
 .tp-hero {
@@ -46,6 +46,12 @@
   position: relative;
   max-width: 720px;
 }
+.tp-hero-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
 .tp-hero-back {
   display: inline-flex;
   align-items: center;
@@ -53,69 +59,312 @@
   font-size: 13px;
   font-weight: 500;
   color: var(--fg-3);
-  margin-bottom: 28px;
   transition: color 0.2s var(--ease), gap 0.2s var(--ease);
+  text-decoration: none;
 }
 .tp-hero-back:hover { color: var(--fg); gap: 8px; }
 .tp-hero-back svg { width: 14px; height: 14px; transform: rotate(180deg); }
 .tp-hero h1 {
-  font-size: clamp(32px, 4vw, 52px);
+  font-size: clamp(28px, 4vw, 48px);
   letter-spacing: -0.03em;
   line-height: 1.1;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
-.tp-hero .lead {
-  font-size: clamp(16px, 1.2vw, 18px);
-  color: var(--fg-3);
-  line-height: 1.55;
-  max-width: 600px;
-}
-.tp-meta {
+
+/* ---------- Article meta ---------- */
+.art-meta {
   display: flex;
-  gap: 24px;
-  margin-top: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Tag pill */
+.art-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--red);
+  background: var(--red-glow-soft);
+  border: 1px solid rgba(255,43,43,0.18);
+  border-radius: 100px;
+  padding: 4px 12px;
+  text-decoration: none;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.art-tag:hover {
+  background: rgba(255,43,43,0.18);
+  border-color: rgba(255,43,43,0.35);
+}
+.art-tag-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+}
+
+/* Divider dot between meta items */
+.art-meta-sep {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--fg-4);
+  flex-shrink: 0;
+}
+
+/* Author chip */
+.art-author {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.art-author-avatar {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.art-author-avatar svg {
+  width: 16px; height: 16px;
+  color: var(--fg-4);
+}
+.art-author-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-2);
+  transition: color 0.2s var(--ease);
+}
+.art-author:hover .art-author-name { color: var(--fg); }
+
+/* Date & read time */
+.art-meta-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
   font-family: var(--mono);
   font-size: 12px;
   color: var(--fg-4);
   letter-spacing: 0.04em;
 }
-.tp-meta span { display: inline-flex; align-items: center; gap: 6px; }
-.tp-meta-dot {
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--red);
-}
 
-/* ---------- Body ---------- */
+/* ---------- Prose body ---------- */
 .tp-body {
   padding: 80px 0 100px;
 }
 .tp-prose {
-  max-width: 1100px;
+  max-width: 720px;
 }
 
-/* ---------- Flip embed ---------- */
-.flip-embed {
-  position: relative;
-  padding-top: max(60%, 324px);
-  width: 100%;
-  height: 0;
-  border-radius: 12px;
-  overflow: hidden;
+/* Headings inside prose */
+.tp-prose h2 {
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-top: 52px;
+  margin-bottom: 18px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  color: var(--fg);
 }
-.flip-embed iframe {
+.tp-prose h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+.tp-prose h3 {
+  font-size: clamp(17px, 1.4vw, 20px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  margin-top: 40px;
+  margin-bottom: 14px;
+  color: var(--fg);
+}
+
+/* Paragraphs */
+.tp-prose p {
+  font-size: 16px;
+  line-height: 1.78;
+  color: var(--fg-2);
+  margin-bottom: 20px;
+}
+
+/* Links */
+.tp-prose a {
+  color: var(--white);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 43, 43, 0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s var(--ease);
+}
+.tp-prose a:hover {
+  text-decoration-color: var(--red);
+}
+
+/* Blockquote */
+.tp-prose blockquote {
+  position: relative;
+  margin: 36px 0;
+  padding: 22px 28px;
+  background: var(--bg-2);
+  border-left: 3px solid var(--red);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+}
+.tp-prose blockquote::before {
+  content: '\201C';
   position: absolute;
+  top: -4px;
+  left: 20px;
+  font-size: 64px;
+  line-height: 1;
+  color: var(--red);
+  opacity: 0.2;
+  font-family: Georgia, serif;
+  pointer-events: none;
+}
+.tp-prose blockquote p {
+  margin-bottom: 0;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--fg-2);
+}
+
+/* Strong */
+.tp-prose strong {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+/* Divider */
+.tp-prose hr {
   border: none;
+  height: 1px;
+  background: var(--line);
+  margin: 56px 0;
+}
+
+/* ---------- Video embed ---------- */
+.art-video {
+  margin: 40px 0;
+  border-radius: var(--r);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  aspect-ratio: 16 / 9;
+  background: var(--bg-2);
+}
+.art-video iframe {
   width: 100%;
   height: 100%;
-  left: 0;
-  top: 0;
+  display: block;
+  border: none;
 }
 
+/* ---------- Author card ---------- */
+.art-author-card {
+  display: flex;
+  gap: 20px;
+  padding: 28px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  margin-top: 56px;
+}
+.art-author-card-avatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.art-author-card-avatar svg {
+  width: 24px; height: 24px;
+  color: var(--fg-4);
+}
+.art-author-card-body {
+  flex: 1;
+  min-width: 0;
+}
+.art-author-card-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-4);
+  margin-bottom: 4px;
+}
+.art-author-card-name {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  margin-bottom: 8px;
+}
+.art-author-card-bio {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--fg-3);
+  margin: 0;
+}
+
+/* ---------- CTA strip ---------- */
+.art-cta {
+  margin-top: 64px;
+  padding: 32px;
+  background: linear-gradient(135deg, var(--bg-2) 0%, var(--bg-3) 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.art-cta-text { flex: 1; }
+.art-cta-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 6px;
+}
+.art-cta-heading {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin-bottom: 6px;
+}
+.art-cta-sub {
+  font-size: 14px;
+  color: var(--fg-2);
+  line-height: 1.5;
+  margin: 0;
+}
+@media (max-width: 600px) {
+  .art-cta { flex-direction: column; align-items: flex-start; }
+}
+
+/* ---------- Responsive ---------- */
 @media (max-width: 768px) {
   .tp-hero { padding: 100px 0 48px; }
   .tp-body { padding: 48px 0 64px; }
-  .tp-meta { flex-wrap: wrap; gap: 12px; }
+  .art-meta { gap: 12px; }
+  .art-author-card { flex-direction: column; gap: 14px; }
 }
 </style>
 </head>
@@ -200,24 +449,90 @@
       <div class="hero-glow hero-glow--b"></div>
     </div>
     <div class="wrap tp-hero-inner">
-      <a class="tp-hero-back" href="index.html">
-        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
-        Back to home
-      </a>
-      <h1>Innovations for Modern Venues</h1>
-      <p class="lead">Discover how guest WiFi is being reimagined to drive engagement, collect insights, and delight visitors.</p>
-      <div class="tp-meta">
-        <span><span class="tp-meta-dot"></span> Fydelia by Sentinel Software Ltd</span>
+
+      <!-- Back link + tag -->
+      <div class="tp-hero-top">
+        <a class="tp-hero-back" href="#">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          All posts
+        </a>
+        <a class="art-tag" href="#">
+          <span class="art-tag-dot" aria-hidden="true"></span>
+          Features
+        </a>
       </div>
+
+      <!-- Title -->
+      <h1>Marketing Automation is the key</h1>
+
+      <!-- Article meta row -->
+      <div class="art-meta">
+        <a class="art-author" href="#">
+          <span class="art-author-avatar" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+          </span>
+          <span class="art-author-name">Fydelia Team</span>
+        </a>
+        <span class="art-meta-sep" aria-hidden="true"></span>
+        <div class="art-meta-info">
+          <time datetime="2020-03-25">Mar 25, 2020</time>
+          <span aria-hidden="true">·</span>
+          <span>2 min read</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- ======================= BODY ======================= -->
+  <!-- ======================= ARTICLE BODY ======================= -->
   <section class="tp-body">
     <div class="wrap tp-prose">
 
-      <div class="flip-embed">
-        <iframe src="https://online.fliphtml5.com/nnocz/Guest-WiFi-Reimagined/" title="Guest WiFi Reimagined" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
+      <p>No doubt you already have some kind of WiFi solution and probably spend time segmenting the marketing data you get. Tools like DotMailer and Mailchimp are great — but fairly demanding in terms of getting it all set up.</p>
+
+      <blockquote>
+        <p>You have a large email database, but which of them are your frequent visitors? Which customers haven't you seen lately? Do they have birthdays coming up? That's a lot of analysis — and your marketing team could definitely use their time better.</p>
+      </blockquote>
+
+      <p>That's why integration with an automated marketing platform is essential. Fydelia is bundled with <a href="index.html#integrations">ImpactData's TalkBox</a> marketing automation platform, which handles all of that segmentation and scheduling for you. Take a look:</p>
+
+      <!-- Video embed -->
+      <div class="art-video">
+        <iframe
+          src="https://www.youtube.com/embed/A7mfyxRSHYY"
+          title="ImpactData TalkBox marketing automation platform"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <p>Getting started is straightforward. Fydelia supports almost 20 different <a href="hardware.html">hardware platforms</a> — including Ruckus, Cisco Meraki, and UniFi — so installation couldn't be easier regardless of what's already on your network.</p>
+
+      <hr>
+
+      <!-- Author card -->
+      <div class="art-author-card">
+        <div class="art-author-card-avatar" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+        </div>
+        <div class="art-author-card-body">
+          <p class="art-author-card-label">Written by</p>
+          <p class="art-author-card-name">Fydelia Team</p>
+          <p class="art-author-card-bio">The Fydelia team builds guest WiFi tools that turn a simple network login into a powerful marketing moment for hospitality venues.</p>
+        </div>
+      </div>
+
+      <!-- CTA strip -->
+      <div class="art-cta">
+        <div class="art-cta-text">
+          <p class="art-cta-eyebrow">Ready to automate?</p>
+          <p class="art-cta-heading">Get a demo set up today</p>
+          <p class="art-cta-sub">See how Fydelia and TalkBox work together to turn your guest WiFi data into automated, personalised marketing — with almost no manual effort.</p>
+        </div>
+        <a class="btn-solid" href="index.html#cta" style="white-space:nowrap;">
+          Get started
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+        </a>
       </div>
 
     </div>
@@ -307,10 +622,10 @@ const io = new IntersectionObserver((entries) => {
 reveals.forEach(el => io.observe(el));
 
 // ===== Mobile menu =====
-const menuToggle = document.getElementById('menuToggle');
-const menuClose = document.getElementById('menuClose');
+const menuToggle   = document.getElementById('menuToggle');
+const menuClose    = document.getElementById('menuClose');
 const menuBackdrop = document.getElementById('menuBackdrop');
-const menuDrawer = document.getElementById('menuDrawer');
+const menuDrawer   = document.getElementById('menuDrawer');
 function openMenu() {
   menuToggle.setAttribute('aria-expanded', 'true');
   menuBackdrop.classList.add('active');
@@ -325,8 +640,8 @@ function closeMenu() {
   menuDrawer.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('menu-open');
 }
-if (menuToggle) menuToggle.addEventListener('click', openMenu);
-if (menuClose) menuClose.addEventListener('click', closeMenu);
+if (menuToggle)   menuToggle.addEventListener('click', openMenu);
+if (menuClose)    menuClose.addEventListener('click', closeMenu);
 if (menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
 menuDrawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 </script>

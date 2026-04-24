@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What are the top 3 most loved features of a hospitality CRM? — Fydelia Blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/core.css">
+<link rel="stylesheet" href="styles/sections.css">
+<style>
+/* ======================= BLOG POST TEMPLATE ======================= */
+
+/* ---------- Hero ---------- */
+.tp-hero {
+  position: relative;
+  padding: 120px 0 64px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.tp-hero .hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.tp-hero .hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 80%);
+}
+.tp-hero .hero-glow {
+  position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.35;
+}
+.tp-hero .hero-glow--a {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, var(--red-glow) 0%, transparent 70%);
+  top: -250px; right: -50px;
+}
+.tp-hero .hero-glow--b {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(154,108,255,0.15) 0%, transparent 70%);
+  bottom: -150px; left: -100px;
+}
+.tp-hero-inner {
+  position: relative;
+  max-width: 720px;
+}
+.tp-hero-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.tp-hero-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-3);
+  transition: color 0.2s var(--ease), gap 0.2s var(--ease);
+  text-decoration: none;
+}
+.tp-hero-back:hover { color: var(--fg); gap: 8px; }
+.tp-hero-back svg { width: 14px; height: 14px; transform: rotate(180deg); }
+.tp-hero h1 {
+  font-size: clamp(28px, 4vw, 48px);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+/* ---------- Article meta ---------- */
+.art-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Tag pill */
+.art-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--red);
+  background: var(--red-glow-soft);
+  border: 1px solid rgba(255,43,43,0.18);
+  border-radius: 100px;
+  padding: 4px 12px;
+  text-decoration: none;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.art-tag:hover {
+  background: rgba(255,43,43,0.18);
+  border-color: rgba(255,43,43,0.35);
+}
+.art-tag-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+}
+
+/* Divider dot between meta items */
+.art-meta-sep {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--fg-4);
+  flex-shrink: 0;
+}
+
+/* Author chip */
+.art-author {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.art-author-avatar {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.art-author-avatar svg {
+  width: 16px; height: 16px;
+  color: var(--fg-4);
+}
+.art-author-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-2);
+  transition: color 0.2s var(--ease);
+}
+.art-author:hover .art-author-name { color: var(--fg); }
+
+/* Date & read time */
+.art-meta-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--fg-4);
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Prose body ---------- */
+.tp-body {
+  padding: 80px 0 100px;
+}
+.tp-prose {
+  max-width: 720px;
+}
+
+/* Headings inside prose */
+.tp-prose h2 {
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-top: 52px;
+  margin-bottom: 18px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  color: var(--fg);
+}
+.tp-prose h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+.tp-prose h3 {
+  font-size: clamp(17px, 1.4vw, 20px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  margin-top: 40px;
+  margin-bottom: 14px;
+  color: var(--fg);
+}
+
+/* Paragraphs */
+.tp-prose p {
+  font-size: 16px;
+  line-height: 1.78;
+  color: var(--fg-2);
+  margin-bottom: 20px;
+}
+
+/* Links */
+.tp-prose a {
+  color: var(--white);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 43, 43, 0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s var(--ease);
+}
+.tp-prose a:hover {
+  text-decoration-color: var(--red);
+}
+
+/* Ordered list — numbered feature cards */
+.tp-prose ol {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 32px 0;
+  counter-reset: ol-counter;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.tp-prose ol li {
+  counter-increment: ol-counter;
+  position: relative;
+  padding: 24px 24px 24px 72px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  font-size: 16px;
+  line-height: 1.72;
+  color: var(--fg-2);
+  margin: 0;
+  transition: border-color 0.2s var(--ease);
+}
+.tp-prose ol li:hover {
+  border-color: var(--line-strong);
+}
+.tp-prose ol li::before {
+  content: counter(ol-counter);
+  position: absolute;
+  left: 20px;
+  top: 24px;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--red);
+  background: var(--red-glow-soft);
+  border: 1px solid rgba(255,43,43,0.2);
+  border-radius: var(--r-sm);
+}
+.tp-prose ol li strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+/* Unordered list */
+.tp-prose ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+.tp-prose ul li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 16px;
+  line-height: 1.72;
+  color: var(--fg-2);
+  margin-bottom: 10px;
+}
+.tp-prose ul li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 11px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+  opacity: 0.7;
+}
+
+/* Blockquote */
+.tp-prose blockquote {
+  position: relative;
+  margin: 36px 0;
+  padding: 22px 28px;
+  background: var(--bg-2);
+  border-left: 3px solid var(--red);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+}
+.tp-prose blockquote::before {
+  content: '\201C';
+  position: absolute;
+  top: -4px;
+  left: 20px;
+  font-size: 64px;
+  line-height: 1;
+  color: var(--red);
+  opacity: 0.2;
+  font-family: Georgia, serif;
+  pointer-events: none;
+}
+.tp-prose blockquote p {
+  margin-bottom: 0;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--fg-2);
+}
+
+/* Strong */
+.tp-prose strong {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+/* Divider */
+.tp-prose hr {
+  border: none;
+  height: 1px;
+  background: var(--line);
+  margin: 56px 0;
+}
+
+/* ---------- Author card ---------- */
+.art-author-card {
+  display: flex;
+  gap: 20px;
+  padding: 28px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  margin-top: 56px;
+}
+.art-author-card-avatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.art-author-card-avatar svg {
+  width: 24px; height: 24px;
+  color: var(--fg-4);
+}
+.art-author-card-body {
+  flex: 1;
+  min-width: 0;
+}
+.art-author-card-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-4);
+  margin-bottom: 4px;
+}
+.art-author-card-name {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  margin-bottom: 8px;
+}
+.art-author-card-bio {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--fg-3);
+  margin: 0;
+}
+
+/* ---------- CTA strip ---------- */
+.art-cta {
+  margin-top: 64px;
+  padding: 32px;
+  background: linear-gradient(135deg, var(--bg-2) 0%, var(--bg-3) 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.art-cta-text { flex: 1; }
+.art-cta-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 6px;
+}
+.art-cta-heading {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin-bottom: 6px;
+}
+.art-cta-sub {
+  font-size: 14px;
+  color: var(--fg-2);
+  line-height: 1.5;
+  margin: 0;
+}
+@media (max-width: 600px) {
+  .art-cta { flex-direction: column; align-items: flex-start; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .tp-hero { padding: 100px 0 48px; }
+  .tp-body { padding: 48px 0 64px; }
+  .art-meta { gap: 12px; }
+  .art-author-card { flex-direction: column; gap: 14px; }
+  .tp-prose ol li { padding: 20px 20px 20px 64px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Grain overlay -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Fydelia home">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+      <span class="brand-text">fydelia</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#integrations">Integrations</a></li>
+      <li><a href="index.html#hardware">Hardware</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="new-pricing.html">Pricing</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+      <a class="btn-ghost" href="#">Sign in</a>
+      <a class="btn-solid" href="index.html#cta">Try free for 14 days
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer + backdrop -->
+<div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+<aside id="menuDrawer" class="menu-drawer" aria-hidden="true">
+  <div class="menu-drawer-head">
+    <span class="menu-drawer-title">Menu</span>
+    <button id="menuClose" class="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu-drawer-nav">
+    <a href="index.html#features">Features</a>
+    <a href="index.html#integrations">Integrations</a>
+    <a href="index.html#hardware">Hardware</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="new-pricing.html">Pricing</a>
+  </nav>
+  <div class="menu-drawer-foot">
+    <div class="menu-drawer-theme">
+      <span class="menu-drawer-theme-label">Dark mode</span>
+      <button id="themeToggleMobile" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+    </div>
+    <a class="btn-ghost menu-drawer-signin" href="#">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="index.html#cta">Try free for 14 days
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
+</aside>
+
+<main>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="tp-hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-grid"></div>
+      <div class="hero-glow hero-glow--a"></div>
+      <div class="hero-glow hero-glow--b"></div>
+    </div>
+    <div class="wrap tp-hero-inner">
+
+      <!-- Back link + tag -->
+      <div class="tp-hero-top">
+        <a class="tp-hero-back" href="#">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          All posts
+        </a>
+        <a class="art-tag" href="#">
+          <span class="art-tag-dot" aria-hidden="true"></span>
+          Hospitality
+        </a>
+      </div>
+
+      <!-- Title -->
+      <h1>What are the top 3 most loved features of a hospitality CRM?</h1>
+
+      <!-- Article meta row -->
+      <div class="art-meta">
+        <a class="art-author" href="#">
+          <span class="art-author-avatar" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+          </span>
+          <span class="art-author-name">Tom Savic</span>
+        </a>
+        <span class="art-meta-sep" aria-hidden="true"></span>
+        <div class="art-meta-info">
+          <time datetime="2023-11-06">Nov 6, 2023</time>
+          <span aria-hidden="true">·</span>
+          <span>2 min read</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================= ARTICLE BODY ======================= -->
+  <section class="tp-body">
+    <div class="wrap tp-prose">
+
+      <p>Hospitality Customer Relationship Management (CRM) systems are essential tools for hospitality companies to manage their relationships with guests and provide a personalised and exceptional experience. The specific features that hospitality companies love the most can vary depending on their individual needs and preferences — but three consistently rise to the top.</p>
+
+      <ol>
+        <li>
+          <strong>Guest Profile Management</strong>
+          Hospitality CRMs allow companies to create and maintain comprehensive guest profiles, including personal preferences, past stay history, and special requests. This information is crucial for delivering personalised services and creating experiences to surprise and delight guests.
+        </li>
+        <li>
+          <strong>Analytics and Reporting</strong>
+          Robust reporting and analytics tools are highly valued by hospitality companies. They allow businesses to gain insights into guest behaviour, track key performance indicators, and make data-driven decisions to improve operations, pricing, and guest satisfaction.
+        </li>
+        <li>
+          <strong>Communication and Marketing Tools</strong>
+          Hospitality CRMs often come with built-in communication and marketing features that allow companies to send personalised messages and offers to segmented guest lists. This can include email marketing, automated messaging, and segmentation capabilities — enabling venues to engage with guests before, during, and after their stay, enhancing customer loyalty and driving repeat bookings.
+        </li>
+      </ol>
+
+      <h2>CRM Interactions</h2>
+
+      <blockquote>
+        <p>All of these features are dependent on quality data sources. Without accurate, real-time guest data flowing in, even the best CRM is just an expensive address book.</p>
+      </blockquote>
+
+      <p>That's where <a href="splash-pages.html">guest WiFi</a> comes in. Fydelia will constantly interact with your CRM to fill guest profiles, inform on return visits and behaviours, and enable targeted communication to:</p>
+
+      <ul>
+        <li>Get feedback from the customer</li>
+        <li>Make them feel special</li>
+        <li>Make them come back again</li>
+      </ul>
+
+      <p>The result is a virtuous loop — better data means more personalised outreach, which drives loyalty, which generates more data. And it all starts at the <a href="new-features.html">WiFi login moment</a>.</p>
+
+      <hr>
+
+      <!-- Author card -->
+      <div class="art-author-card">
+        <div class="art-author-card-avatar" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+        </div>
+        <div class="art-author-card-body">
+          <p class="art-author-card-label">Written by</p>
+          <p class="art-author-card-name">Tom Savic</p>
+          <p class="art-author-card-bio">Tom works on partnerships and integrations at Fydelia, with a focus on helping hospitality brands get more value from their CRM and guest data stack.</p>
+        </div>
+      </div>
+
+      <!-- CTA strip -->
+      <div class="art-cta">
+        <div class="art-cta-text">
+          <p class="art-cta-eyebrow">See it in action</p>
+          <p class="art-cta-heading">Ramp up your CRM — and your revenues</p>
+          <p class="art-cta-sub">Book a demo and we'll show you exactly how Fydelia feeds your CRM with real, opt-in guest data from the moment they connect.</p>
+        </div>
+        <a class="btn-solid" href="index.html#cta" style="white-space:nowrap;">
+          Book a demo
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="ft">
+    <div class="wrap-wide">
+      <div class="ft-grid">
+        <div class="ft-brand-col">
+          <a class="brand" href="index.html" aria-label="Fydelia home">
+            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+            <span class="brand-text">fydelia</span>
+          </a>
+          <p>We help venues start a conversation with customers and collect valuable user data through lead generation and loyalty.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="#">Splash Pages</a></li>
+            <li><a href="index.html#integrations">Integrations</a></li>
+            <li><a href="index.html#hardware">Hardware</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Knowledge Base</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Downloads</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="new-Privacy-Policy.html">Privacy Policy</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li>Brighton, United Kingdom</li>
+            <li>Dubai, UAE</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <span>&copy; 2026 Fydelia</span>
+        <span>All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+// ===== Theme toggle =====
+document.querySelectorAll('#themeToggle, #themeToggleMobile').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.body.setAttribute('data-theme', next);
+    localStorage.setItem('fy-theme', next);
+  });
+});
+(function() {
+  const saved = localStorage.getItem('fy-theme');
+  if (saved) document.body.setAttribute('data-theme', saved);
+})();
+
+// ===== Nav shadow =====
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.style.boxShadow = window.scrollY > 20 ? '0 10px 30px -10px rgba(0,0,0,0.5)' : 'none';
+}, { passive: true });
+
+// ===== Scroll reveal =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+reveals.forEach(el => io.observe(el));
+
+// ===== Mobile menu =====
+const menuToggle   = document.getElementById('menuToggle');
+const menuClose    = document.getElementById('menuClose');
+const menuBackdrop = document.getElementById('menuBackdrop');
+const menuDrawer   = document.getElementById('menuDrawer');
+function openMenu() {
+  menuToggle.setAttribute('aria-expanded', 'true');
+  menuBackdrop.classList.add('active');
+  menuDrawer.classList.add('active');
+  menuDrawer.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('menu-open');
+}
+function closeMenu() {
+  menuToggle.setAttribute('aria-expanded', 'false');
+  menuBackdrop.classList.remove('active');
+  menuDrawer.classList.remove('active');
+  menuDrawer.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('menu-open');
+}
+if (menuToggle)   menuToggle.addEventListener('click', openMenu);
+if (menuClose)    menuClose.addEventListener('click', closeMenu);
+if (menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
+menuDrawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+</script>
+
+</body>
+</html>
