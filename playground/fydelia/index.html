@@ -3,13 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fydelia — Guest WiFi that actually works as you imagined</title>
+<title>Fydelia - Guest WiFi that actually works as you imagined</title>
+<meta name="description" content="Fydelia is guest WiFi marketing for hospitality. Collect first-party data, automate marketing, and grow repeat visits from your venues.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles/core.css">
 <link rel="stylesheet" href="styles/sections.css">
 <link rel="stylesheet" href="styles/mockups.css">
+
+<style>
+  /* --- Footer social icons --- */
+.ft-social {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 18px;
+  margin-left: -6px;
+}
+.ft-social-link {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  color: var(--fg-4);
+  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.ft-social-link svg { width: 16px; height: 16px; }
+.ft-social-link:hover { color: var(--fg); background: var(--bg-3); }
+</style>
 </head>
 <body>
 
@@ -107,7 +130,7 @@
           <span class="ht-line">that <em>actually</em> works</span>
           <span class="ht-line ht-line--muted">as you imagined.</span>
         </h1>
-        <p class="hero-sub">Fydelia turns every router into a marketing engine. Branded splash pages, CRM fire-hose, AdCards, flash offers, scratch-card games — one platform, zero duct-tape.</p>
+        <p class="hero-sub">Fydelia turns every router into a marketing engine. Branded splash pages, CRM fire-hose, AdCards, flash offers, scratch-card games. One platform, zero duct-tape.</p>
 
         <form class="hero-form" onsubmit="return false;">
           <div class="hero-form-field">
@@ -218,7 +241,7 @@
     </div>
   </section>
 
-  <!-- Placeholders for the rest — filled by other files -->
+  <!-- Placeholders for the rest - filled by other files -->
   <div id="adcards-section"></div>
   <div id="flash-section"></div>
   <div id="scrollreveal-section"></div>

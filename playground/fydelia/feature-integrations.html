@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100+ No-Code Integrations – Fydelia</title>
+<meta name="description" content="Connect Fydelia to your CRM, email platform, POS, and 100+ other tools — no developers, no code. Guest WiFi data flows automatically into every system you rely on.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/core.css">
+<link rel="stylesheet" href="styles/sections.css">
+
+<style>
+/* ======================= INTEGRATIONS FEATURE PAGE ======================= */
+
+/* --- Hero --- */
+.fp-hero {
+  position: relative;
+  padding: 140px 0 100px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.fp-hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.fp-hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+}
+.fp-hero-glow {
+  position: absolute;
+  top: -200px; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 500px;
+  background: radial-gradient(ellipse, var(--red-glow-soft) 0%, transparent 65%);
+}
+.fp-hero-wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px;
+  align-items: center;
+  min-height: 460px;
+}
+.fp-hero-copy { max-width: 620px; }
+.fp-hero-copy .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--fg-4);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.fp-hero-copy .breadcrumb a {
+  color: var(--fg-4);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+.fp-hero-copy .breadcrumb a:hover { color: var(--fg-2); }
+.fp-hero h1 {
+  font-size: clamp(38px, 4.8vw, 56px);
+  margin: 16px 0 22px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+.fp-hero h1 em { color: var(--red); font-style: italic; font-weight: 500; }
+.fp-hero .hero-sub {
+  font-size: 18px;
+  color: var(--fg-2);
+  max-width: 520px;
+  line-height: 1.65;
+  margin-bottom: 36px;
+}
+.fp-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+.fp-meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-4);
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.fp-meta-tag--highlight {
+  color: var(--red);
+  background: rgba(255,43,43,0.08);
+  border-color: rgba(255,43,43,0.2);
+}
+.fp-meta-tag--green {
+  color: var(--green);
+  background: rgba(0,212,126,0.08);
+  border-color: rgba(0,212,126,0.2);
+}
+
+/* ======================= HERO VISUAL: HUB + ORBIT ======================= */
+.fp-hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+}
+.hub-diagram {
+  position: relative;
+  width: 360px;
+  height: 360px;
+}
+/* Central hub */
+.hub-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px; height: 80px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, var(--red-700), var(--red-500));
+  display: grid; place-items: center;
+  box-shadow: 0 0 0 12px rgba(255,43,43,0.08), 0 0 0 24px rgba(255,43,43,0.04), 0 16px 40px -10px var(--red-glow);
+  z-index: 3;
+}
+.hub-center svg { color: white; }
+/* Orbit rings */
+.hub-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid var(--line);
+}
+.hub-ring--1 { width: 180px; height: 180px; }
+.hub-ring--2 { width: 320px; height: 320px; border-style: dashed; opacity: 0.5; }
+/* Spoke lines (drawn via SVG overlay) */
+.hub-svg-overlay {
+  position: absolute; inset: 0;
+  pointer-events: none;
+}
+/* Integration chips orbiting */
+.hub-chip {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 13px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fg-2);
+  white-space: nowrap;
+  box-shadow: 0 6px 24px -8px rgba(0,0,0,0.4);
+  transition: all 0.3s var(--ease);
+  cursor: default;
+}
+.hub-chip:hover {
+  border-color: rgba(255,43,43,0.3);
+  color: var(--fg);
+  transform: scale(1.04);
+}
+.hub-chip-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+/* Positions (clock-face around center 180,180) */
+/* inner ring chips (r≈90) */
+.hub-chip--mailchimp  { top: 56px;  left: 50%; transform: translateX(-50%); }   /* 12 o'clock */
+.hub-chip--hubspot    { top: 50%;   right: 16px; transform: translateY(-50%); } /* 3 o'clock  */
+.hub-chip--salesforce { bottom: 56px; left: 50%; transform: translateX(-50%); } /* 6 o'clock  */
+.hub-chip--klaviyo    { top: 50%;   left: 16px; transform: translateY(-50%); }  /* 9 o'clock  */
+/* outer ring chips (r≈160, diagonal) */
+.hub-chip--ga         { top: 18px;  right: 40px; }
+.hub-chip--tripadvsr  { bottom: 30px; right: 24px; }
+.hub-chip--sevenrooms { bottom: 20px; left: 28px; }
+.hub-chip--pipedrive  { top: 22px;  left: 32px; }
+
+/* animate each chip subtly */
+.hub-chip { animation: float-chip 7s ease-in-out infinite; }
+.hub-chip--mailchimp  { animation-delay: 0s; }
+.hub-chip--hubspot    { animation-delay: 0.8s; }
+.hub-chip--salesforce { animation-delay: 1.6s; }
+.hub-chip--klaviyo    { animation-delay: 2.4s; }
+.hub-chip--ga         { animation-delay: 0.4s; }
+.hub-chip--tripadvsr  { animation-delay: 1.2s; }
+.hub-chip--sevenrooms { animation-delay: 2s; }
+.hub-chip--pipedrive  { animation-delay: 2.8s; }
+
+@keyframes float-chip {
+  0%, 100% { translate: 0 0; }
+  50%       { translate: 0 -5px; }
+}
+
+/* ======================= CATEGORIES GRID ======================= */
+.fp-categories {
+  padding: 140px 0;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.fp-categories-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 50% 40% at 70% 30%, var(--red-glow-soft), transparent 60%);
+}
+.fp-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 64px;
+}
+.fp-cat-card {
+  padding: 28px 26px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg-1);
+  transition: all 0.35s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.fp-cat-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 70% at var(--mx,50%) var(--my,0%), var(--red-glow-soft), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+  pointer-events: none;
+}
+.fp-cat-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-3px);
+}
+.fp-cat-card:hover::before { opacity: 1; }
+.fp-cat-icon {
+  width: 42px; height: 42px;
+  border-radius: 11px;
+  display: grid; place-items: center;
+  margin-bottom: 16px;
+}
+.fp-cat-icon--red    { background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2); color: var(--red); }
+.fp-cat-icon--green  { background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.2); color: var(--green); }
+.fp-cat-icon--violet { background: rgba(154,108,255,0.1); border: 1px solid rgba(154,108,255,0.2); color: #9A6CFF; }
+.fp-cat-icon--amber  { background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.2); color: #FFB020; }
+.fp-cat-icon--blue   { background: rgba(56,145,255,0.1); border: 1px solid rgba(56,145,255,0.2); color: #3891FF; }
+.fp-cat-icon--teal   { background: rgba(0,200,200,0.1); border: 1px solid rgba(0,200,200,0.2); color: #00C8C8; }
+.fp-cat-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.fp-cat-card .fp-cat-desc { font-size: 14px; color: var(--fg-3); line-height: 1.6; margin-bottom: 16px; }
+.fp-cat-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.fp-tool-pill {
+  padding: 3px 9px;
+  border-radius: 5px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--fg-4);
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  transition: all 0.2s var(--ease);
+}
+.fp-cat-card:hover .fp-tool-pill {
+  border-color: var(--line-2);
+  color: var(--fg-3);
+}
+
+/* ======================= SETUP SECTION ======================= */
+.fp-setup {
+  padding: 140px 0;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.fp-setup-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 50% 50% at 85% 50%, rgba(154,108,255,0.07), transparent 60%);
+}
+.fp-setup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+}
+/* Setup steps */
+.fp-setup-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.fp-setup-step {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  padding-bottom: 36px;
+}
+.fp-setup-step:last-child { padding-bottom: 0; }
+.fp-setup-step-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+.fp-setup-step-num {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  display: grid; place-items: center;
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg-3);
+  flex-shrink: 0;
+  z-index: 1;
+  transition: all 0.3s var(--ease);
+}
+.fp-setup-step:hover .fp-setup-step-num {
+  background: linear-gradient(135deg, var(--red-700), var(--red-500));
+  border-color: var(--red);
+  color: white;
+  box-shadow: 0 6px 20px -6px var(--red-glow);
+}
+.fp-setup-step-line {
+  width: 1px;
+  flex: 1;
+  background: var(--line-2);
+  margin-top: 8px;
+}
+.fp-setup-step:last-child .fp-setup-step-line { display: none; }
+.fp-setup-step-body { padding-top: 8px; }
+.fp-setup-step-body h4 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+.fp-setup-step-body p { font-size: 14.5px; color: var(--fg-3); line-height: 1.6; margin: 0; }
+
+/* Connection screen mock */
+.fp-conn-mock {
+  width: 100%;
+  max-width: 380px;
+  border-radius: 20px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  overflow: hidden;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5), 0 0 50px -20px var(--red-glow);
+}
+.fp-conn-mock-head {
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.fp-conn-mock-head-left {
+  display: flex; align-items: center; gap: 8px;
+}
+.fp-conn-mock-head-left span { font-size: 14px; font-weight: 600; }
+.fp-conn-search {
+  padding: 10px 14px;
+  margin: 14px 16px;
+  border-radius: 10px;
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--fg-4);
+  font-family: var(--mono);
+}
+.fp-int-list {
+  padding: 4px 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 260px;
+  overflow: hidden;
+}
+.fp-int-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px;
+  border-radius: 10px;
+  transition: background 0.2s var(--ease);
+  cursor: pointer;
+}
+.fp-int-row:hover { background: var(--bg-3); }
+.fp-int-row-left {
+  display: flex; align-items: center; gap: 10px;
+}
+.fp-int-logo {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: grid; place-items: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  border: 1px solid var(--line-2);
+  flex-shrink: 0;
+}
+.fp-int-row-name { font-size: 13.5px; font-weight: 500; }
+.fp-int-row-cat  { font-size: 11px; color: var(--fg-4); font-family: var(--mono); }
+.fp-int-row-status {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.fp-int-row-status--connected {
+  color: var(--green);
+  background: rgba(0,212,126,0.1);
+  border: 1px solid rgba(0,212,126,0.2);
+}
+.fp-int-row-status--connect {
+  color: var(--fg-4);
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+}
+.fp-conn-mock-foot {
+  padding: 12px 22px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.fp-conn-mock-foot span {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-4);
+}
+.fp-conn-mock-foot .fp-count {
+  font-weight: 600;
+  color: var(--red);
+}
+
+/* ======================= AUTOMATION SECTION ======================= */
+.fp-auto {
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+}
+.fp-auto-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 40% at 15% 50%, var(--red-glow-soft), transparent 55%),
+    radial-gradient(ellipse 40% 40% at 90% 30%, rgba(0,212,126,0.05), transparent 55%);
+}
+.fp-auto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+}
+/* Flow diagram */
+.fp-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+}
+.fp-flow-node {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  box-shadow: 0 4px 20px -8px rgba(0,0,0,0.3);
+  transition: all 0.3s var(--ease);
+  position: relative;
+}
+.fp-flow-node:hover {
+  border-color: var(--line-strong);
+  transform: translateX(4px);
+}
+.fp-flow-node-icon {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+}
+.fp-flow-node-icon--red    { background: rgba(255,43,43,0.1); color: var(--red); }
+.fp-flow-node-icon--green  { background: rgba(0,212,126,0.1); color: var(--green); }
+.fp-flow-node-icon--violet { background: rgba(154,108,255,0.1); color: #9A6CFF; }
+.fp-flow-node-icon--amber  { background: rgba(255,176,32,0.1); color: #FFB020; }
+.fp-flow-node-body { flex: 1; }
+.fp-flow-node-title { font-size: 13.5px; font-weight: 600; margin-bottom: 3px; }
+.fp-flow-node-desc  { font-size: 12px; color: var(--fg-3); line-height: 1.5; }
+.fp-flow-node-badge {
+  font-family: var(--mono);
+  font-size: 9px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  align-self: flex-start;
+  white-space: nowrap;
+}
+.fp-flow-node-badge--trigger { background: rgba(255,43,43,0.1); color: var(--red); border: 1px solid rgba(255,43,43,0.2); }
+.fp-flow-node-badge--action  { background: rgba(0,212,126,0.1); color: var(--green); border: 1px solid rgba(0,212,126,0.2); }
+.fp-flow-connector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 24px;
+  position: relative;
+}
+.fp-flow-connector::before {
+  content: '';
+  position: absolute;
+  left: 39px; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--line-2), var(--red-glow-soft), var(--line-2));
+}
+.fp-flow-connector-label {
+  margin-left: 52px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--fg-4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.fp-flow-connector-arrow {
+  position: absolute;
+  left: 34px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 8px var(--red-glow);
+  animation: pulse-node 2s ease-in-out infinite;
+}
+@keyframes pulse-node {
+  0%, 100% { transform: translateY(-50%) scale(1); opacity: 1; }
+  50%       { transform: translateY(-50%) scale(1.4); opacity: 0.6; }
+}
+
+/* ======================= CALLOUT ======================= */
+.fp-callout {
+  margin-top: 32px;
+  padding: 28px 32px;
+  border-radius: 14px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  position: relative;
+  overflow: hidden;
+}
+.fp-callout::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,43,43,0.06), transparent 50%);
+  pointer-events: none;
+}
+.fp-callout p { font-size: 15px; color: var(--fg-2); line-height: 1.65; position: relative; }
+.fp-callout p strong { color: var(--fg); }
+
+/* ======================= RELATED FEATURES ======================= */
+.fp-related {
+  padding: 100px 0;
+  background: var(--bg-1);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.fp-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+.fp-rel-card {
+  padding: 28px 24px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg-2);
+  transition: all 0.3s var(--ease);
+  text-decoration: none;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+.fp-rel-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease);
+}
+.fp-rel-card:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+.fp-rel-card:hover::after { transform: scaleX(1); }
+.fp-rel-icon {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  display: grid; place-items: center;
+  margin-bottom: 14px;
+}
+.fp-rel-icon--violet { background: rgba(154,108,255,0.1); border: 1px solid rgba(154,108,255,0.2); color: #9A6CFF; }
+.fp-rel-icon--red    { background: rgba(255,43,43,0.1);   border: 1px solid rgba(255,43,43,0.2);   color: var(--red); }
+.fp-rel-icon--amber  { background: rgba(255,176,32,0.1);  border: 1px solid rgba(255,176,32,0.2);  color: #FFB020; }
+.fp-rel-card h4 { font-size: 15px; font-weight: 600; color: var(--fg); margin-bottom: 6px; }
+.fp-rel-card p  { font-size: 13.5px; color: var(--fg-3); line-height: 1.55; margin: 0; }
+.fp-rel-arrow {
+  position: absolute;
+  top: 26px; right: 22px;
+  color: var(--fg-4);
+  opacity: 0;
+  transition: all 0.25s var(--ease);
+  transform: translate(-4px, 0);
+}
+.fp-rel-card:hover .fp-rel-arrow { opacity: 1; transform: translate(0, 0); }
+
+/* ======================= FOOTER SOCIAL ======================= */
+.ft-social {
+  display: flex; align-items: center; gap: 4px;
+  margin-top: 18px; margin-left: -6px;
+}
+.ft-social-link {
+  display: grid; place-items: center;
+  width: 32px; height: 32px;
+  border-radius: 6px;
+  color: var(--fg-4);
+  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.ft-social-link svg { width: 16px; height: 16px; }
+.ft-social-link:hover { color: var(--fg); background: var(--bg-3); }
+
+/* ======================= RESPONSIVE ======================= */
+@media (max-width: 980px) {
+  .fp-hero-wrap    { grid-template-columns: 1fr; gap: 48px; }
+  .fp-hero-visual  { min-height: 280px; }
+  .fp-cat-grid     { grid-template-columns: 1fr 1fr; }
+  .fp-setup-grid   { grid-template-columns: 1fr; gap: 48px; }
+  .fp-auto-grid    { grid-template-columns: 1fr; gap: 48px; }
+  .fp-related-grid { grid-template-columns: 1fr 1fr; }
+  .hub-diagram     { width: 300px; height: 300px; }
+}
+@media (max-width: 640px) {
+  .fp-cat-grid     { grid-template-columns: 1fr; }
+  .fp-related-grid { grid-template-columns: 1fr; }
+  .hub-chip--pipedrive, .hub-chip--sevenrooms { display: none; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Grain overlay -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Fydelia home">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+      <span class="brand-text">fydelia</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="features.html">Features</a></li>
+      <li><a href="splash-pages.html">Splash Pages</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+      <a class="btn-ghost" href="https://ondemand.fydelia.com/">Sign in</a>
+      <a class="btn-solid" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</nav>
+
+<div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+<aside id="menuDrawer" class="menu-drawer" aria-hidden="true">
+  <div class="menu-drawer-head">
+    <span class="menu-drawer-title">Menu</span>
+    <button id="menuClose" class="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu-drawer-nav">
+    <a href="features.html">Features</a>
+    <a href="splash-pages.html">Splash Pages</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="hardware.html">Supported Hardware</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a>
+  </nav>
+  <div class="menu-drawer-foot">
+    <div class="menu-drawer-theme">
+      <span class="menu-drawer-theme-label">Dark mode</span>
+      <button id="themeToggleMobile" class="theme-switch" aria-label="Toggle theme">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+    </div>
+    <a class="btn-ghost menu-drawer-signin" href="https://ondemand.fydelia.com/">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
+</aside>
+
+
+<main>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="fp-hero">
+    <div class="fp-hero-bg" aria-hidden="true">
+      <div class="fp-hero-grid"></div>
+      <div class="fp-hero-glow"></div>
+    </div>
+
+    <div class="wrap fp-hero-wrap">
+      <div class="fp-hero-copy">
+        <div class="breadcrumb">
+          <a href="features.html">Features</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>No-Code Integrations</span>
+        </div>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span>Platform feature</span>
+        </div>
+        <h1>Unlock your data's<br><em>full potential</em></h1>
+        <p class="hero-sub">Your WiFi guest data is only as valuable as what you do with it. Fydelia's 100+ no-code integrations create an automated data pipeline into every tool in your stack — CRM, email, analytics, reservations — with a few clicks and zero code.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn-solid btn-lg" href="https://www.fydelia.com/onboarding/">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+          <a class="btn-ghost" href="features.html" style="border:1px solid var(--line-2);">All features</a>
+        </div>
+        <div class="fp-hero-meta">
+          <span class="fp-meta-tag fp-meta-tag--highlight">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            100+ Integrations
+          </span>
+          <span class="fp-meta-tag fp-meta-tag--green">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Zero code required
+          </span>
+          <span class="fp-meta-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            Two-way data sync
+          </span>
+        </div>
+      </div>
+
+      <!-- Hub diagram -->
+      <div class="fp-hero-visual">
+        <div class="hub-diagram">
+
+          <!-- Orbit rings -->
+          <div class="hub-ring hub-ring--1"></div>
+          <div class="hub-ring hub-ring--2"></div>
+
+          <!-- Spoke SVG -->
+          <svg class="hub-svg-overlay" viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Lines from center (180,180) to each chip approximate midpoint -->
+            <line x1="180" y1="180" x2="180" y2="90"  stroke="rgba(255,43,43,0.15)" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="180" y1="180" x2="270" y2="180" stroke="rgba(255,43,43,0.15)" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="180" y1="180" x2="180" y2="270" stroke="rgba(255,43,43,0.15)" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="180" y1="180" x2="90"  y2="180" stroke="rgba(255,43,43,0.15)" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="180" y1="180" x2="288" y2="72"  stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="3 6"/>
+            <line x1="180" y1="180" x2="288" y2="288" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="3 6"/>
+            <line x1="180" y1="180" x2="72"  y2="288" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="3 6"/>
+            <line x1="180" y1="180" x2="72"  y2="72"  stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="3 6"/>
+          </svg>
+
+          <!-- Central hub -->
+          <div class="hub-center">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+
+          <!-- Inner ring chips -->
+          <div class="hub-chip hub-chip--mailchimp">
+            <span class="hub-chip-dot" style="background:#FFE01B;"></span>
+            Mailchimp
+          </div>
+          <div class="hub-chip hub-chip--hubspot">
+            <span class="hub-chip-dot" style="background:#FF7A59;"></span>
+            HubSpot
+          </div>
+          <div class="hub-chip hub-chip--salesforce">
+            <span class="hub-chip-dot" style="background:#00A1E0;"></span>
+            Salesforce
+          </div>
+          <div class="hub-chip hub-chip--klaviyo">
+            <span class="hub-chip-dot" style="background:#9A6CFF;"></span>
+            Klaviyo
+          </div>
+
+          <!-- Outer ring chips -->
+          <div class="hub-chip hub-chip--ga" style="font-size:11px; padding:6px 11px;">
+            <span class="hub-chip-dot" style="background:#E37400;"></span>
+            Google Analytics
+          </div>
+          <div class="hub-chip hub-chip--tripadvsr" style="font-size:11px; padding:6px 11px;">
+            <span class="hub-chip-dot" style="background:#34E0A1;"></span>
+            TripAdvisor
+          </div>
+          <div class="hub-chip hub-chip--sevenrooms" style="font-size:11px; padding:6px 11px;">
+            <span class="hub-chip-dot" style="background:#FF2B2B;"></span>
+            SevenRooms
+          </div>
+          <div class="hub-chip hub-chip--pipedrive" style="font-size:11px; padding:6px 11px;">
+            <span class="hub-chip-dot" style="background:#26292C;box-shadow:0 0 0 1px rgba(255,255,255,0.2);"></span>
+            Pipedrive
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= CATEGORIES ======================= -->
+  <section class="fp-categories">
+    <div class="fp-categories-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">Your tech stack, supercharged</div>
+        <h2>Every tool you rely on,<br>connected</h2>
+        <p class="lead">Think of Fydelia as the central hub for your guest data. Our integrations act as bridges — getting two-way data flowing to where it can actually be put to work.</p>
+      </div>
+
+      <div class="fp-cat-grid">
+
+        <div class="fp-cat-card reveal" data-cat="email">
+          <div class="fp-cat-icon fp-cat-icon--red">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h4>Email &amp; SMS Marketing</h4>
+          <p class="fp-cat-desc">New opt-ins flow directly into your email audiences and trigger automated welcome sequences — no copy-pasting lists.</p>
+          <div class="fp-cat-tools">
+            <span class="fp-tool-pill">Mailchimp</span>
+            <span class="fp-tool-pill">Klaviyo</span>
+            <span class="fp-tool-pill">SendGrid</span>
+            <span class="fp-tool-pill">Twilio</span>
+            <span class="fp-tool-pill">+ more</span>
+          </div>
+        </div>
+
+        <div class="fp-cat-card reveal d1" data-cat="crm">
+          <div class="fp-cat-icon fp-cat-icon--green">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h4>CRM &amp; Sales</h4>
+          <p class="fp-cat-desc">Enrich contact profiles with visit data — first visit, last visit, total count — synced directly to your sales platform.</p>
+          <div class="fp-cat-tools">
+            <span class="fp-tool-pill">HubSpot</span>
+            <span class="fp-tool-pill">Salesforce</span>
+            <span class="fp-tool-pill">Pipedrive</span>
+            <span class="fp-tool-pill">ActiveCampaign</span>
+          </div>
+        </div>
+
+        <div class="fp-cat-card reveal d2" data-cat="loyalty">
+          <div class="fp-cat-icon fp-cat-icon--violet">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h4>Loyalty &amp; Reviews</h4>
+          <p class="fp-cat-desc">Connect loyalty programme providers and review platforms to close the loop between your WiFi and your reputation.</p>
+          <div class="fp-cat-tools">
+            <span class="fp-tool-pill">TripAdvisor</span>
+            <span class="fp-tool-pill">Google Reviews</span>
+            <span class="fp-tool-pill">Loyalty providers</span>
+          </div>
+        </div>
+
+        <div class="fp-cat-card reveal" data-cat="bookings">
+          <div class="fp-cat-icon fp-cat-icon--amber">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h4>Bookings &amp; Reservations</h4>
+          <p class="fp-cat-desc">Match WiFi profiles to booking records, giving you a richer single view of every customer who walks through the door.</p>
+          <div class="fp-cat-tools">
+            <span class="fp-tool-pill">SevenRooms</span>
+            <span class="fp-tool-pill">OpenTable</span>
+            <span class="fp-tool-pill">Resy</span>
+            <span class="fp-tool-pill">+ more</span>
+          </div>
+        </div>
+
+        <div class="fp-cat-card reveal d1" data-cat="analytics">
+          <div class="fp-cat-icon fp-cat-icon--blue">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+          </div>
+          <h4>Analytics &amp; Business Intelligence</h4>
+          <p class="fp-cat-desc">Stream footfall and engagement data into your dashboards and data warehouse for reporting that spans your whole business.</p>
+          <div class="fp-cat-tools">
+            <span class="fp-tool-pill">Google Analytics</span>
+            <span class="fp-tool-pill">Looker Studio</span>
+            <span class="fp-tool-pill">Data Warehouses</span>
+          </div>
+        </div>
+
+        <div class="fp-cat-card reveal d2" data-cat="more">
+          <div class="fp-cat-icon fp-cat-icon--teal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h4>And dozens more…</h4>
+          <p class="fp-cat-desc">POS systems, helpdesks, automation platforms, webhooks, and a growing library of connectors added regularly on request.</p>
+          <div class="fp-cat-tools">
+            <span class="fp-tool-pill">Zapier</span>
+            <span class="fp-tool-pill">Webhooks</span>
+            <span class="fp-tool-pill">REST API</span>
+            <span class="fp-tool-pill">POS systems</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= HOW TO CONNECT ======================= -->
+  <section class="fp-setup">
+    <div class="fp-setup-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="fp-setup-grid">
+
+        <div class="spotlight-text reveal">
+          <div class="kicker">Setup in minutes</div>
+          <h2>No developers.<br>No custom scripts.<br><em>No headaches.</em></h2>
+          <p class="lead">Connecting your accounts is as simple as selecting a platform and authorizing the connection. You're live before the kettle boils.</p>
+
+          <div class="fp-setup-steps" style="margin-top:40px;">
+            <div class="fp-setup-step">
+              <div class="fp-setup-step-left">
+                <div class="fp-setup-step-num">1</div>
+                <div class="fp-setup-step-line"></div>
+              </div>
+              <div class="fp-setup-step-body">
+                <h4>Browse the integration library</h4>
+                <p>Open the Integrations panel in your Fydelia dashboard and browse or search over 100 available connectors across every category.</p>
+              </div>
+            </div>
+            <div class="fp-setup-step">
+              <div class="fp-setup-step-left">
+                <div class="fp-setup-step-num">2</div>
+                <div class="fp-setup-step-line"></div>
+              </div>
+              <div class="fp-setup-step-body">
+                <h4>Select your platform and authorize</h4>
+                <p>Click your tool, hit Connect, and authorize the OAuth handshake. No API keys to copy, no JSON config to edit — just a single click.</p>
+              </div>
+            </div>
+            <div class="fp-setup-step">
+              <div class="fp-setup-step-left">
+                <div class="fp-setup-step-num">3</div>
+                <div class="fp-setup-step-line"></div>
+              </div>
+              <div class="fp-setup-step-body">
+                <h4>Data starts flowing immediately</h4>
+                <p>From that moment, every guest opt-in, visit, and interaction is automatically piped to your connected platforms in real time.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connection mock screen -->
+        <div class="reveal d1" style="display:grid; place-items:center;">
+          <div class="fp-conn-mock">
+            <div class="fp-conn-mock-head">
+              <div class="fp-conn-mock-head-left">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--red)"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                <span>Integrations</span>
+              </div>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--fg-4);">100+ available</span>
+            </div>
+            <div class="fp-conn-search">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              Search platforms…
+            </div>
+            <div class="fp-int-list">
+
+              <div class="fp-int-row">
+                <div class="fp-int-row-left">
+                  <div class="fp-int-logo" style="background:#FFF8E1;color:#B8860B;">MC</div>
+                  <div>
+                    <div class="fp-int-row-name">Mailchimp</div>
+                    <div class="fp-int-row-cat">Email Marketing</div>
+                  </div>
+                </div>
+                <span class="fp-int-row-status fp-int-row-status--connected">Connected</span>
+              </div>
+
+              <div class="fp-int-row">
+                <div class="fp-int-row-left">
+                  <div class="fp-int-logo" style="background:#FFF0EC;color:#FF7A59;">HS</div>
+                  <div>
+                    <div class="fp-int-row-name">HubSpot</div>
+                    <div class="fp-int-row-cat">CRM</div>
+                  </div>
+                </div>
+                <span class="fp-int-row-status fp-int-row-status--connected">Connected</span>
+              </div>
+
+              <div class="fp-int-row">
+                <div class="fp-int-row-left">
+                  <div class="fp-int-logo" style="background:#EBF5FB;color:#00A1E0;">SF</div>
+                  <div>
+                    <div class="fp-int-row-name">Salesforce</div>
+                    <div class="fp-int-row-cat">CRM</div>
+                  </div>
+                </div>
+                <span class="fp-int-row-status fp-int-row-status--connect">Connect</span>
+              </div>
+
+              <div class="fp-int-row">
+                <div class="fp-int-row-left">
+                  <div class="fp-int-logo" style="background:#F3EFFF;color:#9A6CFF;">KV</div>
+                  <div>
+                    <div class="fp-int-row-name">Klaviyo</div>
+                    <div class="fp-int-row-cat">Email &amp; SMS</div>
+                  </div>
+                </div>
+                <span class="fp-int-row-status fp-int-row-status--connect">Connect</span>
+              </div>
+
+              <div class="fp-int-row">
+                <div class="fp-int-row-left">
+                  <div class="fp-int-logo" style="background:#E8F5E9;color:#34A853;">GA</div>
+                  <div>
+                    <div class="fp-int-row-name">Google Analytics</div>
+                    <div class="fp-int-row-cat">Analytics</div>
+                  </div>
+                </div>
+                <span class="fp-int-row-status fp-int-row-status--connected">Connected</span>
+              </div>
+
+              <div class="fp-int-row">
+                <div class="fp-int-row-left">
+                  <div class="fp-int-logo" style="background:#E8FFF5;color:#34E0A1;">TA</div>
+                  <div>
+                    <div class="fp-int-row-name">TripAdvisor</div>
+                    <div class="fp-int-row-cat">Reviews</div>
+                  </div>
+                </div>
+                <span class="fp-int-row-status fp-int-row-status--connect">Connect</span>
+              </div>
+
+            </div>
+            <div class="fp-conn-mock-foot">
+              <span>2 active · 4 available</span>
+              <span class="fp-count">98 more →</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= AUTOMATION FLOWS ======================= -->
+  <section class="fp-auto">
+    <div class="fp-auto-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="fp-auto-grid">
+
+        <!-- Flow diagram -->
+        <div class="reveal">
+          <div class="fp-flow">
+
+            <div class="fp-flow-node">
+              <div class="fp-flow-node-icon fp-flow-node-icon--red">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+              </div>
+              <div class="fp-flow-node-body">
+                <div class="fp-flow-node-title">Guest opts in via WiFi splash page</div>
+                <div class="fp-flow-node-desc">First name, email, and consent captured at sign-in on your branded page.</div>
+              </div>
+              <span class="fp-flow-node-badge fp-flow-node-badge--trigger">Trigger</span>
+            </div>
+
+            <div class="fp-flow-connector">
+              <div class="fp-flow-connector-arrow"></div>
+              <span class="fp-flow-connector-label">Instantly fires</span>
+            </div>
+
+            <div class="fp-flow-node">
+              <div class="fp-flow-node-icon fp-flow-node-icon--green">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="fp-flow-node-body">
+                <div class="fp-flow-node-title">Added to Mailchimp / Klaviyo audience</div>
+                <div class="fp-flow-node-desc">Welcome email sequence triggers automatically. Zero manual list imports.</div>
+              </div>
+              <span class="fp-flow-node-badge fp-flow-node-badge--action">Action</span>
+            </div>
+
+            <div class="fp-flow-connector">
+              <div class="fp-flow-connector-arrow" style="animation-delay:0.4s;"></div>
+              <span class="fp-flow-connector-label">Simultaneously</span>
+            </div>
+
+            <div class="fp-flow-node">
+              <div class="fp-flow-node-icon fp-flow-node-icon--violet">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div class="fp-flow-node-body">
+                <div class="fp-flow-node-title">CRM profile created or enriched</div>
+                <div class="fp-flow-node-desc">HubSpot or Salesforce contact updated with first visit date, venue, and consent status.</div>
+              </div>
+              <span class="fp-flow-node-badge fp-flow-node-badge--action">Action</span>
+            </div>
+
+            <div class="fp-flow-connector">
+              <div class="fp-flow-connector-arrow" style="animation-delay:0.8s;"></div>
+              <span class="fp-flow-connector-label">On every return visit</span>
+            </div>
+
+            <div class="fp-flow-node">
+              <div class="fp-flow-node-icon fp-flow-node-icon--amber">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+              </div>
+              <div class="fp-flow-node-body">
+                <div class="fp-flow-node-title">Visit frequency tracked, loyalty scored</div>
+                <div class="fp-flow-node-desc">Last visit date, total visits, and dwell time flow back to analytics and your loyalty engine.</div>
+              </div>
+              <span class="fp-flow-node-badge fp-flow-node-badge--action">Action</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Copy -->
+        <div class="spotlight-text reveal d1">
+          <div class="kicker">From data to action</div>
+          <h2>An intelligent,<br><em>automated</em> marketing machine</h2>
+          <p class="lead">This isn't just about sending data one way. The moment a guest opts in on your WiFi, you can trigger a chain of automated events across your entire tech stack.</p>
+
+          <ul class="spotlight-feats" style="margin-top:28px;">
+            <li><span class="spot-check">✓</span> Instantly grow your email lists without any manual work</li>
+            <li><span class="spot-check">✓</span> Enrich CRM profiles with real-world visit data</li>
+            <li><span class="spot-check">✓</span> Greet VIP customers by name at login using CRM data</li>
+            <li><span class="spot-check">✓</span> Measure loyalty programme impact with accurate footfall</li>
+          </ul>
+
+          <div class="fp-callout reveal d2">
+            <p><strong>Stop moving data. Start using it.</strong> With Fydelia's integration library, you can build richer customer profiles, automate your marketing campaigns, and make smarter business decisions — all without writing a single line of code.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= RELATED FEATURES ======================= -->
+  <section class="fp-related">
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">Keep exploring</div>
+        <h2>Features that make<br>integrations even more powerful</h2>
+      </div>
+
+      <div class="fp-related-grid">
+
+        <a href="feature-automatic-wifi-login.html" class="fp-rel-card reveal">
+          <div class="fp-rel-icon fp-rel-icon--violet">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          </div>
+          <h4>Automatic WiFi Login</h4>
+          <p>Every silent return visit is still logged and synced to your integrations via Proof of Presence — no manual login required.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="features.html" class="fp-rel-card reveal d1">
+          <div class="fp-rel-icon fp-rel-icon--red">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h4>Email Capture</h4>
+          <p>Build a large, verified, and GDPR-compliant email list from your WiFi visitors — the raw fuel that powers your integrations.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="features.html" class="fp-rel-card reveal d2">
+          <div class="fp-rel-icon fp-rel-icon--amber">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h4>Loyalty Engine</h4>
+          <p>Feed integration data back into your loyalty programmes — visit counts, tier upgrades, and birthday campaigns, all automated.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= CTA ======================= -->
+  <section class="cta-sec" id="cta">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <h2>Ready to connect<br>your whole stack?</h2>
+        <p>Start your free 14-day trial. Full access to all 100+ integrations — no developers needed, no credit card required.</p>
+        <form class="cta-form" onsubmit="return false;">
+          <input type="email" placeholder="you@venue.com" aria-label="Email address">
+          <button class="btn-solid" type="submit">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </button>
+        </form>
+        <p class="cta-meta">No credit card required · Setup in &lt;2 minutes · Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="ft">
+    <div class="wrap-wide">
+      <div class="ft-grid">
+        <div class="ft-brand-col">
+          <a class="brand" href="index.html" aria-label="Fydelia home">
+            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+            <span class="brand-text">fydelia</span>
+          </a>
+          <p>The industry-leading captive portal and WiFi marketing platform that helps venues spark conversations and capture high-value user data. We turn simple guest WiFi access into a powerful engine for lead-gen and customer loyalty.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="splash-pages.html">Splash Pages</a></li>
+            <li><a href="hardware.html">Supported Hardware</a></li>
+<li><a href="for-venues.html">For Venues</a></li>
+<li><a href="for-resellers.html">For Resellers &amp; MSPs</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://www.fydelia.com/knowledge-base/">Documentation &amp; Support</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="blog.html">Blog</a></li>
+<li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="information-system-security-policy.html">InfoSys Security Policy</a></li>
+            <li><a href="security-assurance-plan">Security Assurance Plan</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li><a href="mailto:support@fydelia.com">support@fydelia.com</a></li>
+            <li>Brighton, United Kingdom</li>
+            <li>Dubai, UAE</li>
+          </ul>
+          <div class="ft-social">
+            <a href="https://instagram.com/fydeliawifi" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.facebook.com/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@fydeliawifi/videos" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <span>&copy; 2026 Fydelia</span>
+        <span>All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+
+<script>
+// ===== Theme toggle =====
+const toggle = document.getElementById('themeToggle');
+if (toggle) {
+  const saved = localStorage.getItem('fy-theme');
+  if (saved) document.body.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.body.setAttribute('data-theme', next);
+    localStorage.setItem('fy-theme', next);
+  });
+}
+
+// ===== Scroll reveal =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => io.observe(el));
+
+// ===== Feature card mouse glow =====
+document.querySelectorAll('.fp-cat-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+});
+
+// ===== Mobile menu =====
+(function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const drawer     = document.getElementById('menuDrawer');
+  const backdrop   = document.getElementById('menuBackdrop');
+  const closeBtn   = document.getElementById('menuClose');
+  if (!menuToggle || !drawer) return;
+
+  const drawerLinks = drawer.querySelectorAll('.menu-drawer-nav a, .menu-drawer-signin, .menu-drawer-cta');
+
+  function openMenu() {
+    menuToggle.setAttribute('aria-expanded', 'true');
+    drawer.classList.add('active');
+    drawer.setAttribute('aria-hidden', 'false');
+    backdrop.classList.add('active');
+    backdrop.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-open');
+  }
+  function closeMenu() {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    drawer.classList.remove('active');
+    drawer.setAttribute('aria-hidden', 'true');
+    backdrop.classList.remove('active');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-open');
+  }
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+  });
+  closeBtn.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  drawerLinks.forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && drawer.classList.contains('active')) closeMenu();
+  });
+
+  const mobileThemeBtn = document.getElementById('themeToggleMobile');
+  if (mobileThemeBtn) {
+    mobileThemeBtn.addEventListener('click', () => {
+      document.getElementById('themeToggle')?.click();
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

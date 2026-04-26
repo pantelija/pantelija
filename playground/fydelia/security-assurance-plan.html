@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instant Provisioning with PlasmaCloud – A world first - Fydelia Blog</title>
-<meta name="description" content="Fydelia and PlasmaCloud teamed up to make instant guest WiFi provisioning possible directly from within the network controller, a world first.">
+<title>Fydelia - Security Assurance Plan</title>
+<meta name="description" content="Fydelia's Security Assurance Plan outlines the technical and organisational measures in place to keep your guest WiFi data safe and secure.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles/core.css">
 <link rel="stylesheet" href="styles/sections.css">
 <style>
-/* ======================= BLOG POST TEMPLATE ======================= */
+/* ======================= TEXT PAGE TEMPLATE ======================= */
 
 /* ---------- Hero ---------- */
 .tp-hero {
@@ -47,12 +47,6 @@
   position: relative;
   max-width: 720px;
 }
-.tp-hero-top {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 28px;
-}
 .tp-hero-back {
   display: inline-flex;
   align-items: center;
@@ -60,101 +54,37 @@
   font-size: 13px;
   font-weight: 500;
   color: var(--fg-3);
+  margin-bottom: 28px;
   transition: color 0.2s var(--ease), gap 0.2s var(--ease);
-  text-decoration: none;
 }
 .tp-hero-back:hover { color: var(--fg); gap: 8px; }
 .tp-hero-back svg { width: 14px; height: 14px; transform: rotate(180deg); }
 .tp-hero h1 {
-  font-size: clamp(28px, 4vw, 48px);
+  font-size: clamp(32px, 4vw, 52px);
   letter-spacing: -0.03em;
   line-height: 1.1;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
-
-/* ---------- Article meta ---------- */
-.art-meta {
+.tp-hero .lead {
+  font-size: clamp(16px, 1.2vw, 18px);
+  color: var(--fg-3);
+  line-height: 1.55;
+  max-width: 600px;
+}
+.tp-meta {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px;
-}
-
-/* Tag pill */
-.art-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--red);
-  background: var(--red-glow-soft);
-  border: 1px solid rgba(255,43,43,0.18);
-  border-radius: 100px;
-  padding: 4px 12px;
-  text-decoration: none;
-  transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
-}
-.art-tag:hover {
-  background: rgba(255,43,43,0.18);
-  border-color: rgba(255,43,43,0.35);
-}
-.art-tag-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--red);
-  flex-shrink: 0;
-}
-
-/* Divider dot between meta items */
-.art-meta-sep {
-  width: 3px; height: 3px;
-  border-radius: 50%;
-  background: var(--fg-4);
-  flex-shrink: 0;
-}
-
-/* Author chip */
-.art-author {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-}
-.art-author-avatar {
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  background: var(--bg-3);
-  border: 1px solid var(--line-2);
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.art-author-avatar svg {
-  width: 16px; height: 16px;
-  color: var(--fg-4);
-}
-.art-author-name {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--fg-2);
-  transition: color 0.2s var(--ease);
-}
-.art-author:hover .art-author-name { color: var(--fg); }
-
-/* Date & read time */
-.art-meta-info {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
+  gap: 24px;
+  margin-top: 24px;
   font-family: var(--mono);
   font-size: 12px;
   color: var(--fg-4);
   letter-spacing: 0.04em;
+}
+.tp-meta span { display: inline-flex; align-items: center; gap: 6px; }
+.tp-meta-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--red);
 }
 
 /* ---------- Prose body ---------- */
@@ -167,15 +97,14 @@
 
 /* Headings inside prose */
 .tp-prose h2 {
-  font-size: clamp(20px, 2vw, 26px);
-  font-weight: 600;
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 500;
   letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin-top: 52px;
-  margin-bottom: 18px;
+  line-height: 1.15;
+  margin-top: 56px;
+  margin-bottom: 20px;
   padding-top: 32px;
   border-top: 1px solid var(--line);
-  color: var(--fg);
 }
 .tp-prose h2:first-child {
   margin-top: 0;
@@ -191,18 +120,26 @@
   margin-bottom: 14px;
   color: var(--fg);
 }
+.tp-prose h4 {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 32px;
+  margin-bottom: 10px;
+  color: var(--fg);
+}
 
 /* Paragraphs */
 .tp-prose p {
   font-size: 16px;
-  line-height: 1.78;
+  line-height: 1.72;
   color: var(--fg-2);
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 /* Links */
 .tp-prose a {
-  color: var(--white);
+  color: var(--red);
   text-decoration: underline;
   text-decoration-color: rgba(255, 43, 43, 0.3);
   text-underline-offset: 3px;
@@ -212,32 +149,77 @@
   text-decoration-color: var(--red);
 }
 
+/* Unordered lists */
+.tp-prose ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+.tp-prose ul li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 16px;
+  line-height: 1.72;
+  color: var(--fg-2);
+  margin-bottom: 10px;
+}
+.tp-prose ul li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 11px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+  opacity: 0.7;
+}
+
+/* Ordered lists */
+.tp-prose ol {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+  counter-reset: ol-counter;
+}
+.tp-prose ol li {
+  position: relative;
+  padding-left: 32px;
+  font-size: 16px;
+  line-height: 1.72;
+  color: var(--fg-2);
+  margin-bottom: 10px;
+  counter-increment: ol-counter;
+}
+.tp-prose ol li::before {
+  content: counter(ol-counter);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--red);
+  background: var(--red-glow-soft);
+  border-radius: 6px;
+}
+
 /* Blockquote */
 .tp-prose blockquote {
   position: relative;
-  margin: 36px 0;
-  padding: 22px 28px;
+  margin: 32px 0;
+  padding: 20px 24px;
   background: var(--bg-2);
   border-left: 3px solid var(--red);
   border-radius: 0 var(--r-sm) var(--r-sm) 0;
 }
-.tp-prose blockquote::before {
-  content: '\201C';
-  position: absolute;
-  top: -4px;
-  left: 20px;
-  font-size: 64px;
-  line-height: 1;
-  color: var(--red);
-  opacity: 0.2;
-  font-family: Georgia, serif;
-  pointer-events: none;
-}
 .tp-prose blockquote p {
   margin-bottom: 0;
-  font-size: 16px;
-  font-style: italic;
-  line-height: 1.65;
+  font-size: 15px;
   color: var(--fg-2);
 }
 
@@ -252,143 +234,24 @@
   border: none;
   height: 1px;
   background: var(--line);
-  margin: 56px 0;
+  margin: 48px 0;
 }
 
-/* ---------- Article figure (photo + caption) ---------- */
-.art-figure {
-  margin: 40px 0;
-  border-radius: var(--r);
-  overflow: hidden;
-  border: 1px solid var(--line);
-}
-.art-figure img {
-  width: 100%;
-  height: auto;
-  display: block;
-  background: var(--bg-3);
-}
-.art-figure figcaption {
-  padding: 12px 18px;
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--fg-4);
-  border-top: 1px solid var(--line);
-  background: var(--bg-2);
-  font-style: italic;
-}
-
-/* ---------- Video embed ---------- */
-.art-video {
-  margin: 40px 0;
-  border-radius: var(--r);
-  overflow: hidden;
-  border: 1px solid var(--line);
-  aspect-ratio: 16 / 9;
-  background: var(--bg-2);
-}
-.art-video iframe {
-  width: 100%;
-  height: 100%;
-  display: block;
-  border: none;
-}
-
-/* ---------- Author card ---------- */
-.art-author-card {
-  display: flex;
-  gap: 20px;
-  padding: 28px;
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  margin-top: 56px;
-}
-.art-author-card-avatar {
-  width: 52px; height: 52px;
-  border-radius: 50%;
-  background: var(--bg-3);
-  border: 1px solid var(--line-2);
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-}
-.art-author-card-avatar svg {
-  width: 24px; height: 24px;
-  color: var(--fg-4);
-}
-.art-author-card-body {
-  flex: 1;
-  min-width: 0;
-}
-.art-author-card-label {
+/* Table of contents-style section numbering */
+.tp-section-num {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--fg-4);
-  margin-bottom: 4px;
-}
-.art-author-card-name {
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--fg);
-  margin-bottom: 8px;
-}
-.art-author-card-bio {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--fg-3);
-  margin: 0;
-}
-
-/* ---------- CTA strip ---------- */
-.art-cta {
-  margin-top: 64px;
-  padding: 32px;
-  background: linear-gradient(135deg, var(--bg-2) 0%, var(--bg-3) 100%);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-.art-cta-text { flex: 1; }
-.art-cta-eyebrow {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
   color: var(--red);
+  letter-spacing: 0.06em;
+  display: block;
   margin-bottom: 6px;
-}
-.art-cta-heading {
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--fg);
-  margin-bottom: 6px;
-}
-.art-cta-sub {
-  font-size: 14px;
-  color: var(--fg-2);
-  line-height: 1.5;
-  margin: 0;
-}
-@media (max-width: 600px) {
-  .art-cta { flex-direction: column; align-items: flex-start; }
 }
 
-/* ---------- Responsive ---------- */
 @media (max-width: 768px) {
   .tp-hero { padding: 100px 0 48px; }
   .tp-body { padding: 48px 0 64px; }
-  .art-meta { gap: 12px; }
-  .art-author-card { flex-direction: column; gap: 14px; }
+  .tp-meta { flex-wrap: wrap; gap: 12px; }
 }
 /* --- Footer social icons --- */
 .ft-social {
@@ -498,103 +361,83 @@
       <div class="hero-glow hero-glow--b"></div>
     </div>
     <div class="wrap tp-hero-inner">
-
-      <!-- Back link + tag -->
-      <div class="tp-hero-top">
-        <a class="tp-hero-back" href="#">
-          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
-          All posts
-        </a>
-        <a class="art-tag" href="#">
-          <span class="art-tag-dot" aria-hidden="true"></span>
-          Features
-        </a>
+      <a class="tp-hero-back" href="index.html">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+        Back to home
+      </a>
+      <h1>Security Assurance Plan</h1>
+      <p class="lead">An overview of the security processes, controls, and solutions Fydelia uses to ensure data integrity, confidentiality, and availability.</p>
+      <div class="tp-meta">
+        <span><span class="tp-meta-dot"></span> Reviewed annually</span>
+        <span>Fydelia by Sentinel Software Ltd</span>
       </div>
-
-      <!-- Title -->
-      <h1>Instant Provisioning with PlasmaCloud – A world first</h1>
-
-      <!-- Article meta row -->
-      <div class="art-meta">
-        <a class="art-author" href="#">
-          <span class="art-author-avatar" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
-          </span>
-          <span class="art-author-name">Fydelia Team</span>
-        </a>
-        <span class="art-meta-sep" aria-hidden="true"></span>
-        <div class="art-meta-info">
-          <time datetime="2020-08-03">Aug 3, 2020</time>
-          <span aria-hidden="true">·</span>
-          <span>3 min read</span>
-        </div>
-      </div>
-
     </div>
   </section>
 
-  <!-- ======================= ARTICLE BODY ======================= -->
+  <!-- ======================= BODY ======================= -->
   <section class="tp-body">
     <div class="wrap tp-prose">
 
-      <!-- Hero image -->
-      <figure class="art-figure">
-        <img src="https://www.fydelia.com/wp-content/uploads/2020/08/plasma.png" alt="PlasmaCloud and Fydelia integration" width="1024" height="359">
-        <figcaption>The PlasmaCloud network controller marketplace, where Fydelia's guest WiFi service can be provisioned in just a few clicks.</figcaption>
-      </figure>
+      <h2>Overview</h2>
+      <p>This Security Assurance Plan (SAP) provides an overview of the security processes, controls, and solutions Fydelia will use to ensure the integrity, confidentiality, and availability of data collected and processed in providing guest WiFi data capture services. As a data processor, Fydelia is committed to implementing security best practices and meeting the compliance requirements outlined by the customer.</p>
 
-      <p>In late 2019 Fydelia embarked on a rather different approach to guest WiFi installations. It all began at the <a href="https://www.fdiforum.net/mag/event/restaurant-bar-tech-live/" target="_blank" rel="noopener">2019 Restaurant and Bar Tech show</a> in London when we met Marek Linder, the CEO of Plasma Cloud. Marek's vision was unique: to provide a marketplace of applications from within their Plasma Cloud network controller, where you could purchase subscriptions to network-related services right there in the portal.</p>
+      <h3><span class="tp-section-num">Section 01</span> Security Governance and Compliance</h3>
+      <ul>
+        <li><strong>Information Security Governance:</strong> Fydelia's security policies are reviewed and approved by senior management and enforced across all departments. Security responsibilities are clearly assigned to appropriate personnel, including Fydelia's CISO, IT, and compliance teams.</li>
+        <li><strong>Compliance with Regulations:</strong> Fydelia adheres to data protection laws, including GDPR for EU-based customers. We also comply with any applicable industry-specific security standards as required by the customer.</li>
+        <li><strong>Audits and Assessments:</strong> We perform regular internal audits to evaluate our security posture and compliance. Additionally, we will facilitate external audits or customer reviews upon request.</li>
+      </ul>
 
-      <h2>How Guest WiFi Installations Usually Work</h2>
+      <h3><span class="tp-section-num">Section 02</span> Risk Management</h3>
+      <ul>
+        <li><strong>Risk Assessment:</strong> Fydelia conducts periodic risk assessments to identify and evaluate potential security threats to our systems and data. Risk levels are categorized and prioritized for remediation.</li>
+        <li><strong>Mitigation Strategies:</strong> We implement mitigation strategies for identified risks, focusing on the most critical risks to reduce potential impact and likelihood.</li>
+      </ul>
 
-      <p>To understand how unique this proposition was, it is worth taking a step back and looking at how the process usually works. A venue (bar, restaurant, hotel, etc.) would like to capture customer opt-in marketing data via WiFi, so they approach an IT support company. The IT support company scour the web looking for solutions, and find <a href="splash-pages.html">Fydelia's splash page platform</a>. Fydelia create a demo splash page using the branding of the venue as a guide (it takes about 15 minutes). If accepted, the IT company schedule in changes to the network so that guests are redirected to the Fydelia splash page.</p>
+      <h3><span class="tp-section-num">Section 03</span> Data Protection and Privacy</h3>
+      <ul>
+        <li><strong>Data Encryption:</strong> All data is encrypted in transit and at rest using industry-standard encryption protocols. This includes guest WiFi login data and any associated metadata collected during service provision.</li>
+        <li><strong>Data Access Control:</strong> Access to customer data is restricted to authorized personnel only. We enforce multi-factor authentication (MFA) for critical systems, and access permissions are reviewed regularly.</li>
+        <li><strong>Data Retention and Deletion Policy:</strong> Fydelia retains data for a standard period of one year unless otherwise specified by the customer in writing. At the end of the retention period, data is securely deleted or anonymized.</li>
+      </ul>
 
-      <p>Although the Fydelia piece is extremely quick, all the to-and-fro between the IT company and the venue can usually take 2 to 3 weeks to complete.</p>
+      <h3><span class="tp-section-num">Section 04</span> Incident Response and Management</h3>
+      <ul>
+        <li><strong>Incident Response Plan (IRP):</strong> Fydelia maintains an IRP that outlines procedures for identifying, investigating, and mitigating security incidents. This plan includes roles and responsibilities, escalation paths, and communication protocols.</li>
+        <li><strong>Incident Notification:</strong> In the event of a data breach impacting customer data, Fydelia will notify the customer within 24 hours of detection, providing details on the scope, impact, and mitigation steps taken.</li>
+      </ul>
 
       <blockquote>
-        <p>Although the Fydelia piece is extremely quick, all the to-and-fro between the IT company and the venue can usually take 2 to 3 weeks to complete. That's why Marek's vision is so compelling.</p>
+        <p><strong>Breach notification SLA:</strong> Fydelia commits to notifying affected customers within 24 hours of breach detection, with full scope and remediation details.</p>
       </blockquote>
 
-      <p>Fydelia took this one step further and, with tight integration between Plasma Cloud and Fydelia, the creation of a demo splash page is fully automated. In just a few clicks, the IT engineer has a full end-to-end guest WiFi system working and delivered to the client. The page is, of course, just a demo, but with Fydelia's design tools, the IT engineer or the venue themselves can easily make changes.</p>
+      <h3><span class="tp-section-num">Section 05</span> Technical Security Controls</h3>
+      <ul>
+        <li><strong>Network Security:</strong> Fydelia employs firewalls, intrusion detection systems (IDS), and intrusion prevention systems (IPS) to secure our network. Regular penetration testing is conducted to identify and address vulnerabilities.</li>
+        <li><strong>Endpoint Security:</strong> Anti-virus, anti-malware software, and endpoint detection and response (EDR) tools are deployed on all devices accessing customer data. Devices are regularly updated and monitored.</li>
+        <li><strong>Vulnerability Management:</strong> We conduct regular vulnerability scans on our systems and apply security patches promptly as part of our patch management process.</li>
+      </ul>
 
-      <p>By the end of Q1 2020 the first integration beta was complete and clients were invited to use it. Since then Fydelia has become a key service in providing guest WiFi to the Plasma Cloud ecosystem.</p>
+      <h3><span class="tp-section-num">Section 06</span> Physical Security</h3>
+      <ul>
+        <li><strong>Data Center Security:</strong> Fydelia's servers are hosted in data centers with robust physical security measures, including surveillance, access controls, and environmental monitoring. Data centers comply with recognized certifications (e.g., ISO 27001, SOC 2).</li>
+        <li><strong>Workplace Security:</strong> Physical access to Fydelia's offices is restricted to authorized personnel, with keycard access and visitor logs maintained to prevent unauthorized access.</li>
+      </ul>
 
-      <!-- Video embed -->
-      <div class="art-video">
-        <iframe
-          src="https://www.youtube.com/embed/HlyjCGZKLK8"
-          title="Instant Provisioning with PlasmaCloud and Fydelia"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </div>
+      <h3><span class="tp-section-num">Section 07</span> Employee Security Awareness and Training</h3>
+      <ul>
+        <li><strong>Security Training:</strong> All Fydelia employees complete mandatory security training that covers data protection, secure data handling, and recognizing security threats.</li>
+        <li><strong>Ongoing Awareness:</strong> Fydelia maintains ongoing security awareness programs to keep employees informed of new security threats and best practices.</li>
+      </ul>
 
-      <hr>
+      <h3><span class="tp-section-num">Section 08</span> Customer Responsibilities and Coordination</h3>
+      <ul>
+        <li><strong>Shared Security Responsibilities:</strong> Fydelia requests that the customer communicates any specific security requirements and coordinates security protocols as needed for integrated systems.</li>
+        <li><strong>Security Meetings and Reporting:</strong> Fydelia will participate in periodic security review meetings with the customer and provide regular security reports or audit findings as requested.</li>
+      </ul>
 
-      <!-- Author card -->
-      <div class="art-author-card">
-        <div class="art-author-card-avatar" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
-        </div>
-        <div class="art-author-card-body">
-          <p class="art-author-card-label">Written by</p>
-          <p class="art-author-card-name">Fydelia Team</p>
-          <p class="art-author-card-bio">The Fydelia team builds guest WiFi tools that turn a simple network login into a powerful marketing moment for hospitality venues.</p>
-        </div>
-      </div>
-
-      <!-- CTA strip -->
-      <div class="art-cta">
-        <div class="art-cta-text">
-          <p class="art-cta-eyebrow">Try it yourself</p>
-          <p class="art-cta-heading">Request your free splash page</p>
-          <p class="art-cta-sub">No setup fees, no obligations. Provide us with a website that reflects your brand and we'll have a demo ready in minutes.</p>
-        </div>
-        <a class="btn-solid" href="splash-pages.html" style="white-space:nowrap;">
-          Get started free
-          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
-        </a>
-      </div>
+      <h3><span class="tp-section-num">Section 09</span> Plan Review and Updates</h3>
+      <p>This Security Assurance Plan is reviewed annually and updated as necessary to reflect changes in security requirements, emerging threats, and evolving customer needs. Significant changes will be communicated to the customer, and their approval may be sought as required.</p>
 
     </div>
   </section>
@@ -669,6 +512,7 @@
       </div>
     </div>
   </footer>
+
 </main>
 
 <script>
@@ -699,10 +543,10 @@ const io = new IntersectionObserver((entries) => {
 reveals.forEach(el => io.observe(el));
 
 // ===== Mobile menu =====
-const menuToggle   = document.getElementById('menuToggle');
-const menuClose    = document.getElementById('menuClose');
+const menuToggle = document.getElementById('menuToggle');
+const menuClose = document.getElementById('menuClose');
 const menuBackdrop = document.getElementById('menuBackdrop');
-const menuDrawer   = document.getElementById('menuDrawer');
+const menuDrawer = document.getElementById('menuDrawer');
 function openMenu() {
   menuToggle.setAttribute('aria-expanded', 'true');
   menuBackdrop.classList.add('active');
@@ -717,8 +561,8 @@ function closeMenu() {
   menuDrawer.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('menu-open');
 }
-if (menuToggle)   menuToggle.addEventListener('click', openMenu);
-if (menuClose)    menuClose.addEventListener('click', closeMenu);
+if (menuToggle) menuToggle.addEventListener('click', openMenu);
+if (menuClose) menuClose.addEventListener('click', closeMenu);
 if (menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
 menuDrawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 </script>

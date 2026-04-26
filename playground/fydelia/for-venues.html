@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fydelia for Venues — Turn Guest WiFi Into Your Most Powerful Marketing Channel</title>
+<meta name="description" content="Fydelia turns your guest WiFi into a marketing engine. Branded splash pages, verified contacts, flash offers, gamification, and 100+ integrations — live in under 30 minutes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/core.css">
+<link rel="stylesheet" href="styles/sections.css">
+
+<style>
+/* ======================= FOR VENUES PAGE ======================= */
+
+/* --- Hero --- */
+.venue-hero {
+  position: relative;
+  padding: 140px 0 120px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+.venue-hero .hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.venue-hero .hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+}
+.venue-hero .hero-glow {
+  position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5;
+}
+.venue-hero .hero-glow--a {
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, var(--red-glow) 0%, transparent 70%);
+  top: -350px; left: 50%; transform: translateX(-50%);
+}
+.venue-hero .hero-glow--b {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(154,108,255,0.15) 0%, transparent 70%);
+  bottom: -200px; right: -100px;
+}
+.venue-hero-inner {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.venue-hero h1 {
+  font-size: clamp(40px, 5.2vw, 68px);
+  margin: 24px 0 28px;
+}
+.venue-hero .hero-sub {
+  font-size: clamp(17px, 1.4vw, 20px);
+  color: var(--fg-2);
+  max-width: 640px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
+}
+.venue-hero .hero-sub-bold {
+  font-size: clamp(17px, 1.4vw, 20px);
+  color: var(--fg);
+  font-weight: 500;
+  margin: 0 auto 36px;
+}
+.venue-hero .hero-ctas {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.venue-hero .hero-note {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--fg-4);
+  letter-spacing: 0.04em;
+}
+
+/* --- Setup steps --- */
+.setup-sec {
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+}
+.setup-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 50% 50% at 50% 0%, var(--red-glow-soft) 0%, transparent 60%);
+}
+.setup-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 56px;
+  position: relative;
+}
+.setup-step {
+  position: relative;
+  padding: 36px 32px;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  transition: all 0.35s var(--ease);
+  overflow: hidden;
+}
+.setup-step::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 80% at 50% 0%, var(--red-glow-soft), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+  pointer-events: none;
+}
+.setup-step:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-3px);
+}
+.setup-step:hover::before { opacity: 1; }
+.setup-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: rgba(255,43,43,0.1);
+  border: 1px solid rgba(255,43,43,0.25);
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--red);
+  margin-bottom: 20px;
+  position: relative;
+}
+.setup-step h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  position: relative;
+}
+.setup-step p {
+  font-size: 15px;
+  color: var(--fg-3);
+  line-height: 1.65;
+  position: relative;
+}
+.setup-trial-note {
+  margin-top: 40px;
+  padding: 24px 32px;
+  background: var(--bg-1);
+  border: 1px solid rgba(255,43,43,0.2);
+  border-radius: 14px;
+  font-size: 15px;
+  color: var(--fg-2);
+  line-height: 1.6;
+  text-align: center;
+  position: relative;
+}
+.setup-trial-note::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 20%; right: 20%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+}
+
+/* --- Spotlight features (zig-zag) --- */
+.spotlight {
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+}
+.spotlight--alt {
+  background: var(--bg-1);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.spotlight-bg {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.spotlight-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+}
+.spotlight-grid--reverse .spotlight-visual { order: -1; }
+.spotlight-text .kicker { margin-bottom: 16px; }
+.spotlight-text h2 { margin-bottom: 20px; }
+.spotlight-text .lead { margin-bottom: 28px; }
+.spotlight-text p.body-copy {
+  font-size: 16px;
+  color: var(--fg-2);
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+.spotlight-feats {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 28px;
+}
+.spotlight-feats li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: 15.5px;
+  color: var(--fg-2);
+}
+.spot-check {
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  background: rgba(255,43,43,0.12);
+  border: 1px solid rgba(255,43,43,0.3);
+  display: grid; place-items: center;
+  color: var(--red);
+  font-size: 12px;
+  margin-top: 1px;
+}
+
+/* Spotlight visual cards */
+.spotlight-visual {
+  position: relative;
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+}
+
+/* --- Splash page mockup (phone-like) --- */
+.sp-mockup-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+}
+.sp-mockup {
+  width: 100%;
+  border-radius: 24px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5), 0 0 60px -20px var(--red-glow);
+  overflow: hidden;
+}
+.sp-mockup-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sp-mockup-logo {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--red-700), var(--red-500));
+  display: grid; place-items: center;
+}
+.sp-mockup-logo svg { color: white; }
+.sp-mockup-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+.sp-mockup-body { padding: 24px 20px; }
+.sp-mockup-hero-img {
+  width: 100%;
+  height: 120px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--red-700), var(--red-500));
+  display: grid; place-items: center;
+  margin-bottom: 20px;
+}
+.sp-mockup-hero-img span { color: white; font-size: 14px; font-weight: 500; }
+.sp-mockup-field {
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  font-size: 12px;
+  color: var(--fg-4);
+  font-family: var(--mono);
+}
+.sp-mockup-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--red);
+  color: white;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 4px;
+}
+.sp-mockup-zones {
+  display: flex;
+  gap: 6px;
+  margin-top: 16px;
+}
+.sp-zone-tag {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  color: var(--fg-4);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.sp-zone-tag--active {
+  background: rgba(255,43,43,0.1);
+  border-color: rgba(255,43,43,0.25);
+  color: var(--red);
+}
+
+/* --- Marketing tools visual --- */
+.marketing-tools-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 400px;
+}
+.mt-card {
+  padding: 20px 24px;
+  border-radius: 16px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  transition: all 0.35s var(--ease);
+}
+.mt-card:hover {
+  border-color: var(--line-strong);
+  transform: translateX(4px);
+}
+.mt-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.mt-card-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+}
+.mt-card-icon--red { background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2); color: var(--red); }
+.mt-card-icon--violet { background: rgba(154,108,255,0.1); border: 1px solid rgba(154,108,255,0.2); color: #9A6CFF; }
+.mt-card-icon--amber { background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.2); color: #FFB020; }
+.mt-card-icon--green { background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.2); color: var(--green); }
+.mt-card h4 { font-size: 15px; font-weight: 600; }
+.mt-card p { font-size: 13px; color: var(--fg-3); line-height: 1.55; margin: 0; }
+
+/* --- Gamification visual --- */
+.gami-visual-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+.scratch-card-mock {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--bg-2), var(--bg-3));
+  border: 1px solid var(--line-2);
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5);
+  overflow: hidden;
+  position: relative;
+}
+.scratch-top {
+  padding: 28px 28px 0;
+  text-align: center;
+}
+.scratch-top h4 { font-size: 20px; margin-bottom: 6px; }
+.scratch-top p { font-size: 13px; color: var(--fg-3); margin: 0; }
+.scratch-area {
+  margin: 20px 28px;
+  height: 100px;
+  border-radius: 12px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--bg-4),
+    var(--bg-4) 10px,
+    var(--bg-3) 10px,
+    var(--bg-3) 20px
+  );
+  display: grid; place-items: center;
+  position: relative; overflow: hidden;
+}
+.scratch-area::after {
+  content: 'SCRATCH TO REVEAL';
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-3);
+  letter-spacing: 0.15em;
+}
+.scratch-prizes {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 28px 24px;
+}
+.scratch-prize {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  border: 1px solid var(--line-2);
+  background: var(--bg-2);
+  color: var(--fg-3);
+}
+.scratch-prize--win {
+  border-color: rgba(0,212,126,0.3);
+  background: rgba(0,212,126,0.08);
+  color: var(--green);
+}
+.spin-wheel-float {
+  position: absolute;
+  top: -20px; right: -30px;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--red) 0deg 45deg,
+    var(--bg-3) 45deg 90deg,
+    var(--red) 90deg 135deg,
+    var(--bg-3) 135deg 180deg,
+    var(--red) 180deg 225deg,
+    var(--bg-3) 225deg 270deg,
+    var(--red) 270deg 315deg,
+    var(--bg-3) 315deg 360deg
+  );
+  border: 2px solid var(--line-2);
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+  animation: spin-slow 12s linear infinite;
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --- CRM / Contact list visual --- */
+.crm-visual {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 20px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+.crm-header {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.crm-header h4 { font-size: 14px; font-weight: 600; }
+.crm-badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 100px;
+  background: rgba(0,212,126,0.1);
+  border: 1px solid rgba(0,212,126,0.2);
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.crm-rows { padding: 8px 0; }
+.crm-row {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 24px;
+  transition: background 0.2s var(--ease);
+}
+.crm-row:hover { background: var(--bg-3); }
+.crm-avatar {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: var(--bg-4);
+  display: grid; place-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fg-3);
+}
+.crm-info { min-width: 0; }
+.crm-name { font-size: 13px; font-weight: 500; }
+.crm-email { font-size: 11px; color: var(--fg-4); font-family: var(--mono); }
+.crm-status {
+  font-family: var(--mono);
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.crm-status--verified {
+  background: rgba(0,212,126,0.08);
+  border: 1px solid rgba(0,212,126,0.2);
+  color: var(--green);
+}
+.crm-integrations {
+  padding: 14px 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.crm-int-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--fg-4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.crm-int-pill {
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--fg-3);
+}
+
+/* --- Proof of presence visual --- */
+.pop-visual {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 20px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+.pop-header {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pop-header h4 { font-size: 14px; font-weight: 600; }
+.pop-live-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse-green 2s ease-in-out infinite;
+}
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+.pop-timeline { padding: 16px 24px; }
+.pop-event {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.pop-event:last-child { border-bottom: none; }
+.pop-event-time {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-4);
+  white-space: nowrap;
+  min-width: 48px;
+  padding-top: 2px;
+}
+.pop-event-info {}
+.pop-event-name { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+.pop-event-desc { font-size: 11px; color: var(--fg-4); }
+.pop-event-tag {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-left: 6px;
+}
+.pop-event-tag--return {
+  background: rgba(0,212,126,0.08);
+  border: 1px solid rgba(0,212,126,0.2);
+  color: var(--green);
+}
+.pop-event-tag--new {
+  background: rgba(255,43,43,0.08);
+  border: 1px solid rgba(255,43,43,0.2);
+  color: var(--red);
+}
+
+/* --- Reviews visual --- */
+.reviews-visual {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.review-card {
+  padding: 20px;
+  border-radius: 16px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  transition: all 0.3s var(--ease);
+}
+.review-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+}
+.review-stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 8px;
+}
+.review-stars svg { color: #FFB020; }
+.review-text { font-size: 13px; color: var(--fg-2); line-height: 1.55; margin-bottom: 8px; }
+.review-source {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--fg-4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* --- Dashboard visual --- */
+.dash-visual {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 20px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+.dash-topbar {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dash-topbar-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--bg-4);
+}
+.dash-topbar-dot--red { background: #ff5f57; }
+.dash-topbar-dot--yellow { background: #ffbd2e; }
+.dash-topbar-dot--green { background: #28c841; }
+.dash-topbar-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-4);
+  margin-left: 8px;
+}
+.dash-body { padding: 24px 20px; }
+.dash-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.dash-stat {
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+}
+.dash-stat-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--fg-4);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+.dash-stat-num {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+.dash-stat-num--red { color: var(--red); }
+.dash-stat-num--green { color: var(--green); }
+.dash-venues { display: flex; flex-direction: column; gap: 6px; }
+.dash-venue-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  font-size: 12px;
+}
+.dash-venue-name { font-weight: 500; }
+.dash-venue-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--green);
+}
+.dash-venue-status-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+/* --- Pricing section --- */
+.pricing-sec {
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+}
+.pricing-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 50% 40% at 30% 40%, var(--red-glow-soft) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 60%, rgba(154,108,255,0.06) 0%, transparent 60%);
+}
+.pricing-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 56px;
+}
+.pricing-card {
+  padding: 40px 32px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--bg-1);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s var(--ease);
+}
+.pricing-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, var(--red-glow-soft), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+  pointer-events: none;
+}
+.pricing-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-3px);
+}
+.pricing-card:hover::before { opacity: 1; }
+
+.pricing-card--featured-1 {
+  background: linear-gradient(180deg, rgba(255,43,43,0.06) 0%, var(--bg-1) 70%);
+  box-shadow: 0 0 60px -20px var(--red-glow);
+}
+.pricing-card--featured-1::after {
+  content: 'MAX GUEST FOOTFALL';
+  position: absolute;
+  top: 16px; right: 16px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--red);
+  letter-spacing: 0.15em;
+  padding: 4px 10px;
+  background: rgba(255,43,43,0.1);
+  border: 1px solid rgba(255,43,43,0.25);
+  border-radius: 100px;
+}
+
+.pricing-card--featured-2 {
+  background: linear-gradient(180deg, rgba(255,43,43,0.06) 0%, var(--bg-1) 70%);
+  box-shadow: 0 0 60px -20px var(--red-glow);
+}
+.pricing-card--featured-2::after {
+  content: 'PEAK ENGAGEMENT';
+  position: absolute;
+  top: 16px; right: 16px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--red);
+  letter-spacing: 0.15em;
+  padding: 4px 10px;
+  background: rgba(255,43,43,0.1);
+  border: 1px solid rgba(255,43,43,0.25);
+  border-radius: 100px;
+}
+
+.pricing-card--featured-3 {
+  background: linear-gradient(180deg, rgba(255,43,43,0.06) 0%, var(--bg-1) 70%);
+  box-shadow: 0 0 60px -20px var(--red-glow);
+}
+.pricing-card--featured-3::after {
+  content: 'HIGHEST GUEST VALUE';
+  position: absolute;
+  top: 16px; right: 16px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--red);
+  letter-spacing: 0.15em;
+  padding: 4px 10px;
+  background: rgba(255,43,43,0.1);
+  border: 1px solid rgba(255,43,43,0.25);
+  border-radius: 100px;
+}
+
+.pricing-card .card-category {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-4);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+}
+.pricing-card h3 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.pricing-card .card-desc {
+  font-size: 14px;
+  color: var(--fg-3);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+.pricing-card .card-price {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 8px;
+}
+.pricing-card .card-price .from-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-4);
+  line-height: 1;
+}
+.pricing-card .card-price .price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.pricing-card .card-price .amount {
+  font-family: var(--sans);
+  font-size: clamp(42px, 4vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--fg);
+  line-height: 1;
+}
+.pricing-card .card-price .period {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--fg-4);
+}
+.pricing-card .card-note {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--fg-4);
+  margin-bottom: 28px;
+}
+.pricing-card .btn-solid,
+.pricing-card .btn-ghost {
+  width: 100%;
+  justify-content: center;
+}
+
+.pricing-footer {
+  text-align: center;
+  margin-top: 40px;
+  position: relative;
+}
+.pricing-footer p {
+  font-size: 15px;
+  color: var(--fg-3);
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+.pricing-footer .switch-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 10px 20px;
+  background: rgba(255,43,43,0.06);
+  border: 1px solid rgba(255,43,43,0.2);
+  border-radius: 100px;
+  font-size: 14px;
+  color: var(--fg-2);
+  font-weight: 500;
+}
+
+/* --- Venue types cloud --- */
+.venue-types-sec {
+  padding: 100px 0;
+  position: relative;
+  background: var(--bg-1);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.venue-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 48px auto 0;
+  position: relative;
+}
+.sp-venue-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-2);
+  white-space: nowrap;
+  transition: all 0.3s var(--ease);
+}
+.sp-venue-pill:hover {
+  border-color: rgba(255,43,43,0.3);
+  background: rgba(255,43,43,0.06);
+  color: var(--fg);
+  transform: translateY(-2px);
+}
+.sp-venue-pill .v-icon { font-size: 15px; display: inline-flex; align-items: center; }
+
+/* --- Support section --- */
+.support-sec {
+  padding: 140px 0;
+  position: relative;
+}
+.support-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+}
+.support-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.support-card {
+  padding: 24px 28px;
+  border-radius: 16px;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: all 0.3s var(--ease);
+}
+.support-card:hover {
+  border-color: var(--line-strong);
+  transform: translateX(4px);
+}
+.support-card-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+  background: rgba(255,43,43,0.1);
+  border: 1px solid rgba(255,43,43,0.2);
+  color: var(--red);
+}
+.support-card h4 { font-size: 16px; margin-bottom: 4px; }
+.support-card p { font-size: 14px; color: var(--fg-3); line-height: 1.55; margin: 0; }
+
+/* --- Footer social icons --- */
+.ft-social {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 18px;
+  margin-left: -6px;
+}
+.ft-social-link {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  color: var(--fg-4);
+  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.ft-social-link svg { width: 16px; height: 16px; }
+.ft-social-link:hover { color: var(--fg); background: var(--bg-3); }
+
+/* --- Responsive --- */
+@media (max-width: 980px) {
+  .setup-steps { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .spotlight-grid { grid-template-columns: 1fr; gap: 48px; }
+  .spotlight-grid--reverse .spotlight-visual { order: 0; }
+  .pricing-cards { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .support-grid { grid-template-columns: 1fr; gap: 48px; }
+}
+@media (max-width: 640px) {
+  .venue-hero { padding: 100px 0 80px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Grain overlay -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Fydelia home">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+      <span class="brand-text">fydelia</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="features.html">Features</a></li>
+      <li><a href="splash-pages.html">Splash Pages</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+      <a class="btn-ghost" href="https://ondemand.fydelia.com/">Sign in</a>
+      <a class="btn-solid" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <!-- Mobile burger -->
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer + backdrop -->
+<div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+<aside id="menuDrawer" class="menu-drawer" aria-hidden="true">
+  <div class="menu-drawer-head">
+    <span class="menu-drawer-title">Menu</span>
+    <button id="menuClose" class="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu-drawer-nav">
+    <a href="features.html">Features</a>
+    <a href="splash-pages.html">Splash Pages</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="hardware.html">Supported Hardware</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a>
+  </nav>
+  <div class="menu-drawer-foot">
+    <div class="menu-drawer-theme">
+      <span class="menu-drawer-theme-label">Dark mode</span>
+      <button id="themeToggleMobile" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+    </div>
+    <a class="btn-ghost menu-drawer-signin" href="https://ondemand.fydelia.com/">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
+</aside>
+
+
+<main>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="venue-hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-grid"></div>
+      <div class="hero-glow hero-glow--a"></div>
+      <div class="hero-glow hero-glow--b"></div>
+    </div>
+
+    <div class="wrap venue-hero-inner">
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        <span>For venues &middot; live in under 30 min</span>
+      </div>
+      <h1>Your guest WiFi is already working hard.<br><em>Make it work for you.</em></h1>
+      <p class="hero-sub">Every day, dozens — maybe hundreds — of guests connect to your WiFi and walk away strangers. No contact details. No way to reach them again. No data to show what they spent, when they came back, or what made them return.</p>
+      <p class="hero-sub-bold">Fydelia turns that missed moment into your most powerful marketing channel. Automatically.</p>
+      <div class="hero-ctas">
+        <a class="btn-solid btn-lg" href="https://www.fydelia.com/onboarding/">Start free trial
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+        </a>
+        <a class="btn-ghost" href="#features" style="border:1px solid var(--line-2);">See how it works</a>
+      </div>
+      <span class="hero-note">No credit card required &middot; 14-day free trial &middot; We handle setup</span>
+    </div>
+  </section>
+
+
+  <!-- ======================= SETUP STEPS ======================= -->
+  <section class="setup-sec" id="features">
+    <div class="setup-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">Getting started</div>
+        <h2>Takes less time than<br>your morning coffee</h2>
+        <p class="lead">You don't need a developer, a designer, or an IT team. Getting started with Fydelia takes under 30 minutes — and we handle most of it for you.</p>
+      </div>
+
+      <div class="setup-steps">
+        <div class="setup-step reveal">
+          <div class="setup-step-num">1</div>
+          <h3>Paste your website URL</h3>
+          <p>Our AI scans your site, extracts your logo, brand colours, fonts, hero images, and key copy, and builds a fully branded, mobile-ready splash page in seconds.</p>
+        </div>
+        <div class="setup-step reveal d1">
+          <div class="setup-step-num">2</div>
+          <h3>We configure your router remotely</h3>
+          <p>No engineer visit. No new hardware. No downtime. Your existing access points carry on as normal — Fydelia just takes over the portal layer.</p>
+        </div>
+        <div class="setup-step reveal d2">
+          <div class="setup-step-num">3</div>
+          <h3>You go live</h3>
+          <p>From the moment a guest connects, you're capturing verified contact details, delivering promotions, and building your audience.</p>
+        </div>
+      </div>
+
+      <div class="setup-trial-note reveal">
+        No credit card required. No restrictions. Free 14-day trial with every feature included — and we handle the setup for you at no cost.
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= SPOTLIGHT 1: SPLASH PAGES ======================= -->
+  <section class="spotlight spotlight--alt">
+    <div class="wrap">
+      <div class="spotlight-grid">
+        <div class="spotlight-text reveal">
+          <div class="kicker">Splash pages</div>
+          <h2>Build beautiful splash pages <em>in minutes</em></h2>
+          <p class="lead">Your splash page is the first thing every guest sees. Make it count.</p>
+          <p class="body-copy">The AI builder generates a fully branded page from your URL alone. Prefer to get hands-on? The drag-and-drop editor gives you pre-built sections, real-time mobile preview, and custom CSS support — no code required.</p>
+          <p class="body-copy">Every plan includes unlimited splash pages, so you can create different experiences for different venues, promotions, or campaigns, all from one dashboard.</p>
+          <ul class="spotlight-feats">
+            <li><span class="spot-check">✓</span> AI builder from your URL</li>
+            <li><span class="spot-check">✓</span> Drag-and-drop WYSIWYG editor</li>
+            <li><span class="spot-check">✓</span> Unlimited pages per account</li>
+            <li><span class="spot-check">✓</span> Splash Page Zones — different pages per access point</li>
+          </ul>
+        </div>
+        <div class="spotlight-visual reveal d1">
+          <div class="sp-mockup-wrap">
+            <div class="sp-mockup">
+              <div class="sp-mockup-header">
+                <div class="sp-mockup-logo">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                </div>
+                <span class="sp-mockup-title">Your Venue</span>
+              </div>
+              <div class="sp-mockup-body">
+                <div class="sp-mockup-hero-img">
+                  <span>Welcome to free WiFi</span>
+                </div>
+                <div class="sp-mockup-field">name@email.com</div>
+                <div class="sp-mockup-field">Full name</div>
+                <div class="sp-mockup-btn">Connect to WiFi</div>
+                <div class="sp-mockup-zones">
+                  <span class="sp-zone-tag sp-zone-tag--active">Bar</span>
+                  <span class="sp-zone-tag">Pool</span>
+                  <span class="sp-zone-tag">Lobby</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= SPOTLIGHT 2: MARKETING TOOLS ======================= -->
+  <section class="spotlight">
+    <div class="spotlight-bg" aria-hidden="true">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 40% at 80% 30%, var(--red-glow-soft), transparent 60%);"></div>
+    </div>
+    <div class="wrap">
+      <div class="spotlight-grid spotlight-grid--reverse">
+        <div class="spotlight-text reveal">
+          <div class="kicker">Marketing engine</div>
+          <h2>Turn every login into a <em>marketing moment</em></h2>
+          <p class="lead">The login screen isn't just a gate. It's a guaranteed few seconds of attention from every guest, every visit. Fydelia fills that moment with tools that drive real revenue.</p>
+        </div>
+        <div class="spotlight-visual reveal d1">
+          <div class="marketing-tools-visual">
+            <div class="mt-card">
+              <div class="mt-card-head">
+                <div class="mt-card-icon mt-card-icon--red">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+                </div>
+                <h4>AdCards</h4>
+              </div>
+              <p>Display promotions, events, and brand messages directly on your splash page — visually, compellingly, and with measurable engagement.</p>
+            </div>
+            <div class="mt-card">
+              <div class="mt-card-head">
+                <div class="mt-card-icon mt-card-icon--violet">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <h4>Flash Offers</h4>
+              </div>
+              <p>Create urgency with time-limited deals the moment someone connects. Countdown timers do the work; you just set the deal.</p>
+            </div>
+            <div class="mt-card">
+              <div class="mt-card-head">
+                <div class="mt-card-icon mt-card-icon--amber">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                </div>
+                <h4>Dweller Flash Offers</h4>
+              </div>
+              <p>Push promotions to guests already connected and on your premises. Your 3pm lull just got a new best friend.</p>
+            </div>
+            <div class="mt-card">
+              <div class="mt-card-head">
+                <div class="mt-card-icon mt-card-icon--green">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
+                <h4>Scheduled Content + Birthdays</h4>
+              </div>
+              <p>Morning coffee at 8am, happy hour at 5pm — automatically. Plus birthday campaigns that send personalised offers hands-free.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= SPOTLIGHT 3: GAMIFICATION ======================= -->
+  <section class="spotlight spotlight--alt">
+    <div class="wrap">
+      <div class="spotlight-grid">
+        <div class="spotlight-text reveal">
+          <div class="kicker">Engagement</div>
+          <h2>Games that keep guests <em>coming back</em></h2>
+          <p class="lead">Digital scratch cards. Spin-to-win wheels. Probability-weighted prizes you control and can tune in real time.</p>
+          <p class="body-copy">Unique voucher codes that sync to your POS. Anti-fraud limits that prevent abuse. Gamification isn't a gimmick — it's one of the most effective tools for driving repeat visits and giving guests something to talk about.</p>
+          <p class="body-copy">Fydelia builds it directly into the WiFi login experience, so participation requires zero extra effort from your guests, and zero manual work from your team.</p>
+        </div>
+        <div class="spotlight-visual reveal d1">
+          <div class="gami-visual-wrap">
+            <div class="scratch-card-mock">
+              <div class="scratch-top">
+                <h4>Scratch &amp; Win!</h4>
+                <p>Reveal your prize below</p>
+              </div>
+              <div class="scratch-area"></div>
+              <div class="scratch-prizes">
+                <span class="scratch-prize">10% off</span>
+                <span class="scratch-prize scratch-prize--win">Free drink</span>
+                <span class="scratch-prize">£5 voucher</span>
+                <span class="scratch-prize">Try again</span>
+              </div>
+            </div>
+            <div class="spin-wheel-float" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= SPOTLIGHT 4: CONTACT LIST / CRM ======================= -->
+  <section class="spotlight">
+    <div class="spotlight-bg" aria-hidden="true">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 40% at 20% 40%, rgba(0,212,126,0.1), transparent 60%);"></div>
+    </div>
+    <div class="wrap">
+      <div class="spotlight-grid spotlight-grid--reverse">
+        <div class="spotlight-text reveal">
+          <div class="kicker">Lead generation</div>
+          <h2>A guest list that <em>builds itself</em></h2>
+          <p class="lead">Every contact detail Fydelia captures is 100% auto-verified before WiFi access is granted. No fake emails. No disposable addresses. Real people who were really in your venue.</p>
+          <ul class="spotlight-feats">
+            <li><span class="spot-check">✓</span> Names, emails, phone numbers, birthdays — all auto-captured</li>
+            <li><span class="spot-check">✓</span> Every opt-in logged with timestamp and GDPR audit trail</li>
+            <li><span class="spot-check">✓</span> Flows into Mailchimp, HubSpot, Klaviyo, Salesforce, 100+ more</li>
+            <li><span class="spot-check">✓</span> No-code integrations — single click to activate</li>
+          </ul>
+        </div>
+        <div class="spotlight-visual reveal d1">
+          <div class="crm-visual">
+            <div class="crm-header">
+              <h4>Guest Contacts</h4>
+              <span class="crm-badge">Auto-verified</span>
+            </div>
+            <div class="crm-rows">
+              <div class="crm-row">
+                <div class="crm-avatar">SJ</div>
+                <div class="crm-info">
+                  <div class="crm-name">Sarah Johnson</div>
+                  <div class="crm-email">sarah.j@gmail.com</div>
+                </div>
+                <span class="crm-status crm-status--verified">Verified</span>
+              </div>
+              <div class="crm-row">
+                <div class="crm-avatar">MT</div>
+                <div class="crm-info">
+                  <div class="crm-name">Marcus Taylor</div>
+                  <div class="crm-email">m.taylor@outlook.com</div>
+                </div>
+                <span class="crm-status crm-status--verified">Verified</span>
+              </div>
+              <div class="crm-row">
+                <div class="crm-avatar">EK</div>
+                <div class="crm-info">
+                  <div class="crm-name">Emma Kim</div>
+                  <div class="crm-email">emmakim@hey.com</div>
+                </div>
+                <span class="crm-status crm-status--verified">Verified</span>
+              </div>
+              <div class="crm-row">
+                <div class="crm-avatar">DP</div>
+                <div class="crm-info">
+                  <div class="crm-name">David Patel</div>
+                  <div class="crm-email">d.patel@yahoo.co.uk</div>
+                </div>
+                <span class="crm-status crm-status--verified">Verified</span>
+              </div>
+            </div>
+            <div class="crm-integrations">
+              <span class="crm-int-label">Synced to</span>
+              <span class="crm-int-pill">Mailchimp</span>
+              <span class="crm-int-pill">HubSpot</span>
+              <span class="crm-int-pill">+98</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= SPOTLIGHT 5: PROOF OF PRESENCE ======================= -->
+  <section class="spotlight spotlight--alt">
+    <div class="wrap">
+      <div class="spotlight-grid">
+        <div class="spotlight-text reveal">
+          <div class="kicker">Visitor intelligence</div>
+          <h2>Know who's coming back — <em>even without a login</em></h2>
+          <p class="lead">Once a guest has signed in once, their device is remembered. Every future visit is instant — no form, no friction, no splash page.</p>
+          <p class="body-copy">But you still know they're there. <strong>Proof of Presence</strong> logs every automatic reconnection as a visit event and sends it to your CRM in real time. Track repeat visits, measure footfall, understand loyalty — even when guests never see a sign-in screen again.</p>
+          <ul class="spotlight-feats">
+            <li><span class="spot-check">✓</span> Automatic device recognition</li>
+            <li><span class="spot-check">✓</span> Real-time visit events to CRM</li>
+            <li><span class="spot-check">✓</span> Zero data gaps across every location</li>
+          </ul>
+        </div>
+        <div class="spotlight-visual reveal d1">
+          <div class="pop-visual">
+            <div class="pop-header">
+              <span class="pop-live-dot"></span>
+              <h4>Proof of Presence</h4>
+            </div>
+            <div class="pop-timeline">
+              <div class="pop-event">
+                <span class="pop-event-time">14:32</span>
+                <div class="pop-event-info">
+                  <div class="pop-event-name">Sarah Johnson <span class="pop-event-tag pop-event-tag--return">Return</span></div>
+                  <div class="pop-event-desc">Auto-connected · 4th visit this month</div>
+                </div>
+              </div>
+              <div class="pop-event">
+                <span class="pop-event-time">14:28</span>
+                <div class="pop-event-info">
+                  <div class="pop-event-name">Marcus Taylor <span class="pop-event-tag pop-event-tag--return">Return</span></div>
+                  <div class="pop-event-desc">Auto-connected · 2nd visit this week</div>
+                </div>
+              </div>
+              <div class="pop-event">
+                <span class="pop-event-time">14:21</span>
+                <div class="pop-event-info">
+                  <div class="pop-event-name">Guest #4,913 <span class="pop-event-tag pop-event-tag--new">New</span></div>
+                  <div class="pop-event-desc">Signed in via splash page</div>
+                </div>
+              </div>
+              <div class="pop-event">
+                <span class="pop-event-time">14:15</span>
+                <div class="pop-event-info">
+                  <div class="pop-event-name">Emma Kim <span class="pop-event-tag pop-event-tag--return">Return</span></div>
+                  <div class="pop-event-desc">Auto-connected · 7th visit this month</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= SPOTLIGHT 6: REVIEWS ======================= -->
+  <section class="spotlight">
+    <div class="spotlight-bg" aria-hidden="true">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 40% at 70% 50%, rgba(255,176,32,0.08), transparent 60%);"></div>
+    </div>
+    <div class="wrap">
+      <div class="spotlight-grid spotlight-grid--reverse">
+        <div class="spotlight-text reveal">
+          <div class="kicker">Reputation</div>
+          <h2>Reviews, feedback, and <em>Google rankings</em></h2>
+          <p class="lead">Happy guests often don't leave reviews. Unhappy ones sometimes do. Fydelia tips that balance.</p>
+          <p class="body-copy">After connecting, guests can be automatically prompted to leave a review on Google, TripAdvisor, or your platform of choice. Route satisfied guests to your public review page. Capture critical feedback privately before it ends up online.</p>
+          <ul class="spotlight-feats">
+            <li><span class="spot-check">✓</span> Automatic review prompts after connection</li>
+            <li><span class="spot-check">✓</span> Route happy guests to Google/TripAdvisor</li>
+            <li><span class="spot-check">✓</span> Capture negative feedback privately</li>
+          </ul>
+        </div>
+        <div class="spotlight-visual reveal d1">
+          <div class="reviews-visual">
+            <div class="review-card">
+              <div class="review-stars">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <p class="review-text">"Incredible atmosphere and the food was outstanding. Will definitely be coming back!"</p>
+              <span class="review-source">Google Review · prompted by WiFi</span>
+            </div>
+            <div class="review-card">
+              <div class="review-stars">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <p class="review-text">"Great cocktails, lovely staff, and the free WiFi was a nice touch. Five stars."</p>
+              <span class="review-source">TripAdvisor · prompted by WiFi</span>
+            </div>
+            <div class="review-card" style="border-color: rgba(255,176,32,0.2); background: rgba(255,176,32,0.03);">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFB020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span style="font-family:var(--mono); font-size:10px; color:#FFB020; text-transform:uppercase; letter-spacing:0.1em;">Private feedback</span>
+              </div>
+              <p class="review-text">"Service was slow during lunch rush. Would be great if that improved."</p>
+              <span class="review-source">Captured privately · never published</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= DASHBOARD ======================= -->
+  <section class="spotlight spotlight--alt">
+    <div class="wrap">
+      <div class="spotlight-grid">
+        <div class="spotlight-text reveal">
+          <div class="kicker">Centralised control</div>
+          <h2>Everything managed <em>from one place</em></h2>
+          <p class="lead">Whether you run one venue or fifty, Fydelia's dashboard gives you centralised control over all of it.</p>
+          <p class="body-copy">Update branding across every location. Launch a campaign network-wide. Monitor splash page performance. Check network health. All from anywhere, with no site visits required.</p>
+          <p class="body-copy">The dashboard is built for venue owners and marketing teams — not IT departments. If you can manage a social media account, you can manage Fydelia.</p>
+        </div>
+        <div class="spotlight-visual reveal d1">
+          <div class="dash-visual">
+            <div class="dash-topbar">
+              <span class="dash-topbar-dot dash-topbar-dot--red"></span>
+              <span class="dash-topbar-dot dash-topbar-dot--yellow"></span>
+              <span class="dash-topbar-dot dash-topbar-dot--green"></span>
+              <span class="dash-topbar-title">Fydelia Dashboard</span>
+            </div>
+            <div class="dash-body">
+              <div class="dash-stats">
+                <div class="dash-stat">
+                  <div class="dash-stat-label">Total Guests</div>
+                  <div class="dash-stat-num dash-stat-num--red">12,847</div>
+                </div>
+                <div class="dash-stat">
+                  <div class="dash-stat-label">Return Rate</div>
+                  <div class="dash-stat-num dash-stat-num--green">34.2%</div>
+                </div>
+              </div>
+              <div class="dash-venues">
+                <div class="dash-venue-row">
+                  <span class="dash-venue-name">Main Restaurant</span>
+                  <span class="dash-venue-status"><span class="dash-venue-status-dot"></span> Online</span>
+                </div>
+                <div class="dash-venue-row">
+                  <span class="dash-venue-name">Rooftop Bar</span>
+                  <span class="dash-venue-status"><span class="dash-venue-status-dot"></span> Online</span>
+                </div>
+                <div class="dash-venue-row">
+                  <span class="dash-venue-name">Poolside Lounge</span>
+                  <span class="dash-venue-status"><span class="dash-venue-status-dot"></span> Online</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= PRICING ======================= -->
+  <section class="pricing-sec">
+    <div class="pricing-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">Simple pricing</div>
+        <h2>Pricing that doesn't punish<br>you for <em>growing</em></h2>
+        <p class="lead">Fydelia is priced per venue, with every feature included. No feature tiers. No upsells. No surprises.</p>
+      </div>
+
+      <div class="pricing-cards">
+
+        <!-- Food & Beverage -->
+        <div class="pricing-card pricing-card--featured-1 reveal">
+          <span class="card-category">Category</span>
+          <h3>Food &amp; Beverage</h3>
+          <p class="card-desc">Bars, pubs, restaurants, cafés, takeaways</p>
+          <div class="card-price">
+            <span class="from-label">from</span>
+            <div class="price-row">
+              <span class="amount">£35</span>
+              <span class="period">/mo per venue</span>
+            </div>
+          </div>
+          <p class="card-note">All features included</p>
+          <a class="btn-ghost" href="https://www.fydelia.com/onboarding/" style="border: 1px solid var(--line-2);">Get started
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" style="width:14px;height:14px;"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+        </div>
+
+        <!-- Entertainment -->
+        <div class="pricing-card pricing-card--featured-2 reveal d1">
+          <span class="card-category">Category</span>
+          <h3>Entertainment</h3>
+          <p class="card-desc">Clubs, cinemas, game rooms, theme parks</p>
+          <div class="card-price">
+            <span class="from-label">from</span>
+            <div class="price-row">
+              <span class="amount">£45</span>
+              <span class="period">/mo per venue</span>
+            </div>
+          </div>
+          <p class="card-note">All features included</p>
+          <a class="btn-ghost" href="https://www.fydelia.com/onboarding/" style="border: 1px solid var(--line-2);">Get started
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" style="width:14px;height:14px;"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+        </div>
+
+        <!-- Hospitality -->
+        <div class="pricing-card pricing-card--featured-3 reveal d2">
+          <span class="card-category">Category</span>
+          <h3>Hospitality</h3>
+          <p class="card-desc">Hotels, hostels, inns, B&amp;Bs, event centres</p>
+          <div class="card-price">
+            <span class="from-label">from</span>
+            <div class="price-row">
+              <span class="amount">£65</span>
+              <span class="period">/mo per venue</span>
+            </div>
+          </div>
+          <p class="card-note">All features included</p>
+          <a class="btn-ghost" href="https://www.fydelia.com/onboarding/" style="border: 1px solid var(--line-2);">Get started
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" style="width:14px;height:14px;"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="pricing-footer reveal">
+        <p>Discounts available on longer billing cycles and for multi-venue estates. No long-term commitment required. Cancel anytime.</p>
+        <div class="switch-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          Switching providers? Fydelia is free until your current contract ends.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= VENUE TYPES ======================= -->
+  <section class="venue-types-sec">
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">Works everywhere</div>
+        <h2>Built for every type of venue</h2>
+      </div>
+
+      <div class="venue-pills">
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span> Hotels</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg></span> Coffee Shops</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></span> Restaurants</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/></svg></span> Bars &amp; Pubs</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span> Gyms &amp; Fitness</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span> Shopping Malls</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/></svg></span> Stadiums &amp; Arenas</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></span> Airports</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8l7-4 7 4v12"/><path d="M9 20v-4h6v4"/></svg></span> Coworking Spaces</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 12 3 12 0v-5"/></svg></span> Universities</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span> Hospitals &amp; Clinics</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> Libraries</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> Conference Centers</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2 12 5.5 8 2l-4.38 1.46a.5.5 0 0 0-.32.51l.86 12.22a2 2 0 0 0 .66 1.33L12 22l6.18-4.48a2 2 0 0 0 .66-1.33l.86-12.22a.5.5 0 0 0-.32-.51z"/></svg></span> Salons &amp; Spas</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 5.5 20 13.5 16 11 16 8"/></svg></span> Car Dealerships</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span> Theme Parks</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7v10"/><path d="M6 5v14"/><path d="M10 3v18"/><path d="M14 5v14"/><path d="M18 7v10"/><path d="M22 9v6"/></svg></span> Museums</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span> Cruise Ships</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg></span> Retail Stores</span>
+        <span class="sp-venue-pill"><span class="v-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span> Vacation Rentals</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= SUPPORT ======================= -->
+  <section class="support-sec">
+    <div class="wrap">
+      <div class="support-grid">
+        <div class="reveal">
+          <div class="kicker" style="margin-bottom:16px;">Support</div>
+          <h2>We're here when<br>you <em>need us</em></h2>
+          <p class="lead" style="margin-top:20px;">Fydelia isn't a self-service tool you're left to figure out alone. When something changes — a new venue, a hardware upgrade, a campaign you've never run before — we're a message away.</p>
+        </div>
+        <div class="support-cards reveal d1">
+          <div class="support-card">
+            <div class="support-card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <div>
+              <h4>Free remote setup</h4>
+              <p>We handle your initial setup at no cost. No engineer visit, no downtime.</p>
+            </div>
+          </div>
+          <div class="support-card">
+            <div class="support-card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+            </div>
+            <div>
+              <h4>Hardware compatibility checks</h4>
+              <p>Not on our supported list? Contact us and we'll check compatibility — usually within a few hours.</p>
+            </div>
+          </div>
+          <div class="support-card">
+            <div class="support-card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <h4>Phone &amp; email support</h4>
+              <p>Real humans, responsive support, plus comprehensive documentation covering everything.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= CTA ======================= -->
+  <section class="cta-sec" id="cta">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span>Your WiFi &middot; Your data &middot; Your revenue</span>
+        </div>
+        <h2 style="margin-top:18px;">Start your free<br><em>14-day trial</em></h2>
+        <p>Full access to every feature. We'll set it up for you. No new hardware. No IT project. No disruption. Just a branded splash page your guests see, verified contacts you own, and a growing list of real people you can reach again.</p>
+        <form class="cta-form" onsubmit="return false;">
+          <input type="email" placeholder="you@venue.com" aria-label="Email address">
+          <button class="btn-solid" type="submit">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </button>
+        </form>
+        <p class="cta-meta">No credit card required · Live in under 30 minutes · Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="ft">
+    <div class="wrap-wide">
+      <div class="ft-grid">
+        <div class="ft-brand-col">
+          <a class="brand" href="index.html" aria-label="Fydelia home">
+            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+            <span class="brand-text">fydelia</span>
+          </a>
+          <p>The industry-leading captive portal and WiFi marketing platform that helps venues spark conversations and capture high-value user data. We turn simple guest WiFi access into a powerful engine for lead-gen and customer loyalty.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="splash-pages.html">Splash Pages</a></li>
+            <li><a href="hardware.html">Supported Hardware</a></li>
+<li><a href="for-venues.html">For Venues</a></li>
+<li><a href="for-resellers.html">For Resellers &amp; MSPs</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://www.fydelia.com/knowledge-base/">Documentation &amp; Support</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="blog.html">Blog</a></li>
+<li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="information-system-security-policy.html">InfoSys Security Policy</a></li>
+            <li><a href="security-assurance-plan">Security Assurance Plan</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li><a href="mailto:support@fydelia.com">support@fydelia.com</a></li>
+            <li>Brighton, United Kingdom</li>
+            <li>Dubai, UAE</li>
+          </ul>
+          <div class="ft-social">
+            <a href="https://instagram.com/fydeliawifi" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.facebook.com/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@fydeliawifi/videos" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <span>&copy; 2026 Fydelia</span>
+        <span>All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+
+<script>
+// ===== Theme toggle =====
+const toggle = document.getElementById('themeToggle');
+if (toggle) {
+  const saved = localStorage.getItem('fy-theme');
+  if (saved) document.body.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.body.setAttribute('data-theme', next);
+    localStorage.setItem('fy-theme', next);
+  });
+}
+
+// ===== Scroll reveal =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => io.observe(el));
+
+// ===== Mobile menu drawer =====
+(function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const drawer     = document.getElementById('menuDrawer');
+  const backdrop   = document.getElementById('menuBackdrop');
+  const closeBtn   = document.getElementById('menuClose');
+  if (!menuToggle || !drawer) return;
+
+  const drawerLinks = drawer.querySelectorAll('.menu-drawer-nav a, .menu-drawer-signin, .menu-drawer-cta');
+
+  function openMenu() {
+    menuToggle.setAttribute('aria-expanded', 'true');
+    drawer.classList.add('active');
+    drawer.setAttribute('aria-hidden', 'false');
+    backdrop.classList.add('active');
+    backdrop.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-open');
+  }
+
+  function closeMenu() {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    drawer.classList.remove('active');
+    drawer.setAttribute('aria-hidden', 'true');
+    backdrop.classList.remove('active');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-open');
+  }
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+  });
+  closeBtn.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  drawerLinks.forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('active')) closeMenu();
+  });
+
+  const mobileThemeBtn = document.getElementById('themeToggleMobile');
+  if (mobileThemeBtn) {
+    mobileThemeBtn.addEventListener('click', () => {
+      const desktopBtn = document.getElementById('themeToggle');
+      if (desktopBtn) desktopBtn.click();
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

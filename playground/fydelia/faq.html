@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instant Provisioning with PlasmaCloud – A world first - Fydelia Blog</title>
-<meta name="description" content="Fydelia and PlasmaCloud teamed up to make instant guest WiFi provisioning possible directly from within the network controller, a world first.">
+<title>Fydelia - Frequently Asked Questions</title>
+<meta name="description" content="Got questions about Fydelia's WiFi marketing platform? Find answers about setup, splash pages, integrations, pricing, GDPR compliance, and more in our FAQ.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles/core.css">
 <link rel="stylesheet" href="styles/sections.css">
 <style>
-/* ======================= BLOG POST TEMPLATE ======================= */
+/* ======================= TEXT PAGE TEMPLATE ======================= */
 
 /* ---------- Hero ---------- */
 .tp-hero {
@@ -47,12 +47,6 @@
   position: relative;
   max-width: 720px;
 }
-.tp-hero-top {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 28px;
-}
 .tp-hero-back {
   display: inline-flex;
   align-items: center;
@@ -60,101 +54,37 @@
   font-size: 13px;
   font-weight: 500;
   color: var(--fg-3);
+  margin-bottom: 28px;
   transition: color 0.2s var(--ease), gap 0.2s var(--ease);
-  text-decoration: none;
 }
 .tp-hero-back:hover { color: var(--fg); gap: 8px; }
 .tp-hero-back svg { width: 14px; height: 14px; transform: rotate(180deg); }
 .tp-hero h1 {
-  font-size: clamp(28px, 4vw, 48px);
+  font-size: clamp(32px, 4vw, 52px);
   letter-spacing: -0.03em;
   line-height: 1.1;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
-
-/* ---------- Article meta ---------- */
-.art-meta {
+.tp-hero .lead {
+  font-size: clamp(16px, 1.2vw, 18px);
+  color: var(--fg-3);
+  line-height: 1.55;
+  max-width: 600px;
+}
+.tp-meta {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px;
-}
-
-/* Tag pill */
-.art-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--red);
-  background: var(--red-glow-soft);
-  border: 1px solid rgba(255,43,43,0.18);
-  border-radius: 100px;
-  padding: 4px 12px;
-  text-decoration: none;
-  transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
-}
-.art-tag:hover {
-  background: rgba(255,43,43,0.18);
-  border-color: rgba(255,43,43,0.35);
-}
-.art-tag-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--red);
-  flex-shrink: 0;
-}
-
-/* Divider dot between meta items */
-.art-meta-sep {
-  width: 3px; height: 3px;
-  border-radius: 50%;
-  background: var(--fg-4);
-  flex-shrink: 0;
-}
-
-/* Author chip */
-.art-author {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-}
-.art-author-avatar {
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  background: var(--bg-3);
-  border: 1px solid var(--line-2);
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.art-author-avatar svg {
-  width: 16px; height: 16px;
-  color: var(--fg-4);
-}
-.art-author-name {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--fg-2);
-  transition: color 0.2s var(--ease);
-}
-.art-author:hover .art-author-name { color: var(--fg); }
-
-/* Date & read time */
-.art-meta-info {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
+  gap: 24px;
+  margin-top: 24px;
   font-family: var(--mono);
   font-size: 12px;
   color: var(--fg-4);
   letter-spacing: 0.04em;
+}
+.tp-meta span { display: inline-flex; align-items: center; gap: 6px; }
+.tp-meta-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--red);
 }
 
 /* ---------- Prose body ---------- */
@@ -167,15 +97,14 @@
 
 /* Headings inside prose */
 .tp-prose h2 {
-  font-size: clamp(20px, 2vw, 26px);
-  font-weight: 600;
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 500;
   letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin-top: 52px;
-  margin-bottom: 18px;
+  line-height: 1.15;
+  margin-top: 56px;
+  margin-bottom: 20px;
   padding-top: 32px;
   border-top: 1px solid var(--line);
-  color: var(--fg);
 }
 .tp-prose h2:first-child {
   margin-top: 0;
@@ -195,14 +124,14 @@
 /* Paragraphs */
 .tp-prose p {
   font-size: 16px;
-  line-height: 1.78;
+  line-height: 1.72;
   color: var(--fg-2);
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 /* Links */
 .tp-prose a {
-  color: var(--white);
+  color: var(--red);
   text-decoration: underline;
   text-decoration-color: rgba(255, 43, 43, 0.3);
   text-underline-offset: 3px;
@@ -212,33 +141,30 @@
   text-decoration-color: var(--red);
 }
 
-/* Blockquote */
-.tp-prose blockquote {
+/* Unordered lists */
+.tp-prose ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+.tp-prose ul li {
   position: relative;
-  margin: 36px 0;
-  padding: 22px 28px;
-  background: var(--bg-2);
-  border-left: 3px solid var(--red);
-  border-radius: 0 var(--r-sm) var(--r-sm) 0;
-}
-.tp-prose blockquote::before {
-  content: '\201C';
-  position: absolute;
-  top: -4px;
-  left: 20px;
-  font-size: 64px;
-  line-height: 1;
-  color: var(--red);
-  opacity: 0.2;
-  font-family: Georgia, serif;
-  pointer-events: none;
-}
-.tp-prose blockquote p {
-  margin-bottom: 0;
+  padding-left: 24px;
   font-size: 16px;
-  font-style: italic;
-  line-height: 1.65;
+  line-height: 1.72;
   color: var(--fg-2);
+  margin-bottom: 10px;
+}
+.tp-prose ul li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 11px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+  opacity: 0.7;
 }
 
 /* Strong */
@@ -252,144 +178,26 @@
   border: none;
   height: 1px;
   background: var(--line);
-  margin: 56px 0;
+  margin: 48px 0;
 }
 
-/* ---------- Article figure (photo + caption) ---------- */
-.art-figure {
-  margin: 40px 0;
-  border-radius: var(--r);
-  overflow: hidden;
-  border: 1px solid var(--line);
-}
-.art-figure img {
-  width: 100%;
-  height: auto;
-  display: block;
-  background: var(--bg-3);
-}
-.art-figure figcaption {
-  padding: 12px 18px;
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--fg-4);
-  border-top: 1px solid var(--line);
-  background: var(--bg-2);
-  font-style: italic;
-}
-
-/* ---------- Video embed ---------- */
-.art-video {
-  margin: 40px 0;
-  border-radius: var(--r);
-  overflow: hidden;
-  border: 1px solid var(--line);
-  aspect-ratio: 16 / 9;
-  background: var(--bg-2);
-}
-.art-video iframe {
-  width: 100%;
-  height: 100%;
-  display: block;
-  border: none;
-}
-
-/* ---------- Author card ---------- */
-.art-author-card {
-  display: flex;
-  gap: 20px;
-  padding: 28px;
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  margin-top: 56px;
-}
-.art-author-card-avatar {
-  width: 52px; height: 52px;
-  border-radius: 50%;
-  background: var(--bg-3);
-  border: 1px solid var(--line-2);
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-}
-.art-author-card-avatar svg {
-  width: 24px; height: 24px;
-  color: var(--fg-4);
-}
-.art-author-card-body {
-  flex: 1;
-  min-width: 0;
-}
-.art-author-card-label {
+/* Table of contents-style section numbering */
+.tp-section-num {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--fg-4);
-  margin-bottom: 4px;
-}
-.art-author-card-name {
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--fg);
-  margin-bottom: 8px;
-}
-.art-author-card-bio {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--fg-3);
-  margin: 0;
-}
-
-/* ---------- CTA strip ---------- */
-.art-cta {
-  margin-top: 64px;
-  padding: 32px;
-  background: linear-gradient(135deg, var(--bg-2) 0%, var(--bg-3) 100%);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-.art-cta-text { flex: 1; }
-.art-cta-eyebrow {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
   color: var(--red);
+  letter-spacing: 0.06em;
+  display: block;
   margin-bottom: 6px;
-}
-.art-cta-heading {
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--fg);
-  margin-bottom: 6px;
-}
-.art-cta-sub {
-  font-size: 14px;
-  color: var(--fg-2);
-  line-height: 1.5;
-  margin: 0;
-}
-@media (max-width: 600px) {
-  .art-cta { flex-direction: column; align-items: flex-start; }
 }
 
-/* ---------- Responsive ---------- */
 @media (max-width: 768px) {
   .tp-hero { padding: 100px 0 48px; }
   .tp-body { padding: 48px 0 64px; }
-  .art-meta { gap: 12px; }
-  .art-author-card { flex-direction: column; gap: 14px; }
+  .tp-meta { flex-wrap: wrap; gap: 12px; }
 }
+
 /* --- Footer social icons --- */
 .ft-social {
   display: flex;
@@ -462,14 +270,14 @@
     </button>
   </div>
   <nav class="menu-drawer-nav">
-      <a href="features.html">Features</a>
-      <a href="splash-pages.html">Splash Pages</a>
-      <a href="case-studies.html">Case Studies</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="hardware.html">Supported Hardware</a>
-      <a href="blog.html">Blog</a>
-      <a href="blog.html">Contact</a>
-      <a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a></li>
+    <a href="features.html">Features</a>
+    <a href="splash-pages.html">Splash Pages</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="hardware.html">Supported Hardware</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a>
   </nav>
   <div class="menu-drawer-foot">
     <div class="menu-drawer-theme">
@@ -498,103 +306,145 @@
       <div class="hero-glow hero-glow--b"></div>
     </div>
     <div class="wrap tp-hero-inner">
-
-      <!-- Back link + tag -->
-      <div class="tp-hero-top">
-        <a class="tp-hero-back" href="#">
-          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
-          All posts
-        </a>
-        <a class="art-tag" href="#">
-          <span class="art-tag-dot" aria-hidden="true"></span>
-          Features
-        </a>
+      <a class="tp-hero-back" href="index.html">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+        Back to home
+      </a>
+      <h1>Frequently Asked Questions</h1>
+      <p class="lead">Everything you need to know about Fydelia — from setup and splash pages to integrations, pricing, and compliance.</p>
+      <div class="tp-meta">
+        <span><span class="tp-meta-dot"></span> 30 questions answered</span>
+        <span>Fydelia by Sentinel Software Ltd</span>
       </div>
-
-      <!-- Title -->
-      <h1>Instant Provisioning with PlasmaCloud – A world first</h1>
-
-      <!-- Article meta row -->
-      <div class="art-meta">
-        <a class="art-author" href="#">
-          <span class="art-author-avatar" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
-          </span>
-          <span class="art-author-name">Fydelia Team</span>
-        </a>
-        <span class="art-meta-sep" aria-hidden="true"></span>
-        <div class="art-meta-info">
-          <time datetime="2020-08-03">Aug 3, 2020</time>
-          <span aria-hidden="true">·</span>
-          <span>3 min read</span>
-        </div>
-      </div>
-
     </div>
   </section>
 
-  <!-- ======================= ARTICLE BODY ======================= -->
+  <!-- ======================= BODY ======================= -->
   <section class="tp-body">
     <div class="wrap tp-prose">
 
-      <!-- Hero image -->
-      <figure class="art-figure">
-        <img src="https://www.fydelia.com/wp-content/uploads/2020/08/plasma.png" alt="PlasmaCloud and Fydelia integration" width="1024" height="359">
-        <figcaption>The PlasmaCloud network controller marketplace, where Fydelia's guest WiFi service can be provisioned in just a few clicks.</figcaption>
-      </figure>
+      <!-- Getting Started -->
+      <h2>Getting Started</h2>
 
-      <p>In late 2019 Fydelia embarked on a rather different approach to guest WiFi installations. It all began at the <a href="https://www.fdiforum.net/mag/event/restaurant-bar-tech-live/" target="_blank" rel="noopener">2019 Restaurant and Bar Tech show</a> in London when we met Marek Linder, the CEO of Plasma Cloud. Marek's vision was unique: to provide a marketplace of applications from within their Plasma Cloud network controller, where you could purchase subscriptions to network-related services right there in the portal.</p>
+      <h3>1. What is Fydelia?</h3>
+      <p>Fydelia is a captive portal and WiFi marketing platform that turns your guest WiFi into a lead-generation and customer loyalty engine. When guests connect to your WiFi, they're greeted with a branded splash page that captures verified contact details and delivers targeted promotions — all automatically.</p>
 
-      <h2>How Guest WiFi Installations Usually Work</h2>
+      <h3>2. How does the guest WiFi login process work?</h3>
+      <p>When a guest selects your WiFi network, your router redirects them to your Fydelia-powered splash page. The guest authenticates, fills out your form, and accepts your terms. Fydelia then tells the router to grant internet access, and the guest's data flows into your dashboard and any connected platforms in real time.</p>
 
-      <p>To understand how unique this proposition was, it is worth taking a step back and looking at how the process usually works. A venue (bar, restaurant, hotel, etc.) would like to capture customer opt-in marketing data via WiFi, so they approach an IT support company. The IT support company scour the web looking for solutions, and find <a href="splash-pages.html">Fydelia's splash page platform</a>. Fydelia create a demo splash page using the branding of the venue as a guide (it takes about 15 minutes). If accepted, the IT company schedule in changes to the network so that guests are redirected to the Fydelia splash page.</p>
+      <h3>3. How quickly can I get set up?</h3>
+      <p>You can be live in under 30 minutes. Paste your website URL, our AI builds a branded splash page in seconds, and we remote-configure your router. No on-site visit required — we handle the initial setup for you at no cost.</p>
 
-      <p>Although the Fydelia piece is extremely quick, all the to-and-fro between the IT company and the venue can usually take 2 to 3 weeks to complete.</p>
+      <h3>4. Do I need to install new hardware?</h3>
+      <p>No. Fydelia is a cloud-based portal server — it works with your existing access points and router. No additional boxes, no on-site installations.</p>
 
-      <blockquote>
-        <p>Although the Fydelia piece is extremely quick, all the to-and-fro between the IT company and the venue can usually take 2 to 3 weeks to complete. That's why Marek's vision is so compelling.</p>
-      </blockquote>
-
-      <p>Fydelia took this one step further and, with tight integration between Plasma Cloud and Fydelia, the creation of a demo splash page is fully automated. In just a few clicks, the IT engineer has a full end-to-end guest WiFi system working and delivered to the client. The page is, of course, just a demo, but with Fydelia's design tools, the IT engineer or the venue themselves can easily make changes.</p>
-
-      <p>By the end of Q1 2020 the first integration beta was complete and clients were invited to use it. Since then Fydelia has become a key service in providing guest WiFi to the Plasma Cloud ecosystem.</p>
-
-      <!-- Video embed -->
-      <div class="art-video">
-        <iframe
-          src="https://www.youtube.com/embed/HlyjCGZKLK8"
-          title="Instant Provisioning with PlasmaCloud and Fydelia"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </div>
+      <h3>5. What hardware is supported?</h3>
+      <p>Fydelia supports 20+ vendors and 40+ device models, including Cisco Meraki, Ubiquiti UniFi, Ruckus, TP-Link Omada, Aruba, EnGenius, MikroTik, DrayTek, SonicWall, Zyxel Nebula, and many more. If it broadcasts WiFi, chances are Fydelia runs on it. Don't see your hardware? <a href="contact.html">Contact our team</a> and we'll check compatibility, usually within a few hours.</p>
 
       <hr>
 
-      <!-- Author card -->
-      <div class="art-author-card">
-        <div class="art-author-card-avatar" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
-        </div>
-        <div class="art-author-card-body">
-          <p class="art-author-card-label">Written by</p>
-          <p class="art-author-card-name">Fydelia Team</p>
-          <p class="art-author-card-bio">The Fydelia team builds guest WiFi tools that turn a simple network login into a powerful marketing moment for hospitality venues.</p>
-        </div>
-      </div>
+      <!-- Splash Pages & Design -->
+      <h2>Splash Pages &amp; Design</h2>
 
-      <!-- CTA strip -->
-      <div class="art-cta">
-        <div class="art-cta-text">
-          <p class="art-cta-eyebrow">Try it yourself</p>
-          <p class="art-cta-heading">Request your free splash page</p>
-          <p class="art-cta-sub">No setup fees, no obligations. Provide us with a website that reflects your brand and we'll have a demo ready in minutes.</p>
-        </div>
-        <a class="btn-solid" href="splash-pages.html" style="white-space:nowrap;">
-          Get started free
-          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
-        </a>
-      </div>
+      <h3>6. How do I create a splash page?</h3>
+      <p>You have two options. Our AI builder lets you paste your website URL — it extracts your logo, brand colours, photos, and copy to generate a fully working splash page in seconds. Or, use the drag-and-drop WYSIWYG editor for full creative control with pre-built sections, real-time mobile preview, and custom CSS support.</p>
+
+      <h3>7. Can I create multiple splash pages?</h3>
+      <p>Yes — every plan includes unlimited splash pages. Create as many as you need for different venues, promotions, or campaigns. All pages are mobile-responsive and load instantly.</p>
+
+      <h3>8. What are Splash Page Zones?</h3>
+      <p>Zones let you serve a different splash page to different areas of your venue based on which access point a guest connects to — all on a single SSID. For example, show a cocktail promotion at the bar and a spa deal at the gym, managed from one dashboard.</p>
+
+      <hr>
+
+      <!-- Features & Marketing Tools -->
+      <h2>Features &amp; Marketing Tools</h2>
+
+      <h3>9. What are AdCards?</h3>
+      <p>AdCards are customisable digital cards displayed on your splash page that showcase promotions, events, or brand messages. They transform the opt-in moment from a vague permission request into a compelling value exchange — dramatically increasing consent rates.</p>
+
+      <h3>10. What are Flash Offers and Dweller Flash Offers?</h3>
+      <p>Flash Offers are time-limited deals displayed the moment a guest connects, complete with countdown timers to drive urgency. Dweller Flash Offers go a step further — they target guests who are <strong>already connected</strong> to your WiFi, pushing promotions directly to their screens while they're still in your venue.</p>
+
+      <h3>11. How does gamification work?</h3>
+      <p>Fydelia offers digital scratch cards, spin-to-win wheels, and other interactive games built into the WiFi login experience. You control the probability-weighted prizes and can tune them live. Unique voucher codes sync to your POS, and anti-fraud limits prevent abuse.</p>
+
+      <h3>12. What is Scheduled Content?</h3>
+      <p>You can schedule different promotions, images, and messages to display based on time of day, day of week, or specific date ranges. Your morning coffee deal shows at breakfast and automatically switches to happy hour in the evening — without manual intervention.</p>
+
+      <h3>13. Can I run A/B tests?</h3>
+      <p>Yes. Test different headlines, images, and offers side by side. Fydelia lets real-world data decide which version drives the highest engagement and opt-in rates.</p>
+
+      <h3>14. How do Birthday Campaigns work?</h3>
+      <p>Capture guest birthdays during the WiFi sign-in process, then automatically send personalised celebration offers on their birthday — no manual effort required.</p>
+
+      <h3>15. Can Fydelia help me get more Google and TripAdvisor reviews?</h3>
+      <p>Yes. Fydelia can automatically prompt guests to leave reviews on your preferred platform after they connect. You can route happy guests to public review sites and privately capture feedback from the rest.</p>
+
+      <hr>
+
+      <!-- Data, Integrations & CRM -->
+      <h2>Data, Integrations &amp; CRM</h2>
+
+      <h3>16. What guest data does Fydelia capture?</h3>
+      <p>Fydelia captures verified email addresses, phone numbers, names, birthdays, and any other fields you add to your splash page form. All emails are 100% auto-verified before granting WiFi access.</p>
+
+      <h3>17. What integrations are available?</h3>
+      <p>Over 100 no-code integrations, including Mailchimp, HubSpot, Salesforce, Klaviyo, Stripe, Shopify, OpenTable, SevenRooms, Google Analytics, TripAdvisor, Zapier, and many more. Two-way data sync means your CRM, email, POS, and analytics tools stay up to date automatically.</p>
+
+      <h3>18. How do integrations work?</h3>
+      <p>Browse the integration library in your dashboard, select your platform, and authorise the connection with a single click — no API keys or code. From that moment, every guest opt-in, visit, and interaction is automatically piped to your connected platforms in real time.</p>
+
+      <h3>19. Can I export my data?</h3>
+      <p>Yes. You can export your guest lists as CSV files at any time for further analysis or use in external tools.</p>
+
+      <hr>
+
+      <!-- Multi-Venue & Enterprise -->
+      <h2>Multi-Venue &amp; Enterprise</h2>
+
+      <h3>20. How does Shared Sign-On work?</h3>
+      <p>Once a guest signs in at any venue in your estate, their device is securely remembered account-wide. Every subsequent visit at any of your locations is instant — no splash page, no form, no friction.</p>
+
+      <h3>21. What is Proof of Presence?</h3>
+      <p>Even when guests auto-connect without seeing a sign-in page, Fydelia logs every visit as a Proof of Presence event. This data is sent to your CRM in real time, so you can track repeat visits, measure footfall, and understand loyalty across your entire portfolio — with zero data gaps.</p>
+
+      <h3>22. Can I manage all my venues from one dashboard?</h3>
+      <p>Yes. Fydelia's Full Remote Management gives you centralised control over every venue. Update branding, launch campaigns, deploy splash pages, and monitor network health across all locations — from anywhere, with no site visits required.</p>
+
+      <hr>
+
+      <!-- Security, Privacy & Compliance -->
+      <h2>Security, Privacy &amp; Compliance</h2>
+
+      <h3>23. Is Fydelia GDPR compliant?</h3>
+      <p>Yes, fully. Fydelia is engineered for GDPR compliance from the ground up. Login forms never use pre-ticked boxes — every opt-in is an explicit, affirmative choice. Granular micro opt-ins let guests consent to specific communications independently. A verifiable audit trail is created automatically for every consent event.</p>
+
+      <h3>24. How is guest data protected?</h3>
+      <p>All data is encrypted in transit and at rest using industry-standard protocols. Access is restricted to authorised personnel only with multi-factor authentication. Fydelia's servers are hosted in data centres with ISO 27001 and SOC 2 certifications. Regular penetration testing and vulnerability scans are conducted.</p>
+
+      <h3>25. What is the data retention policy?</h3>
+      <p>Fydelia retains guest data for a standard period of one year from the date of collection. Custom retention periods can be requested in writing. At the end of the retention period, data is securely deleted or anonymised.</p>
+
+      <h3>26. What happens if there's a data breach?</h3>
+      <p>Fydelia maintains an Incident Response Plan and commits to notifying affected customers within 24 hours of breach detection, with full details on the scope, impact, and remediation steps taken.</p>
+
+      <hr>
+
+      <!-- Pricing & Billing -->
+      <h2>Pricing &amp; Billing</h2>
+
+      <h3>27. How much does Fydelia cost?</h3>
+      <p>Pricing is low, per-venue, and every feature is included — no tiers, no upsells. Food &amp; Beverage venues start from <strong>£35/mo</strong>, Entertainment from <strong>£45/mo</strong>, and Hospitality from <strong>£65/mo</strong>. Discounts are available based on billing cycle and number of venues.</p>
+
+      <h3>28. Is there a free trial?</h3>
+      <p>Yes — a completely free 14-day trial with access to every single feature. No credit card required, no restrictions, and we handle the setup for you.</p>
+
+      <h3>29. Am I locked into a long-term contract?</h3>
+      <p>No. Fydelia operates on a flexible "Pay &amp; Play" commitment — you're only committed for your current billing cycle, typically a rolling 3-month period. Cancel anytime.</p>
+
+      <h3>30. I'm stuck in a contract with another provider. Can I still switch?</h3>
+      <p>Yes. Fydelia is free until your current contract ends. Switch today and get full service at zero cost for the entire remainder of your existing contract — no double payments. Terms and conditions apply; <a href="contact.html">contact the team</a> for details.</p>
 
     </div>
   </section>
@@ -669,6 +519,7 @@
       </div>
     </div>
   </footer>
+
 </main>
 
 <script>
@@ -699,10 +550,10 @@ const io = new IntersectionObserver((entries) => {
 reveals.forEach(el => io.observe(el));
 
 // ===== Mobile menu =====
-const menuToggle   = document.getElementById('menuToggle');
-const menuClose    = document.getElementById('menuClose');
+const menuToggle = document.getElementById('menuToggle');
+const menuClose = document.getElementById('menuClose');
 const menuBackdrop = document.getElementById('menuBackdrop');
-const menuDrawer   = document.getElementById('menuDrawer');
+const menuDrawer = document.getElementById('menuDrawer');
 function openMenu() {
   menuToggle.setAttribute('aria-expanded', 'true');
   menuBackdrop.classList.add('active');
@@ -717,8 +568,8 @@ function closeMenu() {
   menuDrawer.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('menu-open');
 }
-if (menuToggle)   menuToggle.addEventListener('click', openMenu);
-if (menuClose)    menuClose.addEventListener('click', closeMenu);
+if (menuToggle) menuToggle.addEventListener('click', openMenu);
+if (menuClose) menuClose.addEventListener('click', closeMenu);
 if (menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
 menuDrawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 </script>

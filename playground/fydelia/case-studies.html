@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fydelia — Case Studies</title>
+<meta name="description" content="See how hospitality brands like Costa Coffee, Wahaca, and Ping Pong use Fydelia to turn guest WiFi into a powerful marketing engine.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -760,6 +761,25 @@
   .cs-panel-body { padding: 24px; }
   .cs-panel-foot { padding: 14px 24px; }
 }
+/* --- Footer social icons --- */
+.ft-social {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 18px;
+  margin-left: -6px;
+}
+.ft-social-link {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  color: var(--fg-4);
+  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.ft-social-link svg { width: 16px; height: 16px; }
+.ft-social-link:hover { color: var(--fg); background: var(--bg-3); }
 </style>
 </head>
 <body>
@@ -771,17 +791,15 @@
 <nav id="nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="Fydelia home">
-      <span class="brand-mark" aria-hidden="true">
-        <span class="brand-dot"></span>
-      </span>
+      <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
       <span class="brand-text">fydelia</span>
     </a>
     <ul class="nav-links">
-      <li><a href="index.html#features">Features</a></li>
-      <li><a href="index.html#integrations">Integrations</a></li>
-      <li><a href="index.html#hardware">Hardware</a></li>
-      <li><a href="#">Case Studies</a></li>
-      <li><a href="new-pricing.html">Pricing</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="splash-pages.html">Splash Pages</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a></li>
     </ul>
     <div class="nav-cta">
       <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
@@ -790,8 +808,8 @@
           <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         </span>
       </button>
-      <a class="btn-ghost" href="#">Sign in</a>
-      <a class="btn-solid" href="#cta">Try free for 14 days
+      <a class="btn-ghost" href="https://ondemand.fydelia.com/">Sign in</a>
+      <a class="btn-solid" href="https://www.fydelia.com/onboarding/">Try free for 14 days
         <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
       </a>
     </div>
@@ -815,11 +833,14 @@
     </button>
   </div>
   <nav class="menu-drawer-nav">
-    <a href="index.html#features">Features</a>
-    <a href="index.html#integrations">Integrations</a>
-    <a href="index.html#hardware">Hardware</a>
-    <a href="#">Case Studies</a>
-    <a href="new-pricing.html">Pricing</a>
+      <a href="features.html">Features</a>
+      <a href="splash-pages.html">Splash Pages</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="hardware.html">Supported Hardware</a>
+      <a href="blog.html">Blog</a>
+      <a href="blog.html">Contact</a>
+      <a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a></li>
   </nav>
   <div class="menu-drawer-foot">
     <div class="menu-drawer-theme">
@@ -831,8 +852,8 @@
         </span>
       </button>
     </div>
-    <a class="btn-ghost menu-drawer-signin" href="#">Sign in</a>
-    <a class="btn-solid menu-drawer-cta" href="#cta">Try free for 14 days
+    <a class="btn-ghost menu-drawer-signin" href="https://ondemand.fydelia.com/">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="https://www.fydelia.com/onboarding/">Try free for 14 days
       <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
     </a>
   </div>
@@ -976,7 +997,7 @@
           <span>Proven Results</span>
         </div>
         <h2 class="reveal d1">What our clients <em>actually</em> achieved</h2>
-        <p class="reveal d2">Real outcomes pulled straight from the case studies above — no fluff, just what happened after going live with Fydelia.</p>
+        <p class="reveal d2">Real outcomes pulled straight from the case studies above. No fluff, just what happened after going live with Fydelia.</p>
       </div>
     </div>
 
@@ -995,7 +1016,7 @@
         </div>
         <div class="cs-panel-body">
           <h3 class="cs-panel-metric">Facebook audiences from <em>physical</em> visitors</h3>
-          <p class="cs-panel-desc">GNG targets Facebook ads at people who physically visited their restaurants and used WiFi — calling this capability "gold dust" for their marketing strategy.</p>
+          <p class="cs-panel-desc">GNG targets Facebook ads at people who physically visited their restaurants and used WiFi, calling this capability "gold dust" for their marketing strategy.</p>
         </div>
         <div class="cs-panel-foot">Great Northern Group</div>
       </article>
@@ -1012,7 +1033,7 @@
         </div>
         <div class="cs-panel-body">
           <h3 class="cs-panel-metric">New brands onboarded in <em>&lt; 1 hour</em></h3>
-          <p class="cs-panel-desc">After initial Costa Coffee setup, Red and RACZ Ltd onboarded additional brands within an hour — from page design to production-ready deployment.</p>
+          <p class="cs-panel-desc">After initial Costa Coffee setup, Red and RACZ Ltd onboarded additional brands within an hour, from page design to production-ready deployment.</p>
         </div>
         <div class="cs-panel-foot">Costa Coffee / Red and RACZ</div>
       </article>
@@ -1054,7 +1075,7 @@
         </div>
         <div class="cs-panel-body">
           <h3 class="cs-panel-metric"><em>#1</em> source of database opt-ins</h3>
-          <p class="cs-panel-desc">Wahaca's guest WiFi became their single biggest channel for marketing opt-ins — outperforming every other data collection method across their group.</p>
+          <p class="cs-panel-desc">Wahaca's guest WiFi became their single biggest channel for marketing opt-ins outperforming every other data collection method across their group.</p>
         </div>
         <div class="cs-panel-foot">Wahaca</div>
       </article>
@@ -1074,7 +1095,7 @@
         </div>
         <div class="cs-panel-body">
           <h3 class="cs-panel-metric"><em>3</em> WiFi solutions consolidated into <em>1</em></h3>
-          <p class="cs-panel-desc">Awen Cultural Trust replaced three separate guest WiFi providers — each with different costs and quirks — with a single Fydelia deployment.</p>
+          <p class="cs-panel-desc">Awen Cultural Trust replaced three separate guest WiFi providers, each with different costs and quirks, with a single Fydelia deployment.</p>
         </div>
         <div class="cs-panel-foot">Awen Cultural Trust</div>
       </article>
@@ -1095,7 +1116,7 @@
         </div>
         <div class="cs-panel-body">
           <h3 class="cs-panel-metric">WiFi quality driving <em>higher review scores</em></h3>
-          <p class="cs-panel-desc">Seaview found that a seamless WiFi sign-up directly led to better guest reviews and higher ratings on their online listings — a tangible revenue driver.</p>
+          <p class="cs-panel-desc">Seaview found that a seamless WiFi sign-up directly led to better guest reviews and higher ratings on their online listings. A tangible revenue driver.</p>
         </div>
         <div class="cs-panel-foot">Seaview Holidays Resort</div>
       </article>
@@ -1127,7 +1148,7 @@
     <div class="wrap">
       <div class="cta-box reveal">
         <h2>Ready to get started?</h2>
-        <p>Start your free 14-day trial today. Full access, zero risk — we'll even handle the setup.</p>
+        <p>Start your free 14-day trial today. Full access, zero risk, and we'll even handle the setup.</p>
         <form class="cta-form" onsubmit="return false;">
           <input type="email" placeholder="you@venue.com" aria-label="Email address">
           <button class="btn-solid" type="submit">Start free trial
@@ -1149,42 +1170,59 @@
             <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
             <span class="brand-text">fydelia</span>
           </a>
-          <p>We help venues start a conversation with customers and collect valuable user data through lead generation and loyalty.</p>
+          <p>The industry-leading captive portal and WiFi marketing platform that helps venues spark conversations and capture high-value user data. We turn simple guest WiFi access into a powerful engine for lead-gen and customer loyalty.</p>
         </div>
         <div class="ft-col">
           <h4>Product</h4>
           <ul>
-            <li><a href="index.html#features">Features</a></li>
-            <li><a href="#">Splash Pages</a></li>
-            <li><a href="index.html#integrations">Integrations</a></li>
-            <li><a href="index.html#hardware">Hardware</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="splash-pages.html">Splash Pages</a></li>
+            <li><a href="hardware.html">Supported Hardware</a></li>
+<li><a href="for-venues.html">For Venues</a></li>
+<li><a href="for-resellers.html">For Resellers &amp; MSPs</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
           </ul>
         </div>
         <div class="ft-col">
           <h4>Resources</h4>
           <ul>
-            <li><a href="#">Knowledge Base</a></li>
-            <li><a href="#">Case Studies</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Downloads</a></li>
+            <li><a href="https://www.fydelia.com/knowledge-base/">Documentation &amp; Support</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="blog.html">Blog</a></li>
+<li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
         <div class="ft-col">
-          <h4>Company</h4>
+          <h4>Legal</h4>
           <ul>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Support</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="information-system-security-policy.html">InfoSys Security Policy</a></li>
+            <li><a href="security-assurance-plan">Security Assurance Plan</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
           </ul>
         </div>
         <div class="ft-col">
           <h4>Contact</h4>
           <ul>
             <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li><a href="mailto:support@fydelia.com">support@fydelia.com</a></li>
             <li>Brighton, United Kingdom</li>
             <li>Dubai, UAE</li>
           </ul>
+          <div class="ft-social">
+            <a href="https://instagram.com/fydeliawifi" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.facebook.com/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@fydeliawifi/videos" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
         </div>
       </div>
       <div class="ft-bottom">

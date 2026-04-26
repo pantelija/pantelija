@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fydelia for Resellers and IT Companies</title>
+<meta name="description" content="Add recurring revenue to every WiFi installation. Reseller and IT company partnership program for Fydelia captive portal and WiFi marketing platform.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/core.css">
+<link rel="stylesheet" href="styles/sections.css">
+
+<style>
+/* ======================= RESELLERS PAGE STYLES ======================= */
+
+/* --- Hero --- */
+.reseller-hero {
+  position: relative;
+  padding: 140px 0 100px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.reseller-hero .hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.reseller-hero .hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+}
+.reseller-hero-wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px;
+  align-items: center;
+  min-height: 480px;
+}
+.reseller-hero-copy { max-width: 680px; }
+.reseller-hero h1 {
+  font-size: clamp(44px, 5.8vw, 61px);
+  margin: 20px 0 24px;
+}
+.reseller-hero h1 em {
+  color: var(--red);
+  font-style: normal;
+  font-weight: 600;
+}
+.reseller-hero .hero-sub {
+  font-size: 18px;
+  color: var(--fg-2);
+  max-width: 580px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+/* Hero stats/benefits on right */
+.reseller-hero-visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+.reseller-stat-card {
+  padding: 28px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  border-radius: 16px;
+  transition: all 0.3s var(--ease);
+}
+.reseller-stat-card:hover {
+  border-color: var(--line-strong);
+  background: var(--bg-3);
+  transform: translateY(-4px);
+}
+.reseller-stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--red);
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.reseller-stat-label {
+  font-size: 14px;
+  color: var(--fg-3);
+  line-height: 1.5;
+}
+
+/* --- Benefits Section (spotlight style) --- */
+.reseller-benefits {
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+}
+.reseller-benefits--alt {
+  background: var(--bg-1);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.reseller-benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+}
+.reseller-benefits-grid--reverse .reseller-benefit-visual { order: -1; }
+.reseller-benefit-text .kicker { margin-bottom: 16px; }
+.reseller-benefit-text h2 { margin-bottom: 20px; }
+.reseller-benefit-text .lead { margin-bottom: 28px; }
+.reseller-benefit-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+}
+.reseller-benefit-list li {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  font-size: 15.5px;
+  color: var(--fg-2);
+}
+.benefit-check {
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  border-radius: 8px;
+  background: rgba(255,43,43,0.12);
+  border: 1px solid rgba(255,43,43,0.3);
+  display: grid;
+  place-items: center;
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 1px;
+}
+
+.reseller-benefit-visual {
+  position: relative;
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+  padding: 40px;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,43,43,0.08) 0%, transparent 70%);
+  border: 1px solid var(--line-2);
+  border-radius: 24px;
+}
+.benefit-icon-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+  max-width: 320px;
+}
+.benefit-icon-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+  border: 1px solid var(--line-2);
+  border-radius: 16px;
+  background: var(--bg-2);
+  text-align: center;
+}
+.benefit-icon-block svg {
+  width: 32px;
+  height: 32px;
+  color: var(--red);
+}
+.benefit-icon-block span {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-3);
+}
+
+/* --- What Clients Get Section --- */
+.reseller-what-clients {
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+}
+.what-clients-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 80px;
+}
+.what-clients-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+.what-client-card {
+  padding: 40px;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  transition: all 0.3s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.what-client-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(255,43,43,0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+  pointer-events: none;
+}
+.what-client-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-4px);
+}
+.what-client-card:hover::before { opacity: 1; }
+.what-client-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  margin-bottom: 16px;
+  background: rgba(255,43,43,0.1);
+  color: var(--red);
+}
+.what-client-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.what-client-card p {
+  font-size: 14.5px;
+  color: var(--fg-3);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --- Platform Features --- */
+.reseller-platform {
+  padding: 140px 0;
+  background: var(--bg-1);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.platform-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 30% 50%, var(--red-glow-soft) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 60%, rgba(154,108,255,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.platform-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+}
+.platform-text h2 { margin-bottom: 20px; }
+.platform-text .lead { margin-bottom: 32px; }
+.platform-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.platform-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 15px;
+  color: var(--fg-2);
+}
+.platform-check {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: rgba(255,43,43,0.12);
+  border: 1px solid rgba(255,43,43,0.3);
+  display: grid;
+  place-items: center;
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 1px;
+}
+
+.platform-visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 400px;
+}
+.dashboard-mockup {
+  width: 100%;
+  max-width: 380px;
+  border-radius: 16px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  overflow: hidden;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5);
+}
+.dashboard-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.dashboard-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.dashboard-dot:nth-child(1) { background: #FF6B6B; }
+.dashboard-dot:nth-child(2) { background: #FFC750; }
+.dashboard-dot:nth-child(3) { background: #51CF66; }
+.dashboard-body {
+  padding: 28px;
+}
+.dash-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line-2);
+}
+.dash-row:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.dash-label {
+  font-size: 12px;
+  color: var(--fg-4);
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.dash-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--red);
+}
+
+/* --- Partner Terms --- */
+.reseller-terms {
+  padding: 140px 0;
+  position: relative;
+}
+.terms-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+}
+.term-card {
+  padding: 40px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  border-radius: 18px;
+  transition: all 0.3s var(--ease);
+}
+.term-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-4px);
+  background: var(--bg-3);
+}
+.term-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+  background: rgba(255,43,43,0.12);
+  color: var(--red);
+}
+.term-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.term-card p {
+  font-size: 14.5px;
+  color: var(--fg-3);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --- Hardware Compatibility --- */
+.reseller-hardware {
+  padding: 140px 0;
+  background: var(--bg-1);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.hardware-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 40% at 20% 50%, rgba(154,108,255,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hardware-content {
+  position: relative;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.hardware-content h2 {
+  margin-bottom: 16px;
+}
+.hardware-content .lead {
+  margin-bottom: 48px;
+}
+.hardware-brands {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+.hw-brand {
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-3);
+  transition: all 0.3s var(--ease);
+  white-space: nowrap;
+}
+.hw-brand:hover {
+  border-color: var(--line-strong);
+  color: var(--red);
+  transform: translateY(-2px);
+}
+
+/* --- Pricing Preview --- */
+.reseller-pricing {
+  padding: 140px 0;
+  position: relative;
+}
+.pricing-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 64px;
+}
+.pricing-tiers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.pricing-card {
+  padding: 44px;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  transition: all 0.3s var(--ease);
+  position: relative;
+}
+.pricing-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-6px);
+}
+.pricing-card.featured {
+  border-color: var(--red);
+  background: radial-gradient(ellipse 100% 100% at 50% 0%, rgba(255,43,43,0.08) 0%, var(--bg-1) 50%);
+  position: relative;
+  z-index: 1;
+}
+.pricing-card.featured::before {
+  content: 'FEATURED';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: white;
+  background: var(--red);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+.pricing-category {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.pricing-venue-type {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--fg);
+}
+.pricing-amount {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--red);
+  letter-spacing: -0.02em;
+}
+.pricing-period {
+  font-size: 14px;
+  color: var(--fg-3);
+}
+.pricing-desc {
+  font-size: 14px;
+  color: var(--fg-3);
+  line-height: 1.6;
+  flex-grow: 1;
+}
+.pricing-note {
+  font-size: 13px;
+  color: var(--fg-4);
+  font-style: italic;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+/* --- CTA Section --- */
+.reseller-cta {
+  padding: 140px 0;
+  background: var(--bg-1);
+  border-top: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.reseller-cta-box {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 64px 48px;
+  text-align: center;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  border-radius: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.reseller-cta-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% -50%, rgba(255,43,43,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.reseller-cta-box h2 {
+  position: relative;
+  margin-bottom: 12px;
+}
+.reseller-cta-box > p {
+  position: relative;
+  margin: 0 0 32px 0;
+}
+.reseller-cta-box .cta-buttons {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* --- Footer social icons --- */
+.ft-social {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 18px;
+  margin-left: -6px;
+}
+.ft-social-link {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  color: var(--fg-4);
+  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.ft-social-link svg { width: 16px; height: 16px; }
+.ft-social-link:hover { color: var(--fg); background: var(--bg-3); }
+
+/* --- Responsive --- */
+@media (max-width: 980px) {
+  .reseller-hero-wrap { grid-template-columns: 1fr; gap: 48px; }
+  .reseller-benefits-grid { grid-template-columns: 1fr; gap: 48px; }
+  .reseller-benefits-grid--reverse .reseller-benefit-visual { order: 0; }
+  .platform-grid { grid-template-columns: 1fr; gap: 48px; }
+  .what-clients-grid { grid-template-columns: 1fr; }
+  .terms-grid { grid-template-columns: repeat(2, 1fr); }
+  .pricing-tiers { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .reseller-hero-wrap { gap: 32px; }
+  .reseller-hero h1 { margin: 16px 0 20px; }
+  .reseller-benefit-text { padding: 0 20px; }
+  .reseller-benefit-list { gap: 12px; }
+  .terms-grid { grid-template-columns: 1fr; }
+  .pricing-tiers { grid-template-columns: 1fr; }
+  .reseller-cta-box { padding: 40px 24px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Grain overlay -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Fydelia home">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+      <span class="brand-text">fydelia</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="features.html">Features</a></li>
+      <li><a href="splash-pages.html">Splash Pages</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+      <a class="btn-ghost" href="https://ondemand.fydelia.com/">Sign in</a>
+      <a class="btn-solid" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <!-- Mobile burger -->
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer + backdrop -->
+<div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+<aside id="menuDrawer" class="menu-drawer" aria-hidden="true">
+  <div class="menu-drawer-head">
+    <span class="menu-drawer-title">Menu</span>
+    <button id="menuClose" class="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu-drawer-nav">
+      <a href="features.html">Features</a>
+      <a href="splash-pages.html">Splash Pages</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="resellers.html">For Resellers</a>
+      <a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a>
+  </nav>
+  <div class="menu-drawer-foot">
+    <div class="menu-drawer-theme">
+      <span class="menu-drawer-theme-label">Dark mode</span>
+      <button id="themeToggleMobile" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+    </div>
+    <a class="btn-ghost menu-drawer-signin" href="https://ondemand.fydelia.com/">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
+</aside>
+
+<main>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="reseller-hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-grid"></div>
+      <div class="hero-glow hero-glow--a"></div>
+      <div class="hero-glow hero-glow--b"></div>
+    </div>
+
+    <div class="wrap reseller-hero-wrap">
+      <div class="reseller-hero-copy">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span>Reseller Partnership Program</span>
+        </div>
+        <h1>Add a <em>revenue stream</em> to every WiFi installation you do</h1>
+        <p class="hero-sub">You're already deploying networks your clients trust you with. Fydelia lets you go further—offering a fully branded captive portal and WiFi marketing platform as part of your service, without building or hosting anything yourself.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn-solid btn-lg" href="#cta">Get started as a reseller
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+          <a class="btn-ghost" href="#benefits" style="border:1px solid var(--line-2);">Learn more</a>
+        </div>
+      </div>
+
+      <div class="reseller-hero-visual">
+       
+        <div class="reseller-stat-card reveal d1">
+          <div class="reseller-stat-value">100%</div>
+          <div class="reseller-stat-label">Infrastructure handled. Zero servers to manage.</div>
+        </div>
+        <div class="reseller-stat-card reveal d2">
+          <div class="reseller-stat-value">&lt;2h</div>
+          <div class="reseller-stat-label">From decision to live deployment per client</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= BENEFIT 1: CLOSE MORE DEALS ======================= -->
+  <section class="reseller-benefits" id="benefits">
+    <div class="wrap">
+      <div class="reseller-benefits-grid">
+        <div class="reseller-benefit-text reveal">
+          <div class="kicker">Competitive Advantage</div>
+          <h2>Close <em>more deals</em></h2>
+          <p class="lead">When a prospect is evaluating networking suppliers, the one who offers a complete solution wins. Guest WiFi hardware alone is a commodity. Guest WiFi hardware plus a captive portal platform that captures leads, runs promotions, and integrates with their CRM—that's a partnership.</p>
+          <ul class="reseller-benefit-list">
+            <li><span class="benefit-check">✓</span> Present a differentiated offer at point of sale</li>
+            <li><span class="benefit-check">✓</span> Show a revenue-generating platform that pays for itself</li>
+            <li><span class="benefit-check">✓</span> Fundamentally different conversation that closes faster</li>
+            <li><span class="benefit-check">✓</span> Overcome commodity pricing on hardware alone</li>
+          </ul>
+        </div>
+        <div class="reseller-benefit-visual reveal d1">
+          <div class="benefit-icon-grid">
+            <div class="benefit-icon-block">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Hardware +<br>Platform</span>
+            </div>
+            <div class="benefit-icon-block">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              <span>Complete<br>Solution</span>
+            </div>
+            <div class="benefit-icon-block">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="12 3 20 7.5 20 16.5 12 21 4 16.5 4 7.5 12 3"/><line x1="12" y1="12" x2="20" y2="7.5"/><line x1="12" y1="12" x2="12" y2="21"/><line x1="12" y1="12" x2="4" y2="7.5"/></svg>
+              <span>Integrated<br>Ecosystem</span>
+            </div>
+            <div class="benefit-icon-block">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              <span>Proven<br>Value</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= BENEFIT 2: RECURRING REVENUE ======================= -->
+  <section class="reseller-benefits reseller-benefits--alt">
+    <div class="wrap">
+      <div class="reseller-benefits-grid reseller-benefits-grid--reverse">
+        <div class="reseller-benefit-text reveal">
+          <div class="kicker">Revenue Growth</div>
+          <h2>Increase <em>recurring revenue</em> on every installation</h2>
+          <p class="lead">One-off hardware sales have a ceiling. Recurring software subscriptions don't. Every venue you onboard onto Fydelia becomes a monthly revenue line. Whether you white-label the platform, resell at your own margin, or bundle it into a managed service package, Fydelia adds predictable, recurring income on top of every network you deploy.</p>
+          <ul class="reseller-benefit-list">
+            <li><span class="benefit-check">✓</span> Monthly recurring revenue per venue</li>
+            <li><span class="benefit-check">✓</span> Revenue compounds as your portfolio grows</li>
+            <li><span class="benefit-check">✓</span> White-label or resell at your own margin</li>
+            <li><span class="benefit-check">✓</span> No proportional increase in your workload</li>
+          </ul>
+        </div>
+        <div class="reseller-benefit-visual reveal d1">
+          <div class="benefit-icon-grid">
+            <div class="benefit-icon-block">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <span>Predictable<br>Income</span>
+            </div>
+            <div class="benefit-icon-block">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M4 9h16"/><path d="M4 15h16"/></svg>
+              <span>Scalable<br>Model</span>
+            </div>
+            <div class="benefit-icon-block">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 17"/><polyline points="17 6 23 6 23 12"/></svg>
+              <span>Growth<br>without Scale</span>
+            </div>
+            <div class="benefit-icon-block">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <span>24/7<br>Platforms</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= BENEFIT 3: UPSELL ======================= -->
+  <section class="reseller-benefits">
+    <div class="wrap">
+      <div class="reseller-benefits-grid">
+        <div class="reseller-benefit-text reveal">
+          <div class="kicker">Easy Upsell</div>
+          <h2>Upsell <em>existing clients</em> without a site visit</h2>
+          <p class="lead">Your existing client base is already running networks you installed and manage. Most of them have guest WiFi that does nothing beyond granting internet access. Fydelia is a natural, low-friction upsell—no new hardware required, no disruption to their existing setup, and a clear business case you can present in a single conversation.</p>
+          <ul class="reseller-benefit-list">
+            <li><span class="benefit-check">✓</span> Zero new hardware required</li>
+            <li><span class="benefit-check">✓</span> Configure entirely remote</li>
+            <li><span class="benefit-check">✓</span> Clients live within 24 hours</li>
+            <li><span class="benefit-check">✓</span> Low-friction, natural conversation</li>
+          </ul>
+        </div>
+        <div class="reseller-benefit-visual reveal d1">
+          <div class="benefit-icon-grid">
+            <div class="benefit-icon-block">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              <span>Find<br>Opportunity</span>
+            </div>
+            <div class="benefit-icon-block">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <span>Single<br>Conversation</span>
+            </div>
+            <div class="benefit-icon-block">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              <span>No Site<br>Visit</span>
+            </div>
+            <div class="benefit-icon-block">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-4-4L1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <span>Revenue<br>Same Day</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= WHAT CLIENTS GET ======================= -->
+  <section class="reseller-what-clients">
+    <div class="wrap">
+      <div class="what-clients-header reveal">
+        <div class="kicker">Your Clients Benefit From</div>
+        <h2>A complete, purpose-built platform</h2>
+        <p class="lead">Your clients get more than just WiFi. They get a fully-featured marketing and engagement platform that they'll actually love to use.</p>
+      </div>
+
+      <div class="what-clients-grid">
+        <article class="what-client-card reveal">
+          <h3>For their guests</h3>
+          <p>A branded, mobile-friendly WiFi login experience that loads instantly and feels like part of the venue, not a bolt-on.</p>
+        </article>
+
+        <article class="what-client-card reveal d1">
+          <h3>For their marketing team</h3>
+          <p>AdCards, Flash Offers, Scheduled Content, Birthday Campaigns, gamification, review prompts, and 100+ no-code integrations with platforms they already use.</p>
+        </article>
+
+        <article class="what-client-card reveal d2">
+          <h3>For their operations</h3>
+          <p>A guest list that builds itself with 100% auto-verified contacts, Proof of Presence visit tracking, Shared Sign-On across multiple locations, and A/B testing.</p>
+        </article>
+
+        <article class="what-client-card reveal">
+          <h3>For their management</h3>
+          <p>A simple dashboard built for venue owners and marketing teams—not IT departments. Easy enough that they don't need to call you every time they want to change a promotion.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= PLATFORM FEATURES ======================= -->
+  <section class="reseller-platform">
+    <div class="platform-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="platform-grid">
+        <div class="platform-text reveal">
+          <div class="kicker">Multi-Client Management</div>
+          <h2>A dashboard built for resellers</h2>
+          <p class="lead">Fydelia's reseller dashboard gives you centralised control over every client account from a single login. Create accounts, deploy splash pages, monitor performance, update branding, and troubleshoot—all without leaving your desk or picking up the phone.</p>
+          <ul class="platform-features">
+            <li><span class="platform-check">✓</span> One dashboard, every client</li>
+            <li><span class="platform-check">✓</span> Each client gets isolated account &amp; dashboard</li>
+            <li><span class="platform-check">✓</span> You control what they can see and do</li>
+            <li><span class="platform-check">✓</span> Full remote management—no site visits required</li>
+            <li><span class="platform-check">✓</span> 20+ hardware vendors, 40+ device models supported</li>
+            <li><span class="platform-check">✓</span> GDPR compliant from the ground up</li>
+          </ul>
+        </div>
+
+        <div class="platform-visual reveal d1">
+          <div class="dashboard-mockup">
+            <div class="dashboard-header">
+              <div class="dashboard-dot"></div>
+              <div class="dashboard-dot"></div>
+              <div class="dashboard-dot"></div>
+            </div>
+            <div class="dashboard-body">
+              <div class="dash-row">
+                <span class="dash-label">Clients Online</span>
+                <span class="dash-value">24</span>
+              </div>
+              <div class="dash-row">
+                <span class="dash-label">Total Signups</span>
+                <span class="dash-value">1,847</span>
+              </div>
+              <div class="dash-row">
+                <span class="dash-label">Platform Uptime</span>
+                <span class="dash-value">99.98%</span>
+              </div>
+              <div class="dash-row">
+                <span class="dash-label">Revenue This Month</span>
+                <span class="dash-value">£2,145</span>
+              </div>
+              <div class="dash-row">
+                <span class="dash-label">Support Tickets</span>
+                <span class="dash-value">2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= PARTNER TERMS ======================= -->
+  <section class="reseller-terms">
+    <div class="wrap">
+      <div style="text-align:center; max-width:700px; margin:0 auto 80px;">
+        <div class="kicker reveal">Partner Benefits</div>
+        <h2 class="reveal d1">Partner terms built for resellers</h2>
+        <p class="lead reveal d2">We're not just selling you software—we're building a partnership that scales with your business.</p>
+      </div>
+
+      <div class="terms-grid">
+        <div class="term-card reveal">
+          <h3>Special Pricing</h3>
+          <p>Dedicated reseller pricing that isn't available to end-users. Volume discounts, custom packages for specific verticals, and bespoke quotes for larger managed service arrangements.</p>
+        </div>
+
+        <div class="term-card reveal d1">
+          <h3>Priority Support</h3>
+          <p>You're not routed through the same queue as everyone else. Priority support, dedicated point of contact for technical and commercial queries, and direct escalation paths when you need fast resolutions.</p>
+        </div>
+
+        <div class="term-card reveal d2">
+          <h3>Setup Included</h3>
+          <p>For every new venue you onboard, Fydelia handles the initial configuration remotely at no cost. Point us at the hardware, and we'll get the portal live—leaving you to focus on the client relationship.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= HARDWARE ======================= -->
+  <section class="reseller-hardware">
+    <div class="hardware-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="hardware-content">
+        <div class="kicker reveal">Compatibility</div>
+        <h2 class="reveal d1">Works with the hardware you already install</h2>
+        <p class="lead reveal d2">Fydelia runs on 20+ hardware vendors and 40+ device models. Whatever access points and controllers you already recommend and install, chances are Fydelia runs on them.</p>
+
+        <div class="hardware-brands" style="margin-top:48px;">
+          <span class="hw-brand reveal">Cisco Meraki</span>
+          <span class="hw-brand reveal d1">Ubiquiti UniFi</span>
+          <span class="hw-brand reveal d2">Ruckus</span>
+          <span class="hw-brand reveal">TP-Link Omada</span>
+          <span class="hw-brand reveal d1">Aruba</span>
+          <span class="hw-brand reveal d2">EnGenius</span>
+          <span class="hw-brand reveal">MikroTik</span>
+          <span class="hw-brand reveal d1">DrayTek</span>
+          <span class="hw-brand reveal d2">SonicWall</span>
+          <span class="hw-brand reveal">Zyxel Nebula</span>
+          <span class="hw-brand reveal d1">+ many more</span>
+        </div>
+        <p style="margin-top:32px; color:var(--fg-3); font-size:14px;">Don't see a specific model on the list? Contact us—we'll check compatibility, usually within a few hours.</p>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- ======================= CTA ======================= -->
+  <section class="reseller-cta" id="cta">
+    <div class="wrap">
+      <div class="reseller-cta-box reveal">
+        <h2>Ready to add Fydelia to your service portfolio?</h2>
+        <p>Talk to our partnerships team. We'll walk you through the platform, answer your technical questions, and put together a commercial proposal that works for your business.</p>
+        <div class="cta-buttons">
+          <a class="btn-solid btn-lg" href="mailto:partnerships@fydelia.com">Contact our partnerships team
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+          <a class="btn-ghost" href="https://www.fydelia.com/onboarding/">Try free for 14 days</a>
+        </div>
+        <p style="margin-top:24px; font-size:14px; color:var(--fg-4);">Priority support · Custom pricing · Remote setup included · No infrastructure to manage</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="ft">
+    <div class="wrap-wide">
+      <div class="ft-grid">
+        <div class="ft-brand-col">
+          <a class="brand" href="index.html" aria-label="Fydelia home">
+            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+            <span class="brand-text">fydelia</span>
+          </a>
+          <p>The industry-leading captive portal and WiFi marketing platform that helps venues spark conversations and capture high-value user data. We turn simple guest WiFi access into a powerful engine for lead-gen and customer loyalty.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="splash-pages.html">Splash Pages</a></li>
+            <li><a href="resellers.html">For Resellers</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://www.fydelia.com/knowledge-base/">Documentation &amp; Support</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="blog.html">Blog</a></li>
+<li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="information-system-security-policy.html">InfoSys Security Policy</a></li>
+            <li><a href="security-assurance-plan.html">Security Assurance Plan</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li><a href="mailto:support@fydelia.com">support@fydelia.com</a></li>
+            <li>Brighton, United Kingdom</li>
+            <li>Dubai, UAE</li>
+          </ul>
+          <div class="ft-social">
+            <a href="https://instagram.com/fydeliawifi" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.facebook.com/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@fydeliawifi/videos" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <span>&copy; 2026 Fydelia</span>
+        <span>All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+
+<script>
+// ===== Theme toggle =====
+const toggle = document.getElementById('themeToggle');
+if (toggle) {
+  const saved = localStorage.getItem('fy-theme');
+  if (saved) document.body.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.body.setAttribute('data-theme', next);
+    localStorage.setItem('fy-theme', next);
+  });
+}
+
+// ===== Scroll reveal =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => io.observe(el));
+
+// ===== Card mouse glow =====
+document.querySelectorAll('.what-client-card, .term-card, .pricing-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+});
+
+// ===== Mobile menu drawer =====
+(function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const drawer     = document.getElementById('menuDrawer');
+  const backdrop   = document.getElementById('menuBackdrop');
+  const closeBtn   = document.getElementById('menuClose');
+  if (!menuToggle || !drawer) return;
+
+  const drawerLinks = drawer.querySelectorAll('.menu-drawer-nav a, .menu-drawer-signin, .menu-drawer-cta');
+
+  function openMenu() {
+    menuToggle.setAttribute('aria-expanded', 'true');
+    drawer.classList.add('active');
+    drawer.setAttribute('aria-hidden', 'false');
+    backdrop.classList.add('active');
+    backdrop.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-open');
+  }
+
+  function closeMenu() {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    drawer.classList.remove('active');
+    drawer.setAttribute('aria-hidden', 'true');
+    backdrop.classList.remove('active');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-open');
+  }
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+  });
+  closeBtn.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  drawerLinks.forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('active')) closeMenu();
+  });
+
+  const mobileThemeBtn = document.getElementById('themeToggleMobile');
+  if (mobileThemeBtn) {
+    mobileThemeBtn.addEventListener('click', () => {
+      const desktopBtn = document.getElementById('themeToggle');
+      if (desktopBtn) desktopBtn.click();
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

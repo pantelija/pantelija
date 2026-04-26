@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Remote Management – Fydelia</title>
+<meta name="description" content="Fydelia's Full Remote Management platform puts total control of your entire guest WiFi estate into one dashboard — configure, monitor, and update every venue instantly from anywhere in the world.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/core.css">
+<link rel="stylesheet" href="styles/sections.css">
+
+<style>
+/* ======================= FULL REMOTE MANAGEMENT FEATURE PAGE ======================= */
+
+/* --- Hero --- */
+.fp-hero {
+  position: relative;
+  padding: 140px 0 100px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.fp-hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.fp-hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+}
+.fp-hero-glow {
+  position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+  width: 900px; height: 500px;
+  background: radial-gradient(ellipse, var(--red-glow-soft) 0%, transparent 65%);
+}
+.fp-hero-wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px; align-items: center; min-height: 460px;
+}
+.fp-hero-copy { max-width: 620px; }
+.fp-hero-copy .breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 12px; color: var(--fg-4);
+  margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.08em;
+}
+.fp-hero-copy .breadcrumb a { color: var(--fg-4); text-decoration: none; transition: color 0.2s var(--ease); }
+.fp-hero-copy .breadcrumb a:hover { color: var(--fg-2); }
+.fp-hero h1 { font-size: clamp(38px, 4.8vw, 56px); margin: 16px 0 22px; line-height: 1.1; letter-spacing: -0.03em; }
+.fp-hero h1 em { color: var(--red); font-style: italic; font-weight: 500; }
+.fp-hero .hero-sub { font-size: 18px; color: var(--fg-2); max-width: 520px; line-height: 1.65; margin-bottom: 36px; }
+.fp-hero-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 36px; }
+.fp-meta-tag {
+  display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px;
+  font-family: var(--mono); font-size: 11px; color: var(--fg-4);
+  background: var(--bg-3); border: 1px solid var(--line); border-radius: 6px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.fp-meta-tag--highlight { color: var(--red); background: rgba(255,43,43,0.08); border-color: rgba(255,43,43,0.2); }
+.fp-meta-tag--violet { color: #9A6CFF; background: rgba(154,108,255,0.08); border-color: rgba(154,108,255,0.2); }
+.fp-meta-tag--green  { color: var(--green); background: rgba(0,212,126,0.08); border-color: rgba(0,212,126,0.2); }
+
+/* ======================= HERO VISUAL: DASHBOARD MOCKUP ======================= */
+.fp-hero-visual {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 420px;
+}
+.rm-visual {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Dashboard card */
+.rm-dashboard {
+  width: 100%;
+  border-radius: 20px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  overflow: hidden;
+  box-shadow: 0 32px 80px -20px rgba(0,0,0,0.55), 0 0 60px -20px var(--red-glow);
+  position: relative; z-index: 2;
+}
+.rm-dash-head {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.rm-dash-head-left { display: flex; align-items: center; gap: 8px; }
+.rm-dash-head-title { font-size: 13px; font-weight: 600; }
+.rm-dash-live {
+  font-family: var(--mono); font-size: 9px; font-weight: 600;
+  color: var(--green); background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.2);
+  border-radius: 5px; padding: 2px 7px; text-transform: uppercase; letter-spacing: 0.1em;
+  display: flex; align-items: center; gap: 4px;
+}
+.rm-dash-live-dot {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--green);
+  box-shadow: 0 0 6px rgba(0,212,126,0.6); animation: rm-pulse 2s ease-in-out infinite;
+}
+@keyframes rm-pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.rm-dash-tabs {
+  display: flex; gap: 0;
+  border-bottom: 1px solid var(--line);
+  padding: 0 18px;
+}
+.rm-dash-tab {
+  padding: 9px 14px;
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  color: var(--fg-4); text-transform: uppercase; letter-spacing: 0.08em;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  cursor: pointer;
+}
+.rm-dash-tab--active { color: var(--red); border-bottom-color: var(--red); }
+
+/* Venue rows */
+.rm-venue-list { padding: 6px 0; }
+.rm-venue-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.2s var(--ease);
+}
+.rm-venue-row:last-child { border-bottom: none; }
+.rm-venue-row:hover { background: var(--bg-3); }
+.rm-venue-status {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.rm-venue-status--online { background: var(--green); box-shadow: 0 0 6px rgba(0,212,126,0.5); }
+.rm-venue-status--warning { background: #FFB020; box-shadow: 0 0 6px rgba(255,176,32,0.5); }
+.rm-venue-info { flex: 1; min-width: 0; }
+.rm-venue-name { font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rm-venue-location { font-size: 10px; color: var(--fg-4); font-family: var(--mono); }
+.rm-venue-guests {
+  font-family: var(--mono); font-size: 11px; color: var(--fg-3);
+  display: flex; align-items: center; gap: 4px;
+}
+.rm-venue-guests svg { color: var(--fg-4); }
+.rm-dash-footer {
+  padding: 10px 18px;
+  border-top: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg-3);
+}
+.rm-dash-footer-stat {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 10px; color: var(--fg-4);
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.rm-dash-footer-stat strong { color: var(--fg-2); font-size: 12px; }
+.rm-dash-btn {
+  padding: 5px 12px; border-radius: 7px;
+  background: var(--red); color: white;
+  font-size: 11px; font-weight: 600;
+  border: none; cursor: pointer;
+  box-shadow: 0 4px 12px -4px var(--red-glow);
+}
+
+/* Floating badges */
+.rm-badge {
+  position: absolute;
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px; background: var(--bg-2);
+  border: 1px solid var(--line-2); border-radius: 12px;
+  font-size: 12px; font-weight: 500; color: var(--fg-2);
+  white-space: nowrap; box-shadow: 0 8px 28px -8px rgba(0,0,0,0.4);
+  animation: rm-float 7s ease-in-out infinite;
+}
+.rm-badge-icon { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; flex-shrink: 0; }
+.rm-badge-icon--red    { background: rgba(255,43,43,0.1); color: var(--red); }
+.rm-badge-icon--green  { background: rgba(0,212,126,0.1); color: var(--green); }
+.rm-badge-icon--violet { background: rgba(154,108,255,0.1); color: #9A6CFF; }
+.rm-badge-label { display: flex; flex-direction: column; gap: 1px; }
+.rm-badge-label span:first-child { font-size: 12px; font-weight: 600; }
+.rm-badge-label span:last-child  { font-size: 10px; color: var(--fg-4); font-family: var(--mono); }
+.rm-badge--1 { top: 20px;  right: -10px; animation-delay: 0s; }
+.rm-badge--2 { bottom: 80px; right: -14px; animation-delay: 1s; }
+.rm-badge--3 { top: 80px;   left: -10px; animation-delay: 0.6s; }
+@keyframes rm-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+/* ======================= HOW IT WORKS (3-STEP) ======================= */
+.fp-how {
+  padding: 140px 0;
+  position: relative; overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.fp-how-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, var(--red-glow-soft), transparent 60%);
+}
+.fp-steps {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  margin-top: 64px; position: relative;
+}
+.fp-steps::before {
+  content: ''; position: absolute; top: 32px;
+  left: calc(16.666% + 20px); right: calc(16.666% + 20px);
+  height: 1px;
+  background: linear-gradient(90deg, var(--red) 0%, rgba(255,43,43,0.3) 50%, var(--red) 100%);
+  z-index: 0;
+}
+.fp-step {
+  padding: 32px 28px; border: 1px solid var(--line); border-radius: 16px;
+  background: var(--bg-1); position: relative;
+  transition: all 0.35s var(--ease); text-align: center;
+}
+.fp-step:hover { border-color: var(--line-strong); transform: translateY(-4px); box-shadow: 0 20px 50px -15px rgba(0,0,0,0.4); }
+.fp-step-num {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--bg-3); border: 1px solid var(--line-2);
+  display: grid; place-items: center;
+  font-family: var(--mono); font-size: 18px; font-weight: 600; color: var(--fg-3);
+  margin: 0 auto 20px; position: relative; z-index: 1;
+}
+.fp-step--active .fp-step-num {
+  background: linear-gradient(135deg, var(--red-700), var(--red-500));
+  border-color: var(--red); color: white; box-shadow: 0 8px 24px -6px var(--red-glow);
+}
+.fp-step h4 { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+.fp-step p  { font-size: 14.5px; color: var(--fg-3); line-height: 1.6; margin: 0; }
+.fp-step-arrow {
+  position: absolute; top: 30px; right: -14px; z-index: 2;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--bg-3); border: 1px solid var(--line-2);
+  display: grid; place-items: center; color: var(--fg-4);
+}
+.fp-step:last-child .fp-step-arrow { display: none; }
+
+/* ======================= CENTRALIZED MANAGEMENT (split) ======================= */
+.fp-central {
+  padding: 140px 0; background: var(--bg-1); border-bottom: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.fp-central-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 50% 40% at 85% 55%, rgba(154,108,255,0.07), transparent 55%);
+}
+.fp-central-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative;
+}
+
+/* Command panel mockup */
+.rm-panel {
+  width: 100%; max-width: 400px;
+  border-radius: 20px;
+  background: var(--bg-2); border: 1px solid var(--line-2);
+  overflow: hidden;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5), 0 0 50px -20px var(--red-glow);
+}
+.rm-panel-head {
+  padding: 16px 20px; border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.rm-panel-head-left { display: flex; align-items: center; gap: 8px; }
+.rm-panel-head-left span { font-size: 14px; font-weight: 600; }
+.rm-panel-badge {
+  font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 5px;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: #9A6CFF; background: rgba(154,108,255,0.1); border: 1px solid rgba(154,108,255,0.2);
+}
+.rm-panel-section { padding: 14px 20px; border-bottom: 1px solid var(--line); }
+.rm-panel-section:last-of-type { border-bottom: none; }
+.rm-panel-label {
+  font-family: var(--mono); font-size: 10px; color: var(--fg-4);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;
+}
+/* Venue segment selector */
+.rm-segment-opts { display: flex; gap: 6px; flex-wrap: wrap; }
+.rm-segment-opt {
+  padding: 6px 12px; border-radius: 7px;
+  font-size: 12px; font-weight: 500;
+  border: 1px solid var(--line-2); background: var(--bg-3); color: var(--fg-3);
+}
+.rm-segment-opt--active {
+  background: rgba(255,43,43,0.1); border-color: rgba(255,43,43,0.3);
+  color: var(--red); font-weight: 600;
+}
+/* Change type pills */
+.rm-change-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+.rm-change-pill {
+  padding: 6px 12px; border-radius: 7px;
+  font-family: var(--mono); font-size: 11px;
+  border: 1px solid var(--line-2); background: var(--bg-3); color: var(--fg-4);
+}
+.rm-change-pill--active {
+  background: rgba(154,108,255,0.1); border-color: rgba(154,108,255,0.3); color: #9A6CFF;
+}
+/* Affected count bar */
+.rm-affected-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border-radius: 10px;
+  background: rgba(255,43,43,0.06); border: 1px solid rgba(255,43,43,0.15);
+}
+.rm-affected-bar-left { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--fg-2); }
+.rm-affected-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); box-shadow: 0 0 8px var(--red-glow); }
+.rm-affected-count { font-family: var(--mono); font-size: 14px; font-weight: 700; color: var(--red); }
+.rm-deploy-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 12px;
+  background: var(--red); color: white;
+  font-size: 14px; font-weight: 600;
+  border: none; border-radius: 10px; cursor: pointer; margin-top: 4px;
+  box-shadow: 0 8px 20px -8px var(--red-glow);
+  transition: all 0.2s var(--ease);
+}
+.rm-deploy-btn:hover { background: var(--red-600); transform: translateY(-1px); }
+
+/* ======================= MONITORING SECTION (split, reversed) ======================= */
+.fp-monitor {
+  padding: 140px 0;
+  position: relative; overflow: hidden;
+}
+.fp-monitor-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 50% 40% at 15% 50%, var(--red-glow-soft), transparent 60%),
+    radial-gradient(ellipse 40% 40% at 85% 60%, rgba(154,108,255,0.07), transparent 60%);
+}
+.fp-monitor-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative;
+}
+
+/* Status card */
+.rm-status-card {
+  width: 100%; max-width: 380px;
+  border-radius: 20px; background: var(--bg-2);
+  border: 1px solid var(--line-2); overflow: hidden;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5);
+}
+.rm-status-head {
+  padding: 20px 24px; border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.rm-status-head-left { display: flex; align-items: center; gap: 10px; }
+.rm-status-head-left span { font-size: 14px; font-weight: 600; }
+.rm-status-tag {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--green); background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.2);
+  border-radius: 5px; padding: 2px 7px; text-transform: uppercase; letter-spacing: 0.1em;
+}
+.rm-stat-row {
+  padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--line); transition: background 0.2s var(--ease);
+}
+.rm-stat-row:last-child { border-bottom: none; }
+.rm-stat-row:hover { background: var(--bg-3); }
+.rm-stat-label { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--fg-3); }
+.rm-stat-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px rgba(0,212,126,0.5); flex-shrink: 0; }
+.rm-stat-dot--amber { background: #FFB020; box-shadow: 0 0 8px rgba(255,176,32,0.5); }
+.rm-stat-val { font-family: var(--mono); font-size: 12px; color: var(--fg-2); font-weight: 500; }
+.rm-stat-val--green { color: var(--green); }
+.rm-stat-val--amber { color: #FFB020; }
+.rm-status-footer {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 24px; border-top: 1px solid var(--line);
+  font-family: var(--mono); font-size: 11px; color: var(--fg-4);
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.rm-status-pill {
+  padding: 4px 10px; border-radius: 6px; background: var(--bg-3);
+  border: 1px solid var(--line); font-size: 10px; color: var(--fg-3);
+}
+
+/* callout */
+.fp-callout {
+  margin: 80px 0 0; padding: 32px 36px; border-radius: 16px;
+  background: var(--bg-2); border: 1px solid var(--line-2);
+  position: relative; overflow: hidden;
+}
+.fp-callout::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,43,43,0.06), transparent 50%);
+  pointer-events: none;
+}
+.fp-callout-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2);
+  display: grid; place-items: center; color: var(--red); margin-bottom: 14px;
+}
+.fp-callout p { font-size: 16px; color: var(--fg-2); line-height: 1.65; position: relative; }
+.fp-callout p strong { color: var(--fg); }
+
+/* ======================= SCALABILITY OUTCOMES ======================= */
+.fp-scale {
+  padding: 140px 0; background: var(--bg-1);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.fp-scale-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 45% 40% at 90% 50%, var(--red-glow-soft), transparent 55%),
+    radial-gradient(ellipse 35% 40% at 10% 70%, rgba(0,212,126,0.05), transparent 55%);
+}
+.fp-scale-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  margin-top: 64px; position: relative;
+}
+.fp-scale-card {
+  padding: 32px 30px; border: 1px solid var(--line); border-radius: 18px;
+  background: var(--bg-2); transition: all 0.35s var(--ease);
+  position: relative; overflow: hidden;
+}
+.fp-scale-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 80% at var(--mx,50%) var(--my,0%), var(--red-glow-soft), transparent 55%);
+  opacity: 0; transition: opacity 0.4s var(--ease); pointer-events: none;
+}
+.fp-scale-card:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+.fp-scale-card:hover::before { opacity: 1; }
+.fp-scale-icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  display: grid; place-items: center; margin-bottom: 18px;
+}
+.fp-scale-icon--red    { background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2); color: var(--red); }
+.fp-scale-icon--green  { background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.2); color: var(--green); }
+.fp-scale-icon--violet { background: rgba(154,108,255,0.1); border: 1px solid rgba(154,108,255,0.2); color: #9A6CFF; }
+.fp-scale-icon--amber  { background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.2); color: #FFB020; }
+.fp-scale-card h4 { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+.fp-scale-card p  { font-size: 15px; color: var(--fg-3); line-height: 1.65; margin: 0; }
+.fp-scale-stat {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 16px; padding: 5px 12px; border-radius: 6px;
+  font-family: var(--mono); font-size: 11px;
+  background: var(--bg-3); border: 1px solid var(--line); color: var(--fg-4);
+}
+
+/* Big callout below grid */
+.fp-callout-wide {
+  margin-top: 64px; padding: 36px 40px; border-radius: 18px;
+  background: var(--bg-2); border: 1px solid var(--line-2);
+  position: relative; overflow: hidden;
+  display: flex; align-items: flex-start; gap: 20px;
+}
+.fp-callout-wide::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,43,43,0.07), transparent 50%);
+  pointer-events: none;
+}
+.fp-callout-wide-icon {
+  width: 48px; height: 48px; border-radius: 13px; flex-shrink: 0;
+  background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2);
+  display: grid; place-items: center; color: var(--red); position: relative;
+}
+.fp-callout-wide-body { position: relative; }
+.fp-callout-wide-body h4 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+.fp-callout-wide-body p  { font-size: 15.5px; color: var(--fg-2); line-height: 1.65; margin: 0; }
+
+/* ======================= RELATED FEATURES ======================= */
+.fp-related {
+  padding: 100px 0; background: var(--bg-1);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.fp-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+.fp-rel-card {
+  padding: 28px 24px; border: 1px solid var(--line); border-radius: 16px;
+  background: var(--bg-2); transition: all 0.3s var(--ease);
+  text-decoration: none; display: block; position: relative; overflow: hidden;
+}
+.fp-rel-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease);
+}
+.fp-rel-card:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+.fp-rel-card:hover::after { transform: scaleX(1); }
+.fp-rel-icon { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; margin-bottom: 14px; }
+.fp-rel-icon--red    { background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2); color: var(--red); }
+.fp-rel-icon--violet { background: rgba(154,108,255,0.1); border: 1px solid rgba(154,108,255,0.2); color: #9A6CFF; }
+.fp-rel-icon--green  { background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.2); color: var(--green); }
+.fp-rel-card h4 { font-size: 15px; font-weight: 600; color: var(--fg); margin-bottom: 6px; }
+.fp-rel-card p  { font-size: 13.5px; color: var(--fg-3); line-height: 1.55; margin: 0; }
+.fp-rel-arrow {
+  position: absolute; top: 26px; right: 22px; color: var(--fg-4); opacity: 0;
+  transition: all 0.25s var(--ease); transform: translate(-4px,0);
+}
+.fp-rel-card:hover .fp-rel-arrow { opacity: 1; transform: translate(0,0); }
+
+/* Footer social */
+.ft-social { display: flex; align-items: center; gap: 4px; margin-top: 18px; margin-left: -6px; }
+.ft-social-link {
+  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 6px;
+  color: var(--fg-4); transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.ft-social-link svg { width: 16px; height: 16px; }
+.ft-social-link:hover { color: var(--fg); background: var(--bg-3); }
+
+/* ======================= RESPONSIVE ======================= */
+@media (max-width: 980px) {
+  .fp-hero-wrap      { grid-template-columns: 1fr; gap: 48px; }
+  .fp-hero-visual    { min-height: 280px; }
+  .fp-steps          { grid-template-columns: 1fr; gap: 12px; }
+  .fp-steps::before  { display: none; }
+  .fp-step-arrow     { display: none; }
+  .fp-central-grid   { grid-template-columns: 1fr; gap: 48px; }
+  .fp-monitor-grid   { grid-template-columns: 1fr; gap: 48px; }
+  .fp-scale-grid     { grid-template-columns: 1fr; }
+  .fp-related-grid   { grid-template-columns: 1fr 1fr; }
+  .fp-callout-wide   { flex-direction: column; }
+}
+@media (max-width: 640px) {
+  .fp-related-grid { grid-template-columns: 1fr; }
+  .rm-badge--1, .rm-badge--3 { display: none; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Fydelia home">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+      <span class="brand-text">fydelia</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="features.html">Features</a></li>
+      <li><a href="splash-pages.html">Splash Pages</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+      <a class="btn-ghost" href="https://ondemand.fydelia.com/">Sign in</a>
+      <a class="btn-solid" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</nav>
+
+<div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+<aside id="menuDrawer" class="menu-drawer" aria-hidden="true">
+  <div class="menu-drawer-head">
+    <span class="menu-drawer-title">Menu</span>
+    <button id="menuClose" class="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu-drawer-nav">
+    <a href="features.html">Features</a>
+    <a href="splash-pages.html">Splash Pages</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="hardware.html">Supported Hardware</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a>
+  </nav>
+  <div class="menu-drawer-foot">
+    <div class="menu-drawer-theme">
+      <span class="menu-drawer-theme-label">Dark mode</span>
+      <button id="themeToggleMobile" class="theme-switch" aria-label="Toggle theme">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+    </div>
+    <a class="btn-ghost menu-drawer-signin" href="https://ondemand.fydelia.com/">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
+</aside>
+
+
+<main>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="fp-hero">
+    <div class="fp-hero-bg" aria-hidden="true">
+      <div class="fp-hero-grid"></div>
+      <div class="fp-hero-glow"></div>
+    </div>
+
+    <div class="wrap fp-hero-wrap">
+      <div class="fp-hero-copy">
+        <div class="breadcrumb">
+          <a href="features.html">Features</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>Full Remote Management</span>
+        </div>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span>Management feature</span>
+        </div>
+        <h1>Your entire estate.<br>One <em>dashboard</em>.</h1>
+        <p class="hero-sub">Managing properties across different streets, cities, or countries used to mean hours of travel and manual updates at each location. Fydelia's Full Remote Management eliminates this completely — total control of your guest WiFi network from anywhere in the world.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn-solid btn-lg" href="https://www.fydelia.com/onboarding/">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+          <a class="btn-ghost" href="features.html" style="border:1px solid var(--line-2);">All features</a>
+        </div>
+        <div class="fp-hero-meta">
+          <span class="fp-meta-tag fp-meta-tag--highlight">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Centralized Control
+          </span>
+          <span class="fp-meta-tag fp-meta-tag--violet">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6l10.1 5L22 6"/><path d="M22 18H2V6l10 5 10-5v12z"/></svg>
+            Live Diagnostics
+          </span>
+          <span class="fp-meta-tag fp-meta-tag--green">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Instant Deployment
+          </span>
+        </div>
+      </div>
+
+      <!-- Dashboard visual -->
+      <div class="fp-hero-visual">
+        <div class="rm-visual">
+
+          <!-- Floating badges -->
+          <div class="rm-badge rm-badge--1">
+            <div class="rm-badge-icon rm-badge-icon--green">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="rm-badge-label">
+              <span>Deployed instantly</span>
+              <span>12 venues updated</span>
+            </div>
+          </div>
+
+          <div class="rm-badge rm-badge--3">
+            <div class="rm-badge-icon rm-badge-icon--violet">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="rm-badge-label">
+              <span>0 site visits</span>
+              <span>Required to deploy</span>
+            </div>
+          </div>
+
+          <div class="rm-badge rm-badge--2">
+            <div class="rm-badge-icon rm-badge-icon--red">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="rm-badge-label">
+              <span>Remote access</span>
+              <span>From anywhere</span>
+            </div>
+          </div>
+
+          <!-- Dashboard card -->
+          <div class="rm-dashboard">
+            <div class="rm-dash-head">
+              <div class="rm-dash-head-left">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                <span class="rm-dash-head-title">Venue Estate</span>
+              </div>
+              <div class="rm-dash-live">
+                <span class="rm-dash-live-dot"></span>
+                Live
+              </div>
+            </div>
+
+            <div class="rm-dash-tabs">
+              <div class="rm-dash-tab rm-dash-tab--active">All venues</div>
+              <div class="rm-dash-tab">By region</div>
+              <div class="rm-dash-tab">Alerts</div>
+            </div>
+
+            <div class="rm-venue-list">
+              <div class="rm-venue-row">
+                <span class="rm-venue-status rm-venue-status--online"></span>
+                <div class="rm-venue-info">
+                  <div class="rm-venue-name">The Grand Café</div>
+                  <div class="rm-venue-location">Brighton · UK</div>
+                </div>
+                <div class="rm-venue-guests">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  34
+                </div>
+              </div>
+              <div class="rm-venue-row">
+                <span class="rm-venue-status rm-venue-status--online"></span>
+                <div class="rm-venue-info">
+                  <div class="rm-venue-name">Rooftop Bar Shoreditch</div>
+                  <div class="rm-venue-location">London · UK</div>
+                </div>
+                <div class="rm-venue-guests">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  91
+                </div>
+              </div>
+              <div class="rm-venue-row">
+                <span class="rm-venue-status rm-venue-status--warning"></span>
+                <div class="rm-venue-info">
+                  <div class="rm-venue-name">Marina Lounge</div>
+                  <div class="rm-venue-location">Dubai · UAE</div>
+                </div>
+                <div class="rm-venue-guests" style="color:#FFB020;">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  Alert
+                </div>
+              </div>
+              <div class="rm-venue-row">
+                <span class="rm-venue-status rm-venue-status--online"></span>
+                <div class="rm-venue-info">
+                  <div class="rm-venue-name">Harbour View Hotel</div>
+                  <div class="rm-venue-location">Edinburgh · UK</div>
+                </div>
+                <div class="rm-venue-guests">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  57
+                </div>
+              </div>
+            </div>
+
+            <div class="rm-dash-footer">
+              <div class="rm-dash-footer-stat">
+                <strong id="venueCount">12</strong> venues online
+              </div>
+              <div class="rm-dash-footer-stat">
+                <strong id="guestCount">312</strong> guests
+              </div>
+              <button class="rm-dash-btn">Deploy update</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= HOW IT WORKS ======================= -->
+  <section class="fp-how">
+    <div class="fp-how-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">How it works</div>
+        <h2>Total control in<br>three simple steps</h2>
+        <p class="lead">From a single screen you can configure, deploy, and monitor your entire guest WiFi estate — without ever needing to set foot on-site.</p>
+      </div>
+
+      <div class="fp-steps">
+
+        <div class="fp-step reveal">
+          <div class="fp-step-num">01</div>
+          <h4>Log in from anywhere</h4>
+          <p>Access your Fydelia dashboard from any browser — at your desk, working from home, or on the go. Your entire estate is always one click away.</p>
+          <div class="fp-step-arrow">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </div>
+
+        <div class="fp-step fp-step--active reveal d1">
+          <div class="fp-step-num">02</div>
+          <h4>Configure, segment & deploy</h4>
+          <p>Make changes to branding, campaigns, or data fields. Target all venues, a regional group, or an individual location — then push with a single click.</p>
+          <div class="fp-step-arrow">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </div>
+
+        <div class="fp-step reveal d2">
+          <div class="fp-step-num">03</div>
+          <h4>Monitor & troubleshoot live</h4>
+          <p>Watch real-time guest activity, hardware status, and data flow across all sites. Diagnose and often resolve network issues remotely — no call-out required.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= CENTRALIZED MANAGEMENT ======================= -->
+  <section class="fp-central">
+    <div class="fp-central-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="fp-central-grid">
+
+        <!-- Panel mockup -->
+        <div class="reveal" style="display:grid; place-items:center;">
+          <div class="rm-panel">
+            <div class="rm-panel-head">
+              <div class="rm-panel-head-left">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9A6CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+                <span>Deploy Changes</span>
+              </div>
+              <span class="rm-panel-badge">Multi-venue</span>
+            </div>
+
+            <div class="rm-panel-section">
+              <div class="rm-panel-label">Target group</div>
+              <div class="rm-segment-opts">
+                <div class="rm-segment-opt rm-segment-opt--active">All venues</div>
+                <div class="rm-segment-opt">UK only</div>
+                <div class="rm-segment-opt">UAE only</div>
+                <div class="rm-segment-opt">By brand</div>
+              </div>
+            </div>
+
+            <div class="rm-panel-section">
+              <div class="rm-panel-label">Change type</div>
+              <div class="rm-change-pills">
+                <div class="rm-change-pill rm-change-pill--active">Splash page</div>
+                <div class="rm-change-pill">Branding</div>
+                <div class="rm-change-pill">Data fields</div>
+                <div class="rm-change-pill">AdCard</div>
+                <div class="rm-change-pill">Permissions</div>
+              </div>
+            </div>
+
+            <div class="rm-panel-section">
+              <div class="rm-panel-label">Affected venues</div>
+              <div class="rm-affected-bar">
+                <div class="rm-affected-bar-left">
+                  <span class="rm-affected-dot"></span>
+                  Pushing to all venues now
+                </div>
+                <span class="rm-affected-count">12</span>
+              </div>
+            </div>
+
+            <div class="rm-panel-section">
+              <button class="rm-deploy-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                Deploy to all venues
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Copy -->
+        <div class="spotlight-text reveal d1">
+          <div class="kicker">Centralized management</div>
+          <h2>One screen.<br><em>Master</em> of your network.</h2>
+          <p class="lead">Our dashboard is designed for ultimate efficiency. Every aspect of your guest experience is within reach — without ever needing to be on-site.</p>
+
+          <ul class="spotlight-feats" style="margin-top:28px;">
+            <li><span class="spot-check">✓</span> Launch campaigns and update branding across all venues with a few clicks</li>
+            <li><span class="spot-check">✓</span> Segment venues by region, brand, or type for targeted deployments</li>
+            <li><span class="spot-check">✓</span> Push unique splash pages or promotions to individual groups</li>
+            <li><span class="spot-check">✓</span> Add team members and assign granular access permissions</li>
+            <li><span class="spot-check">✓</span> Changes go live instantly — zero travel, zero manual labour</li>
+          </ul>
+
+          <div style="margin-top:32px; padding:20px 24px; border-radius:14px; background:var(--bg-2); border:1px solid var(--line-2);">
+            <div style="font-family:var(--mono); font-size:10px; color:var(--fg-4); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px;">Stop travelling to</div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <span style="padding:5px 12px; border-radius:7px; background:rgba(255,43,43,0.08); border:1px solid rgba(255,43,43,0.15); font-size:13px; color:var(--fg-2);">Update splash pages</span>
+              <span style="padding:5px 12px; border-radius:7px; background:rgba(255,43,43,0.08); border:1px solid rgba(255,43,43,0.15); font-size:13px; color:var(--fg-2);">Change branding</span>
+              <span style="padding:5px 12px; border-radius:7px; background:rgba(255,43,43,0.08); border:1px solid rgba(255,43,43,0.15); font-size:13px; color:var(--fg-2);">Launch campaigns</span>
+              <span style="padding:5px 12px; border-radius:7px; background:rgba(255,43,43,0.08); border:1px solid rgba(255,43,43,0.15); font-size:13px; color:var(--fg-2);">Swap login fields</span>
+              <span style="padding:5px 12px; border-radius:7px; background:rgba(255,43,43,0.08); border:1px solid rgba(255,43,43,0.15); font-size:13px; color:var(--fg-2);">Reconfigure hardware</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= PROACTIVE MONITORING ======================= -->
+  <section class="fp-monitor">
+    <div class="fp-monitor-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="fp-monitor-grid">
+
+        <div class="spotlight-text reveal">
+          <div class="kicker">Proactive monitoring</div>
+          <h2>Don't wait for a<br>customer <em>complaint</em>.</h2>
+          <p class="lead">Our remote management tools give you a real-time, bird's-eye view of your network's health and performance — so you know about issues before your guests do.</p>
+          <p style="font-size:15.5px; color:var(--fg-2); line-height:1.65; margin-top:16px;">Instantly check the status of all hardware and connected devices across every location. When something needs attention, remote diagnostics let you investigate and often resolve network issues without a costly technician call-out.</p>
+
+          <ul class="spotlight-feats" style="margin-top:28px;">
+            <li><span class="spot-check">✓</span> Hardware status for every access point, live</li>
+            <li><span class="spot-check">✓</span> Remote diagnostics to investigate issues instantly</li>
+            <li><span class="spot-check">✓</span> Live guest activity and data flow monitoring</li>
+            <li><span class="spot-check">✓</span> Peak-time visibility to ensure consistent service quality</li>
+          </ul>
+
+          <div class="fp-callout reveal d1">
+            <div class="fp-callout-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <p><strong>Minimize downtime, maximize savings.</strong> The ability to diagnose and resolve issues remotely eliminates the need for expensive site visits — keeping your network healthy and your operational costs low.</p>
+          </div>
+        </div>
+
+        <div class="reveal d1" style="display:grid; place-items:center;">
+          <div class="rm-status-card">
+            <div class="rm-status-head">
+              <div class="rm-status-head-left">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--green)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                <span>Network Health</span>
+              </div>
+              <span class="rm-status-tag">Live</span>
+            </div>
+
+            <div class="rm-stat-row">
+              <div class="rm-stat-label">
+                <span class="rm-stat-dot"></span>
+                Venues online
+              </div>
+              <span class="rm-stat-val rm-stat-val--green">11 / 12 ✓</span>
+            </div>
+            <div class="rm-stat-row">
+              <div class="rm-stat-label">
+                <span class="rm-stat-dot rm-stat-dot--amber"></span>
+                Marina Lounge (APN)
+              </div>
+              <span class="rm-stat-val rm-stat-val--amber">Investigating</span>
+            </div>
+            <div class="rm-stat-row">
+              <div class="rm-stat-label">
+                <span class="rm-stat-dot"></span>
+                Guests connected
+              </div>
+              <span class="rm-stat-val">312 active</span>
+            </div>
+            <div class="rm-stat-row">
+              <div class="rm-stat-label">
+                <span class="rm-stat-dot"></span>
+                Avg. session length
+              </div>
+              <span class="rm-stat-val">47 min</span>
+            </div>
+            <div class="rm-stat-row">
+              <div class="rm-stat-label">
+                <span class="rm-stat-dot"></span>
+                Logins today
+              </div>
+              <span class="rm-stat-val rm-stat-val--green">1,284</span>
+            </div>
+            <div class="rm-stat-row">
+              <div class="rm-stat-label">
+                <span class="rm-stat-dot"></span>
+                Last deployment
+              </div>
+              <span class="rm-stat-val">3 min ago</span>
+            </div>
+
+            <div class="rm-status-footer">
+              <span>Synced with</span>
+              <span class="rm-status-pill">All hardware</span>
+              <span class="rm-status-pill">All regions</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= SCALABILITY ======================= -->
+  <section class="fp-scale">
+    <div class="fp-scale-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">Built to scale</div>
+        <h2>Growing your business<br>should be <em>exciting</em>, not operational.</h2>
+        <p class="lead">Adding a new venue to your network is a simple, entirely remote process. Plug in the hardware, provision from your dashboard — and you're live in minutes.</p>
+      </div>
+
+      <div class="fp-scale-grid">
+
+        <div class="fp-scale-card reveal">
+          <div class="fp-scale-icon fp-scale-icon--red">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h4>Add new venues remotely</h4>
+          <p>No site visit required to onboard a new location. Simply plug in the hardware, then provision and fully customize the guest experience from your central dashboard in minutes.</p>
+          <span class="fp-scale-stat">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Live in minutes, not days
+          </span>
+        </div>
+
+        <div class="fp-scale-card reveal d1">
+          <div class="fp-scale-icon fp-scale-icon--violet">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4>Enforce brand consistency</h4>
+          <p>Ensure every guest — whether in Brighton or Dubai — sees exactly the same on-brand experience. Push global changes to all venues at once, or fine-tune individual locations as needed.</p>
+          <span class="fp-scale-stat">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+            Consistent across every venue
+          </span>
+        </div>
+
+        <div class="fp-scale-card reveal">
+          <div class="fp-scale-icon fp-scale-icon--green">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          </div>
+          <h4>React to market changes instantly</h4>
+          <p>A competitor opens nearby. An event changes foot traffic patterns. A new promotion needs to go live today. With full remote control, you can respond to market conditions the moment they shift — from wherever you are.</p>
+          <span class="fp-scale-stat">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Unparalleled agility
+          </span>
+        </div>
+
+        <div class="fp-scale-card reveal d1">
+          <div class="fp-scale-icon fp-scale-icon--amber">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h4>Reduce operational overhead</h4>
+          <p>Every manual site visit costs time and money. Full remote management turns what was a full-day task into a few clicks — freeing your team to focus on what actually grows your business.</p>
+          <span class="fp-scale-stat">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+            Lower costs, higher output
+          </span>
+        </div>
+
+      </div>
+
+      <div class="fp-callout-wide reveal">
+        <div class="fp-callout-wide-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="fp-callout-wide-body">
+          <h4>A single point of control — for every venue, everywhere</h4>
+          <p>Fydelia's Full Remote Management doesn't just save time on routine tasks. It fundamentally changes how you think about operating a multi-site network. Reduce overhead, ensure brand consistency, and react to market changes with unparalleled agility — all from one screen, wherever you happen to be.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================= RELATED FEATURES ======================= -->
+  <section class="fp-related">
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">Keep exploring</div>
+        <h2>Features that work best<br>with remote management</h2>
+      </div>
+
+      <div class="fp-related-grid">
+
+        <a href="feature-splash-page-zones.html" class="fp-rel-card reveal">
+          <div class="fp-rel-icon fp-rel-icon--red">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h4>Splash Page Zones</h4>
+          <p>Deploy zone-specific experiences across large or complex sites — managed and updated remotely from your central dashboard.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="feature-dweller-flash-offers.html" class="fp-rel-card reveal d1">
+          <div class="fp-rel-icon fp-rel-icon--violet">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h4>Dweller Flash Offers</h4>
+          <p>Push time-limited promotions to all connected guests across any venue in your estate — instantly, from anywhere, with no manual setup on-site.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="features.html" class="fp-rel-card reveal d2">
+          <div class="fp-rel-icon fp-rel-icon--green">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <h4>100+ No-Code Integrations</h4>
+          <p>Data from every venue flows automatically into your CRM, email platform, or analytics stack — all configured and managed from the same central dashboard.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= CTA ======================= -->
+  <section class="cta-sec" id="cta">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <h2>Ready to manage your<br>entire estate remotely?</h2>
+        <p>Start your free 14-day trial. Full access to remote management, live monitoring, multi-venue deployment, and every other feature — zero risk, we'll handle the setup.</p>
+        <form class="cta-form" onsubmit="return false;">
+          <input type="email" placeholder="you@venue.com" aria-label="Email address">
+          <button class="btn-solid" type="submit">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </button>
+        </form>
+        <p class="cta-meta">No credit card required · Setup in &lt;2 minutes · Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="ft">
+    <div class="wrap-wide">
+      <div class="ft-grid">
+        <div class="ft-brand-col">
+          <a class="brand" href="index.html" aria-label="Fydelia home">
+            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+            <span class="brand-text">fydelia</span>
+          </a>
+          <p>The industry-leading captive portal and WiFi marketing platform that helps venues spark conversations and capture high-value user data. We turn simple guest WiFi access into a powerful engine for lead-gen and customer loyalty.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="splash-pages.html">Splash Pages</a></li>
+            <li><a href="hardware.html">Supported Hardware</a></li>
+<li><a href="for-venues.html">For Venues</a></li>
+<li><a href="for-resellers.html">For Resellers &amp; MSPs</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://www.fydelia.com/knowledge-base/">Documentation &amp; Support</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="blog.html">Blog</a></li>
+<li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="information-system-security-policy.html">InfoSys Security Policy</a></li>
+            <li><a href="security-assurance-plan">Security Assurance Plan</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li><a href="mailto:support@fydelia.com">support@fydelia.com</a></li>
+            <li>Brighton, United Kingdom</li>
+            <li>Dubai, UAE</li>
+          </ul>
+          <div class="ft-social">
+            <a href="https://instagram.com/fydeliawifi" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.facebook.com/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@fydeliawifi/videos" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <span>&copy; 2026 Fydelia</span>
+        <span>All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+
+<script>
+// ===== Theme toggle =====
+const toggle = document.getElementById('themeToggle');
+if (toggle) {
+  const saved = localStorage.getItem('fy-theme');
+  if (saved) document.body.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.body.setAttribute('data-theme', next);
+    localStorage.setItem('fy-theme', next);
+  });
+}
+
+// ===== Live guest counter animation =====
+(function() {
+  const guestEl = document.getElementById('guestCount');
+  if (!guestEl) return;
+  let base = 312;
+  setInterval(() => {
+    const delta = Math.floor(Math.random() * 5) - 2;
+    base = Math.max(295, Math.min(340, base + delta));
+    guestEl.textContent = base;
+  }, 3000);
+})();
+
+// ===== Scroll reveal =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+reveals.forEach(el => io.observe(el));
+
+// ===== Scale card mouse glow =====
+document.querySelectorAll('.fp-scale-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+});
+
+// ===== Mobile menu =====
+(function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const drawer     = document.getElementById('menuDrawer');
+  const backdrop   = document.getElementById('menuBackdrop');
+  const closeBtn   = document.getElementById('menuClose');
+  if (!menuToggle || !drawer) return;
+  const drawerLinks = drawer.querySelectorAll('.menu-drawer-nav a, .menu-drawer-signin, .menu-drawer-cta');
+  function openMenu() {
+    menuToggle.setAttribute('aria-expanded','true');
+    drawer.classList.add('active'); drawer.setAttribute('aria-hidden','false');
+    backdrop.classList.add('active'); backdrop.setAttribute('aria-hidden','false');
+    document.body.classList.add('menu-open');
+  }
+  function closeMenu() {
+    menuToggle.setAttribute('aria-expanded','false');
+    drawer.classList.remove('active'); drawer.setAttribute('aria-hidden','true');
+    backdrop.classList.remove('active'); backdrop.setAttribute('aria-hidden','true');
+    document.body.classList.remove('menu-open');
+  }
+  menuToggle.addEventListener('click', () => menuToggle.getAttribute('aria-expanded')==='true' ? closeMenu() : openMenu());
+  closeBtn.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  drawerLinks.forEach(l => l.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key==='Escape' && drawer.classList.contains('active')) closeMenu(); });
+  document.getElementById('themeToggleMobile')?.addEventListener('click', () => document.getElementById('themeToggle')?.click());
+})();
+</script>
+
+</body>
+</html>

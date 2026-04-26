@@ -307,7 +307,7 @@ body[data-theme="light"] .theme-switch-thumb .ts-sun { opacity: 1; transform: sc
 /* ---------- Mobile menu toggle (hidden on desktop) ---------- */
 .menu-toggle { display: none; }
 
-@media (max-width: 900px) {
+@media (max-width: 1040px) {
   .nav-links { display: none; }
   .nav-cta   { display: none; }
 

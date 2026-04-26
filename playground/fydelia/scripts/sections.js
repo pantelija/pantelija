@@ -11,7 +11,7 @@ document.getElementById('adcards-section').innerHTML = `
     <div class="adcards-text reveal">
       <div class="eyebrow"><span class="eyebrow-dot"></span><span>AdCards · Targeted on-WiFi ads</span></div>
       <h2 style="margin-top:18px;">Every guest. <em>Every moment.</em> A new canvas.</h2>
-      <p class="lead" style="margin-top:20px;">Design branded digital cards in minutes and push them to the splash page, the session, or a specific zone of your venue. Showcase a menu, plug an event, highlight a partner — right where attention is highest.</p>
+      <p class="lead" style="margin-top:20px;">Design branded digital cards in minutes and push them to the splash page, the session, or a specific zone of your venue. Showcase a menu, plug an event, highlight a partner. Right where attention is highest.</p>
       <ul class="adcards-feats">
         <li><span class="ad-check">✓</span> Drag-and-drop builder with your brand fonts &amp; colors</li>
         <li><span class="ad-check">✓</span> Schedule by day, time, location, or guest segment</li>
@@ -94,7 +94,7 @@ document.getElementById('flash-section').innerHTML = `
     <div class="flash-text reveal d1">
       <div class="eyebrow"><span class="eyebrow-dot"></span><span>Flash Offers · Dweller promos</span></div>
       <h2 style="margin-top:18px;">Turn idle minutes<br>into <em>instant revenue.</em></h2>
-      <p class="lead" style="margin-top:20px;">The moment a guest connects — or after they've sat for ten minutes — fire a time-limited offer straight to their screen. Countdown, scarcity, urgency. Move inventory without printing a single flyer.</p>
+      <p class="lead" style="margin-top:20px;">The moment a guest connects, or after they've sat for ten minutes, fire a time-limited offer straight to their screen. Countdown, scarcity, urgency. Move inventory without printing a single flyer.</p>
       <ul class="adcards-feats">
         <li><span class="ad-check">✓</span> Auto-trigger on connect, dwell time, or idle session</li>
         <li><span class="ad-check">✓</span> Countdown timer, stock limits, &amp; redemption caps</li>
@@ -111,7 +111,7 @@ document.getElementById('scrollreveal-section').innerHTML = `
   <div class="wrap">
     <div class="sec-head reveal" style="margin-bottom:40px;">
       <div class="eyebrow"><span class="eyebrow-dot"></span><span>How it works</span></div>
-      <h2>From WiFi sign-in to <em>loyal regular</em> —<br>in three moves.</h2>
+      <h2>From WiFi sign-in to <em>loyal regular</em> -<br>in three moves.</h2>
     </div>
 
     <div class="sr-layout">
@@ -119,17 +119,17 @@ document.getElementById('scrollreveal-section').innerHTML = `
         <div class="sr-step active" data-step="0">
           <div class="sr-step-num">Step 01</div>
           <h3>Capture every guest, automatically.</h3>
-          <p>When a guest connects to your WiFi, Fydelia intercepts them with a branded splash page. No clipboards, no QR codes — just a frictionless first impression that feeds your database in real time.</p>
+          <p>When a guest connects to your WiFi, Fydelia intercepts them with a branded splash page. No clipboards, no QR codes. Just a frictionless first impression that feeds your database in real time.</p>
         </div>
         <div class="sr-step" data-step="1">
           <div class="sr-step-num">Step 02</div>
           <h3>Trigger the right message at the right moment.</h3>
-          <p>Fire AdCards on connect, flash offers after ten minutes of dwell time, thank-you messages on disconnect. Every guest journey becomes a marketing opportunity — without a marketer lifting a finger.</p>
+          <p>Fire AdCards on connect, flash offers after ten minutes of dwell time, thank-you messages on disconnect. Every guest journey becomes a marketing opportunity without a marketer lifting a finger.</p>
         </div>
         <div class="sr-step" data-step="2">
           <div class="sr-step-num">Step 03</div>
           <h3>Measure, learn, repeat.</h3>
-          <p>One dashboard for every venue. See footfall, repeat visits, campaign ROI, lifetime value. Then sync it all back into the CRM you already use — Salesforce, HubSpot, Mailchimp, or 97 others.</p>
+          <p>One dashboard for every venue. See footfall, repeat visits, campaign ROI, lifetime value. Then sync it all back into the CRM you already use: Salesforce, HubSpot, Mailchimp, or 97 others.</p>
         </div>
       </div>
 
@@ -269,7 +269,7 @@ document.getElementById('integrations-section').innerHTML = `
     <div class="sec-head sec-head--center reveal">
       <div class="eyebrow"><span class="eyebrow-dot"></span><span>100+ no-code integrations</span></div>
       <h2>Plug into the stack<br>you <em>already use.</em></h2>
-      <p class="lead" style="text-align:center;">Two-way data with Salesforce, HubSpot, Mailchimp, Stripe, Shopify, Toast, Square, OpenTable — plus 97 more. Fydelia is the fire-hose. Your CRM is the lake.</p>
+      <p class="lead" style="text-align:center;">Two-way data with Salesforce, HubSpot, Mailchimp, Stripe, Shopify, Toast, Square, OpenTable... plus 97 more. Fydelia is the fire-hose. Your CRM is the lake.</p>
     </div>
     <div class="int-stage reveal d1">
       <div class="orbit">
@@ -315,7 +315,7 @@ document.getElementById('hardware-section').innerHTML = `
     <div class="hw-text reveal d1">
       <div class="eyebrow"><span class="eyebrow-dot"></span><span>Massive hardware support</span></div>
       <h2 style="margin-top:18px;">No new boxes.<br>No on-site visits. <em>No lock-in.</em></h2>
-      <p class="lead" style="margin-top:20px;">If it broadcasts WiFi, chances are Fydelia runs on it. From enterprise Cisco Meraki down to a £60 TP-Link sitting behind the bar — we plug in remotely in minutes.</p>
+      <p class="lead" style="margin-top:20px;">If it broadcasts WiFi, chances are Fydelia runs on it. From enterprise Cisco Meraki down to a £60 TP-Link sitting behind the bar. We plug in remotely in minutes.</p>
       <ul class="hw-list">
         ${hardwareList.map(h => `<li>${h}</li>`).join('')}
       </ul>
@@ -334,7 +334,7 @@ document.getElementById('gamification-section').innerHTML = `
     <div class="gami-text reveal">
       <div class="eyebrow"><span class="eyebrow-dot"></span><span>Gamification · Scratch cards &amp; spin-to-win</span></div>
       <h2 style="margin-top:18px;">Give them a reason<br>to <em>play along.</em></h2>
-      <p class="lead" style="margin-top:20px;">Digital scratch cards, spin-the-wheel, trivia, streak rewards — little moments of delight that turn guest WiFi into the most engaging thing in the room. And every interaction feeds your marketing data.</p>
+      <p class="lead" style="margin-top:20px;">Digital scratch cards, spin-the-wheel, trivia, streak rewards: little moments of delight that turn guest WiFi into the most engaging thing in the room. And every interaction feeds your marketing data.</p>
       <ul class="adcards-feats">
         <li><span class="ad-check">✓</span> Real scratch-to-reveal mechanics on any device</li>
         <li><span class="ad-check">✓</span> Probability-weighted prizes you can tune live</li>
@@ -369,7 +369,7 @@ document.getElementById('stats-section').innerHTML = `
     <div class="stats-quote reveal">
       <div class="qmark">"</div>
       <blockquote>The average restaurant customer visits just <em>1.2 times a year.</em> Most venues are leaving repeat revenue on the table.</blockquote>
-      <cite>— National Restaurant Association · Industry Benchmark</cite>
+      <cite>- National Restaurant Association · Industry Benchmark</cite>
     </div>
     <div class="stats-compare reveal d1">
       <div class="stats-card">
@@ -394,7 +394,7 @@ const moreFeats = [
   { icon: '◈', h: 'Splash Page Zones', p: 'Different splash page for the lobby, bar, poolside, or conference room.' },
   { icon: '◉', h: 'Shared Sign-On', p: 'Sign in at one venue, stay signed in across your entire group.' },
   { icon: '⚙', h: 'A/B testing', p: 'Let data decide which headline, image, or offer wins.' },
-  { icon: '✉', h: 'Email verification', p: 'Bounce fake emails at the gate — before they pollute your list.' },
+  { icon: '✉', h: 'Email verification', p: 'Bounce fake emails at the gate before they pollute your list.' },
   { icon: '🎂', h: 'Birthday campaigns', p: 'Capture birthdays on connect. Send celebration offers on the day.' },
   { icon: '★', h: 'Review funnels', p: 'Route happy guests to Google &amp; Tripadvisor, privately capture the rest.' },
   { icon: '◷', h: 'Scheduled content', p: 'Happy hour at 5pm, quiz night at 7, brunch at 10. Set it and forget it.' },
@@ -427,7 +427,7 @@ document.getElementById('why-section').innerHTML = `
       <div class="why-card reveal d1">
         <div class="why-num">02</div>
         <h3>No long-term contracts.</h3>
-        <p>We earn your loyalty monthly. If we're not delivering, you're free to leave — but our retention rate suggests you won't.</p>
+        <p>We earn your loyalty monthly. If we're not delivering, you're free to leave, but our retention rate suggests you won't.</p>
       </div>
       <div class="why-card reveal d2">
         <div class="why-num">03</div>
@@ -446,7 +446,7 @@ document.getElementById('why-section').innerHTML = `
 /* ---------- Testimonials ---------- */
 const testis = [
   { q: "Fydelia turned our guest WiFi from a line-item cost into our highest-ROI marketing channel. 40% lift in repeat visits in six months.", n: "Sarah M.", r: "Operations · The Ivy Collection", i: "SM" },
-  { q: "Setup was painless. Twelve locations live in a single week. Their support team picks up the phone — a novelty in SaaS.", n: "James T.", r: "Marketing · BrewDog", i: "JT" },
+  { q: "Setup was painless. Twelve locations live in a single week. Their support team picks up the phone. A novelty in SaaS!", n: "James T.", r: "Marketing · BrewDog", i: "JT" },
   { q: "We ran three other platforms before Fydelia. Nothing else even came close on ease of use and genuine customer support.", n: "Priya K.", r: "Venue Manager · Dishoom", i: "PK" },
 ];
 
@@ -494,58 +494,73 @@ document.getElementById('cta-section').innerHTML = `
 
 /* ---------- Footer ---------- */
 document.getElementById('footer-section').innerHTML = `
-<footer class="ft">
-  <div class="wrap">
-    <div class="ft-grid">
-      <div class="ft-brand-col">
-        <div class="brand">
-          <span class="brand-mark"><span class="brand-dot"></span></span>
-          <span class="brand-text">fydelia</span>
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="ft">
+    <div class="wrap-wide">
+      <div class="ft-grid">
+        <div class="ft-brand-col">
+          <a class="brand" href="index.html" aria-label="Fydelia home">
+            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+            <span class="brand-text">fydelia</span>
+          </a>
+          <p>The industry-leading captive portal and WiFi marketing platform that helps venues spark conversations and capture high-value user data. We turn simple guest WiFi access into a powerful engine for lead-gen and customer loyalty.</p>
         </div>
-        <p>Guest WiFi marketing for venues that actually want the data. Brighton · Dubai.</p>
+        <div class="ft-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="splash-pages.html">Splash Pages</a></li>
+            <li><a href="hardware.html">Supported Hardware</a></li>
+<li><a href="for-venues.html">For Venues</a></li>
+<li><a href="for-resellers.html">For Resellers &amp; MSPs</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://www.fydelia.com/knowledge-base/">Documentation &amp; Support</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="blog.html">Blog</a></li>
+<li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="information-system-security-policy.html">InfoSys Security Policy</a></li>
+            <li><a href="security-assurance-plan">Security Assurance Plan</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li><a href="mailto:support@fydelia.com">support@fydelia.com</a></li>
+            <li>Brighton, United Kingdom</li>
+            <li>Dubai, UAE</li>
+          </ul>
+          <div class="ft-social">
+            <a href="https://instagram.com/fydeliawifi" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.facebook.com/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@fydeliawifi/videos" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="ft-col">
-        <h4>Product</h4>
-        <ul>
-          <li><a href="#">Splash pages</a></li>
-          <li><a href="#">AdCards</a></li>
-          <li><a href="#">Flash offers</a></li>
-          <li><a href="#">Gamification</a></li>
-          <li><a href="#">Loyalty engine</a></li>
-        </ul>
-      </div>
-      <div class="ft-col">
-        <h4>Platform</h4>
-        <ul>
-          <li><a href="#">Integrations</a></li>
-          <li><a href="#">Hardware</a></li>
-          <li><a href="#">API</a></li>
-          <li><a href="#">GDPR</a></li>
-          <li><a href="#">Security</a></li>
-        </ul>
-      </div>
-      <div class="ft-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#">Case studies</a></li>
-          <li><a href="#">Pricing</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Knowledge base</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-      <div class="ft-col">
-        <h4>Contact</h4>
-        <ul>
-          <li style="font-family:var(--mono); font-size: 13px;">+44 203 368 8870</li>
-          <li>Brighton, UK</li>
-          <li>Motor City, Dubai</li>
-        </ul>
+      <div class="ft-bottom">
+        <span>&copy; 2026 Fydelia</span>
+        <span>All rights reserved.</span>
       </div>
     </div>
-    <div class="ft-bottom">
-      <span>© 2026 Fydelia · All rights reserved</span>
-      <span><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a> &nbsp;·&nbsp; <a href="#">Status</a></span>
-    </div>
-  </div>
-</footer>`;
+  </footer>`;

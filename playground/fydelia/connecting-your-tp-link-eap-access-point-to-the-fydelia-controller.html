@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Connecting your TP-Link EAP access point to the Fydelia controller — Fydelia Blog</title>
+<title>Connecting your TP-Link EAP access point to the Fydelia controller - Fydelia Blog</title>
+<meta name="description" content="Step-by-step guide to connecting a TP-Link EAP access point to the Fydelia controller using the TP-Link Omada app.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -432,6 +433,25 @@
   .art-author-card { flex-direction: column; gap: 14px; }
   .step { padding-left: 48px; }
 }
+/* --- Footer social icons --- */
+.ft-social {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 18px;
+  margin-left: -6px;
+}
+.ft-social-link {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  color: var(--fg-4);
+  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.ft-social-link svg { width: 16px; height: 16px; }
+.ft-social-link:hover { color: var(--fg); background: var(--bg-3); }
 </style>
 </head>
 <body>
@@ -447,11 +467,11 @@
       <span class="brand-text">fydelia</span>
     </a>
     <ul class="nav-links">
-      <li><a href="index.html#features">Features</a></li>
-      <li><a href="index.html#integrations">Integrations</a></li>
-      <li><a href="index.html#hardware">Hardware</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="splash-pages.html">Splash Pages</a></li>
       <li><a href="case-studies.html">Case Studies</a></li>
-      <li><a href="new-pricing.html">Pricing</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a></li>
     </ul>
     <div class="nav-cta">
       <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
@@ -460,14 +480,17 @@
           <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         </span>
       </button>
-      <a class="btn-ghost" href="#">Sign in</a>
-      <a class="btn-solid" href="index.html#cta">Try free for 14 days
+      <a class="btn-ghost" href="https://ondemand.fydelia.com/">Sign in</a>
+      <a class="btn-solid" href="https://www.fydelia.com/onboarding/">Try free for 14 days
         <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
       </a>
     </div>
+    <!-- Mobile burger -->
     <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
       <span class="menu-toggle-label">Menu</span>
-      <span class="menu-toggle-icon"><span></span><span></span><span></span></span>
+      <span class="menu-toggle-icon">
+        <span></span><span></span><span></span>
+      </span>
     </button>
   </div>
 </nav>
@@ -482,11 +505,14 @@
     </button>
   </div>
   <nav class="menu-drawer-nav">
-    <a href="index.html#features">Features</a>
-    <a href="index.html#integrations">Integrations</a>
-    <a href="index.html#hardware">Hardware</a>
-    <a href="case-studies.html">Case Studies</a>
-    <a href="new-pricing.html">Pricing</a>
+      <a href="features.html">Features</a>
+      <a href="splash-pages.html">Splash Pages</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="hardware.html">Supported Hardware</a>
+      <a href="blog.html">Blog</a>
+      <a href="blog.html">Contact</a>
+      <a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a></li>
   </nav>
   <div class="menu-drawer-foot">
     <div class="menu-drawer-theme">
@@ -498,8 +524,8 @@
         </span>
       </button>
     </div>
-    <a class="btn-ghost menu-drawer-signin" href="#">Sign in</a>
-    <a class="btn-solid menu-drawer-cta" href="index.html#cta">Try free for 14 days
+    <a class="btn-ghost menu-drawer-signin" href="https://ondemand.fydelia.com/">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="https://www.fydelia.com/onboarding/">Try free for 14 days
       <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
     </a>
   </div>
@@ -537,7 +563,7 @@
           <span class="art-author-avatar" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
           </span>
-          <span class="art-author-name">Fydelia Team</span>
+          <span class="art-author-name">Alojz Jakob</span>
         </a>
         <span class="art-meta-sep" aria-hidden="true"></span>
         <div class="art-meta-info">
@@ -554,11 +580,11 @@
   <section class="tp-body">
     <div class="wrap tp-prose">
 
-      <p>If you've just received your <a href="hardware.html">TP-Link EAP access point</a> and want to connect it to your Fydelia guest WiFi setup, you're in the right place. This guide walks you through every step of the process using the <strong>TP-Link Omada app</strong> — from installation to a fully adopted, Fydelia-managed device.</p>
+      <p>If you've just received your <a href="hardware.html">TP-Link EAP access point</a> and want to connect it to your Fydelia guest WiFi setup, you're in the right place. This guide walks you through every step of the process using the <strong>TP-Link Omada app</strong> from installation to a fully adopted, Fydelia-managed device.</p>
 
       <blockquote>
-        <p>"The Fydelia controller runs on a fully managed, cloud-hosted Omada SDN platform. This means your access points are always up to date, always visible, and always under your control — no on-site controller hardware required."</p>
-        <cite>— Fydelia Team</cite>
+        <p>"The Fydelia controller runs on a fully managed, cloud-hosted Omada SDN platform. This means your access points are always up to date, always visible, and always under your control, no on-site controller hardware required."</p>
+        <cite>- Fydelia Team</cite>
       </blockquote>
 
       <p>Before you begin, make sure your EAP access point is powered on and connected to your network via Ethernet. You'll also need your Fydelia login credentials to hand. The whole process takes around five minutes.</p>
@@ -672,7 +698,7 @@
             <p><strong>Wait for provisioning to complete.</strong> The access point will go through a short adoption and configuration process. You'll see its status update in real time as the controller pushes your settings across.</p>
             <figure class="art-figure">
               <img src="https://www.fydelia.com/wp-content/uploads/2025/04/image-9.png" alt="Provisioning in progress" width="800" height="600">
-              <figcaption>The controller provisions your access point automatically — no manual configuration needed.</figcaption>
+              <figcaption>The controller provisions your access point automatically, so no manual configuration needed.</figcaption>
             </figure>
             <figure class="art-figure" style="margin-top: 16px;">
               <img src="https://www.fydelia.com/wp-content/uploads/2025/04/image-10.png" alt="Adoption complete" width="800" height="600">
@@ -696,8 +722,8 @@
         </div>
         <div class="art-author-card-body">
           <p class="art-author-card-label">Written by</p>
-          <p class="art-author-card-name">Fydelia Team</p>
-          <p class="art-author-card-bio">The Fydelia team helps hospitality venues get their guest WiFi up and running quickly — from hardware setup to splash page design and beyond.</p>
+          <p class="art-author-card-name">Alojz Jakob</p>
+          <p class="art-author-card-bio">Alojz is part of the Fydelia technical team, keeping a close eye on hardware and network infrastructure news that affects guest WiFi deployments.</p>
         </div>
       </div>
 
@@ -706,7 +732,7 @@
         <div class="art-cta-text">
           <p class="art-cta-eyebrow">Get started</p>
           <p class="art-cta-heading">Ready to power your guest WiFi?</p>
-          <p class="art-cta-sub">Set up your splash page, connect your access points, and start collecting guest data — all in a free 14-day trial.</p>
+          <p class="art-cta-sub">Set up your splash page, connect your access points, and start collecting guest data, and all in a free 14-day trial.</p>
         </div>
         <a class="btn-solid" href="index.html#cta" style="white-space:nowrap;">
           Try free for 14 days
@@ -726,42 +752,59 @@
             <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
             <span class="brand-text">fydelia</span>
           </a>
-          <p>We help venues start a conversation with customers and collect valuable user data through lead generation and loyalty.</p>
+          <p>The industry-leading captive portal and WiFi marketing platform that helps venues spark conversations and capture high-value user data. We turn simple guest WiFi access into a powerful engine for lead-gen and customer loyalty.</p>
         </div>
         <div class="ft-col">
           <h4>Product</h4>
           <ul>
-            <li><a href="index.html#features">Features</a></li>
-            <li><a href="#">Splash Pages</a></li>
-            <li><a href="index.html#integrations">Integrations</a></li>
-            <li><a href="index.html#hardware">Hardware</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="splash-pages.html">Splash Pages</a></li>
+            <li><a href="hardware.html">Supported Hardware</a></li>
+<li><a href="for-venues.html">For Venues</a></li>
+<li><a href="for-resellers.html">For Resellers &amp; MSPs</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
           </ul>
         </div>
         <div class="ft-col">
           <h4>Resources</h4>
           <ul>
-            <li><a href="#">Knowledge Base</a></li>
+            <li><a href="https://www.fydelia.com/knowledge-base/">Documentation &amp; Support</a></li>
             <li><a href="case-studies.html">Case Studies</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Downloads</a></li>
+            <li><a href="blog.html">Blog</a></li>
+<li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
         <div class="ft-col">
-          <h4>Company</h4>
+          <h4>Legal</h4>
           <ul>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="new-Privacy-Policy.html">Privacy Policy</a></li>
-            <li><a href="#">Support</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="information-system-security-policy.html">InfoSys Security Policy</a></li>
+            <li><a href="security-assurance-plan">Security Assurance Plan</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
           </ul>
         </div>
         <div class="ft-col">
           <h4>Contact</h4>
           <ul>
             <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li><a href="mailto:support@fydelia.com">support@fydelia.com</a></li>
             <li>Brighton, United Kingdom</li>
             <li>Dubai, UAE</li>
           </ul>
+          <div class="ft-social">
+            <a href="https://instagram.com/fydeliawifi" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.facebook.com/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@fydeliawifi/videos" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
         </div>
       </div>
       <div class="ft-bottom">

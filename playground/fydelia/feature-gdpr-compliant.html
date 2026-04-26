@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fully GDPR Compliant – Fydelia</title>
+<meta name="description" content="Fydelia is engineered from the ground up to be fully GDPR compliant. Collect guest data responsibly with consent by design, a verifiable audit trail, and full support for guest rights.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/core.css">
+<link rel="stylesheet" href="styles/sections.css">
+
+<style>
+/* ======================= GDPR FEATURE PAGE ======================= */
+
+/* --- Hero --- */
+.fp-hero {
+  position: relative;
+  padding: 140px 0 100px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.fp-hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.fp-hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+}
+.fp-hero-glow {
+  position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+  width: 900px; height: 500px;
+  background: radial-gradient(ellipse, var(--red-glow-soft) 0%, transparent 65%);
+}
+.fp-hero-wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px; align-items: center; min-height: 460px;
+}
+.fp-hero-copy { max-width: 620px; }
+.fp-hero-copy .breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 12px; color: var(--fg-4);
+  margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.08em;
+}
+.fp-hero-copy .breadcrumb a { color: var(--fg-4); text-decoration: none; transition: color 0.2s var(--ease); }
+.fp-hero-copy .breadcrumb a:hover { color: var(--fg-2); }
+.fp-hero h1 { font-size: clamp(38px, 4.8vw, 56px); margin: 16px 0 22px; line-height: 1.1; letter-spacing: -0.03em; }
+.fp-hero h1 em { color: var(--red); font-style: italic; font-weight: 500; }
+.fp-hero .hero-sub { font-size: 18px; color: var(--fg-2); max-width: 520px; line-height: 1.65; margin-bottom: 36px; }
+.fp-hero-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 36px; }
+.fp-meta-tag {
+  display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px;
+  font-family: var(--mono); font-size: 11px; color: var(--fg-4);
+  background: var(--bg-3); border: 1px solid var(--line); border-radius: 6px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.fp-meta-tag--highlight { color: var(--red); background: rgba(255,43,43,0.08); border-color: rgba(255,43,43,0.2); }
+.fp-meta-tag--green  { color: var(--green); background: rgba(0,212,126,0.08); border-color: rgba(0,212,126,0.2); }
+.fp-meta-tag--violet { color: #9A6CFF; background: rgba(154,108,255,0.08); border-color: rgba(154,108,255,0.2); }
+
+/* ======================= HERO VISUAL: CONSENT FORM ======================= */
+.fp-hero-visual {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 420px;
+}
+.gdpr-visual {
+  position: relative;
+  width: 100%; max-width: 380px;
+}
+
+/* Consent card */
+.gdpr-card {
+  width: 100%;
+  border-radius: 20px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  overflow: hidden;
+  box-shadow: 0 32px 80px -20px rgba(0,0,0,0.55), 0 0 60px -20px var(--red-glow);
+}
+.gdpr-card-head {
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: 10px;
+}
+.gdpr-card-head-icon {
+  width: 32px; height: 32px; border-radius: 9px;
+  background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.2);
+  display: grid; place-items: center; color: var(--green); flex-shrink: 0;
+}
+.gdpr-card-head span { font-size: 13px; font-weight: 600; }
+.gdpr-card-badge {
+  margin-left: auto;
+  font-family: var(--mono); font-size: 9px; font-weight: 600;
+  color: var(--green); background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.2);
+  border-radius: 5px; padding: 2px 7px; text-transform: uppercase; letter-spacing: 0.1em;
+}
+.gdpr-card-body { padding: 18px 22px; }
+.gdpr-card-label {
+  font-family: var(--mono); font-size: 10px; color: var(--fg-4);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px;
+}
+/* Consent checkboxes */
+.gdpr-consent-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.gdpr-consent-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 11px 14px; border-radius: 10px;
+  background: var(--bg-3); border: 1px solid var(--line-2);
+}
+.gdpr-checkbox {
+  width: 18px; height: 18px; border-radius: 5px; flex-shrink: 0; margin-top: 1px;
+  display: grid; place-items: center;
+}
+.gdpr-checkbox--checked { background: var(--green); border: 1.5px solid var(--green); }
+.gdpr-checkbox--unchecked { background: transparent; border: 1.5px solid var(--line-strong); }
+.gdpr-checkbox svg { color: white; }
+.gdpr-consent-text { flex: 1; }
+.gdpr-consent-title { font-size: 12px; font-weight: 600; margin-bottom: 2px; }
+.gdpr-consent-desc { font-size: 11px; color: var(--fg-4); line-height: 1.4; }
+.gdpr-consent-required {
+  font-family: var(--mono); font-size: 9px; color: var(--red);
+  background: rgba(255,43,43,0.08); border: 1px solid rgba(255,43,43,0.15);
+  border-radius: 4px; padding: 1px 5px; text-transform: uppercase;
+  letter-spacing: 0.08em; margin-left: 4px;
+}
+.gdpr-card-footer {
+  padding: 0 22px 18px;
+  display: flex; gap: 8px;
+}
+.gdpr-btn-primary {
+  flex: 1; padding: 10px; border-radius: 9px;
+  background: var(--red); color: white;
+  font-size: 13px; font-weight: 600; border: none; cursor: pointer;
+  box-shadow: 0 6px 16px -6px var(--red-glow);
+}
+.gdpr-btn-ghost {
+  padding: 10px 14px; border-radius: 9px;
+  background: transparent; color: var(--fg-3);
+  font-size: 13px; font-weight: 500; border: 1px solid var(--line-2); cursor: pointer;
+}
+.gdpr-policy-link {
+  display: block; text-align: center;
+  padding: 10px 22px 14px;
+  font-family: var(--mono); font-size: 10px; color: var(--fg-4);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  border-top: 1px solid var(--line);
+}
+.gdpr-policy-link a { color: var(--fg-3); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Floating badge */
+.gdpr-badge {
+  position: absolute;
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px; background: var(--bg-2);
+  border: 1px solid var(--line-2); border-radius: 12px;
+  font-size: 12px; font-weight: 500; color: var(--fg-2);
+  white-space: nowrap; box-shadow: 0 8px 28px -8px rgba(0,0,0,0.4);
+  animation: gdpr-float 7s ease-in-out infinite;
+}
+.gdpr-badge-icon { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; flex-shrink: 0; }
+.gdpr-badge-icon--green  { background: rgba(0,212,126,0.1); color: var(--green); }
+.gdpr-badge-icon--violet { background: rgba(154,108,255,0.1); color: #9A6CFF; }
+.gdpr-badge-label { display: flex; flex-direction: column; gap: 1px; }
+.gdpr-badge-label span:first-child { font-size: 12px; font-weight: 600; }
+.gdpr-badge-label span:last-child  { font-size: 10px; color: var(--fg-4); font-family: var(--mono); }
+.gdpr-badge--1 { top: 14px; right: -10px; animation-delay: 0s; }
+.gdpr-badge--2 { bottom: 50px; right: -14px; animation-delay: 1s; }
+@keyframes gdpr-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+/* ======================= THREE PILLARS ======================= */
+.fp-pillars {
+  padding: 120px 0;
+  border-bottom: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.fp-pillars-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 55% 45% at 50% 0%, var(--red-glow-soft), transparent 60%);
+}
+.fp-pillars-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  margin-top: 64px;
+}
+.fp-pillar {
+  padding: 32px 28px; border: 1px solid var(--line); border-radius: 18px;
+  background: var(--bg-1); transition: all 0.35s var(--ease);
+  position: relative; overflow: hidden;
+}
+.fp-pillar::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 18px 18px 0 0;
+}
+.fp-pillar--green::before { background: linear-gradient(90deg, var(--green), rgba(0,212,126,0.4)); }
+.fp-pillar--violet::before { background: linear-gradient(90deg, #9A6CFF, rgba(154,108,255,0.4)); }
+.fp-pillar--red::before { background: linear-gradient(90deg, var(--red), rgba(255,43,43,0.4)); }
+.fp-pillar:hover { border-color: var(--line-strong); transform: translateY(-4px); box-shadow: 0 20px 50px -15px rgba(0,0,0,0.4); }
+.fp-pillar-icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  display: grid; place-items: center; margin-bottom: 18px;
+}
+.fp-pillar-icon--green  { background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.2); color: var(--green); }
+.fp-pillar-icon--violet { background: rgba(154,108,255,0.1); border: 1px solid rgba(154,108,255,0.2); color: #9A6CFF; }
+.fp-pillar-icon--red    { background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2); color: var(--red); }
+.fp-pillar h4 { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+.fp-pillar p  { font-size: 14.5px; color: var(--fg-3); line-height: 1.65; margin: 0; }
+
+/* ======================= AUDIT TRAIL (split) ======================= */
+.fp-audit {
+  padding: 140px 0; background: var(--bg-1);
+  border-bottom: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.fp-audit-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 50% 40% at 85% 55%, rgba(0,212,126,0.06), transparent 55%);
+}
+.fp-audit-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative;
+}
+
+/* Audit log card */
+.audit-log {
+  width: 100%; max-width: 400px;
+  border-radius: 20px; background: var(--bg-2);
+  border: 1px solid var(--line-2); overflow: hidden;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5);
+}
+.audit-log-head {
+  padding: 16px 20px; border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.audit-log-head-left { display: flex; align-items: center; gap: 8px; }
+.audit-log-head-left span { font-size: 13px; font-weight: 600; }
+.audit-log-tag {
+  font-family: var(--mono); font-size: 9px; font-weight: 600;
+  color: var(--green); background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.2);
+  border-radius: 5px; padding: 2px 7px; text-transform: uppercase; letter-spacing: 0.1em;
+}
+.audit-row {
+  padding: 13px 20px; border-bottom: 1px solid var(--line);
+  transition: background 0.2s var(--ease);
+}
+.audit-row:last-child { border-bottom: none; }
+.audit-row:hover { background: var(--bg-3); }
+.audit-row-top {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;
+}
+.audit-guest { font-size: 12px; font-weight: 600; }
+.audit-time {
+  font-family: var(--mono); font-size: 10px; color: var(--fg-4);
+  display: flex; align-items: center; gap: 4px;
+}
+.audit-row-bottom {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.audit-purpose {
+  font-family: var(--mono); font-size: 10px; padding: 2px 7px; border-radius: 5px;
+  text-transform: uppercase; letter-spacing: 0.07em;
+}
+.audit-purpose--email   { color: #9A6CFF; background: rgba(154,108,255,0.1); border: 1px solid rgba(154,108,255,0.15); }
+.audit-purpose--sms     { color: var(--green); background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.15); }
+.audit-purpose--offers  { color: #FFB020; background: rgba(255,176,32,0.08); border: 1px solid rgba(255,176,32,0.15); }
+.audit-purpose--privacy { color: var(--fg-3); background: var(--bg-4); border: 1px solid var(--line); }
+.audit-verified {
+  display: flex; align-items: center; gap: 4px;
+  font-family: var(--mono); font-size: 10px; color: var(--green);
+  margin-left: auto;
+}
+.audit-log-footer {
+  padding: 12px 20px; border-top: 1px solid var(--line);
+  font-family: var(--mono); font-size: 10px; color: var(--fg-4);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg-3);
+}
+
+/* callout */
+.fp-callout {
+  margin: 72px 0 0; padding: 30px 34px; border-radius: 16px;
+  background: var(--bg-2); border: 1px solid var(--line-2);
+  position: relative; overflow: hidden;
+}
+.fp-callout::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,43,43,0.06), transparent 50%);
+  pointer-events: none;
+}
+.fp-callout-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2);
+  display: grid; place-items: center; color: var(--red); margin-bottom: 12px;
+}
+.fp-callout p { font-size: 15.5px; color: var(--fg-2); line-height: 1.65; position: relative; margin: 0; }
+.fp-callout p strong { color: var(--fg); }
+
+/* ======================= USER RIGHTS ======================= */
+.fp-rights {
+  padding: 120px 0;
+  position: relative; overflow: hidden;
+}
+.fp-rights-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 40% 40% at 10% 60%, var(--red-glow-soft), transparent 55%),
+    radial-gradient(ellipse 35% 40% at 90% 40%, rgba(154,108,255,0.06), transparent 55%);
+}
+.fp-rights-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 64px;
+}
+.fp-right-card {
+  padding: 28px 26px; border: 1px solid var(--line); border-radius: 16px;
+  background: var(--bg-1); display: flex; gap: 16px;
+  transition: all 0.3s var(--ease);
+}
+.fp-right-card:hover { border-color: var(--line-strong); transform: translateY(-3px); box-shadow: 0 16px 40px -12px rgba(0,0,0,0.35); }
+.fp-right-card-icon {
+  width: 42px; height: 42px; border-radius: 11px;
+  display: grid; place-items: center; flex-shrink: 0;
+}
+.fp-right-card-icon--green  { background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.2); color: var(--green); }
+.fp-right-card-icon--violet { background: rgba(154,108,255,0.1); border: 1px solid rgba(154,108,255,0.2); color: #9A6CFF; }
+.fp-right-card-icon--red    { background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2); color: var(--red); }
+.fp-right-card-icon--amber  { background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.2); color: #FFB020; }
+.fp-right-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.fp-right-card p  { font-size: 14px; color: var(--fg-3); line-height: 1.6; margin: 0; }
+
+/* ======================= RELATED ======================= */
+.fp-related {
+  padding: 100px 0; background: var(--bg-1);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.fp-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+.fp-rel-card {
+  padding: 28px 24px; border: 1px solid var(--line); border-radius: 16px;
+  background: var(--bg-2); transition: all 0.3s var(--ease);
+  text-decoration: none; display: block; position: relative; overflow: hidden;
+}
+.fp-rel-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease);
+}
+.fp-rel-card:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+.fp-rel-card:hover::after { transform: scaleX(1); }
+.fp-rel-icon { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; margin-bottom: 14px; }
+.fp-rel-icon--red    { background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2); color: var(--red); }
+.fp-rel-icon--violet { background: rgba(154,108,255,0.1); border: 1px solid rgba(154,108,255,0.2); color: #9A6CFF; }
+.fp-rel-icon--green  { background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.2); color: var(--green); }
+.fp-rel-card h4 { font-size: 15px; font-weight: 600; color: var(--fg); margin-bottom: 6px; }
+.fp-rel-card p  { font-size: 13.5px; color: var(--fg-3); line-height: 1.55; margin: 0; }
+.fp-rel-arrow {
+  position: absolute; top: 26px; right: 22px; color: var(--fg-4); opacity: 0;
+  transition: all 0.25s var(--ease); transform: translate(-4px,0);
+}
+.fp-rel-card:hover .fp-rel-arrow { opacity: 1; transform: translate(0,0); }
+
+/* Footer social */
+.ft-social { display: flex; align-items: center; gap: 4px; margin-top: 18px; margin-left: -6px; }
+.ft-social-link {
+  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 6px;
+  color: var(--fg-4); transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.ft-social-link svg { width: 16px; height: 16px; }
+.ft-social-link:hover { color: var(--fg); background: var(--bg-3); }
+
+/* ======================= RESPONSIVE ======================= */
+@media (max-width: 980px) {
+  .fp-hero-wrap    { grid-template-columns: 1fr; gap: 48px; }
+  .fp-hero-visual  { min-height: 260px; }
+  .fp-pillars-grid { grid-template-columns: 1fr; }
+  .fp-audit-grid   { grid-template-columns: 1fr; gap: 48px; }
+  .fp-rights-grid  { grid-template-columns: 1fr; }
+  .fp-related-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .fp-related-grid { grid-template-columns: 1fr; }
+  .gdpr-badge--2 { display: none; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Fydelia home">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+      <span class="brand-text">fydelia</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="features.html">Features</a></li>
+      <li><a href="splash-pages.html">Splash Pages</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+      <a class="btn-ghost" href="https://ondemand.fydelia.com/">Sign in</a>
+      <a class="btn-solid" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</nav>
+
+<div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+<aside id="menuDrawer" class="menu-drawer" aria-hidden="true">
+  <div class="menu-drawer-head">
+    <span class="menu-drawer-title">Menu</span>
+    <button id="menuClose" class="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu-drawer-nav">
+    <a href="features.html">Features</a>
+    <a href="splash-pages.html">Splash Pages</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="hardware.html">Supported Hardware</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a>
+  </nav>
+  <div class="menu-drawer-foot">
+    <div class="menu-drawer-theme">
+      <span class="menu-drawer-theme-label">Dark mode</span>
+      <button id="themeToggleMobile" class="theme-switch" aria-label="Toggle theme">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+    </div>
+    <a class="btn-ghost menu-drawer-signin" href="https://ondemand.fydelia.com/">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
+</aside>
+
+
+<main>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="fp-hero">
+    <div class="fp-hero-bg" aria-hidden="true">
+      <div class="fp-hero-grid"></div>
+      <div class="fp-hero-glow"></div>
+    </div>
+
+    <div class="wrap fp-hero-wrap">
+      <div class="fp-hero-copy">
+        <div class="breadcrumb">
+          <a href="features.html">Features</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>GDPR Compliance</span>
+        </div>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span>Compliance feature</span>
+        </div>
+        <h1>Consent by design,<br>not by <em>default</em>.</h1>
+        <p class="hero-sub">Collecting guest data responsibly shouldn't be an afterthought. Fydelia is engineered from the ground up to be fully GDPR compliant — giving you the tools to build trust with your guests and protect your business at the same time.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn-solid btn-lg" href="https://www.fydelia.com/onboarding/">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+          <a class="btn-ghost" href="features.html" style="border:1px solid var(--line-2);">All features</a>
+        </div>
+        <div class="fp-hero-meta">
+          <span class="fp-meta-tag fp-meta-tag--green">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Fully GDPR Compliant
+          </span>
+          <span class="fp-meta-tag fp-meta-tag--violet">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Verified Audit Trail
+          </span>
+          <span class="fp-meta-tag fp-meta-tag--highlight">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Explicit Consent
+          </span>
+        </div>
+      </div>
+
+      <!-- Consent form visual -->
+      <div class="fp-hero-visual">
+        <div class="gdpr-visual">
+
+          <div class="gdpr-badge gdpr-badge--1">
+            <div class="gdpr-badge-icon gdpr-badge-icon--green">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="gdpr-badge-label">
+              <span>No pre-ticked boxes</span>
+              <span>Always explicit consent</span>
+            </div>
+          </div>
+
+          <div class="gdpr-badge gdpr-badge--2">
+            <div class="gdpr-badge-icon gdpr-badge-icon--violet">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="gdpr-badge-label">
+              <span>Audit log created</span>
+              <span>Every opt-in timestamped</span>
+            </div>
+          </div>
+
+          <div class="gdpr-card">
+            <div class="gdpr-card-head">
+              <div class="gdpr-card-head-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <span>Privacy &amp; Consent</span>
+              <span class="gdpr-card-badge">GDPR</span>
+            </div>
+
+            <div class="gdpr-card-body">
+              <div class="gdpr-card-label">We'd like your permission for</div>
+              <div class="gdpr-consent-list">
+
+                <div class="gdpr-consent-item">
+                  <div class="gdpr-checkbox gdpr-checkbox--unchecked"></div>
+                  <div class="gdpr-consent-text">
+                    <div class="gdpr-consent-title">Email newsletters</div>
+                    <div class="gdpr-consent-desc">Monthly updates, offers, and news from this venue.</div>
+                  </div>
+                </div>
+
+                <div class="gdpr-consent-item">
+                  <div class="gdpr-checkbox gdpr-checkbox--unchecked"></div>
+                  <div class="gdpr-consent-text">
+                    <div class="gdpr-consent-title">SMS promotions</div>
+                    <div class="gdpr-consent-desc">Flash deals and event invites sent directly to your phone.</div>
+                  </div>
+                </div>
+
+                <div class="gdpr-consent-item">
+                  <div class="gdpr-checkbox gdpr-checkbox--checked">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <div class="gdpr-consent-text">
+                    <div class="gdpr-consent-title">
+                      WiFi access <span class="gdpr-consent-required">Required</span>
+                    </div>
+                    <div class="gdpr-consent-desc">We store your device for network access per our privacy policy.</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="gdpr-card-footer">
+              <button class="gdpr-btn-primary">Connect to WiFi</button>
+              <button class="gdpr-btn-ghost">Decline</button>
+            </div>
+
+            <div class="gdpr-policy-link">
+              By connecting you agree to our <a href="#">Privacy Policy</a> &amp; <a href="#">Terms</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= THREE PILLARS ======================= -->
+  <section class="fp-pillars">
+    <div class="fp-pillars-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">How compliance works</div>
+        <h2>Respecting privacy at<br>every step of the journey</h2>
+        <p class="lead">GDPR compliance isn't a box to tick — it's a design principle woven into every part of how Fydelia handles guest data.</p>
+      </div>
+
+      <div class="fp-pillars-grid">
+
+        <div class="fp-pillar fp-pillar--green reveal">
+          <div class="fp-pillar-icon fp-pillar-icon--green">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <h4>Explicit, active consent</h4>
+          <p>Our login forms never use pre-ticked boxes. Every opt-in is a genuine, affirmative choice made by the guest — removing any ambiguity or legal liability for your business.</p>
+        </div>
+
+        <div class="fp-pillar fp-pillar--violet reveal d1">
+          <div class="fp-pillar-icon fp-pillar-icon--violet">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </div>
+          <h4>Granular micro opt-ins</h4>
+          <p>Guests can consent to specific communications independently — agreeing to a newsletter without agreeing to all marketing. Granular consent is a core GDPR requirement, and we make it seamless.</p>
+        </div>
+
+        <div class="fp-pillar fp-pillar--red reveal d2">
+          <div class="fp-pillar-icon fp-pillar-icon--red">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h4>Transparent data exchange</h4>
+          <p>Features like AdCards let you clearly show guests exactly why you're collecting their data and what they'll receive in return — building the transparent relationship GDPR demands.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= AUDIT TRAIL ======================= -->
+  <section class="fp-audit">
+    <div class="fp-audit-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="fp-audit-grid">
+
+        <!-- Copy -->
+        <div class="spotlight-text reveal">
+          <div class="kicker">Verifiable audit trail</div>
+          <h2>Proving compliance is just<br>as important as <em>being</em> compliant.</h2>
+          <p class="lead">In the event of an inquiry, you need a clear, irrefutable record of how and when each guest gave their consent. Fydelia handles this for you automatically — no manual record-keeping required.</p>
+          <p style="font-size:15.5px; color:var(--fg-2); line-height:1.65; margin-top:16px;">For every single opt-in, our system creates a timestamped, verifiable log recording the specific guest, the exact time and date of their consent, and the precise marketing purposes they agreed to. Robust, tangible evidence of your compliance — always available, always up to date.</p>
+
+          <ul class="spotlight-feats" style="margin-top:28px;">
+            <li><span class="spot-check">✓</span> Timestamped record created automatically for every consent</li>
+            <li><span class="spot-check">✓</span> Logs the guest, date, time, and specific purpose agreed to</li>
+            <li><span class="spot-check">✓</span> Provides verifiable evidence in the event of a regulatory inquiry</li>
+            <li><span class="spot-check">✓</span> Zero manual administration — it all happens in the background</li>
+          </ul>
+
+          <div class="fp-callout reveal d1">
+            <div class="fp-callout-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <p><strong>Complete peace of mind.</strong> You're not just compliant — you can prove it. Every consent interaction is documented and retrievable, giving you full confidence when it matters most.</p>
+          </div>
+        </div>
+
+        <!-- Audit log visual -->
+        <div class="reveal d1" style="display:grid; place-items:center;">
+          <div class="audit-log">
+            <div class="audit-log-head">
+              <div class="audit-log-head-left">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Consent Audit Log</span>
+              </div>
+              <span class="audit-log-tag">Verified</span>
+            </div>
+
+            <div class="audit-row">
+              <div class="audit-row-top">
+                <span class="audit-guest">Sarah J.</span>
+                <span class="audit-time">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Today 14:32
+                </span>
+              </div>
+              <div class="audit-row-bottom">
+                <span class="audit-purpose audit-purpose--email">Email</span>
+                <span class="audit-purpose audit-purpose--offers">Offers</span>
+                <span class="audit-verified">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Logged
+                </span>
+              </div>
+            </div>
+
+            <div class="audit-row">
+              <div class="audit-row-top">
+                <span class="audit-guest">Marcus T.</span>
+                <span class="audit-time">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Today 13:08
+                </span>
+              </div>
+              <div class="audit-row-bottom">
+                <span class="audit-purpose audit-purpose--email">Email</span>
+                <span class="audit-purpose audit-purpose--sms">SMS</span>
+                <span class="audit-verified">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Logged
+                </span>
+              </div>
+            </div>
+
+            <div class="audit-row">
+              <div class="audit-row-top">
+                <span class="audit-guest">Priya K.</span>
+                <span class="audit-time">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Today 11:54
+                </span>
+              </div>
+              <div class="audit-row-bottom">
+                <span class="audit-purpose audit-purpose--privacy">WiFi only</span>
+                <span class="audit-verified">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Logged
+                </span>
+              </div>
+            </div>
+
+            <div class="audit-row">
+              <div class="audit-row-top">
+                <span class="audit-guest">James W.</span>
+                <span class="audit-time">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Today 10:17
+                </span>
+              </div>
+              <div class="audit-row-bottom">
+                <span class="audit-purpose audit-purpose--email">Email</span>
+                <span class="audit-purpose audit-purpose--offers">Offers</span>
+                <span class="audit-purpose audit-purpose--sms">SMS</span>
+                <span class="audit-verified">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Logged
+                </span>
+              </div>
+            </div>
+
+            <div class="audit-log-footer">
+              <span>All consents timestamped &amp; verifiable</span>
+              <span style="color:var(--green);">✓ GDPR ready</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= USER RIGHTS ======================= -->
+  <section class="fp-rights">
+    <div class="fp-rights-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">Promoting user rights</div>
+        <h2>Guest rights, fully<br>supported out of the box</h2>
+        <p class="lead">GDPR doesn't just govern how data is collected — it governs how it's managed, displayed, and deleted. Fydelia makes it straightforward to uphold each right.</p>
+      </div>
+
+      <div class="fp-rights-grid">
+
+        <div class="fp-right-card reveal">
+          <div class="fp-right-card-icon fp-right-card-icon--green">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <div>
+            <h4>Privacy policy on the splash page</h4>
+            <p>Link your full data and privacy policy directly on the WiFi login page, so guests have transparent access to how their information is used before they consent.</p>
+          </div>
+        </div>
+
+        <div class="fp-right-card reveal d1">
+          <div class="fp-right-card-icon fp-right-card-icon--red">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+          </div>
+          <div>
+            <h4>Right to be forgotten</h4>
+            <p>Should a guest request erasure of their data, our platform enables you to easily locate and manage their records in full accordance with your legal obligations.</p>
+          </div>
+        </div>
+
+        <div class="fp-right-card reveal">
+          <div class="fp-right-card-icon fp-right-card-icon--violet">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </div>
+          <div>
+            <h4>Granular preference control</h4>
+            <p>Micro opt-ins let guests choose exactly which communications they receive, ensuring their choices are respected at every touchpoint — not just at the moment of sign-up.</p>
+          </div>
+        </div>
+
+        <div class="fp-right-card reveal d1">
+          <div class="fp-right-card-icon fp-right-card-icon--amber">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <h4>A trusted partner for your brand</h4>
+            <p>Guests who feel their data is handled with care become more confident customers. GDPR compliance isn't just legal protection — it's a genuine competitive advantage for your business.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= RELATED FEATURES ======================= -->
+  <section class="fp-related">
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">Keep exploring</div>
+        <h2>Features built on the<br>same privacy-first foundation</h2>
+      </div>
+
+      <div class="fp-related-grid">
+
+        <a href="feature-automatic-wifi-login.html" class="fp-rel-card reveal">
+          <div class="fp-rel-icon fp-rel-icon--green">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+          </div>
+          <h4>Automatic WiFi Login</h4>
+          <p>Returning guests reconnect instantly — zero friction, zero repeat login — while every visit is still fully logged and privacy-compliant via Proof of Presence.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="features.html" class="fp-rel-card reveal d1">
+          <div class="fp-rel-icon fp-rel-icon--violet">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <h4>100+ No-Code Integrations</h4>
+          <p>Only consented data flows to your CRM, email platform, or analytics stack — ensuring what lands in your marketing tools is clean, opt-in, and legally sound.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="feature-splash-page-zones.html" class="fp-rel-card reveal d2">
+          <div class="fp-rel-icon fp-rel-icon--red">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <h4>Custom Splash Pages</h4>
+          <p>Fully branded splash pages with GDPR-compliant consent fields, policy links, and micro opt-ins — all configurable without writing a line of code.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= CTA ======================= -->
+  <section class="cta-sec" id="cta">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <h2>Collect data responsibly.<br>Build trust that lasts.</h2>
+        <p>Start your free 14-day trial. Full access to GDPR-compliant consent tools, micro opt-ins, audit logs, and every other feature — zero risk.</p>
+        <form class="cta-form" onsubmit="return false;">
+          <input type="email" placeholder="you@venue.com" aria-label="Email address">
+          <button class="btn-solid" type="submit">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </button>
+        </form>
+        <p class="cta-meta">No credit card required · Setup in &lt;2 minutes · Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="ft">
+    <div class="wrap-wide">
+      <div class="ft-grid">
+        <div class="ft-brand-col">
+          <a class="brand" href="index.html" aria-label="Fydelia home">
+            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+            <span class="brand-text">fydelia</span>
+          </a>
+          <p>The industry-leading captive portal and WiFi marketing platform that helps venues spark conversations and capture high-value user data. We turn simple guest WiFi access into a powerful engine for lead-gen and customer loyalty.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="splash-pages.html">Splash Pages</a></li>
+            <li><a href="hardware.html">Supported Hardware</a></li>
+<li><a href="for-venues.html">For Venues</a></li>
+<li><a href="for-resellers.html">For Resellers &amp; MSPs</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://www.fydelia.com/knowledge-base/">Documentation &amp; Support</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="blog.html">Blog</a></li>
+<li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="information-system-security-policy.html">InfoSys Security Policy</a></li>
+            <li><a href="security-assurance-plan">Security Assurance Plan</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li><a href="mailto:support@fydelia.com">support@fydelia.com</a></li>
+            <li>Brighton, United Kingdom</li>
+            <li>Dubai, UAE</li>
+          </ul>
+          <div class="ft-social">
+            <a href="https://instagram.com/fydeliawifi" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.facebook.com/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@fydeliawifi/videos" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <span>&copy; 2026 Fydelia</span>
+        <span>All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+
+<script>
+// ===== Theme toggle =====
+const toggle = document.getElementById('themeToggle');
+if (toggle) {
+  const saved = localStorage.getItem('fy-theme');
+  if (saved) document.body.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.body.setAttribute('data-theme', next);
+    localStorage.setItem('fy-theme', next);
+  });
+}
+
+// ===== Scroll reveal =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+reveals.forEach(el => io.observe(el));
+
+// ===== Mobile menu =====
+(function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const drawer     = document.getElementById('menuDrawer');
+  const backdrop   = document.getElementById('menuBackdrop');
+  const closeBtn   = document.getElementById('menuClose');
+  if (!menuToggle || !drawer) return;
+  const drawerLinks = drawer.querySelectorAll('.menu-drawer-nav a, .menu-drawer-signin, .menu-drawer-cta');
+  function openMenu() {
+    menuToggle.setAttribute('aria-expanded','true');
+    drawer.classList.add('active'); drawer.setAttribute('aria-hidden','false');
+    backdrop.classList.add('active'); backdrop.setAttribute('aria-hidden','false');
+    document.body.classList.add('menu-open');
+  }
+  function closeMenu() {
+    menuToggle.setAttribute('aria-expanded','false');
+    drawer.classList.remove('active'); drawer.setAttribute('aria-hidden','true');
+    backdrop.classList.remove('active'); backdrop.setAttribute('aria-hidden','true');
+    document.body.classList.remove('menu-open');
+  }
+  menuToggle.addEventListener('click', () => menuToggle.getAttribute('aria-expanded')==='true' ? closeMenu() : openMenu());
+  closeBtn.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  drawerLinks.forEach(l => l.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key==='Escape' && drawer.classList.contains('active')) closeMenu(); });
+  document.getElementById('themeToggleMobile')?.addEventListener('click', () => document.getElementById('themeToggle')?.click());
+})();
+</script>
+
+</body>
+</html>

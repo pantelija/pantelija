@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AdCards – Fydelia</title>
+<meta name="description" content="Fydelia AdCards let you show guests a compelling reason to opt in before you ask — dramatically boosting consent rates, offer engagement, and guest trust.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/core.css">
+<link rel="stylesheet" href="styles/sections.css">
+
+<style>
+/* ======================= ADCARDS FEATURE PAGE ======================= */
+
+/* --- Hero --- */
+.fp-hero {
+  position: relative;
+  padding: 140px 0 100px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.fp-hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.fp-hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+}
+.fp-hero-glow {
+  position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+  width: 900px; height: 500px;
+  background: radial-gradient(ellipse, var(--red-glow-soft) 0%, transparent 65%);
+}
+.fp-hero-wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px; align-items: center; min-height: 480px;
+}
+.fp-hero-copy { max-width: 620px; }
+.fp-hero-copy .breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 12px; color: var(--fg-4);
+  margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.08em;
+}
+.fp-hero-copy .breadcrumb a { color: var(--fg-4); text-decoration: none; transition: color 0.2s var(--ease); }
+.fp-hero-copy .breadcrumb a:hover { color: var(--fg-2); }
+.fp-hero h1 { font-size: clamp(38px, 4.8vw, 56px); margin: 16px 0 22px; line-height: 1.1; letter-spacing: -0.03em; }
+.fp-hero h1 em { color: var(--red); font-style: italic; font-weight: 500; }
+.fp-hero .hero-sub { font-size: 18px; color: var(--fg-2); max-width: 520px; line-height: 1.65; margin-bottom: 36px; }
+.fp-hero-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 36px; }
+.fp-meta-tag {
+  display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px;
+  font-family: var(--mono); font-size: 11px; color: var(--fg-4);
+  background: var(--bg-3); border: 1px solid var(--line); border-radius: 6px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.fp-meta-tag--highlight { color: var(--red); background: rgba(255,43,43,0.08); border-color: rgba(255,43,43,0.2); }
+.fp-meta-tag--green  { color: var(--green); background: rgba(0,212,126,0.08); border-color: rgba(0,212,126,0.2); }
+.fp-meta-tag--amber  { color: #FFB020; background: rgba(255,176,32,0.08); border-color: rgba(255,176,32,0.2); }
+
+/* ======================= HERO VISUAL: ADCARD STACK ======================= */
+.fp-hero-visual {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 440px;
+}
+
+/* AdCard stack — identical to features.html */
+.adcard-stack {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  perspective: 1200px;
+}
+.adcard-mock {
+  position: absolute;
+  width: 280px;
+  border-radius: 18px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  overflow: hidden;
+  box-shadow: 0 20px 60px -20px rgba(0,0,0,0.5), 0 0 40px -20px var(--red-glow);
+  transition: all 0.4s var(--ease);
+}
+.adcard-mock:hover { transform: translateY(-8px) rotate(0deg) !important; box-shadow: 0 30px 70px -20px rgba(0,0,0,0.6), 0 0 50px -15px var(--red-glow); }
+.adcard-mock--1 { top: 0;    left: 0;   transform: rotate(-4deg); z-index: 3; }
+.adcard-mock--2 { top: 40px; left: 120px; transform: rotate(3deg);  z-index: 2; }
+.adcard-mock--3 { top: 160px; left: 40px; transform: rotate(-1deg); z-index: 1; }
+.adcard-img {
+  width: 100%; height: 140px;
+  position: relative; display: grid; place-items: center;
+}
+.adcard-img span {
+  font-size: 32px; color: white;
+  display: flex; align-items: center; justify-content: center;
+}
+.adcard-body { padding: 18px; }
+.adcard-body h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.adcard-body p  { font-size: 12.5px; color: var(--fg-3); line-height: 1.5; margin: 0; }
+.adcard-body .adcard-tag {
+  display: inline-block; margin-top: 10px; padding: 3px 8px;
+  font-family: var(--mono); font-size: 10px; color: var(--red);
+  background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2);
+  border-radius: 4px; text-transform: uppercase; letter-spacing: 0.1em;
+}
+
+/* Floating stat badges */
+.ac-badge {
+  position: absolute;
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px; background: var(--bg-2);
+  border: 1px solid var(--line-2); border-radius: 12px;
+  font-size: 12px; font-weight: 500; color: var(--fg-2);
+  white-space: nowrap; box-shadow: 0 8px 28px -8px rgba(0,0,0,0.4);
+  animation: ac-float 7s ease-in-out infinite;
+}
+.ac-badge-icon { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; flex-shrink: 0; }
+.ac-badge-icon--green  { background: rgba(0,212,126,0.1); color: var(--green); }
+.ac-badge-icon--red    { background: rgba(255,43,43,0.1); color: var(--red); }
+.ac-badge-icon--amber  { background: rgba(255,176,32,0.1); color: #FFB020; }
+.ac-badge-label { display: flex; flex-direction: column; gap: 1px; }
+.ac-badge-label span:first-child { font-size: 12px; font-weight: 600; }
+.ac-badge-label span:last-child  { font-size: 10px; color: var(--fg-4); font-family: var(--mono); }
+.ac-badge--1 { top: 10px;  right: -10px; animation-delay: 0s; }
+.ac-badge--2 { bottom: 60px; right: -14px; animation-delay: 1s; }
+.ac-badge--3 { bottom: 10px; left: -10px; animation-delay: 0.5s; }
+@keyframes ac-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+/* ======================= SHOW DON'T ASK (split spotlight) ======================= */
+.fp-show {
+  padding: 140px 0; background: var(--bg-1);
+  border-bottom: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.fp-show-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 50% 40% at 80% 30%, var(--red-glow-soft), transparent 60%);
+}
+.fp-show-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative;
+}
+
+/* Splash page mockup with adcard inside */
+.splash-mockup {
+  width: 100%; max-width: 380px;
+  border-radius: 22px; background: var(--bg-2);
+  border: 1px solid var(--line-2); overflow: hidden;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5), 0 0 50px -20px var(--red-glow);
+}
+.splash-top {
+  padding: 22px 22px 16px; text-align: center;
+  border-bottom: 1px solid var(--line);
+}
+.splash-logo {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--red); display: grid; place-items: center;
+  color: white; margin: 0 auto 10px; font-weight: 700; font-size: 13px;
+}
+.splash-venue { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+.splash-tagline { font-size: 11px; color: var(--fg-4); font-family: var(--mono); }
+
+/* The adcard inside the splash */
+.splash-adcard {
+  margin: 16px 16px 0;
+  border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--line-2);
+}
+.splash-adcard-img {
+  height: 110px;
+  background: linear-gradient(135deg, #C41010, #FF2B2B);
+  display: grid; place-items: center;
+  position: relative; overflow: hidden;
+}
+.splash-adcard-img::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 14px);
+}
+.splash-adcard-body { padding: 14px 16px 16px; background: var(--bg-3); }
+.splash-adcard-eyebrow {
+  font-family: var(--mono); font-size: 9px; color: var(--red); text-transform: uppercase;
+  letter-spacing: 0.14em; margin-bottom: 5px;
+}
+.splash-adcard-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.splash-adcard-sub { font-size: 11.5px; color: var(--fg-3); line-height: 1.45; }
+
+/* Opt-in row */
+.splash-optin {
+  margin: 14px 16px 16px;
+  padding: 12px 14px; border-radius: 10px;
+  background: var(--bg-3); border: 1px solid var(--line-2);
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.splash-optin-check {
+  width: 18px; height: 18px; border-radius: 5px; flex-shrink: 0; margin-top: 1px;
+  background: rgba(255,43,43,0.1); border: 1.5px solid var(--red);
+  display: grid; place-items: center;
+}
+.splash-optin-text { font-size: 11.5px; color: var(--fg-2); line-height: 1.45; }
+.splash-optin-text strong { color: var(--fg); }
+.splash-connect-btn {
+  display: block; margin: 0 16px 18px;
+  padding: 12px; border-radius: 10px; text-align: center;
+  background: var(--red); color: white; font-size: 14px; font-weight: 600;
+  box-shadow: 0 6px 18px -6px var(--red-glow);
+}
+
+/* ======================= MICRO OPT-INS (split, reversed) ======================= */
+.fp-micro {
+  padding: 140px 0;
+  position: relative; overflow: hidden;
+}
+.fp-micro-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 50% 40% at 15% 50%, var(--red-glow-soft), transparent 60%),
+    radial-gradient(ellipse 40% 40% at 85% 60%, rgba(154,108,255,0.06), transparent 60%);
+}
+.fp-micro-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative;
+}
+
+/* Micro opt-in cards */
+.micro-stack {
+  width: 100%; max-width: 390px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.micro-card {
+  border-radius: 14px; background: var(--bg-2); border: 1px solid var(--line-2);
+  overflow: hidden; transition: all 0.3s var(--ease);
+}
+.micro-card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
+.micro-card-top {
+  height: 64px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; position: relative;
+}
+.micro-card-body { padding: 12px 16px 14px; }
+.micro-card-eyebrow {
+  font-family: var(--mono); font-size: 9px; text-transform: uppercase;
+  letter-spacing: 0.14em; margin-bottom: 5px;
+}
+.micro-card-title { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+.micro-card-sub { font-size: 11.5px; color: var(--fg-3); line-height: 1.4; margin-bottom: 10px; }
+.micro-card-optin {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11.5px; color: var(--fg-2);
+}
+.micro-checkbox {
+  width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0;
+  display: grid; place-items: center;
+}
+.micro-checkbox--on  { background: var(--green); border: 1.5px solid var(--green); }
+.micro-checkbox--off { background: transparent; border: 1.5px solid var(--line-strong); }
+.micro-checkbox svg { color: white; }
+
+/* ======================= SCHEDULING ======================= */
+.fp-schedule {
+  padding: 140px 0; background: var(--bg-1);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.fp-schedule-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 55% 45% at 85% 35%, rgba(154,108,255,0.08), transparent 55%);
+}
+.fp-schedule-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 64px;
+}
+.fp-sched-card {
+  border: 1px solid var(--line); border-radius: 18px; background: var(--bg-2);
+  overflow: hidden; transition: all 0.35s var(--ease); position: relative;
+}
+.fp-sched-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 18px 18px 0 0;
+}
+.fp-sched-card--tod::before { background: linear-gradient(90deg, var(--red), rgba(255,43,43,0.4)); }
+.fp-sched-card--dow::before { background: linear-gradient(90deg, #9A6CFF, rgba(154,108,255,0.4)); }
+.fp-sched-card--dr::before  { background: linear-gradient(90deg, #FFB020, rgba(255,176,32,0.4)); }
+.fp-sched-card:hover { border-color: var(--line-strong); transform: translateY(-4px); box-shadow: 0 20px 50px -15px rgba(0,0,0,0.4); }
+.fp-sched-head {
+  padding: 22px 22px 16px;
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: 12px;
+}
+.fp-sched-icon {
+  width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; flex-shrink: 0;
+}
+.fp-sched-icon--red    { background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2); color: var(--red); }
+.fp-sched-icon--violet { background: rgba(154,108,255,0.1); border: 1px solid rgba(154,108,255,0.2); color: #9A6CFF; }
+.fp-sched-icon--amber  { background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.2); color: #FFB020; }
+.fp-sched-head h4 { font-size: 15px; font-weight: 600; margin: 0; }
+.fp-sched-body { padding: 16px 22px 22px; }
+.fp-sched-body p { font-size: 14px; color: var(--fg-3); line-height: 1.6; margin: 0 0 14px; }
+/* Schedule examples */
+.fp-sched-examples { display: flex; flex-direction: column; gap: 7px; }
+.fp-sched-ex {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; border-radius: 8px;
+  background: var(--bg-3); border: 1px solid var(--line);
+}
+.fp-sched-ex-label { font-size: 12px; color: var(--fg-2); font-weight: 500; }
+.fp-sched-ex-time {
+  font-family: var(--mono); font-size: 10px; color: var(--fg-4);
+}
+.fp-sched-ex-active .fp-sched-ex-time { color: var(--red); }
+.fp-sched-ex-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--line-strong); margin-right: 6px; flex-shrink: 0;
+}
+.fp-sched-ex-active .fp-sched-ex-dot { background: var(--green); box-shadow: 0 0 6px rgba(0,212,126,0.5); }
+.fp-sched-ex-left { display: flex; align-items: center; }
+
+/* ======================= OUTCOMES (tight stat row) ======================= */
+.fp-outcomes {
+  padding: 100px 0;
+  position: relative; overflow: hidden;
+}
+.fp-outcomes-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 50% 50% at 50% 60%, var(--red-glow-soft), transparent 60%);
+}
+.fp-outcomes-row {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  margin-top: 64px; position: relative;
+}
+.fp-outcome-stat {
+  padding: 32px 28px; border: 1px solid var(--line); border-radius: 18px;
+  background: var(--bg-1); text-align: center;
+  transition: all 0.35s var(--ease);
+}
+.fp-outcome-stat:hover { border-color: var(--line-strong); transform: translateY(-3px); box-shadow: 0 16px 40px -12px rgba(0,0,0,0.35); }
+.fp-outcome-stat-num {
+  font-size: clamp(36px, 4vw, 48px); font-weight: 700;
+  color: var(--red); letter-spacing: -0.04em;
+  font-family: var(--mono); margin-bottom: 8px; line-height: 1;
+}
+.fp-outcome-stat-label { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.fp-outcome-stat-desc { font-size: 13.5px; color: var(--fg-3); line-height: 1.55; }
+
+/* callout */
+.fp-callout {
+  margin-top: 64px; padding: 36px 40px; border-radius: 18px;
+  background: var(--bg-2); border: 1px solid var(--line-2);
+  position: relative; overflow: hidden;
+  display: flex; align-items: flex-start; gap: 20px;
+}
+.fp-callout::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,43,43,0.07), transparent 50%);
+  pointer-events: none;
+}
+.fp-callout-icon {
+  width: 48px; height: 48px; border-radius: 13px; flex-shrink: 0;
+  background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2);
+  display: grid; place-items: center; color: var(--red); position: relative;
+}
+.fp-callout-body { position: relative; }
+.fp-callout-body h4 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+.fp-callout-body p  { font-size: 15.5px; color: var(--fg-2); line-height: 1.65; margin: 0; }
+
+/* ======================= RELATED ======================= */
+.fp-related {
+  padding: 100px 0; background: var(--bg-1);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.fp-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+.fp-rel-card {
+  padding: 28px 24px; border: 1px solid var(--line); border-radius: 16px;
+  background: var(--bg-2); transition: all 0.3s var(--ease);
+  text-decoration: none; display: block; position: relative; overflow: hidden;
+}
+.fp-rel-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease);
+}
+.fp-rel-card:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+.fp-rel-card:hover::after { transform: scaleX(1); }
+.fp-rel-icon { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; margin-bottom: 14px; }
+.fp-rel-icon--red    { background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2); color: var(--red); }
+.fp-rel-icon--amber  { background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.2); color: #FFB020; }
+.fp-rel-icon--green  { background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.2); color: var(--green); }
+.fp-rel-card h4 { font-size: 15px; font-weight: 600; color: var(--fg); margin-bottom: 6px; }
+.fp-rel-card p  { font-size: 13.5px; color: var(--fg-3); line-height: 1.55; margin: 0; }
+.fp-rel-arrow {
+  position: absolute; top: 26px; right: 22px; color: var(--fg-4); opacity: 0;
+  transition: all 0.25s var(--ease); transform: translate(-4px,0);
+}
+.fp-rel-card:hover .fp-rel-arrow { opacity: 1; transform: translate(0,0); }
+
+/* Footer social */
+.ft-social { display: flex; align-items: center; gap: 4px; margin-top: 18px; margin-left: -6px; }
+.ft-social-link {
+  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 6px;
+  color: var(--fg-4); transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.ft-social-link svg { width: 16px; height: 16px; }
+.ft-social-link:hover { color: var(--fg); background: var(--bg-3); }
+
+/* ======================= RESPONSIVE ======================= */
+@media (max-width: 980px) {
+  .fp-hero-wrap      { grid-template-columns: 1fr; gap: 48px; }
+  .fp-hero-visual    { min-height: 300px; }
+  .fp-show-grid      { grid-template-columns: 1fr; gap: 48px; }
+  .fp-micro-grid     { grid-template-columns: 1fr; gap: 48px; }
+  .fp-schedule-grid  { grid-template-columns: 1fr; }
+  .fp-outcomes-row   { grid-template-columns: 1fr; }
+  .fp-related-grid   { grid-template-columns: 1fr 1fr; }
+  .fp-callout        { flex-direction: column; }
+}
+@media (max-width: 640px) {
+  .fp-related-grid { grid-template-columns: 1fr; }
+  .ac-badge--1, .ac-badge--3 { display: none; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Fydelia home">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+      <span class="brand-text">fydelia</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="features.html">Features</a></li>
+      <li><a href="splash-pages.html">Splash Pages</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+      <a class="btn-ghost" href="https://ondemand.fydelia.com/">Sign in</a>
+      <a class="btn-solid" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</nav>
+
+<div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+<aside id="menuDrawer" class="menu-drawer" aria-hidden="true">
+  <div class="menu-drawer-head">
+    <span class="menu-drawer-title">Menu</span>
+    <button id="menuClose" class="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu-drawer-nav">
+    <a href="features.html">Features</a>
+    <a href="splash-pages.html">Splash Pages</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="hardware.html">Supported Hardware</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a>
+  </nav>
+  <div class="menu-drawer-foot">
+    <div class="menu-drawer-theme">
+      <span class="menu-drawer-theme-label">Dark mode</span>
+      <button id="themeToggleMobile" class="theme-switch" aria-label="Toggle theme">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+    </div>
+    <a class="btn-ghost menu-drawer-signin" href="https://ondemand.fydelia.com/">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
+</aside>
+
+
+<main>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="fp-hero">
+    <div class="fp-hero-bg" aria-hidden="true">
+      <div class="fp-hero-grid"></div>
+      <div class="fp-hero-glow"></div>
+    </div>
+
+    <div class="wrap fp-hero-wrap">
+      <div class="fp-hero-copy">
+        <div class="breadcrumb">
+          <a href="features.html">Features</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>AdCards</span>
+        </div>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span>Marketing feature</span>
+        </div>
+        <h1>Give guests a reason<br>to say <em>yes</em>.</h1>
+        <p class="hero-sub">"Do you want to receive marketing?" To a guest who just wants WiFi, that question gets a fast "no." AdCards fix this by showing your guests something compelling — a 2-for-1, a live event, a prize draw — before you ask for the opt-in. The difference is dramatic.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn-solid btn-lg" href="https://www.fydelia.com/onboarding/">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+          <a class="btn-ghost" href="features.html" style="border:1px solid var(--line-2);">All features</a>
+        </div>
+        <div class="fp-hero-meta">
+          <span class="fp-meta-tag fp-meta-tag--highlight">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+            AdCards
+          </span>
+          <span class="fp-meta-tag fp-meta-tag--green">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            Higher opt-in rates
+          </span>
+          <span class="fp-meta-tag fp-meta-tag--amber">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Advanced scheduling
+          </span>
+        </div>
+      </div>
+
+      <!-- AdCard stack visual -->
+      <div class="fp-hero-visual">
+        <div style="position:relative; width:100%; max-width:400px; height:400px;">
+
+          <div class="ac-badge ac-badge--1">
+            <div class="ac-badge-icon ac-badge-icon--green">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            </div>
+            <div class="ac-badge-label">
+              <span>Opt-in rate up</span>
+              <span>Value-first approach</span>
+            </div>
+          </div>
+
+          <div class="ac-badge ac-badge--2">
+            <div class="ac-badge-icon ac-badge-icon--amber">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div class="ac-badge-label">
+              <span>Scheduled</span>
+              <span>Happy Hour · 5–8 PM</span>
+            </div>
+          </div>
+
+          <div class="ac-badge ac-badge--3">
+            <div class="ac-badge-icon ac-badge-icon--red">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+            </div>
+            <div class="ac-badge-label">
+              <span>Promotion</span>
+              <span>2-for-1 Burger Tuesdays</span>
+            </div>
+          </div>
+
+          <div class="adcard-stack">
+            <div class="adcard-mock adcard-mock--1">
+              <div class="adcard-img" style="background:linear-gradient(135deg, #C41010, #FF2B2B);">
+                <span><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></span>
+              </div>
+              <div class="adcard-body">
+                <h4>2-for-1 Burger Tuesdays</h4>
+                <p>Every Tuesday, all day. Opt in to get this deal straight to your phone.</p>
+                <span class="adcard-tag">Promotion</span>
+              </div>
+            </div>
+            <div class="adcard-mock adcard-mock--2">
+              <div class="adcard-img" style="background:linear-gradient(135deg, #7A1A19, #E91E1E);">
+                <span><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
+              </div>
+              <div class="adcard-body">
+                <h4>Live Jazz — Friday Night</h4>
+                <p>Join us from 8pm. Subscribe to hear about future events first.</p>
+                <span class="adcard-tag">Event</span>
+              </div>
+            </div>
+            <div class="adcard-mock adcard-mock--3">
+              <div class="adcard-img" style="background:linear-gradient(135deg, #1a1a2e, #3a3a5c);">
+                <span><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span>
+              </div>
+              <div class="adcard-body">
+                <h4>Summer Prize Draw</h4>
+                <p>Win a table for 4 and a £100 bar tab. Opt in to enter automatically.</p>
+                <span class="adcard-tag">Prize Draw</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= SHOW DON'T ASK ======================= -->
+  <section class="fp-show">
+    <div class="fp-show-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="fp-show-grid">
+
+        <!-- Copy left -->
+        <div class="spotlight-text reveal">
+          <div class="kicker">Show, don't just ask</div>
+          <h2>A value exchange,<br>not a <em>vague request</em>.</h2>
+          <p class="lead">Guests who understand what they're signing up for — and why — are far more likely to say yes. AdCards transform the opt-in moment from an ambiguous permission request into a clear, attractive proposition.</p>
+          <p style="font-size:15.5px; color:var(--fg-2); line-height:1.65; margin-top:16px;">Display vibrant promotional cards as part of the WiFi login journey. Showcase your 2-for-1 offer, advertise your upcoming live music night, or promote a seasonal prize draw. By presenting a tangible benefit first, you flip the dynamic entirely.</p>
+
+          <ul class="spotlight-feats" style="margin-top:28px;">
+            <li><span class="spot-check">✓</span> Display promotional cards within the WiFi splash page</li>
+            <li><span class="spot-check">✓</span> Boost opt-in rates by giving guests a compelling reason to subscribe</li>
+            <li><span class="spot-check">✓</span> Drive immediate interest and uptake of your key promotions</li>
+            <li><span class="spot-check">✓</span> Build trust through transparency about the value you'll deliver</li>
+            <li><span class="spot-check">✓</span> Track impressions and tap-through rates per card</li>
+          </ul>
+        </div>
+
+        <!-- Splash page visual -->
+        <div class="reveal d1" style="display:grid; place-items:center;">
+          <div class="splash-mockup">
+            <div class="splash-top">
+              <div class="splash-logo">F</div>
+              <div class="splash-venue">The Grand Café</div>
+              <div class="splash-tagline">Free guest WiFi · Connect below</div>
+            </div>
+
+            <div class="splash-adcard">
+              <div class="splash-adcard-img">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:relative;z-index:1;opacity:0.9;"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+              </div>
+              <div class="splash-adcard-body">
+                <div class="splash-adcard-eyebrow">This week's deal</div>
+                <div class="splash-adcard-title">2-for-1 Burger Tuesdays 🍔</div>
+                <div class="splash-adcard-sub">Every Tuesday all day. Opt in below and we'll send you this offer directly.</div>
+              </div>
+            </div>
+
+            <div class="splash-optin">
+              <div class="splash-optin-check">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="splash-optin-text">
+                <strong>Yes, send me deals like this</strong> — and other exclusive offers from The Grand Café.
+              </div>
+            </div>
+
+            <div class="splash-connect-btn">Connect to WiFi</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= MICRO OPT-INS ======================= -->
+  <section class="fp-micro">
+    <div class="fp-micro-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="fp-micro-grid">
+
+        <!-- Micro opt-in cards visual -->
+        <div class="reveal" style="display:grid; place-items:center;">
+          <div class="micro-stack">
+
+            <div class="micro-card">
+              <div class="micro-card-top" style="background:linear-gradient(135deg,rgba(154,108,255,0.15),rgba(154,108,255,0.05));">
+                🎉
+              </div>
+              <div class="micro-card-body">
+                <div class="micro-card-eyebrow" style="color:#9A6CFF;">Specific opt-in</div>
+                <div class="micro-card-title">Monthly Quiz Night</div>
+                <div class="micro-card-sub">Our popular quiz runs every last Thursday. Want to be on the guest list?</div>
+                <div class="micro-card-optin">
+                  <div class="micro-checkbox micro-checkbox--on">
+                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  Notify me about quiz nights
+                </div>
+              </div>
+            </div>
+
+            <div class="micro-card">
+              <div class="micro-card-top" style="background:linear-gradient(135deg,rgba(255,43,43,0.12),rgba(255,43,43,0.04));">
+                🎂
+              </div>
+              <div class="micro-card-body">
+                <div class="micro-card-eyebrow" style="color:var(--red);">Specific opt-in</div>
+                <div class="micro-card-title">Birthday Treat</div>
+                <div class="micro-card-sub">Get a special offer from us on your birthday. Share the date and we'll take care of the rest.</div>
+                <div class="micro-card-optin">
+                  <div class="micro-checkbox micro-checkbox--off"></div>
+                  Send me a birthday offer
+                </div>
+              </div>
+            </div>
+
+            <div class="micro-card">
+              <div class="micro-card-top" style="background:linear-gradient(135deg,rgba(255,176,32,0.12),rgba(255,176,32,0.04));">
+                🎵
+              </div>
+              <div class="micro-card-body">
+                <div class="micro-card-eyebrow" style="color:#FFB020;">Specific opt-in</div>
+                <div class="micro-card-title">Live Music Events</div>
+                <div class="micro-card-sub">We host live acts every Friday. Want early notice and priority booking?</div>
+                <div class="micro-card-optin">
+                  <div class="micro-checkbox micro-checkbox--on">
+                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  Yes, keep me in the loop
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Copy right -->
+        <div class="spotlight-text reveal d1">
+          <div class="kicker">Micro opt-ins</div>
+          <h2>Don't lose a guest<br>who says <em>"not yet"</em>.</h2>
+          <p class="lead">A guest who declines your general marketing list isn't lost — they're just waiting for the right ask. AdCards' Micro Opt-ins let you target them with something specific and irresistible.</p>
+          <p style="font-size:15.5px; color:var(--fg-2); line-height:1.65; margin-top:16px;">Present a highly relevant card even to guests who've opted out of everything else: "Want to be notified about our monthly quiz night?" or "Opt in to receive a special birthday offer." One specific value proposition is far easier to say yes to than a blanket marketing list.</p>
+
+          <ul class="spotlight-feats" style="margin-top:28px;">
+            <li><span class="spot-check">✓</span> Reach guests who declined your main marketing list</li>
+            <li><span class="spot-check">✓</span> Capture interest for specific events, offers, or services</li>
+            <li><span class="spot-check">✓</span> Fully GDPR-compliant — each micro opt-in is a separate consent</li>
+            <li><span class="spot-check">✓</span> Build a wider, more engaged audience over time</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= SCHEDULING ======================= -->
+  <section class="fp-schedule">
+    <div class="fp-schedule-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">Advanced scheduling</div>
+        <h2>Right message,<br>right <em>time</em>.</h2>
+        <p class="lead">Your offers change, and so should your AdCards. Schedule exactly when each card appears — so your morning coffee deal never shows at dinner, and your weekend brunch only fires on Fridays and Saturdays.</p>
+      </div>
+
+      <div class="fp-schedule-grid">
+
+        <!-- Time of Day -->
+        <div class="fp-sched-card fp-sched-card--tod reveal">
+          <div class="fp-sched-head">
+            <div class="fp-sched-icon fp-sched-icon--red">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h4>Time of Day</h4>
+          </div>
+          <div class="fp-sched-body">
+            <p>Show a "Morning Coffee &amp; Croissant" deal at breakfast and switch to "Happy Hour Cocktails" automatically in the evening — without lifting a finger.</p>
+            <div class="fp-sched-examples">
+              <div class="fp-sched-ex fp-sched-ex-active">
+                <div class="fp-sched-ex-left">
+                  <span class="fp-sched-ex-dot"></span>
+                  <span class="fp-sched-ex-label">Morning Brew ☕</span>
+                </div>
+                <span class="fp-sched-ex-time">07:00 – 11:00</span>
+              </div>
+              <div class="fp-sched-ex">
+                <div class="fp-sched-ex-left">
+                  <span class="fp-sched-ex-dot"></span>
+                  <span class="fp-sched-ex-label">Lunch Special 🍔</span>
+                </div>
+                <span class="fp-sched-ex-time">12:00 – 15:00</span>
+              </div>
+              <div class="fp-sched-ex">
+                <div class="fp-sched-ex-left">
+                  <span class="fp-sched-ex-dot"></span>
+                  <span class="fp-sched-ex-label">Happy Hour 🍹</span>
+                </div>
+                <span class="fp-sched-ex-time">17:00 – 20:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day of Week -->
+        <div class="fp-sched-card fp-sched-card--dow reveal d1">
+          <div class="fp-sched-head">
+            <div class="fp-sched-icon fp-sched-icon--violet">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <h4>Day of Week</h4>
+          </div>
+          <div class="fp-sched-body">
+            <p>Promote your Weekend Brunch Special only on Fridays and Saturdays. Run a "Burger Tuesday" card on Tuesdays only. Never show the wrong deal on the wrong day.</p>
+            <div class="fp-sched-examples">
+              <div class="fp-sched-ex fp-sched-ex-active">
+                <div class="fp-sched-ex-left">
+                  <span class="fp-sched-ex-dot"></span>
+                  <span class="fp-sched-ex-label">2-for-1 Burgers 🍔</span>
+                </div>
+                <span class="fp-sched-ex-time">Tue only</span>
+              </div>
+              <div class="fp-sched-ex fp-sched-ex-active">
+                <div class="fp-sched-ex-left">
+                  <span class="fp-sched-ex-dot"></span>
+                  <span class="fp-sched-ex-label">Weekend Brunch 🥞</span>
+                </div>
+                <span class="fp-sched-ex-time">Fri – Sat</span>
+              </div>
+              <div class="fp-sched-ex">
+                <div class="fp-sched-ex-left">
+                  <span class="fp-sched-ex-dot"></span>
+                  <span class="fp-sched-ex-label">Quiz Night 🎉</span>
+                </div>
+                <span class="fp-sched-ex-time">Last Thu</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Date Ranges -->
+        <div class="fp-sched-card fp-sched-card--dr reveal d2">
+          <div class="fp-sched-head">
+            <div class="fp-sched-icon fp-sched-icon--amber">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
+            </div>
+            <h4>Date Ranges</h4>
+          </div>
+          <div class="fp-sched-body">
+            <p>Schedule cards for seasonal campaigns — Christmas, Valentine's Day, a summer festival, or any date range you choose. Set it once and it runs automatically.</p>
+            <div class="fp-sched-examples">
+              <div class="fp-sched-ex fp-sched-ex-active">
+                <div class="fp-sched-ex-left">
+                  <span class="fp-sched-ex-dot"></span>
+                  <span class="fp-sched-ex-label">Summer Festival ☀️</span>
+                </div>
+                <span class="fp-sched-ex-time">Jul 1 – Aug 31</span>
+              </div>
+              <div class="fp-sched-ex">
+                <div class="fp-sched-ex-left">
+                  <span class="fp-sched-ex-dot"></span>
+                  <span class="fp-sched-ex-label">Valentine's 💝</span>
+                </div>
+                <span class="fp-sched-ex-time">Feb 10 – 14</span>
+              </div>
+              <div class="fp-sched-ex">
+                <div class="fp-sched-ex-left">
+                  <span class="fp-sched-ex-dot"></span>
+                  <span class="fp-sched-ex-label">Xmas Menu 🎄</span>
+                </div>
+                <span class="fp-sched-ex-time">Dec 1 – 24</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= OUTCOMES ======================= -->
+  <section class="fp-outcomes">
+    <div class="fp-outcomes-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">What you'll gain</div>
+        <h2>Stop just asking for permission.<br>Start giving guests a <em>reason to connect</em>.</h2>
+      </div>
+
+      <div class="fp-outcomes-row">
+
+        <div class="fp-outcome-stat reveal">
+          <div class="fp-outcome-stat-num">↑ Opt-ins</div>
+          <div class="fp-outcome-stat-label">Higher consent rates</div>
+          <div class="fp-outcome-stat-desc">A clear, visual value proposition converts far more guests than a blank permission request. Every opt-in you collect becomes a lasting marketing asset.</div>
+        </div>
+
+        <div class="fp-outcome-stat reveal d1">
+          <div class="fp-outcome-stat-num">↑ Revenue</div>
+          <div class="fp-outcome-stat-label">Immediate offer engagement</div>
+          <div class="fp-outcome-stat-desc">Guests who see your 2-for-1 or happy hour deal at login arrive at the counter already primed to spend. AdCards turn the login moment into a revenue trigger.</div>
+        </div>
+
+        <div class="fp-outcome-stat reveal d2">
+          <div class="fp-outcome-stat-num">↑ Trust</div>
+          <div class="fp-outcome-stat-label">Transparent relationships</div>
+          <div class="fp-outcome-stat-desc">Guests who know exactly what they're subscribing to — and see the value upfront — trust your brand more. Trust drives repeat visits, longer dwell time, and higher spend.</div>
+        </div>
+
+      </div>
+
+      <div class="fp-callout reveal">
+        <div class="fp-callout-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+        </div>
+        <div class="fp-callout-body">
+          <h4>Your WiFi portal is already a marketing touchpoint — AdCards make it work</h4>
+          <p>Every guest who logs in is a captive audience for a few seconds. Most venues waste that moment with a plain consent checkbox. With AdCards, you fill that moment with something valuable, something they'll remember, and something that makes them say yes. Turn your WiFi portal into a dynamic, revenue-generating marketing channel — starting today.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================= RELATED FEATURES ======================= -->
+  <section class="fp-related">
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">Keep exploring</div>
+        <h2>Features that make AdCards<br>even more powerful</h2>
+      </div>
+
+      <div class="fp-related-grid">
+
+        <a href="feature-dweller-flash-offers.html" class="fp-rel-card reveal">
+          <div class="fp-rel-icon fp-rel-icon--red">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h4>Dweller Flash Offers</h4>
+          <p>Once a guest is connected and opted in, push time-limited promotions directly to them while they're still on your WiFi — converting browsing into buying.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="feature-gdpr-compliant.html" class="fp-rel-card reveal d1">
+          <div class="fp-rel-icon fp-rel-icon--green">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4>GDPR Compliance</h4>
+          <p>Every AdCard opt-in and micro opt-in is automatically logged with a timestamp and purpose — creating a verifiable audit trail with zero manual work.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="feature-splash-page-zones.html" class="fp-rel-card reveal d2">
+          <div class="fp-rel-icon fp-rel-icon--amber">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h4>Splash Page Zones</h4>
+          <p>Combine AdCards with Zones to show area-specific offers — a cocktail promotion to bar guests, a spa deal to hotel guests — served from the same splash page.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= CTA ======================= -->
+  <section class="cta-sec" id="cta">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <h2>Ready to give your<br>guests a reason to say yes?</h2>
+        <p>Start your free 14-day trial. Full access to AdCards, micro opt-ins, scheduling, and every other feature — zero risk, and we'll handle the setup.</p>
+        <form class="cta-form" onsubmit="return false;">
+          <input type="email" placeholder="you@venue.com" aria-label="Email address">
+          <button class="btn-solid" type="submit">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </button>
+        </form>
+        <p class="cta-meta">No credit card required · Setup in &lt;2 minutes · Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="ft">
+    <div class="wrap-wide">
+      <div class="ft-grid">
+        <div class="ft-brand-col">
+          <a class="brand" href="index.html" aria-label="Fydelia home">
+            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+            <span class="brand-text">fydelia</span>
+          </a>
+          <p>The industry-leading captive portal and WiFi marketing platform that helps venues spark conversations and capture high-value user data. We turn simple guest WiFi access into a powerful engine for lead-gen and customer loyalty.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="splash-pages.html">Splash Pages</a></li>
+            <li><a href="hardware.html">Supported Hardware</a></li>
+<li><a href="for-venues.html">For Venues</a></li>
+<li><a href="for-resellers.html">For Resellers &amp; MSPs</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://www.fydelia.com/knowledge-base/">Documentation &amp; Support</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="blog.html">Blog</a></li>
+<li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="information-system-security-policy.html">InfoSys Security Policy</a></li>
+            <li><a href="security-assurance-plan">Security Assurance Plan</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li><a href="mailto:support@fydelia.com">support@fydelia.com</a></li>
+            <li>Brighton, United Kingdom</li>
+            <li>Dubai, UAE</li>
+          </ul>
+          <div class="ft-social">
+            <a href="https://instagram.com/fydeliawifi" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.facebook.com/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@fydeliawifi/videos" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <span>&copy; 2026 Fydelia</span>
+        <span>All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+
+<script>
+// ===== Theme toggle =====
+const toggle = document.getElementById('themeToggle');
+if (toggle) {
+  const saved = localStorage.getItem('fy-theme');
+  if (saved) document.body.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.body.setAttribute('data-theme', next);
+    localStorage.setItem('fy-theme', next);
+  });
+}
+
+// ===== Scroll reveal =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+reveals.forEach(el => io.observe(el));
+
+// ===== Mobile menu =====
+(function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const drawer     = document.getElementById('menuDrawer');
+  const backdrop   = document.getElementById('menuBackdrop');
+  const closeBtn   = document.getElementById('menuClose');
+  if (!menuToggle || !drawer) return;
+  const drawerLinks = drawer.querySelectorAll('.menu-drawer-nav a, .menu-drawer-signin, .menu-drawer-cta');
+  function openMenu() {
+    menuToggle.setAttribute('aria-expanded','true');
+    drawer.classList.add('active'); drawer.setAttribute('aria-hidden','false');
+    backdrop.classList.add('active'); backdrop.setAttribute('aria-hidden','false');
+    document.body.classList.add('menu-open');
+  }
+  function closeMenu() {
+    menuToggle.setAttribute('aria-expanded','false');
+    drawer.classList.remove('active'); drawer.setAttribute('aria-hidden','true');
+    backdrop.classList.remove('active'); backdrop.setAttribute('aria-hidden','true');
+    document.body.classList.remove('menu-open');
+  }
+  menuToggle.addEventListener('click', () => menuToggle.getAttribute('aria-expanded')==='true' ? closeMenu() : openMenu());
+  closeBtn.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  drawerLinks.forEach(l => l.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key==='Escape' && drawer.classList.contains('active')) closeMenu(); });
+  document.getElementById('themeToggleMobile')?.addEventListener('click', () => document.getElementById('themeToggle')?.click());
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Splash Page Zones – Fydelia</title>
+<meta name="description" content="Fydelia Splash Page Zones let you deliver different splash pages and promotions to guests based on which part of your venue they're sitting in — hyper-local WiFi marketing, no extra hardware.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/core.css">
+<link rel="stylesheet" href="styles/sections.css">
+
+<style>
+/* ======================= SPLASH PAGE ZONES FEATURE PAGE ======================= */
+
+/* --- Hero --- */
+.fp-hero {
+  position: relative;
+  padding: 140px 0 100px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.fp-hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.fp-hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+}
+.fp-hero-glow {
+  position: absolute;
+  top: -200px; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 500px;
+  background: radial-gradient(ellipse, var(--red-glow-soft) 0%, transparent 65%);
+}
+.fp-hero-wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px;
+  align-items: center;
+  min-height: 460px;
+}
+.fp-hero-copy { max-width: 620px; }
+.fp-hero-copy .breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 12px;
+  color: var(--fg-4); margin-bottom: 20px;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.fp-hero-copy .breadcrumb a { color: var(--fg-4); text-decoration: none; transition: color 0.2s var(--ease); }
+.fp-hero-copy .breadcrumb a:hover { color: var(--fg-2); }
+.fp-hero h1 {
+  font-size: clamp(38px, 4.8vw, 56px);
+  margin: 16px 0 22px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+.fp-hero h1 em { color: var(--red); font-style: italic; font-weight: 500; }
+.fp-hero .hero-sub {
+  font-size: 18px; color: var(--fg-2);
+  max-width: 520px; line-height: 1.65; margin-bottom: 36px;
+}
+.fp-hero-meta {
+  display: flex; align-items: center; gap: 12px;
+  flex-wrap: wrap; margin-top: 36px;
+}
+.fp-meta-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 12px;
+  font-family: var(--mono); font-size: 11px;
+  color: var(--fg-4); background: var(--bg-3);
+  border: 1px solid var(--line); border-radius: 6px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.fp-meta-tag--highlight { color: var(--red); background: rgba(255,43,43,0.08); border-color: rgba(255,43,43,0.2); }
+.fp-meta-tag--violet { color: #9A6CFF; background: rgba(154,108,255,0.08); border-color: rgba(154,108,255,0.2); }
+.fp-meta-tag--green  { color: var(--green); background: rgba(0,212,126,0.08); border-color: rgba(0,212,126,0.2); }
+
+/* ======================= HERO VISUAL: FLOOR PLAN ======================= */
+.fp-hero-visual {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 420px;
+}
+.floorplan {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1;
+}
+.floorplan-svg {
+  width: 100%; height: 100%;
+  border-radius: 16px;
+  overflow: visible;
+}
+
+/* Zone highlight cards that pop up from the floor plan */
+.zone-callout {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 13px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fg-2);
+  white-space: nowrap;
+  box-shadow: 0 8px 28px -8px rgba(0,0,0,0.4);
+  animation: float-callout 7s ease-in-out infinite;
+  pointer-events: none;
+}
+.zone-callout-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%; flex-shrink: 0;
+}
+.zone-callout--bar      { top: 8px;  right: -20px; animation-delay: 0s; }
+.zone-callout--rest     { bottom: 80px; right: -24px; animation-delay: 1.2s; }
+.zone-callout--lounge   { bottom: 12px; left: -16px; animation-delay: 0.6s; }
+.zone-callout--conf     { top: 60px;  left: -24px; animation-delay: 1.8s; }
+
+@keyframes float-callout {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* ======================= ZONE EXAMPLES ======================= */
+.fp-zones {
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.fp-zones-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 55% 40% at 75% 30%, var(--red-glow-soft), transparent 60%);
+}
+.fp-zones-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 64px;
+}
+.fp-zone-card {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--bg-1);
+  transition: all 0.35s var(--ease);
+  position: relative;
+}
+.fp-zone-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 50px -15px rgba(0,0,0,0.4);
+}
+/* Colored top accent bar */
+.fp-zone-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 20px 20px 0 0;
+}
+.fp-zone-card--bar::before    { background: linear-gradient(90deg, var(--red), #FF6B6B); }
+.fp-zone-card--rest::before   { background: linear-gradient(90deg, #FFB020, #FFCF60); }
+.fp-zone-card--spa::before    { background: linear-gradient(90deg, var(--green), #60EFBB); }
+.fp-zone-card--conf::before   { background: linear-gradient(90deg, #9A6CFF, #C4A8FF); }
+
+.fp-zone-head {
+  padding: 24px 26px 20px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.fp-zone-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+}
+.fp-zone-icon--red    { background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2); color: var(--red); }
+.fp-zone-icon--amber  { background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.2); color: #FFB020; }
+.fp-zone-icon--green  { background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.2); color: var(--green); }
+.fp-zone-icon--violet { background: rgba(154,108,255,0.1); border: 1px solid rgba(154,108,255,0.2); color: #9A6CFF; }
+.fp-zone-head-text h4 { font-size: 16px; font-weight: 600; margin-bottom: 2px; }
+.fp-zone-head-text p  { font-size: 11.5px; color: var(--fg-4); font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.07em; margin: 0; }
+
+/* Mini splash preview inside the card */
+.fp-zone-splash {
+  margin: 18px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--line-2);
+  overflow: hidden;
+  background: var(--bg-3);
+}
+.fp-zone-splash-bar {
+  height: 6px;
+  display: flex;
+  gap: 1px;
+}
+.fp-zone-splash-bar span { flex: 1; }
+.fp-zone-splash-body {
+  padding: 14px 16px 16px;
+}
+.fp-zone-splash-logo {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--fg-4);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+}
+.fp-zone-splash-headline {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.fp-zone-splash-sub {
+  font-size: 11px;
+  color: var(--fg-3);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.fp-zone-splash-btn {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: white;
+}
+
+.fp-zone-body {
+  padding: 16px 24px 22px;
+}
+.fp-zone-body p {
+  font-size: 14px;
+  color: var(--fg-3);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ======================= HOW IT WORKS ======================= */
+.fp-how {
+  padding: 140px 0;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.fp-how-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 50% 40% at 20% 50%, rgba(154,108,255,0.07), transparent 60%);
+}
+.fp-how-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+}
+
+/* AP grouping dashboard mockup */
+.fp-ap-mock {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 20px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  overflow: hidden;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5), 0 0 50px -20px rgba(154,108,255,0.12);
+}
+.fp-ap-mock-head {
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.fp-ap-mock-head-left { display: flex; align-items: center; gap: 8px; }
+.fp-ap-mock-head-left span { font-size: 14px; font-weight: 600; }
+.fp-ap-mock-head-add {
+  display: flex; align-items: center; gap: 5px;
+  padding: 5px 12px;
+  border-radius: 7px;
+  background: var(--red);
+  color: white;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.fp-zone-group {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.fp-zone-group:last-of-type { border-bottom: none; }
+.fp-zone-group-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 10px;
+}
+.fp-zone-group-name {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13.5px; font-weight: 600;
+}
+.fp-zone-group-color {
+  width: 10px; height: 10px;
+  border-radius: 50%; flex-shrink: 0;
+}
+.fp-zone-group-badge {
+  font-family: var(--mono); font-size: 10px;
+  padding: 2px 8px; border-radius: 5px;
+  background: var(--bg-3); border: 1px solid var(--line);
+  color: var(--fg-4);
+}
+.fp-zone-aps {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.fp-zone-ap {
+  display: flex; align-items: center; gap: 5px;
+  padding: 4px 10px;
+  border-radius: 7px;
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  font-family: var(--mono); font-size: 11px; color: var(--fg-3);
+}
+.fp-zone-ap svg { opacity: 0.6; }
+.fp-ap-mock-foot {
+  padding: 12px 22px;
+  border-top: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.fp-ap-mock-foot span {
+  font-family: var(--mono); font-size: 11px; color: var(--fg-4);
+}
+.fp-ap-mock-foot .fp-count { color: var(--red); font-weight: 600; }
+
+/* Setup steps (vertical) */
+.fp-how-steps {
+  display: flex; flex-direction: column; gap: 0;
+  margin-top: 40px;
+}
+.fp-how-step {
+  display: flex; gap: 20px;
+  position: relative; padding-bottom: 32px;
+}
+.fp-how-step:last-child { padding-bottom: 0; }
+.fp-how-step-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+.fp-how-step-num {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--bg-3); border: 1px solid var(--line-2);
+  display: grid; place-items: center;
+  font-family: var(--mono); font-size: 14px; font-weight: 600;
+  color: var(--fg-3); z-index: 1;
+  transition: all 0.3s var(--ease);
+}
+.fp-how-step:hover .fp-how-step-num {
+  background: linear-gradient(135deg, var(--red-700), var(--red-500));
+  border-color: var(--red); color: white;
+  box-shadow: 0 6px 20px -6px var(--red-glow);
+}
+.fp-how-step-line { width: 1px; flex: 1; background: var(--line-2); margin-top: 8px; }
+.fp-how-step:last-child .fp-how-step-line { display: none; }
+.fp-how-step-body { padding-top: 8px; }
+.fp-how-step-body h4 { font-size: 16px; font-weight: 600; margin-bottom: 5px; }
+.fp-how-step-body p  { font-size: 14.5px; color: var(--fg-3); line-height: 1.6; margin: 0; }
+
+/* ======================= HYPER-LOCAL BENEFITS ======================= */
+.fp-benefits {
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+}
+.fp-benefits-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 50% 40% at 10% 60%, var(--red-glow-soft), transparent 55%),
+    radial-gradient(ellipse 40% 40% at 90% 30%, rgba(0,212,126,0.05), transparent 55%);
+}
+.fp-benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+}
+
+/* Footfall analytics card */
+.fp-footfall {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 20px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  overflow: hidden;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5);
+}
+.fp-footfall-head {
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.fp-footfall-head-left { display: flex; align-items: center; gap: 8px; }
+.fp-footfall-head-left span { font-size: 14px; font-weight: 600; }
+.fp-footfall-tag {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--green); background: rgba(0,212,126,0.1);
+  border: 1px solid rgba(0,212,126,0.2);
+  border-radius: 5px; padding: 2px 7px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.fp-zone-stat {
+  padding: 16px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.2s var(--ease);
+}
+.fp-zone-stat:last-of-type { border-bottom: none; }
+.fp-zone-stat:hover { background: var(--bg-3); }
+.fp-zone-stat-left { display: flex; align-items: center; gap: 12px; }
+.fp-zone-stat-color {
+  width: 10px; height: 10px;
+  border-radius: 50%; flex-shrink: 0;
+}
+.fp-zone-stat-name { font-size: 13.5px; font-weight: 500; }
+.fp-zone-stat-right { display: flex; align-items: center; gap: 14px; }
+.fp-zone-stat-bar-wrap {
+  width: 80px; height: 6px;
+  border-radius: 3px;
+  background: var(--bg-4);
+  overflow: hidden;
+}
+.fp-zone-stat-bar {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1s var(--ease);
+}
+.fp-zone-stat-count {
+  font-family: var(--mono);
+  font-size: 12px; font-weight: 600;
+  color: var(--fg-2);
+  min-width: 38px;
+  text-align: right;
+}
+.fp-footfall-foot {
+  padding: 14px 22px;
+  border-top: 1px solid var(--line);
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 11px; color: var(--fg-4);
+}
+.fp-footfall-foot-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px rgba(0,212,126,0.5); }
+
+/* Benefit list items */
+.fp-benefit-items {
+  display: flex; flex-direction: column; gap: 20px;
+  margin-top: 32px;
+}
+.fp-benefit-item {
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.fp-benefit-item-icon {
+  width: 36px; height: 36px;
+  border-radius: 9px;
+  display: grid; place-items: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.fp-benefit-item-icon--red    { background: rgba(255,43,43,0.1); color: var(--red); }
+.fp-benefit-item-icon--green  { background: rgba(0,212,126,0.1); color: var(--green); }
+.fp-benefit-item-icon--violet { background: rgba(154,108,255,0.1); color: #9A6CFF; }
+.fp-benefit-item-icon--amber  { background: rgba(255,176,32,0.1); color: #FFB020; }
+.fp-benefit-item-body h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.fp-benefit-item-body p  { font-size: 14px; color: var(--fg-3); line-height: 1.6; margin: 0; }
+
+/* callout */
+.fp-callout {
+  margin-top: 32px; padding: 28px 30px;
+  border-radius: 14px; background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  position: relative; overflow: hidden;
+}
+.fp-callout::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,43,43,0.06), transparent 50%);
+  pointer-events: none;
+}
+.fp-callout p { font-size: 15px; color: var(--fg-2); line-height: 1.65; position: relative; }
+.fp-callout p strong { color: var(--fg); }
+
+/* ======================= RELATED FEATURES ======================= */
+.fp-related {
+  padding: 100px 0;
+  background: var(--bg-1);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.fp-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+.fp-rel-card {
+  padding: 28px 24px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg-2);
+  transition: all 0.3s var(--ease);
+  text-decoration: none; display: block;
+  position: relative; overflow: hidden;
+}
+.fp-rel-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--red); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s var(--ease);
+}
+.fp-rel-card:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+.fp-rel-card:hover::after { transform: scaleX(1); }
+.fp-rel-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  display: grid; place-items: center; margin-bottom: 14px;
+}
+.fp-rel-icon--red    { background: rgba(255,43,43,0.1);   border: 1px solid rgba(255,43,43,0.2);   color: var(--red); }
+.fp-rel-icon--green  { background: rgba(0,212,126,0.1);   border: 1px solid rgba(0,212,126,0.2);   color: var(--green); }
+.fp-rel-icon--amber  { background: rgba(255,176,32,0.1);  border: 1px solid rgba(255,176,32,0.2);  color: #FFB020; }
+.fp-rel-card h4 { font-size: 15px; font-weight: 600; color: var(--fg); margin-bottom: 6px; }
+.fp-rel-card p  { font-size: 13.5px; color: var(--fg-3); line-height: 1.55; margin: 0; }
+.fp-rel-arrow {
+  position: absolute; top: 26px; right: 22px;
+  color: var(--fg-4); opacity: 0;
+  transition: all 0.25s var(--ease); transform: translate(-4px,0);
+}
+.fp-rel-card:hover .fp-rel-arrow { opacity: 1; transform: translate(0,0); }
+
+/* Footer social */
+.ft-social { display: flex; align-items: center; gap: 4px; margin-top: 18px; margin-left: -6px; }
+.ft-social-link {
+  display: grid; place-items: center;
+  width: 32px; height: 32px; border-radius: 6px;
+  color: var(--fg-4); transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.ft-social-link svg { width: 16px; height: 16px; }
+.ft-social-link:hover { color: var(--fg); background: var(--bg-3); }
+
+/* ======================= RESPONSIVE ======================= */
+@media (max-width: 980px) {
+  .fp-hero-wrap    { grid-template-columns: 1fr; gap: 48px; }
+  .fp-hero-visual  { min-height: 280px; }
+  .fp-zones-grid   { grid-template-columns: 1fr; }
+  .fp-how-grid     { grid-template-columns: 1fr; gap: 48px; }
+  .fp-benefits-grid { grid-template-columns: 1fr; gap: 48px; }
+  .fp-related-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .fp-related-grid { grid-template-columns: 1fr; }
+  .zone-callout--bar, .zone-callout--conf { display: none; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Fydelia home">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+      <span class="brand-text">fydelia</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="features.html">Features</a></li>
+      <li><a href="splash-pages.html">Splash Pages</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+      <a class="btn-ghost" href="https://ondemand.fydelia.com/">Sign in</a>
+      <a class="btn-solid" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</nav>
+
+<div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+<aside id="menuDrawer" class="menu-drawer" aria-hidden="true">
+  <div class="menu-drawer-head">
+    <span class="menu-drawer-title">Menu</span>
+    <button id="menuClose" class="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu-drawer-nav">
+    <a href="features.html">Features</a>
+    <a href="splash-pages.html">Splash Pages</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="hardware.html">Supported Hardware</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a>
+  </nav>
+  <div class="menu-drawer-foot">
+    <div class="menu-drawer-theme">
+      <span class="menu-drawer-theme-label">Dark mode</span>
+      <button id="themeToggleMobile" class="theme-switch" aria-label="Toggle theme">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+    </div>
+    <a class="btn-ghost menu-drawer-signin" href="https://ondemand.fydelia.com/">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
+</aside>
+
+
+<main>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="fp-hero">
+    <div class="fp-hero-bg" aria-hidden="true">
+      <div class="fp-hero-grid"></div>
+      <div class="fp-hero-glow"></div>
+    </div>
+
+    <div class="wrap fp-hero-wrap">
+      <div class="fp-hero-copy">
+        <div class="breadcrumb">
+          <a href="features.html">Features</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>Splash Page Zones</span>
+        </div>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span>Platform feature</span>
+        </div>
+        <h1>Right message,<br><em>right room</em></h1>
+        <p class="hero-sub">In a multi-functional venue, one-size-fits-all WiFi marketing misses the mark. Fydelia's Splash Page Zones let you deliver a different splash page to every area of your venue, based on which access point a guest connects to — all on a single SSID.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn-solid btn-lg" href="https://www.fydelia.com/onboarding/">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+          <a class="btn-ghost" href="features.html" style="border:1px solid var(--line-2);">All features</a>
+        </div>
+        <div class="fp-hero-meta">
+          <span class="fp-meta-tag fp-meta-tag--highlight">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            AP-level targeting
+          </span>
+          <span class="fp-meta-tag fp-meta-tag--violet">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            One SSID, many pages
+          </span>
+          <span class="fp-meta-tag fp-meta-tag--green">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+            Footfall analytics
+          </span>
+        </div>
+      </div>
+
+      <!-- Floor plan visual -->
+      <div class="fp-hero-visual">
+        <div class="floorplan">
+
+          <!-- Floating zone callouts -->
+          <div class="zone-callout zone-callout--bar">
+            <span class="zone-callout-dot" style="background:#FF2B2B;"></span>
+            Bar Area — Cocktail of the Month
+          </div>
+          <div class="zone-callout zone-callout--rest">
+            <span class="zone-callout-dot" style="background:#FFB020;"></span>
+            Restaurant — Evening Specials
+          </div>
+          <div class="zone-callout zone-callout--lounge">
+            <span class="zone-callout-dot" style="background:#00D47E;"></span>
+            Spa — Wellness Promotions
+          </div>
+          <div class="zone-callout zone-callout--conf">
+            <span class="zone-callout-dot" style="background:#9A6CFF;"></span>
+            Conference — Clean &amp; Minimal
+          </div>
+
+          <!-- Venue SVG floor plan -->
+          <svg class="floorplan-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer walls -->
+            <rect x="20" y="20" width="360" height="360" rx="12" fill="var(--bg-2)" stroke="var(--line-strong)" stroke-width="2"/>
+
+            <!-- Zone: Bar (top-left) -->
+            <rect x="20" y="20" width="178" height="178" rx="12" fill="rgba(255,43,43,0.06)" stroke="rgba(255,43,43,0.25)" stroke-width="1.5"/>
+            <text x="50" y="56" fill="rgba(255,43,43,0.6)" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" letter-spacing="0.12em" text-transform="uppercase">BAR AREA</text>
+            <!-- bar counter -->
+            <rect x="38" y="65" width="60" height="14" rx="4" fill="rgba(255,43,43,0.15)" stroke="rgba(255,43,43,0.3)" stroke-width="1"/>
+            <rect x="38" y="85" width="60" height="8"  rx="3" fill="rgba(255,43,43,0.08)"/>
+            <!-- stools -->
+            <circle cx="48"  cy="108" r="6" fill="rgba(255,43,43,0.12)" stroke="rgba(255,43,43,0.25)" stroke-width="1"/>
+            <circle cx="62"  cy="108" r="6" fill="rgba(255,43,43,0.12)" stroke="rgba(255,43,43,0.25)" stroke-width="1"/>
+            <circle cx="76"  cy="108" r="6" fill="rgba(255,43,43,0.12)" stroke="rgba(255,43,43,0.25)" stroke-width="1"/>
+            <!-- AP dot -->
+            <circle cx="170" cy="32" r="7" fill="rgba(255,43,43,0.2)" stroke="rgba(255,43,43,0.5)" stroke-width="1.5"/>
+            <circle cx="170" cy="32" r="3" fill="rgba(255,43,43,0.8)"/>
+            <!-- AP label -->
+            <text x="155" y="50" fill="rgba(255,43,43,0.5)" font-family="JetBrains Mono, monospace" font-size="8">AP-01</text>
+            <!-- tables -->
+            <rect x="38"  y="128" width="30" height="24" rx="5" fill="rgba(255,43,43,0.08)" stroke="rgba(255,43,43,0.15)" stroke-width="1"/>
+            <rect x="80"  y="128" width="30" height="24" rx="5" fill="rgba(255,43,43,0.08)" stroke="rgba(255,43,43,0.15)" stroke-width="1"/>
+            <rect x="122" y="128" width="30" height="24" rx="5" fill="rgba(255,43,43,0.08)" stroke="rgba(255,43,43,0.15)" stroke-width="1"/>
+            <rect x="38"  y="162" width="80" height="24" rx="5" fill="rgba(255,43,43,0.06)" stroke="rgba(255,43,43,0.12)" stroke-width="1"/>
+
+            <!-- Zone: Restaurant (top-right) -->
+            <rect x="202" y="20" width="178" height="178" rx="12" fill="rgba(255,176,32,0.06)" stroke="rgba(255,176,32,0.25)" stroke-width="1.5"/>
+            <text x="226" y="56" fill="rgba(255,176,32,0.7)" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" letter-spacing="0.12em">RESTAURANT</text>
+            <!-- AP dot -->
+            <circle cx="230" cy="32" r="7" fill="rgba(255,176,32,0.2)" stroke="rgba(255,176,32,0.5)" stroke-width="1.5"/>
+            <circle cx="230" cy="32" r="3" fill="rgba(255,176,32,0.9)"/>
+            <text x="240" y="50" fill="rgba(255,176,32,0.5)" font-family="JetBrains Mono, monospace" font-size="8">AP-02</text>
+            <!-- dining tables -->
+            <rect x="220" y="68" width="40" height="32" rx="6" fill="rgba(255,176,32,0.08)" stroke="rgba(255,176,32,0.2)" stroke-width="1"/>
+            <rect x="272" y="68" width="40" height="32" rx="6" fill="rgba(255,176,32,0.08)" stroke="rgba(255,176,32,0.2)" stroke-width="1"/>
+            <rect x="324" y="68" width="40" height="32" rx="6" fill="rgba(255,176,32,0.08)" stroke="rgba(255,176,32,0.2)" stroke-width="1"/>
+            <rect x="220" y="114" width="40" height="32" rx="6" fill="rgba(255,176,32,0.08)" stroke="rgba(255,176,32,0.2)" stroke-width="1"/>
+            <rect x="272" y="114" width="40" height="32" rx="6" fill="rgba(255,176,32,0.08)" stroke="rgba(255,176,32,0.2)" stroke-width="1"/>
+            <rect x="324" y="114" width="40" height="32" rx="6" fill="rgba(255,176,32,0.08)" stroke="rgba(255,176,32,0.2)" stroke-width="1"/>
+            <rect x="220" y="158" width="144" height="28" rx="6" fill="rgba(255,176,32,0.05)" stroke="rgba(255,176,32,0.12)" stroke-width="1"/>
+
+            <!-- Zone: Spa / Gym (bottom-left) -->
+            <rect x="20" y="202" width="178" height="178" rx="12" fill="rgba(0,212,126,0.05)" stroke="rgba(0,212,126,0.2)" stroke-width="1.5"/>
+            <text x="42" y="236" fill="rgba(0,212,126,0.6)" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" letter-spacing="0.12em">SPA / GYM</text>
+            <!-- AP dot -->
+            <circle cx="170" cy="370" r="7" fill="rgba(0,212,126,0.2)" stroke="rgba(0,212,126,0.5)" stroke-width="1.5"/>
+            <circle cx="170" cy="370" r="3" fill="rgba(0,212,126,0.8)"/>
+            <text x="152" y="390" fill="rgba(0,212,126,0.5)" font-family="JetBrains Mono, monospace" font-size="8">AP-03</text>
+            <!-- equipment blobs -->
+            <rect x="38"  y="248" width="60" height="28" rx="8" fill="rgba(0,212,126,0.08)" stroke="rgba(0,212,126,0.18)" stroke-width="1"/>
+            <rect x="108" y="248" width="60" height="28" rx="8" fill="rgba(0,212,126,0.08)" stroke="rgba(0,212,126,0.18)" stroke-width="1"/>
+            <rect x="38"  y="288" width="60" height="28" rx="8" fill="rgba(0,212,126,0.06)" stroke="rgba(0,212,126,0.14)" stroke-width="1"/>
+            <rect x="108" y="288" width="60" height="28" rx="8" fill="rgba(0,212,126,0.06)" stroke="rgba(0,212,126,0.14)" stroke-width="1"/>
+            <rect x="38"  y="328" width="130" height="44" rx="10" fill="rgba(0,212,126,0.04)" stroke="rgba(0,212,126,0.1)" stroke-width="1"/>
+
+            <!-- Zone: Conference (bottom-right) -->
+            <rect x="202" y="202" width="178" height="178" rx="12" fill="rgba(154,108,255,0.05)" stroke="rgba(154,108,255,0.2)" stroke-width="1.5"/>
+            <text x="218" y="236" fill="rgba(154,108,255,0.6)" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" letter-spacing="0.12em">CONFERENCE</text>
+            <!-- AP dot -->
+            <circle cx="230" cy="370" r="7" fill="rgba(154,108,255,0.2)" stroke="rgba(154,108,255,0.5)" stroke-width="1.5"/>
+            <circle cx="230" cy="370" r="3" fill="rgba(154,108,255,0.8)"/>
+            <text x="240" y="390" fill="rgba(154,108,255,0.5)" font-family="JetBrains Mono, monospace" font-size="8">AP-04</text>
+            <!-- boardroom table -->
+            <rect x="230" y="252" width="130" height="72" rx="10" fill="rgba(154,108,255,0.08)" stroke="rgba(154,108,255,0.2)" stroke-width="1"/>
+            <!-- chairs -->
+            <circle cx="244" cy="248" r="7" fill="rgba(154,108,255,0.1)" stroke="rgba(154,108,255,0.2)" stroke-width="1"/>
+            <circle cx="268" cy="248" r="7" fill="rgba(154,108,255,0.1)" stroke="rgba(154,108,255,0.2)" stroke-width="1"/>
+            <circle cx="292" cy="248" r="7" fill="rgba(154,108,255,0.1)" stroke="rgba(154,108,255,0.2)" stroke-width="1"/>
+            <circle cx="316" cy="248" r="7" fill="rgba(154,108,255,0.1)" stroke="rgba(154,108,255,0.2)" stroke-width="1"/>
+            <circle cx="244" cy="329" r="7" fill="rgba(154,108,255,0.1)" stroke="rgba(154,108,255,0.2)" stroke-width="1"/>
+            <circle cx="268" cy="329" r="7" fill="rgba(154,108,255,0.1)" stroke="rgba(154,108,255,0.2)" stroke-width="1"/>
+            <circle cx="292" cy="329" r="7" fill="rgba(154,108,255,0.1)" stroke="rgba(154,108,255,0.2)" stroke-width="1"/>
+            <circle cx="316" cy="329" r="7" fill="rgba(154,108,255,0.1)" stroke="rgba(154,108,255,0.2)" stroke-width="1"/>
+            <!-- screen -->
+            <rect x="218" y="346" width="144" height="20" rx="4" fill="rgba(154,108,255,0.06)" stroke="rgba(154,108,255,0.14)" stroke-width="1"/>
+
+            <!-- Hallway cross -->
+            <line x1="198" y1="20"  x2="198" y2="380" stroke="var(--line)" stroke-width="1" stroke-dasharray="6 4"/>
+            <line x1="20"  y1="198" x2="380" y2="198" stroke="var(--line)" stroke-width="1" stroke-dasharray="6 4"/>
+          </svg>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= ZONE EXAMPLES ======================= -->
+  <section class="fp-zones">
+    <div class="fp-zones-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">Digital precision for your physical space</div>
+        <h2>Your WiFi portal<br>becomes context-aware</h2>
+        <p class="lead">Tailor the guest experience to match the specific vibe or service of each area — from the rowdy bar to the quiet conference room — all from one dashboard.</p>
+      </div>
+
+      <div class="fp-zones-grid">
+
+        <!-- Bar Zone -->
+        <div class="fp-zone-card fp-zone-card--bar reveal">
+          <div class="fp-zone-head">
+            <div class="fp-zone-icon fp-zone-icon--red">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+            </div>
+            <div class="fp-zone-head-text">
+              <h4>The Bar Area</h4>
+              <p>AP-01 · High-energy promotions</p>
+            </div>
+          </div>
+          <div class="fp-zone-splash">
+            <div class="fp-zone-splash-bar">
+              <span style="background:#FF2B2B;"></span>
+              <span style="background:#FF6B6B;"></span>
+              <span style="background:#C41010;"></span>
+            </div>
+            <div class="fp-zone-splash-body">
+              <div class="fp-zone-splash-logo">The Grand — Bar &amp; Grill</div>
+              <div class="fp-zone-splash-headline">🍹 Cocktail of the Month</div>
+              <div class="fp-zone-splash-sub">Passionfruit Martini — £8.50 tonight only. Show this page to redeem.</div>
+              <span class="fp-zone-splash-btn" style="background:var(--red);">Connect &amp; Claim</span>
+            </div>
+          </div>
+          <div class="fp-zone-body">
+            <p>Show a cocktail promotion or digital coaster for a local craft beer to guests who are already standing at the bar — the highest intent moment for a drinks upsell.</p>
+          </div>
+        </div>
+
+        <!-- Restaurant Zone -->
+        <div class="fp-zone-card fp-zone-card--rest reveal d1">
+          <div class="fp-zone-head">
+            <div class="fp-zone-icon fp-zone-icon--amber">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+            </div>
+            <div class="fp-zone-head-text">
+              <h4>The Restaurant</h4>
+              <p>AP-02 · Food &amp; dining focus</p>
+            </div>
+          </div>
+          <div class="fp-zone-splash">
+            <div class="fp-zone-splash-bar">
+              <span style="background:#FFB020;"></span>
+              <span style="background:#FFCF60;"></span>
+              <span style="background:#E89800;"></span>
+            </div>
+            <div class="fp-zone-splash-body">
+              <div class="fp-zone-splash-logo">The Grand — Restaurant</div>
+              <div class="fp-zone-splash-headline">Tonight's Specials 🍽️</div>
+              <div class="fp-zone-splash-sub">Pan-seared sea bass · Aged ribeye · View full menu or book your next visit.</div>
+              <span class="fp-zone-splash-btn" style="background:#FFB020;">See the Menu</span>
+            </div>
+          </div>
+          <div class="fp-zone-body">
+            <p>Show the evening specials, a link to the digital menu, or a prompt to book their next Sunday Roast — content that's actually relevant to someone sitting down for dinner.</p>
+          </div>
+        </div>
+
+        <!-- Spa/Gym Zone -->
+        <div class="fp-zone-card fp-zone-card--spa reveal">
+          <div class="fp-zone-head">
+            <div class="fp-zone-icon fp-zone-icon--green">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <div class="fp-zone-head-text">
+              <h4>Hotel Gym &amp; Spa</h4>
+              <p>AP-03 · Wellness upsells</p>
+            </div>
+          </div>
+          <div class="fp-zone-splash">
+            <div class="fp-zone-splash-bar">
+              <span style="background:#00D47E;"></span>
+              <span style="background:#60EFBB;"></span>
+              <span style="background:#00A860;"></span>
+            </div>
+            <div class="fp-zone-splash-body">
+              <div class="fp-zone-splash-logo">The Grand — Wellness</div>
+              <div class="fp-zone-splash-headline">Refresh &amp; Recover 🌿</div>
+              <div class="fp-zone-splash-sub">Book a post-workout sports massage or try our new protein shake bar.</div>
+              <span class="fp-zone-splash-btn" style="background:var(--green);">Book Now</span>
+            </div>
+          </div>
+          <div class="fp-zone-body">
+            <p>Promote protein shakes, spa treatments, or recovery packages to guests who are actively in the areas where those services are most relevant — and most likely to convert.</p>
+          </div>
+        </div>
+
+        <!-- Conference Zone -->
+        <div class="fp-zone-card fp-zone-card--conf reveal d1">
+          <div class="fp-zone-head">
+            <div class="fp-zone-icon fp-zone-icon--violet">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="1"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M8 10h.01"/><path d="M16 10h.01"/><path d="M8 14h.01"/><path d="M16 14h.01"/></svg>
+            </div>
+            <div class="fp-zone-head-text">
+              <h4>Conference Rooms</h4>
+              <p>AP-04 · Clean &amp; professional</p>
+            </div>
+          </div>
+          <div class="fp-zone-splash">
+            <div class="fp-zone-splash-bar">
+              <span style="background:#9A6CFF;"></span>
+              <span style="background:#C4A8FF;"></span>
+              <span style="background:#6A3FCC;"></span>
+            </div>
+            <div class="fp-zone-splash-body">
+              <div class="fp-zone-splash-logo">The Grand — Events &amp; Meetings</div>
+              <div class="fp-zone-splash-headline">Welcome to Suite 3</div>
+              <div class="fp-zone-splash-sub">Need catering or AV support? Contact our events team directly.</div>
+              <span class="fp-zone-splash-btn" style="background:#9A6CFF;">Connect to WiFi</span>
+            </div>
+          </div>
+          <div class="fp-zone-body">
+            <p>Offer a professional, minimalist login for corporate guests, with a link to event catering or room booking services — no bar promotions that would feel out of place.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= HOW IT WORKS ======================= -->
+  <section class="fp-how">
+    <div class="fp-how-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="fp-how-grid">
+
+        <div class="spotlight-text reveal">
+          <div class="kicker">Simple setup, powerful impact</div>
+          <h2>Up and running<br>in <em>minutes</em></h2>
+          <p class="lead">Despite the sophisticated targeting behind it, setting up Zones is remarkably straightforward. No extra hardware, no network reconfiguration — just a few clicks in your Fydelia dashboard.</p>
+
+          <div class="fp-how-steps">
+            <div class="fp-how-step">
+              <div class="fp-how-step-left">
+                <div class="fp-how-step-num">1</div>
+                <div class="fp-how-step-line"></div>
+              </div>
+              <div class="fp-how-step-body">
+                <h4>Group your Access Points into Zones</h4>
+                <p>In the Fydelia dashboard, name your zones (e.g. "Main Bar", "Garden Terrace", "Lobby") and assign the relevant APs to each group.</p>
+              </div>
+            </div>
+            <div class="fp-how-step">
+              <div class="fp-how-step-left">
+                <div class="fp-how-step-num">2</div>
+                <div class="fp-how-step-line"></div>
+              </div>
+              <div class="fp-how-step-body">
+                <h4>Assign a splash page to each Zone</h4>
+                <p>Link an existing splash page to each zone, or create a new one with the WYSIWYG builder. Each zone can have its own design, promotions, and data capture fields.</p>
+              </div>
+            </div>
+            <div class="fp-how-step">
+              <div class="fp-how-step-left">
+                <div class="fp-how-step-num">3</div>
+                <div class="fp-how-step-line"></div>
+              </div>
+              <div class="fp-how-step-body">
+                <h4>Guests are served the right page automatically</h4>
+                <p>Fydelia detects which AP a guest connects to and serves the corresponding splash page instantly — no guest action required.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AP grouping mockup -->
+        <div class="reveal d1" style="display:grid; place-items:center;">
+          <div class="fp-ap-mock">
+            <div class="fp-ap-mock-head">
+              <div class="fp-ap-mock-head-left">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--red)"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Manage Zones</span>
+              </div>
+              <div class="fp-ap-mock-head-add">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                New Zone
+              </div>
+            </div>
+
+            <div class="fp-zone-group">
+              <div class="fp-zone-group-head">
+                <div class="fp-zone-group-name">
+                  <span class="fp-zone-group-color" style="background:#FF2B2B;"></span>
+                  Main Bar
+                </div>
+                <span class="fp-zone-group-badge">3 APs · Cocktail promo</span>
+              </div>
+              <div class="fp-zone-aps">
+                <div class="fp-zone-ap">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                  AP-01
+                </div>
+                <div class="fp-zone-ap">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                  AP-02
+                </div>
+                <div class="fp-zone-ap">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                  AP-07
+                </div>
+              </div>
+            </div>
+
+            <div class="fp-zone-group">
+              <div class="fp-zone-group-head">
+                <div class="fp-zone-group-name">
+                  <span class="fp-zone-group-color" style="background:#FFB020;"></span>
+                  Restaurant
+                </div>
+                <span class="fp-zone-group-badge">4 APs · Dinner specials</span>
+              </div>
+              <div class="fp-zone-aps">
+                <div class="fp-zone-ap">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                  AP-03
+                </div>
+                <div class="fp-zone-ap">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                  AP-04
+                </div>
+                <div class="fp-zone-ap">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                  AP-08
+                </div>
+                <div class="fp-zone-ap">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                  AP-09
+                </div>
+              </div>
+            </div>
+
+            <div class="fp-zone-group">
+              <div class="fp-zone-group-head">
+                <div class="fp-zone-group-name">
+                  <span class="fp-zone-group-color" style="background:#9A6CFF;"></span>
+                  Conference Suite
+                </div>
+                <span class="fp-zone-group-badge">2 APs · Corporate login</span>
+              </div>
+              <div class="fp-zone-aps">
+                <div class="fp-zone-ap">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                  AP-05
+                </div>
+                <div class="fp-zone-ap">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                  AP-06
+                </div>
+              </div>
+            </div>
+
+            <div class="fp-ap-mock-foot">
+              <span>4 zones · <span class="fp-count">12 APs</span> configured</span>
+              <span>+ Garden Terrace</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= HYPER-LOCAL BENEFITS ======================= -->
+  <section class="fp-benefits">
+    <div class="fp-benefits-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="fp-benefits-grid">
+
+        <!-- Footfall analytics card -->
+        <div class="reveal">
+          <div class="fp-footfall">
+            <div class="fp-footfall-head">
+              <div class="fp-footfall-head-left">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--green)"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+                <span>Zone Footfall — Today</span>
+              </div>
+              <span class="fp-footfall-tag">Live</span>
+            </div>
+
+            <div class="fp-zone-stat">
+              <div class="fp-zone-stat-left">
+                <span class="fp-zone-stat-color" style="background:#FF2B2B;"></span>
+                <span class="fp-zone-stat-name">Main Bar</span>
+              </div>
+              <div class="fp-zone-stat-right">
+                <div class="fp-zone-stat-bar-wrap">
+                  <div class="fp-zone-stat-bar" style="width:88%;background:#FF2B2B;"></div>
+                </div>
+                <span class="fp-zone-stat-count">247</span>
+              </div>
+            </div>
+
+            <div class="fp-zone-stat">
+              <div class="fp-zone-stat-left">
+                <span class="fp-zone-stat-color" style="background:#FFB020;"></span>
+                <span class="fp-zone-stat-name">Restaurant</span>
+              </div>
+              <div class="fp-zone-stat-right">
+                <div class="fp-zone-stat-bar-wrap">
+                  <div class="fp-zone-stat-bar" style="width:62%;background:#FFB020;"></div>
+                </div>
+                <span class="fp-zone-stat-count">174</span>
+              </div>
+            </div>
+
+            <div class="fp-zone-stat">
+              <div class="fp-zone-stat-left">
+                <span class="fp-zone-stat-color" style="background:#00D47E;"></span>
+                <span class="fp-zone-stat-name">Spa &amp; Gym</span>
+              </div>
+              <div class="fp-zone-stat-right">
+                <div class="fp-zone-stat-bar-wrap">
+                  <div class="fp-zone-stat-bar" style="width:38%;background:#00D47E;"></div>
+                </div>
+                <span class="fp-zone-stat-count">108</span>
+              </div>
+            </div>
+
+            <div class="fp-zone-stat">
+              <div class="fp-zone-stat-left">
+                <span class="fp-zone-stat-color" style="background:#9A6CFF;"></span>
+                <span class="fp-zone-stat-name">Conference</span>
+              </div>
+              <div class="fp-zone-stat-right">
+                <div class="fp-zone-stat-bar-wrap">
+                  <div class="fp-zone-stat-bar" style="width:22%;background:#9A6CFF;"></div>
+                </div>
+                <span class="fp-zone-stat-count">62</span>
+              </div>
+            </div>
+
+            <div class="fp-zone-stat">
+              <div class="fp-zone-stat-left">
+                <span class="fp-zone-stat-color" style="background:#3891FF;"></span>
+                <span class="fp-zone-stat-name">Garden Terrace</span>
+              </div>
+              <div class="fp-zone-stat-right">
+                <div class="fp-zone-stat-bar-wrap">
+                  <div class="fp-zone-stat-bar" style="width:51%;background:#3891FF;"></div>
+                </div>
+                <span class="fp-zone-stat-count">143</span>
+              </div>
+            </div>
+
+            <div class="fp-footfall-foot">
+              <span class="fp-footfall-foot-dot"></span>
+              734 unique visitors logged across all zones today
+            </div>
+          </div>
+        </div>
+
+        <div class="spotlight-text reveal d1">
+          <div class="kicker">Hyper-local marketing</div>
+          <h2>Every offer is meaningful<br>to where the guest <em>is sitting</em></h2>
+          <p class="lead">By promoting the right products at the exact point of consumption, you drive more relevant sales while simultaneously improving the guest experience.</p>
+
+          <div class="fp-benefit-items">
+            <div class="fp-benefit-item">
+              <div class="fp-benefit-item-icon fp-benefit-item-icon--red">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <div class="fp-benefit-item-body">
+                <h4>Drive more relevant sales</h4>
+                <p>A bar promotion shown at the bar converts far better than a generic one shown to everyone. Context is everything.</p>
+              </div>
+            </div>
+            <div class="fp-benefit-item">
+              <div class="fp-benefit-item-icon fp-benefit-item-icon--violet">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              </div>
+              <div class="fp-benefit-item-body">
+                <h4>Maintain distinct area identities</h4>
+                <p>A luxury spa and a lively sports bar live on the same network but feel completely different digitally — preserving the unique atmosphere of each sub-space.</p>
+              </div>
+            </div>
+            <div class="fp-benefit-item">
+              <div class="fp-benefit-item-icon fp-benefit-item-icon--green">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+              </div>
+              <div class="fp-benefit-item-body">
+                <h4>Understand how guests move through your space</h4>
+                <p>Zone-level footfall data reveals which areas draw the most traffic and when — enabling smarter staffing, layout, and operational decisions.</p>
+              </div>
+            </div>
+            <div class="fp-benefit-item">
+              <div class="fp-benefit-item-icon fp-benefit-item-icon--amber">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              </div>
+              <div class="fp-benefit-item-body">
+                <h4>Works on a single SSID</h4>
+                <p>No need to create separate networks or reconfigure hardware. Guests see one WiFi name; Fydelia handles all the routing behind the scenes.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="fp-callout reveal d2">
+            <p><strong>Never settle for a generic welcome.</strong> With Zones, every guest sees exactly what they need, exactly where they are — and you gather the footfall intelligence to make your whole venue run smarter.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= RELATED FEATURES ======================= -->
+  <section class="fp-related">
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">Keep exploring</div>
+        <h2>Features that amplify<br>what Zones can do</h2>
+      </div>
+
+      <div class="fp-related-grid">
+
+        <a href="splash-pages.html" class="fp-rel-card reveal">
+          <div class="fp-rel-icon fp-rel-icon--red">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h4>Unlimited Splash Pages</h4>
+          <p>Build a unique, branded page for every zone with the WYSIWYG editor — no coding, full design freedom, instant preview.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="features.html" class="fp-rel-card reveal d1">
+          <div class="fp-rel-icon fp-rel-icon--amber">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h4>Flash Offers</h4>
+          <p>Combine Zones with Flash Offers to serve time-limited, location-specific deals — the cocktail special that expires in 45 minutes, shown only at the bar.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="features.html" class="fp-rel-card reveal d2">
+          <div class="fp-rel-icon fp-rel-icon--green">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h4>Scheduled Content</h4>
+          <p>Schedule different splash pages per zone and per time of day — the morning gym page switches to the brunch menu at 11am, automatically.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= CTA ======================= -->
+  <section class="cta-sec" id="cta">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <h2>Ready to make every<br>corner of your venue count?</h2>
+        <p>Start your free 14-day trial. Full access to Splash Page Zones, the page builder, and every other feature — zero risk, we'll handle setup.</p>
+        <form class="cta-form" onsubmit="return false;">
+          <input type="email" placeholder="you@venue.com" aria-label="Email address">
+          <button class="btn-solid" type="submit">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </button>
+        </form>
+        <p class="cta-meta">No credit card required · Setup in &lt;2 minutes · Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="ft">
+    <div class="wrap-wide">
+      <div class="ft-grid">
+        <div class="ft-brand-col">
+          <a class="brand" href="index.html" aria-label="Fydelia home">
+            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+            <span class="brand-text">fydelia</span>
+          </a>
+          <p>The industry-leading captive portal and WiFi marketing platform that helps venues spark conversations and capture high-value user data. We turn simple guest WiFi access into a powerful engine for lead-gen and customer loyalty.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="splash-pages.html">Splash Pages</a></li>
+            <li><a href="hardware.html">Supported Hardware</a></li>
+<li><a href="for-venues.html">For Venues</a></li>
+<li><a href="for-resellers.html">For Resellers &amp; MSPs</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://www.fydelia.com/knowledge-base/">Documentation &amp; Support</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="blog.html">Blog</a></li>
+<li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="information-system-security-policy.html">InfoSys Security Policy</a></li>
+            <li><a href="security-assurance-plan">Security Assurance Plan</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li><a href="mailto:support@fydelia.com">support@fydelia.com</a></li>
+            <li>Brighton, United Kingdom</li>
+            <li>Dubai, UAE</li>
+          </ul>
+          <div class="ft-social">
+            <a href="https://instagram.com/fydeliawifi" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.facebook.com/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@fydeliawifi/videos" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <span>&copy; 2026 Fydelia</span>
+        <span>All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+
+<script>
+// ===== Theme toggle =====
+const toggle = document.getElementById('themeToggle');
+if (toggle) {
+  const saved = localStorage.getItem('fy-theme');
+  if (saved) document.body.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.body.setAttribute('data-theme', next);
+    localStorage.setItem('fy-theme', next);
+  });
+}
+
+// ===== Scroll reveal =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => io.observe(el));
+
+// ===== Mobile menu =====
+(function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const drawer     = document.getElementById('menuDrawer');
+  const backdrop   = document.getElementById('menuBackdrop');
+  const closeBtn   = document.getElementById('menuClose');
+  if (!menuToggle || !drawer) return;
+  const drawerLinks = drawer.querySelectorAll('.menu-drawer-nav a, .menu-drawer-signin, .menu-drawer-cta');
+  function openMenu() {
+    menuToggle.setAttribute('aria-expanded','true');
+    drawer.classList.add('active'); drawer.setAttribute('aria-hidden','false');
+    backdrop.classList.add('active'); backdrop.setAttribute('aria-hidden','false');
+    document.body.classList.add('menu-open');
+  }
+  function closeMenu() {
+    menuToggle.setAttribute('aria-expanded','false');
+    drawer.classList.remove('active'); drawer.setAttribute('aria-hidden','true');
+    backdrop.classList.remove('active'); backdrop.setAttribute('aria-hidden','true');
+    document.body.classList.remove('menu-open');
+  }
+  menuToggle.addEventListener('click', () => menuToggle.getAttribute('aria-expanded')==='true' ? closeMenu() : openMenu());
+  closeBtn.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  drawerLinks.forEach(l => l.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key==='Escape' && drawer.classList.contains('active')) closeMenu(); });
+  document.getElementById('themeToggleMobile')?.addEventListener('click', () => document.getElementById('themeToggle')?.click());
+})();
+</script>
+
+</body>
+</html>

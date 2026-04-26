@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automatic WiFi Login for Returning Visitors – Fydelia</title>
+<meta name="description" content="Fydelia's Automatic WiFi Login recognizes returning guests and reconnects them instantly — zero friction, zero login screen, and full visit data captured via Proof of Presence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/core.css">
+<link rel="stylesheet" href="styles/sections.css">
+
+<style>
+/* ======================= FEATURE PAGE STYLES ======================= */
+
+/* --- Hero --- */
+.fp-hero {
+  position: relative;
+  padding: 140px 0 100px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.fp-hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.fp-hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+}
+.fp-hero-glow-a {
+  position: absolute;
+  top: -200px; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 500px;
+  background: radial-gradient(ellipse, var(--red-glow-soft) 0%, transparent 65%);
+}
+.fp-hero-wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px;
+  align-items: center;
+  min-height: 460px;
+}
+.fp-hero-copy { max-width: 620px; }
+.fp-hero-copy .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--fg-4);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.fp-hero-copy .breadcrumb a {
+  color: var(--fg-4);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+.fp-hero-copy .breadcrumb a:hover { color: var(--fg-2); }
+.fp-hero-copy .breadcrumb svg { opacity: 0.5; }
+.fp-hero h1 {
+  font-size: clamp(38px, 4.8vw, 56px);
+  margin: 16px 0 22px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+.fp-hero h1 em {
+  color: var(--red);
+  font-style: italic;
+  font-weight: 500;
+}
+.fp-hero .hero-sub {
+  font-size: 18px;
+  color: var(--fg-2);
+  max-width: 520px;
+  line-height: 1.65;
+  margin-bottom: 36px;
+}
+.fp-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+.fp-meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-4);
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.fp-meta-tag--highlight {
+  color: var(--red);
+  background: rgba(255,43,43,0.08);
+  border-color: rgba(255,43,43,0.2);
+}
+
+/* --- Hero visual: connection animation --- */
+.fp-hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+}
+.conn-diagram {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Phone mockup */
+.conn-phone {
+  width: 200px;
+  border-radius: 28px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  box-shadow: 0 32px 80px -20px rgba(0,0,0,0.5), 0 0 60px -20px var(--red-glow);
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.conn-phone-notch {
+  width: 60px; height: 10px;
+  background: var(--bg-4);
+  border-radius: 0 0 8px 8px;
+  margin: 12px auto 0;
+}
+.conn-phone-screen {
+  padding: 16px 16px 20px;
+  text-align: center;
+}
+.conn-phone-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--red-700), var(--red-500));
+  display: grid;
+  place-items: center;
+  margin: 12px auto 10px;
+  box-shadow: 0 8px 24px -6px var(--red-glow);
+}
+.conn-phone-icon svg { color: white; }
+.conn-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 5px 10px;
+  border-radius: 100px;
+  margin: 0 auto 8px;
+  width: fit-content;
+}
+.conn-status--connecting {
+  color: var(--amber);
+  background: rgba(255,176,32,0.1);
+  border: 1px solid rgba(255,176,32,0.2);
+}
+.conn-status--connected {
+  color: var(--green);
+  background: rgba(0,212,126,0.1);
+  border: 1px solid rgba(0,212,126,0.2);
+  animation: pulse-green 2s ease-in-out infinite;
+}
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,212,126,0); }
+  50% { box-shadow: 0 0 0 6px rgba(0,212,126,0.08); }
+}
+.conn-status-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: blink-dot 1.2s step-end infinite;
+}
+.conn-status--connected .conn-status-dot { animation: none; }
+@keyframes blink-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.conn-venue-name {
+  font-size: 11px;
+  color: var(--fg-3);
+  font-family: var(--mono);
+}
+
+/* Floating badges around the phone */
+.conn-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-2);
+  white-space: nowrap;
+  box-shadow: 0 8px 30px -8px rgba(0,0,0,0.4);
+  animation: float-badge 6s ease-in-out infinite;
+}
+.conn-badge svg { flex-shrink: 0; color: var(--fg-4); }
+.conn-badge--1 { top: 20px; right: 0; animation-delay: 0s; }
+.conn-badge--2 { bottom: 100px; right: -10px; animation-delay: 1s; }
+.conn-badge--3 { top: 80px; left: 0; animation-delay: 0.5s; }
+.conn-badge--4 { bottom: 40px; left: 10px; animation-delay: 1.5s; }
+.conn-badge-icon {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+}
+.conn-badge-icon--green { background: rgba(0,212,126,0.12); color: var(--green); }
+.conn-badge-icon--red { background: rgba(255,43,43,0.1); color: var(--red); }
+.conn-badge-icon--violet { background: rgba(154,108,255,0.1); color: var(--violet); }
+.conn-badge-icon--amber { background: rgba(255,176,32,0.1); color: var(--amber); }
+.conn-badge-label { display: flex; flex-direction: column; gap: 1px; }
+.conn-badge-label span:first-child { font-size: 12px; font-weight: 600; }
+.conn-badge-label span:last-child { font-size: 10px; color: var(--fg-4); font-family: var(--mono); }
+
+@keyframes float-badge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ======================= HOW IT WORKS ======================= */
+.fp-how {
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.fp-how-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, var(--red-glow-soft), transparent 60%);
+}
+.fp-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 64px;
+  position: relative;
+}
+/* connecting line between steps */
+.fp-steps::before {
+  content: '';
+  position: absolute;
+  top: 32px;
+  left: calc(16.666% + 20px);
+  right: calc(16.666% + 20px);
+  height: 1px;
+  background: linear-gradient(90deg, var(--red) 0%, rgba(255,43,43,0.3) 50%, var(--red) 100%);
+  z-index: 0;
+}
+.fp-step {
+  padding: 32px 28px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg-1);
+  position: relative;
+  transition: all 0.35s var(--ease);
+  text-align: center;
+}
+.fp-step:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px -15px rgba(0,0,0,0.4);
+}
+.fp-step-num {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  display: grid; place-items: center;
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--fg-3);
+  margin: 0 auto 20px;
+  position: relative;
+  z-index: 1;
+}
+.fp-step--active .fp-step-num {
+  background: linear-gradient(135deg, var(--red-700), var(--red-500));
+  border-color: var(--red);
+  color: white;
+  box-shadow: 0 8px 24px -6px var(--red-glow);
+}
+.fp-step h4 { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+.fp-step p { font-size: 14.5px; color: var(--fg-3); line-height: 1.6; margin: 0; }
+.fp-step-arrow {
+  position: absolute;
+  top: 30px;
+  right: -14px;
+  z-index: 2;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  display: grid; place-items: center;
+  color: var(--fg-4);
+}
+.fp-step:last-child .fp-step-arrow { display: none; }
+
+/* ======================= BENEFITS (2-col split) ======================= */
+.fp-benefits {
+  padding: 140px 0;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--line);
+}
+.fp-benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 64px;
+}
+.fp-benefit-col {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.fp-benefit-head {
+  padding: 28px 32px 24px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.fp-benefit-head-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+.fp-benefit-head-icon--violet { background: rgba(154,108,255,0.1); border: 1px solid rgba(154,108,255,0.2); color: #9A6CFF; }
+.fp-benefit-head-icon--red { background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2); color: var(--red); }
+.fp-benefit-head h3 { font-size: 20px; font-weight: 600; margin: 0; }
+.fp-benefit-head p { font-size: 13px; color: var(--fg-4); margin: 2px 0 0; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.06em; }
+.fp-benefit-body {
+  padding: 28px 32px;
+  background: var(--bg-1);
+}
+.fp-benefit-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.fp-benefit-list li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.fp-benefit-list li .fp-b-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+  font-size: 14px;
+  margin-top: 1px;
+}
+.fp-benefit-list li .fp-b-icon--violet { background: rgba(154,108,255,0.1); color: #9A6CFF; }
+.fp-benefit-list li .fp-b-icon--red { background: rgba(255,43,43,0.08); color: var(--red); }
+.fp-benefit-list li .fp-b-text { flex: 1; }
+.fp-benefit-list li .fp-b-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.fp-benefit-list li .fp-b-desc { font-size: 13.5px; color: var(--fg-3); line-height: 1.55; }
+
+/* ======================= PROOF OF PRESENCE ======================= */
+.fp-pop {
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+}
+.fp-pop-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 50% 40% at 20% 50%, var(--red-glow-soft) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 85% 60%, rgba(154,108,255,0.07) 0%, transparent 60%);
+}
+.fp-pop-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+}
+
+/* Data flow visual */
+.pop-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 380px;
+}
+.pop-card {
+  width: 100%;
+  max-width: 380px;
+  border-radius: 20px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  overflow: hidden;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5);
+}
+.pop-card-head {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pop-card-head-left {
+  display: flex; align-items: center; gap: 10px;
+}
+.pop-card-head-left span {
+  font-size: 14px;
+  font-weight: 600;
+}
+.pop-card-head-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--green);
+  background: rgba(0,212,126,0.1);
+  border: 1px solid rgba(0,212,126,0.2);
+  border-radius: 5px;
+  padding: 2px 7px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.pop-row {
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.2s var(--ease);
+}
+.pop-row:last-child { border-bottom: none; }
+.pop-row:hover { background: var(--bg-3); }
+.pop-row-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--fg-3);
+}
+.pop-row-label-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(0,212,126,0.5);
+}
+.pop-row-val {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--fg-2);
+  font-weight: 500;
+}
+.pop-row-val--green { color: var(--green); }
+.pop-integrations {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.pop-int-pill {
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  font-size: 10px;
+  color: var(--fg-3);
+}
+
+/* ======================= QUOTE / CALLOUT ======================= */
+.fp-callout {
+  margin: 80px 0 0;
+  padding: 32px 36px;
+  border-radius: 16px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  position: relative;
+  overflow: hidden;
+}
+.fp-callout::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,43,43,0.06), transparent 50%);
+  pointer-events: none;
+}
+.fp-callout-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: rgba(255,43,43,0.1);
+  border: 1px solid rgba(255,43,43,0.2);
+  display: grid; place-items: center;
+  color: var(--red);
+  margin-bottom: 14px;
+}
+.fp-callout p {
+  font-size: 16px;
+  color: var(--fg-2);
+  line-height: 1.65;
+  position: relative;
+}
+.fp-callout p strong { color: var(--fg); }
+
+/* ======================= RELATED FEATURES ======================= */
+.fp-related {
+  padding: 100px 0;
+  background: var(--bg-1);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.fp-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+.fp-rel-card {
+  padding: 28px 24px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg-2);
+  transition: all 0.3s var(--ease);
+  text-decoration: none;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+.fp-rel-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease);
+}
+.fp-rel-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-3px);
+}
+.fp-rel-card:hover::after { transform: scaleX(1); }
+.fp-rel-icon {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  display: grid; place-items: center;
+  margin-bottom: 14px;
+}
+.fp-rel-icon--violet { background: rgba(154,108,255,0.1); border: 1px solid rgba(154,108,255,0.2); color: #9A6CFF; }
+.fp-rel-icon--green { background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.2); color: var(--green); }
+.fp-rel-icon--red { background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2); color: var(--red); }
+.fp-rel-card h4 { font-size: 15px; font-weight: 600; color: var(--fg); margin-bottom: 6px; }
+.fp-rel-card p { font-size: 13.5px; color: var(--fg-3); line-height: 1.55; margin: 0; }
+.fp-rel-arrow {
+  position: absolute;
+  top: 26px; right: 22px;
+  color: var(--fg-4);
+  opacity: 0;
+  transition: all 0.25s var(--ease);
+  transform: translate(-4px, 0);
+}
+.fp-rel-card:hover .fp-rel-arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* ======================= FOOTER SOCIAL ======================= */
+.ft-social {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 18px;
+  margin-left: -6px;
+}
+.ft-social-link {
+  display: grid;
+  place-items: center;
+  width: 32px; height: 32px;
+  border-radius: 6px;
+  color: var(--fg-4);
+  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.ft-social-link svg { width: 16px; height: 16px; }
+.ft-social-link:hover { color: var(--fg); background: var(--bg-3); }
+
+/* ======================= RESPONSIVE ======================= */
+@media (max-width: 980px) {
+  .fp-hero-wrap { grid-template-columns: 1fr; gap: 48px; }
+  .fp-hero-visual { min-height: 260px; }
+  .fp-steps { grid-template-columns: 1fr; gap: 12px; }
+  .fp-steps::before { display: none; }
+  .fp-step-arrow { display: none; }
+  .fp-benefits-grid { grid-template-columns: 1fr; }
+  .fp-pop-grid { grid-template-columns: 1fr; gap: 48px; }
+  .fp-related-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .fp-related-grid { grid-template-columns: 1fr; }
+  .conn-badge--1, .conn-badge--3 { display: none; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Grain overlay -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Fydelia home">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+      <span class="brand-text">fydelia</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="features.html">Features</a></li>
+      <li><a href="splash-pages.html">Splash Pages</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+      <a class="btn-ghost" href="https://ondemand.fydelia.com/">Sign in</a>
+      <a class="btn-solid" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer + backdrop -->
+<div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+<aside id="menuDrawer" class="menu-drawer" aria-hidden="true">
+  <div class="menu-drawer-head">
+    <span class="menu-drawer-title">Menu</span>
+    <button id="menuClose" class="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu-drawer-nav">
+    <a href="features.html">Features</a>
+    <a href="splash-pages.html">Splash Pages</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="hardware.html">Supported Hardware</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a>
+  </nav>
+  <div class="menu-drawer-foot">
+    <div class="menu-drawer-theme">
+      <span class="menu-drawer-theme-label">Dark mode</span>
+      <button id="themeToggleMobile" class="theme-switch" aria-label="Toggle theme">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+    </div>
+    <a class="btn-ghost menu-drawer-signin" href="https://ondemand.fydelia.com/">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
+</aside>
+
+
+<main>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="fp-hero">
+    <div class="fp-hero-bg" aria-hidden="true">
+      <div class="fp-hero-grid"></div>
+      <div class="fp-hero-glow-a"></div>
+    </div>
+
+    <div class="wrap fp-hero-wrap">
+      <div class="fp-hero-copy">
+        <div class="breadcrumb">
+          <a href="features.html">Features</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>Automatic WiFi Login</span>
+        </div>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span>Engagement feature</span>
+        </div>
+        <h1>A zero-touch<br>WiFi <em>experience</em></h1>
+        <p class="hero-sub">Your most loyal customers choose your venue time and again — so why make them repeat the same WiFi login every single visit? Fydelia recognizes returning devices and reconnects them automatically, before they've even sat down.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn-solid btn-lg" href="https://www.fydelia.com/onboarding/">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+          <a class="btn-ghost" href="features.html" style="border:1px solid var(--line-2);">All features</a>
+        </div>
+        <div class="fp-hero-meta">
+          <span class="fp-meta-tag fp-meta-tag--highlight">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            Automatic Login
+          </span>
+          <span class="fp-meta-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            Loyalty
+          </span>
+          <span class="fp-meta-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            GDPR Compliant
+          </span>
+        </div>
+      </div>
+
+      <div class="fp-hero-visual">
+        <div class="conn-diagram">
+
+          <!-- Floating badges -->
+          <div class="conn-badge conn-badge--1">
+            <div class="conn-badge-icon conn-badge-icon--green">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="conn-badge-label">
+              <span>Device recognized</span>
+              <span>Returning visitor</span>
+            </div>
+          </div>
+
+          <div class="conn-badge conn-badge--3">
+            <div class="conn-badge-icon conn-badge-icon--violet">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+            </div>
+            <div class="conn-badge-label">
+              <span>Visit logged</span>
+              <span>Proof of Presence</span>
+            </div>
+          </div>
+
+          <div class="conn-badge conn-badge--2">
+            <div class="conn-badge-icon conn-badge-icon--amber">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="conn-badge-label">
+              <span>0.3s reconnect</span>
+              <span>Avg. connection time</span>
+            </div>
+          </div>
+
+          <div class="conn-badge conn-badge--4">
+            <div class="conn-badge-icon conn-badge-icon--red">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </div>
+            <div class="conn-badge-label">
+              <span>CRM synced</span>
+              <span>Auto data push</span>
+            </div>
+          </div>
+
+          <!-- Phone mockup -->
+          <div class="conn-phone">
+            <div class="conn-phone-notch"></div>
+            <div class="conn-phone-screen">
+              <div class="conn-phone-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+              </div>
+              <div class="conn-status conn-status--connected" id="connStatus">
+                <span class="conn-status-dot"></span>
+                <span id="connStatusText">Connected</span>
+              </div>
+              <div class="conn-venue-name" id="connVenue">The Grand Café</div>
+              <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
+                <div style="font-family:var(--mono); font-size:10px; color:var(--fg-4); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:6px;">Welcome back</div>
+                <div style="font-size:13px; font-weight:600; color:var(--fg);">Sarah J. ✓</div>
+                <div style="font-size:11px; color:var(--fg-4); margin-top:2px;">Visit #14 this month</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= HOW IT WORKS ======================= -->
+  <section class="fp-how">
+    <div class="fp-how-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">How it works</div>
+        <h2>Three steps to a<br>seamless return</h2>
+        <p class="lead">From first sign-in to fully automatic reconnection — here's the experience your guests and your data team both love.</p>
+      </div>
+
+      <div class="fp-steps">
+
+        <div class="fp-step reveal">
+          <div class="fp-step-num">01</div>
+          <h4>First visit: normal sign-in</h4>
+          <p>On their first visit, the guest signs in through your branded splash page and connects to the WiFi as usual. Their device is securely remembered at this point.</p>
+          <div class="fp-step-arrow">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </div>
+
+        <div class="fp-step fp-step--active reveal d1">
+          <div class="fp-step-num">02</div>
+          <h4>Device is securely remembered</h4>
+          <p>Fydelia logs the guest's device identifier against their profile in your CRM. No passwords stored — just a secure, privacy-compliant device fingerprint.</p>
+          <div class="fp-step-arrow">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </div>
+
+        <div class="fp-step reveal d2">
+          <div class="fp-step-num">03</div>
+          <h4>Every return: instant reconnection</h4>
+          <p>On every subsequent visit, their device is recognized the moment it pings the network. They're connected instantly — no splash page, no form, no friction.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= BENEFITS ======================= -->
+  <section class="fp-benefits">
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">Why it matters</div>
+        <h2>Great for guests.<br>Better for business.</h2>
+        <p class="lead">Removing a small but repetitive hassle creates a disproportionately large positive impression — for your customers and your data.</p>
+      </div>
+
+      <div class="fp-benefits-grid">
+
+        <!-- For Guests -->
+        <div class="fp-benefit-col reveal">
+          <div class="fp-benefit-head">
+            <div class="fp-benefit-head-icon fp-benefit-head-icon--violet">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div>
+              <h3>For Your Returning Guests</h3>
+              <p>The experience they deserve</p>
+            </div>
+          </div>
+          <div class="fp-benefit-body">
+            <ul class="fp-benefit-list">
+              <li>
+                <div class="fp-b-icon fp-b-icon--violet">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                </div>
+                <div class="fp-b-text">
+                  <div class="fp-b-title">Zero-Touch Reconnection</div>
+                  <div class="fp-b-desc">They are automatically logged in the moment they step into your venue — no action required on their end, ever.</div>
+                </div>
+              </li>
+              <li>
+                <div class="fp-b-icon fp-b-icon--violet">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <div class="fp-b-text">
+                  <div class="fp-b-title">Ultimate Convenience</div>
+                  <div class="fp-b-desc">No more repetitive sign-in screens or password requests. They're online before they've even opened the menu.</div>
+                </div>
+              </li>
+              <li>
+                <div class="fp-b-icon fp-b-icon--violet">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </div>
+                <div class="fp-b-text">
+                  <div class="fp-b-title">A Feeling of Recognition</div>
+                  <div class="fp-b-desc">A seamless, instant connection feels like a personal welcome back. It's a small touch that builds genuine affinity with your brand.</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- For Business -->
+        <div class="fp-benefit-col reveal d1">
+          <div class="fp-benefit-head">
+            <div class="fp-benefit-head-icon fp-benefit-head-icon--red">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <div>
+              <h3>For Your Business</h3>
+              <p>Loyalty that compounds over time</p>
+            </div>
+          </div>
+          <div class="fp-benefit-body">
+            <ul class="fp-benefit-list">
+              <li>
+                <div class="fp-b-icon fp-b-icon--red">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <div class="fp-b-text">
+                  <div class="fp-b-title">Boost Customer Loyalty</div>
+                  <div class="fp-b-desc">Reward your regulars with a premium, hassle-free experience they'll notice and appreciate — one that sets your venue apart.</div>
+                </div>
+              </li>
+              <li>
+                <div class="fp-b-icon fp-b-icon--red">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+                </div>
+                <div class="fp-b-text">
+                  <div class="fp-b-title">Reduce Friction</div>
+                  <div class="fp-b-desc">Eliminate a common point of frustration for your most valuable customers. Friction is a leak in your loyalty bucket — this plugs it.</div>
+                </div>
+              </li>
+              <li>
+                <div class="fp-b-icon fp-b-icon--red">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+                </div>
+                <div class="fp-b-text">
+                  <div class="fp-b-title">Capture Every Visit</div>
+                  <div class="fp-b-desc">Seamlessly track return visits with Proof of Presence, even without a manual login — so no visit goes unrecorded in your CRM.</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= PROOF OF PRESENCE ======================= -->
+  <section class="fp-pop">
+    <div class="fp-pop-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="fp-pop-grid">
+
+        <div class="spotlight-text reveal">
+          <div class="kicker">Proof of Presence</div>
+          <h2>Effortless for them,<br><em>intelligent</em> for you</h2>
+          <p class="lead">A five-star experience for your guests shouldn't create a data blind spot for your business. We designed Automatic Login to give you the best of both worlds.</p>
+          <p style="font-size:15.5px; color:var(--fg-2); line-height:1.65; margin-top:16px;">While your guest enjoys their instant connection, Fydelia's Proof of Presence technology works silently in the background — logging every return visit and sending the data directly to your CRM or analytics platform.</p>
+
+          <ul class="spotlight-feats" style="margin-top:28px;">
+            <li><span class="spot-check">✓</span> Visit frequency tracked automatically</li>
+            <li><span class="spot-check">✓</span> Data pushed to your CRM in real time</li>
+            <li><span class="spot-check">✓</span> Identify your most loyal customers</li>
+            <li><span class="spot-check">✓</span> Measure the impact of loyalty programs</li>
+          </ul>
+
+          <div class="fp-callout reveal d1">
+            <div class="fp-callout-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <p><strong>Convenience without compromise.</strong> You'll still know who your most loyal customers are, track visit frequency, and measure your loyalty programmes — all while providing a truly frictionless experience.</p>
+          </div>
+        </div>
+
+        <div class="pop-visual reveal d1">
+          <div class="pop-card">
+            <div class="pop-card-head">
+              <div class="pop-card-head-left">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--green)"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+                <span>Proof of Presence</span>
+              </div>
+              <span class="pop-card-head-tag">Live</span>
+            </div>
+
+            <div class="pop-row">
+              <div class="pop-row-label">
+                <span class="pop-row-label-dot"></span>
+                Guest identified
+              </div>
+              <span class="pop-row-val pop-row-val--green">Sarah J.</span>
+            </div>
+            <div class="pop-row">
+              <div class="pop-row-label">
+                <span class="pop-row-label-dot"></span>
+                Visit logged
+              </div>
+              <span class="pop-row-val">#14 this month</span>
+            </div>
+            <div class="pop-row">
+              <div class="pop-row-label">
+                <span class="pop-row-label-dot"></span>
+                Login method
+              </div>
+              <span class="pop-row-val">Auto (silent)</span>
+            </div>
+            <div class="pop-row">
+              <div class="pop-row-label">
+                <span class="pop-row-label-dot"></span>
+                Dwell time
+              </div>
+              <span class="pop-row-val">1h 22m</span>
+            </div>
+            <div class="pop-row">
+              <div class="pop-row-label">
+                <span class="pop-row-label-dot"></span>
+                CRM sync
+              </div>
+              <span class="pop-row-val pop-row-val--green">Complete ✓</span>
+            </div>
+            <div class="pop-row">
+              <div class="pop-row-label">
+                <span class="pop-row-label-dot"></span>
+                Loyalty score
+              </div>
+              <span class="pop-row-val">+12 pts</span>
+            </div>
+
+            <div class="pop-integrations">
+              <span>Synced to</span>
+              <span class="pop-int-pill">Salesforce</span>
+              <span class="pop-int-pill">HubSpot</span>
+              <span class="pop-int-pill">Mailchimp</span>
+              <span style="color:var(--fg-4);">+ 97 more</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= RELATED FEATURES ======================= -->
+  <section class="fp-related">
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">Keep exploring</div>
+        <h2>Features that work<br>alongside this one</h2>
+      </div>
+
+      <div class="fp-related-grid">
+
+        <a href="features.html" class="fp-rel-card reveal">
+          <div class="fp-rel-icon fp-rel-icon--violet">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+          </div>
+          <h4>Shared Sign On</h4>
+          <p>Once a guest signs in at one location, they're automatically connected at all your other venues too. One login, everywhere.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="features.html" class="fp-rel-card reveal d1">
+          <div class="fp-rel-icon fp-rel-icon--red">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h4>Loyalty Engine</h4>
+          <p>Drive better engagement and retention with a built-in loyalty suite — point tallies, visit rewards, and automated campaigns.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="features.html" class="fp-rel-card reveal d2">
+          <div class="fp-rel-icon fp-rel-icon--green">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <h4>100+ No-Code Integrations</h4>
+          <p>Every visit — auto-logged or manual — flows directly into your CRM, email platform, or analytics stack without a line of code.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= CTA ======================= -->
+  <section class="cta-sec" id="cta">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <h2>Ready to delight<br>your regulars?</h2>
+        <p>Start your free 14-day trial today. Full access to every feature, including Automatic WiFi Login — zero risk, and we'll handle the setup.</p>
+        <form class="cta-form" onsubmit="return false;">
+          <input type="email" placeholder="you@venue.com" aria-label="Email address">
+          <button class="btn-solid" type="submit">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </button>
+        </form>
+        <p class="cta-meta">No credit card required · Setup in &lt;2 minutes · Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="ft">
+    <div class="wrap-wide">
+      <div class="ft-grid">
+        <div class="ft-brand-col">
+          <a class="brand" href="index.html" aria-label="Fydelia home">
+            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+            <span class="brand-text">fydelia</span>
+          </a>
+          <p>The industry-leading captive portal and WiFi marketing platform that helps venues spark conversations and capture high-value user data. We turn simple guest WiFi access into a powerful engine for lead-gen and customer loyalty.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="splash-pages.html">Splash Pages</a></li>
+            <li><a href="hardware.html">Supported Hardware</a></li>
+<li><a href="for-venues.html">For Venues</a></li>
+<li><a href="for-resellers.html">For Resellers &amp; MSPs</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://www.fydelia.com/knowledge-base/">Documentation &amp; Support</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="blog.html">Blog</a></li>
+<li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="information-system-security-policy.html">InfoSys Security Policy</a></li>
+            <li><a href="security-assurance-plan">Security Assurance Plan</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li><a href="mailto:support@fydelia.com">support@fydelia.com</a></li>
+            <li>Brighton, United Kingdom</li>
+            <li>Dubai, UAE</li>
+          </ul>
+          <div class="ft-social">
+            <a href="https://instagram.com/fydeliawifi" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.facebook.com/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@fydeliawifi/videos" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <span>&copy; 2026 Fydelia</span>
+        <span>All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+
+<script>
+// ===== Theme toggle =====
+const toggle = document.getElementById('themeToggle');
+if (toggle) {
+  const saved = localStorage.getItem('fy-theme');
+  if (saved) document.body.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.body.setAttribute('data-theme', next);
+    localStorage.setItem('fy-theme', next);
+  });
+}
+
+// ===== Scroll reveal =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => io.observe(el));
+
+// ===== Connection status cycling animation =====
+(function() {
+  const statusEl = document.getElementById('connStatus');
+  const textEl   = document.getElementById('connStatusText');
+  if (!statusEl || !textEl) return;
+
+  // Simulate a reconnection cycle every 5 seconds
+  function cycle() {
+    // Phase 1: connecting
+    statusEl.className = 'conn-status conn-status--connecting';
+    textEl.textContent = 'Connecting…';
+
+    setTimeout(() => {
+      // Phase 2: connected
+      statusEl.className = 'conn-status conn-status--connected';
+      textEl.textContent = 'Connected';
+    }, 1200);
+  }
+
+  // Start connected, then cycle
+  setTimeout(() => {
+    cycle();
+    setInterval(cycle, 6000);
+  }, 3000);
+})();
+
+// ===== Mobile menu drawer =====
+(function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const drawer     = document.getElementById('menuDrawer');
+  const backdrop   = document.getElementById('menuBackdrop');
+  const closeBtn   = document.getElementById('menuClose');
+  if (!menuToggle || !drawer) return;
+
+  const drawerLinks = drawer.querySelectorAll('.menu-drawer-nav a, .menu-drawer-signin, .menu-drawer-cta');
+
+  function openMenu() {
+    menuToggle.setAttribute('aria-expanded', 'true');
+    drawer.classList.add('active');
+    drawer.setAttribute('aria-hidden', 'false');
+    backdrop.classList.add('active');
+    backdrop.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-open');
+  }
+
+  function closeMenu() {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    drawer.classList.remove('active');
+    drawer.setAttribute('aria-hidden', 'true');
+    backdrop.classList.remove('active');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-open');
+  }
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+  });
+  closeBtn.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  drawerLinks.forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('active')) closeMenu();
+  });
+
+  const mobileThemeBtn = document.getElementById('themeToggleMobile');
+  if (mobileThemeBtn) {
+    mobileThemeBtn.addEventListener('click', () => {
+      const desktopBtn = document.getElementById('themeToggle');
+      if (desktopBtn) desktopBtn.click();
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dweller Flash Offers – Fydelia</title>
+<meta name="description" content="Fydelia Dweller Flash Offers let you push time-limited promotions directly to every guest currently connected to your WiFi — turning browsing time into instant in-venue revenue.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/core.css">
+<link rel="stylesheet" href="styles/sections.css">
+
+<style>
+/* ======================= DWELLER FLASH OFFERS FEATURE PAGE ======================= */
+
+/* --- Hero --- */
+.fp-hero {
+  position: relative;
+  padding: 140px 0 100px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.fp-hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.fp-hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 80%);
+}
+.fp-hero-glow {
+  position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+  width: 900px; height: 500px;
+  background: radial-gradient(ellipse, var(--red-glow-soft) 0%, transparent 65%);
+}
+.fp-hero-wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px; align-items: center; min-height: 460px;
+}
+.fp-hero-copy { max-width: 620px; }
+.fp-hero-copy .breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 12px; color: var(--fg-4);
+  margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.08em;
+}
+.fp-hero-copy .breadcrumb a { color: var(--fg-4); text-decoration: none; transition: color 0.2s var(--ease); }
+.fp-hero-copy .breadcrumb a:hover { color: var(--fg-2); }
+.fp-hero h1 { font-size: clamp(38px, 4.8vw, 56px); margin: 16px 0 22px; line-height: 1.1; letter-spacing: -0.03em; }
+.fp-hero h1 em { color: var(--red); font-style: italic; font-weight: 500; }
+.fp-hero .hero-sub { font-size: 18px; color: var(--fg-2); max-width: 520px; line-height: 1.65; margin-bottom: 36px; }
+.fp-hero-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 36px; }
+.fp-meta-tag {
+  display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px;
+  font-family: var(--mono); font-size: 11px; color: var(--fg-4);
+  background: var(--bg-3); border: 1px solid var(--line); border-radius: 6px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.fp-meta-tag--highlight { color: var(--red); background: rgba(255,43,43,0.08); border-color: rgba(255,43,43,0.2); }
+.fp-meta-tag--amber  { color: #FFB020; background: rgba(255,176,32,0.08); border-color: rgba(255,176,32,0.2); }
+.fp-meta-tag--green  { color: var(--green); background: rgba(0,212,126,0.08); border-color: rgba(0,212,126,0.2); }
+
+/* ======================= HERO VISUAL: PHONE + OFFER NOTIFICATION ======================= */
+.fp-hero-visual {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 420px;
+}
+.dweller-visual {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Phone frame */
+.dw-phone {
+  width: 210px;
+  border-radius: 32px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  box-shadow: 0 32px 80px -20px rgba(0,0,0,0.55), 0 0 60px -20px var(--red-glow);
+  overflow: hidden;
+  position: relative; z-index: 2;
+}
+.dw-phone-notch {
+  width: 64px; height: 12px; border-radius: 0 0 10px 10px;
+  background: var(--bg-4); margin: 14px auto 0;
+}
+.dw-phone-status {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 18px 0;
+  font-family: var(--mono); font-size: 10px; color: var(--fg-4);
+}
+.dw-phone-wifi { display: flex; align-items: center; gap: 4px; }
+.dw-phone-wifi-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px rgba(0,212,126,0.5); }
+
+/* The offer notification card */
+.dw-notif {
+  margin: 12px 12px 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--red-700), var(--red-500));
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 24px -8px var(--red-glow);
+}
+.dw-notif::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255,255,255,0.03) 0px,
+    rgba(255,255,255,0.03) 1px,
+    transparent 1px,
+    transparent 12px
+  );
+}
+.dw-notif-label {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 9px; font-weight: 600;
+  color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.15em;
+  margin-bottom: 8px;
+}
+.dw-notif-label-dot { width: 6px; height: 6px; border-radius: 50%; background: white; opacity: 0.7; animation: blink-notif 1.5s step-end infinite; }
+@keyframes blink-notif { 0%,100%{opacity:0.7} 50%{opacity:0.2} }
+.dw-notif-headline { font-size: 17px; font-weight: 700; color: white; line-height: 1.2; margin-bottom: 5px; }
+.dw-notif-sub { font-size: 11.5px; color: rgba(255,255,255,0.75); line-height: 1.45; margin-bottom: 12px; }
+.dw-notif-footer { display: flex; align-items: center; justify-content: space-between; }
+.dw-notif-btn {
+  padding: 6px 14px; border-radius: 8px;
+  background: white; color: var(--red);
+  font-size: 11.5px; font-weight: 700;
+  border: none; cursor: pointer;
+}
+.dw-notif-timer {
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  display: flex; align-items: center; gap: 4px;
+}
+.dw-notif-timer svg { opacity: 0.7; }
+
+/* App behind the notification */
+.dw-phone-bg-app {
+  padding: 12px 14px 20px;
+  opacity: 0.35;
+}
+.dw-app-bar { height: 6px; border-radius: 3px; background: var(--bg-4); margin-bottom: 8px; }
+.dw-app-bar--short { width: 60%; }
+.dw-app-cards { display: flex; gap: 8px; }
+.dw-app-card { flex: 1; height: 56px; border-radius: 10px; background: var(--bg-3); }
+
+/* Floating stat badges */
+.dw-badge {
+  position: absolute;
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px; background: var(--bg-2);
+  border: 1px solid var(--line-2); border-radius: 12px;
+  font-size: 12px; font-weight: 500; color: var(--fg-2);
+  white-space: nowrap; box-shadow: 0 8px 28px -8px rgba(0,0,0,0.4);
+  animation: dw-float 7s ease-in-out infinite;
+}
+.dw-badge-icon { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; flex-shrink: 0; }
+.dw-badge-icon--red    { background: rgba(255,43,43,0.1); color: var(--red); }
+.dw-badge-icon--green  { background: rgba(0,212,126,0.1); color: var(--green); }
+.dw-badge-icon--amber  { background: rgba(255,176,32,0.1); color: #FFB020; }
+.dw-badge-label { display: flex; flex-direction: column; gap: 1px; }
+.dw-badge-label span:first-child { font-size: 12px; font-weight: 600; }
+.dw-badge-label span:last-child  { font-size: 10px; color: var(--fg-4); font-family: var(--mono); }
+.dw-badge--1 { top: 20px;  right: -10px; animation-delay: 0s; }
+.dw-badge--2 { bottom: 100px; right: -14px; animation-delay: 1.2s; }
+.dw-badge--3 { bottom: 30px;  left: -14px; animation-delay: 0.6s; }
+@keyframes dw-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+/* ======================= USE CASE SCENARIOS ======================= */
+.fp-scenarios {
+  padding: 140px 0;
+  border-bottom: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.fp-scenarios-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 55% 40% at 80% 25%, var(--red-glow-soft), transparent 60%);
+}
+.fp-scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 64px;
+}
+.fp-scenario-card {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--bg-1);
+  transition: all 0.35s var(--ease);
+  position: relative;
+}
+.fp-scenario-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 20px 20px 0 0;
+}
+.fp-scenario-card--hosp::before { background: linear-gradient(90deg, var(--red), #FF6B6B); }
+.fp-scenario-card--retail::before { background: linear-gradient(90deg, #9A6CFF, #C4A8FF); }
+.fp-scenario-card--event::before { background: linear-gradient(90deg, #FFB020, #FFCF60); }
+.fp-scenario-card:hover { border-color: var(--line-strong); transform: translateY(-4px); box-shadow: 0 20px 50px -15px rgba(0,0,0,0.4); }
+.fp-scenario-head { padding: 22px 24px 18px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 12px; }
+.fp-scenario-icon { width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center; flex-shrink: 0; }
+.fp-scenario-icon--red    { background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2); color: var(--red); }
+.fp-scenario-icon--violet { background: rgba(154,108,255,0.1); border: 1px solid rgba(154,108,255,0.2); color: #9A6CFF; }
+.fp-scenario-icon--amber  { background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.2); color: #FFB020; }
+.fp-scenario-head-text h4 { font-size: 15.5px; font-weight: 600; margin-bottom: 2px; }
+.fp-scenario-head-text p  { font-size: 11px; color: var(--fg-4); font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.07em; margin: 0; }
+
+/* Mini offer card inside scenario */
+.fp-scenario-offer {
+  margin: 16px 18px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.fp-scenario-offer-bar { height: 5px; }
+.fp-scenario-offer-body {
+  padding: 14px 16px 16px;
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  border-radius: 0 0 12px 12px;
+  border-top: none;
+}
+.fp-scenario-offer-eyebrow {
+  font-family: var(--mono); font-size: 9px; color: var(--fg-4);
+  text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 5px;
+  display: flex; align-items: center; gap: 5px;
+}
+.fp-scenario-offer-eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; animation: blink-notif 1.5s step-end infinite; }
+.fp-scenario-offer-headline { font-size: 14px; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
+.fp-scenario-offer-sub { font-size: 11.5px; color: var(--fg-3); line-height: 1.45; margin-bottom: 10px; }
+.fp-scenario-offer-footer { display: flex; align-items: center; justify-content: space-between; }
+.fp-scenario-offer-btn {
+  padding: 5px 12px; border-radius: 6px;
+  font-size: 11px; font-weight: 700; color: white;
+  display: inline-block;
+}
+.fp-scenario-offer-time {
+  font-family: var(--mono); font-size: 10px; color: var(--fg-4);
+  display: flex; align-items: center; gap: 3px;
+}
+.fp-scenario-desc { padding: 14px 22px 22px; font-size: 14px; color: var(--fg-3); line-height: 1.6; }
+
+/* ======================= CONTROL PANEL (targeting & scheduling) ======================= */
+.fp-control {
+  padding: 140px 0;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.fp-control-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 50% 40% at 85% 55%, rgba(154,108,255,0.07), transparent 55%);
+}
+.fp-control-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative;
+}
+
+/* Offer builder mockup */
+.fp-builder {
+  width: 100%; max-width: 400px;
+  border-radius: 20px;
+  background: var(--bg-2); border: 1px solid var(--line-2);
+  overflow: hidden;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5), 0 0 50px -20px var(--red-glow);
+}
+.fp-builder-head {
+  padding: 16px 20px; border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.fp-builder-head-left { display: flex; align-items: center; gap: 8px; }
+.fp-builder-head-left span { font-size: 14px; font-weight: 600; }
+.fp-builder-status {
+  font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 5px;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.fp-builder-status--draft { color: var(--fg-4); background: var(--bg-3); border: 1px solid var(--line); }
+.fp-builder-status--live  { color: var(--green); background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.2); }
+.fp-builder-section { padding: 14px 20px; border-bottom: 1px solid var(--line); }
+.fp-builder-section:last-of-type { border-bottom: none; }
+.fp-builder-label {
+  font-family: var(--mono); font-size: 10px; color: var(--fg-4);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;
+}
+.fp-builder-input {
+  width: 100%; padding: 9px 12px;
+  border-radius: 8px; background: var(--bg-3);
+  border: 1px solid var(--line-2); color: var(--fg);
+  font-size: 13px; font-family: var(--sans);
+}
+.fp-builder-row { display: flex; gap: 8px; }
+.fp-builder-row .fp-builder-input { flex: 1; }
+/* Audience selector */
+.fp-audience-opts { display: flex; gap: 6px; flex-wrap: wrap; }
+.fp-audience-opt {
+  padding: 6px 12px; border-radius: 7px;
+  font-size: 12px; font-weight: 500;
+  border: 1px solid var(--line-2);
+  background: var(--bg-3); color: var(--fg-3);
+  cursor: pointer; transition: all 0.2s var(--ease);
+}
+.fp-audience-opt--active {
+  background: rgba(255,43,43,0.1); border-color: rgba(255,43,43,0.3);
+  color: var(--red); font-weight: 600;
+}
+/* Schedule time pills */
+.fp-time-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.fp-time-pill {
+  padding: 6px 12px; border-radius: 7px;
+  font-family: var(--mono); font-size: 11px;
+  border: 1px solid var(--line-2); background: var(--bg-3); color: var(--fg-4);
+  transition: all 0.2s var(--ease);
+}
+.fp-time-pill--active {
+  background: rgba(255,176,32,0.1); border-color: rgba(255,176,32,0.3);
+  color: #FFB020;
+}
+/* Connected count */
+.fp-connected-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border-radius: 10px;
+  background: rgba(0,212,126,0.06); border: 1px solid rgba(0,212,126,0.15);
+}
+.fp-connected-bar-left { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--fg-2); }
+.fp-connected-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px rgba(0,212,126,0.5); animation: pulse-green 2s ease-in-out infinite; }
+@keyframes pulse-green { 0%,100%{box-shadow:0 0 0 0 rgba(0,212,126,0)} 50%{box-shadow:0 0 0 6px rgba(0,212,126,0.08)} }
+.fp-connected-count { font-family: var(--mono); font-size: 14px; font-weight: 700; color: var(--green); }
+.fp-builder-send-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 12px;
+  background: var(--red); color: white;
+  font-size: 14px; font-weight: 600;
+  border: none; border-radius: 10px;
+  cursor: pointer; margin-top: 4px;
+  box-shadow: 0 8px 20px -8px var(--red-glow);
+  transition: all 0.2s var(--ease);
+}
+.fp-builder-send-btn:hover { background: var(--red-600); transform: translateY(-1px); }
+
+/* ======================= OUTCOMES GRID ======================= */
+.fp-outcomes {
+  padding: 140px 0;
+  position: relative; overflow: hidden;
+}
+.fp-outcomes-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 45% 40% at 10% 50%, var(--red-glow-soft), transparent 55%),
+    radial-gradient(ellipse 35% 40% at 90% 70%, rgba(0,212,126,0.05), transparent 55%);
+}
+.fp-outcomes-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  margin-top: 64px; position: relative;
+}
+.fp-outcome-card {
+  padding: 32px 30px;
+  border: 1px solid var(--line); border-radius: 18px;
+  background: var(--bg-1);
+  transition: all 0.35s var(--ease);
+  position: relative; overflow: hidden;
+}
+.fp-outcome-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 80% at var(--mx,50%) var(--my,0%), var(--red-glow-soft), transparent 55%);
+  opacity: 0; transition: opacity 0.4s var(--ease); pointer-events: none;
+}
+.fp-outcome-card:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+.fp-outcome-card:hover::before { opacity: 1; }
+.fp-outcome-icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  display: grid; place-items: center; margin-bottom: 18px;
+}
+.fp-outcome-icon--red    { background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2); color: var(--red); }
+.fp-outcome-icon--green  { background: rgba(0,212,126,0.1); border: 1px solid rgba(0,212,126,0.2); color: var(--green); }
+.fp-outcome-icon--violet { background: rgba(154,108,255,0.1); border: 1px solid rgba(154,108,255,0.2); color: #9A6CFF; }
+.fp-outcome-icon--amber  { background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.2); color: #FFB020; }
+.fp-outcome-card h4 { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+.fp-outcome-card p  { font-size: 15px; color: var(--fg-3); line-height: 1.65; margin: 0; }
+.fp-outcome-card .fp-outcome-stat {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 16px; padding: 5px 12px; border-radius: 6px;
+  font-family: var(--mono); font-size: 11px;
+  background: var(--bg-3); border: 1px solid var(--line);
+  color: var(--fg-4);
+}
+
+/* callout */
+.fp-callout-wrap { margin-top: 64px; }
+.fp-callout {
+  padding: 36px 40px; border-radius: 18px;
+  background: var(--bg-2); border: 1px solid var(--line-2);
+  position: relative; overflow: hidden;
+  display: flex; align-items: flex-start; gap: 20px;
+}
+.fp-callout::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,43,43,0.07), transparent 50%);
+  pointer-events: none;
+}
+.fp-callout-icon {
+  width: 48px; height: 48px; border-radius: 13px;
+  background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2);
+  display: grid; place-items: center; color: var(--red);
+  flex-shrink: 0; position: relative;
+}
+.fp-callout-body { position: relative; }
+.fp-callout-body h4 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+.fp-callout-body p  { font-size: 15.5px; color: var(--fg-2); line-height: 1.65; margin: 0; }
+
+/* ======================= RELATED FEATURES ======================= */
+.fp-related {
+  padding: 100px 0;
+  background: var(--bg-1); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.fp-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+.fp-rel-card {
+  padding: 28px 24px; border: 1px solid var(--line); border-radius: 16px;
+  background: var(--bg-2); transition: all 0.3s var(--ease);
+  text-decoration: none; display: block; position: relative; overflow: hidden;
+}
+.fp-rel-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease);
+}
+.fp-rel-card:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+.fp-rel-card:hover::after { transform: scaleX(1); }
+.fp-rel-icon { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; margin-bottom: 14px; }
+.fp-rel-icon--red    { background: rgba(255,43,43,0.1); border: 1px solid rgba(255,43,43,0.2); color: var(--red); }
+.fp-rel-icon--violet { background: rgba(154,108,255,0.1); border: 1px solid rgba(154,108,255,0.2); color: #9A6CFF; }
+.fp-rel-icon--amber  { background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.2); color: #FFB020; }
+.fp-rel-card h4 { font-size: 15px; font-weight: 600; color: var(--fg); margin-bottom: 6px; }
+.fp-rel-card p  { font-size: 13.5px; color: var(--fg-3); line-height: 1.55; margin: 0; }
+.fp-rel-arrow {
+  position: absolute; top: 26px; right: 22px; color: var(--fg-4); opacity: 0;
+  transition: all 0.25s var(--ease); transform: translate(-4px,0);
+}
+.fp-rel-card:hover .fp-rel-arrow { opacity: 1; transform: translate(0,0); }
+
+/* Footer social */
+.ft-social { display: flex; align-items: center; gap: 4px; margin-top: 18px; margin-left: -6px; }
+.ft-social-link {
+  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 6px;
+  color: var(--fg-4); transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.ft-social-link svg { width: 16px; height: 16px; }
+.ft-social-link:hover { color: var(--fg); background: var(--bg-3); }
+
+/* ======================= RESPONSIVE ======================= */
+@media (max-width: 980px) {
+  .fp-hero-wrap      { grid-template-columns: 1fr; gap: 48px; }
+  .fp-hero-visual    { min-height: 280px; }
+  .fp-scenario-grid  { grid-template-columns: 1fr; }
+  .fp-control-grid   { grid-template-columns: 1fr; gap: 48px; }
+  .fp-outcomes-grid  { grid-template-columns: 1fr; }
+  .fp-related-grid   { grid-template-columns: 1fr 1fr; }
+  .fp-callout        { flex-direction: column; }
+}
+@media (max-width: 640px) {
+  .fp-related-grid { grid-template-columns: 1fr; }
+  .dw-badge--1, .dw-badge--2 { display: none; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Fydelia home">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+      <span class="brand-text">fydelia</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="features.html">Features</a></li>
+      <li><a href="splash-pages.html">Splash Pages</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+      <a class="btn-ghost" href="https://ondemand.fydelia.com/">Sign in</a>
+      <a class="btn-solid" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</nav>
+
+<div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+<aside id="menuDrawer" class="menu-drawer" aria-hidden="true">
+  <div class="menu-drawer-head">
+    <span class="menu-drawer-title">Menu</span>
+    <button id="menuClose" class="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu-drawer-nav">
+    <a href="features.html">Features</a>
+    <a href="splash-pages.html">Splash Pages</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="hardware.html">Supported Hardware</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a>
+  </nav>
+  <div class="menu-drawer-foot">
+    <div class="menu-drawer-theme">
+      <span class="menu-drawer-theme-label">Dark mode</span>
+      <button id="themeToggleMobile" class="theme-switch" aria-label="Toggle theme">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+    </div>
+    <a class="btn-ghost menu-drawer-signin" href="https://ondemand.fydelia.com/">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="https://www.fydelia.com/onboarding/">Try free for 14 days
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
+</aside>
+
+
+<main>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="fp-hero">
+    <div class="fp-hero-bg" aria-hidden="true">
+      <div class="fp-hero-grid"></div>
+      <div class="fp-hero-glow"></div>
+    </div>
+
+    <div class="wrap fp-hero-wrap">
+      <div class="fp-hero-copy">
+        <div class="breadcrumb">
+          <a href="features.html">Features</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>Dweller Flash Offers</span>
+        </div>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span>Marketing feature</span>
+        </div>
+        <h1>Turn active connections<br>into <em>instant sales</em></h1>
+        <p class="hero-sub">Traditional marketing gets customers through the door. Dweller Flash Offers maximise what they spend once they're already there. Push a time-sensitive deal directly to every guest currently connected to your WiFi — and watch browsers become buyers.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn-solid btn-lg" href="https://www.fydelia.com/onboarding/">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </a>
+          <a class="btn-ghost" href="features.html" style="border:1px solid var(--line-2);">All features</a>
+        </div>
+        <div class="fp-hero-meta">
+          <span class="fp-meta-tag fp-meta-tag--highlight">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            In-venue targeting
+          </span>
+          <span class="fp-meta-tag fp-meta-tag--amber">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Time-limited urgency
+          </span>
+          <span class="fp-meta-tag fp-meta-tag--green">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+            Instant revenue boost
+          </span>
+        </div>
+      </div>
+
+      <!-- Phone + notification visual -->
+      <div class="fp-hero-visual">
+        <div class="dweller-visual">
+
+          <!-- Floating stat badges -->
+          <div class="dw-badge dw-badge--1">
+            <div class="dw-badge-icon dw-badge-icon--green">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="dw-badge-label">
+              <span>47 guests</span>
+              <span>Currently connected</span>
+            </div>
+          </div>
+
+          <div class="dw-badge dw-badge--2">
+            <div class="dw-badge-icon dw-badge-icon--amber">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="dw-badge-label">
+              <span>Expires in 38:22</span>
+              <span>Countdown live</span>
+            </div>
+          </div>
+
+          <div class="dw-badge dw-badge--3">
+            <div class="dw-badge-icon dw-badge-icon--red">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+            </div>
+            <div class="dw-badge-label">
+              <span>+£312 in 40 min</span>
+              <span>Revenue attributed</span>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="dw-phone">
+            <div class="dw-phone-notch"></div>
+            <div class="dw-phone-status">
+              <span>9:41</span>
+              <div class="dw-phone-wifi">
+                <span class="dw-phone-wifi-dot"></span>
+                <span>The Grand</span>
+              </div>
+            </div>
+
+            <!-- Flash offer notification -->
+            <div class="dw-notif">
+              <div class="dw-notif-label">
+                <span class="dw-notif-label-dot"></span>
+                Live offer · The Grand Café
+              </div>
+              <div class="dw-notif-headline">Half-price cakes this hour ☕</div>
+              <div class="dw-notif-sub">Any slice with any hot drink. Show this screen at the counter to redeem.</div>
+              <div class="dw-notif-footer">
+                <button class="dw-notif-btn">Claim now</button>
+                <div class="dw-notif-timer">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span id="timerDisplay">38:22</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Faded app content behind -->
+            <div class="dw-phone-bg-app">
+              <div class="dw-app-bar"></div>
+              <div class="dw-app-bar dw-app-bar--short"></div>
+              <div class="dw-app-cards">
+                <div class="dw-app-card"></div>
+                <div class="dw-app-card"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= SCENARIO EXAMPLES ======================= -->
+  <section class="fp-scenarios">
+    <div class="fp-scenarios-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">Capitalize on the moment</div>
+        <h2>Every industry has<br>a reason to act on it</h2>
+        <p class="lead">A guest on your WiFi is an audience who can act on your offer in seconds. Here's how operators across hospitality, retail, and events use Dweller Flash Offers to drive immediate revenue.</p>
+      </div>
+
+      <div class="fp-scenario-grid">
+
+        <!-- Hospitality -->
+        <div class="fp-scenario-card fp-scenario-card--hosp reveal">
+          <div class="fp-scenario-head">
+            <div class="fp-scenario-icon fp-scenario-icon--red">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+            </div>
+            <div class="fp-scenario-head-text">
+              <h4>Hospitality &amp; Cafés</h4>
+              <p>Beat quiet hours instantly</p>
+            </div>
+          </div>
+          <div class="fp-scenario-offer">
+            <div class="fp-scenario-offer-bar" style="background:linear-gradient(90deg,var(--red),#FF6B6B);"></div>
+            <div class="fp-scenario-offer-body">
+              <div class="fp-scenario-offer-eyebrow" style="color:var(--red);">
+                <span class="fp-scenario-offer-eyebrow-dot"></span>
+                Live now · The Grand Café
+              </div>
+              <div class="fp-scenario-offer-headline">Half-price cakes with any coffee ☕</div>
+              <div class="fp-scenario-offer-sub">For the next 60 minutes only. Show this screen at the counter.</div>
+              <div class="fp-scenario-offer-footer">
+                <span class="fp-scenario-offer-btn" style="background:var(--red);">Claim offer</span>
+                <div class="fp-scenario-offer-time">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  58 min left
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="fp-scenario-desc">Send a "half-price cakes with any coffee for the next hour" offer to every connected guest on a quiet Tuesday afternoon — instantly boosting mid-day sales without a single discount code or paper voucher.</div>
+        </div>
+
+        <!-- Retail -->
+        <div class="fp-scenario-card fp-scenario-card--retail reveal d1">
+          <div class="fp-scenario-head">
+            <div class="fp-scenario-icon fp-scenario-icon--violet">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+            <div class="fp-scenario-head-text">
+              <h4>Retail</h4>
+              <p>Increase basket size at the till</p>
+            </div>
+          </div>
+          <div class="fp-scenario-offer">
+            <div class="fp-scenario-offer-bar" style="background:linear-gradient(90deg,#9A6CFF,#C4A8FF);"></div>
+            <div class="fp-scenario-offer-body">
+              <div class="fp-scenario-offer-eyebrow" style="color:#9A6CFF;">
+                <span class="fp-scenario-offer-eyebrow-dot"></span>
+                Live now · Your Store
+              </div>
+              <div class="fp-scenario-offer-headline">20% off all accessories today 🛍️</div>
+              <div class="fp-scenario-offer-sub">Add any accessory to your basket. Discount applied at checkout automatically.</div>
+              <div class="fp-scenario-offer-footer">
+                <span class="fp-scenario-offer-btn" style="background:#9A6CFF;">Shop now</span>
+                <div class="fp-scenario-offer-time">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Today only
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="fp-scenario-desc">As a customer browses your store and connects to WiFi, serve a flash offer for "20% off all accessories at the checkout today" — intercepting the moment before they decide they're done browsing and driving an upsell.</div>
+        </div>
+
+        <!-- Events -->
+        <div class="fp-scenario-card fp-scenario-card--event reveal d2">
+          <div class="fp-scenario-head">
+            <div class="fp-scenario-icon fp-scenario-icon--amber">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            </div>
+            <div class="fp-scenario-head-text">
+              <h4>Events &amp; Venues</h4>
+              <p>Drive sales &amp; manage crowd flow</p>
+            </div>
+          </div>
+          <div class="fp-scenario-offer">
+            <div class="fp-scenario-offer-bar" style="background:linear-gradient(90deg,#FFB020,#FFCF60);"></div>
+            <div class="fp-scenario-offer-body">
+              <div class="fp-scenario-offer-eyebrow" style="color:#FFB020;">
+                <span class="fp-scenario-offer-eyebrow-dot"></span>
+                Intermission · Main Stage
+              </div>
+              <div class="fp-scenario-offer-headline">2-for-1 drinks at Bar B 🎵</div>
+              <div class="fp-scenario-offer-sub">Skip the queue at Bar A. Head to Bar B for double the drinks, half the wait.</div>
+              <div class="fp-scenario-offer-footer">
+                <span class="fp-scenario-offer-btn" style="background:#FFB020;">Get the deal</span>
+                <div class="fp-scenario-offer-time">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  20 min left
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="fp-scenario-desc">During an event intermission, notify concert-goers with a "Skip the queue &amp; get 2-for-1 at Bar B" message — simultaneously managing crowd flow, reducing queue pressure at the main bar, and driving incremental drinks sales.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= OFFER BUILDER / CONTROL ======================= -->
+  <section class="fp-control">
+    <div class="fp-control-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="fp-control-grid">
+
+        <!-- Offer builder mockup -->
+        <div class="reveal" style="display:grid; place-items:center;">
+          <div class="fp-builder">
+            <div class="fp-builder-head">
+              <div class="fp-builder-head-left">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span>New Dweller Offer</span>
+              </div>
+              <span class="fp-builder-status fp-builder-status--draft">Draft</span>
+            </div>
+
+            <div class="fp-builder-section">
+              <div class="fp-builder-label">Offer headline</div>
+              <input class="fp-builder-input" type="text" value="Half-price cakes with any coffee ☕" readonly>
+            </div>
+
+            <div class="fp-builder-section">
+              <div class="fp-builder-label">Offer details</div>
+              <input class="fp-builder-input" type="text" value="Any slice with any hot drink. 60 mins only." readonly>
+            </div>
+
+            <div class="fp-builder-section">
+              <div class="fp-builder-label">Target audience</div>
+              <div class="fp-audience-opts">
+                <div class="fp-audience-opt fp-audience-opt--active">All connected</div>
+                <div class="fp-audience-opt">New visitors</div>
+                <div class="fp-audience-opt">Returning</div>
+                <div class="fp-audience-opt">Connected 20+ min</div>
+              </div>
+            </div>
+
+            <div class="fp-builder-section">
+              <div class="fp-builder-label">Duration</div>
+              <div class="fp-time-row">
+                <div class="fp-time-pill">15 min</div>
+                <div class="fp-time-pill">30 min</div>
+                <div class="fp-time-pill fp-time-pill--active">60 min</div>
+                <div class="fp-time-pill">2 hrs</div>
+                <div class="fp-time-pill">Custom</div>
+              </div>
+            </div>
+
+            <div class="fp-builder-section">
+              <div class="fp-builder-label">Currently connected guests</div>
+              <div class="fp-connected-bar">
+                <div class="fp-connected-bar-left">
+                  <span class="fp-connected-dot"></span>
+                  Sending to all connected guests
+                </div>
+                <span class="fp-connected-count">47</span>
+              </div>
+            </div>
+
+            <div class="fp-builder-section">
+              <button class="fp-builder-send-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                Launch offer now
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Copy -->
+        <div class="spotlight-text reveal d1">
+          <div class="kicker">Targeted, timely, and tempting</div>
+          <h2>The right offer.<br>The perfect <em>moment</em>.</h2>
+          <p class="lead">The power of a flash offer lies in its relevance and urgency. Our platform gives you full control — launch instantly or schedule for specific times to counter lulls in foot traffic.</p>
+
+          <ul class="spotlight-feats" style="margin-top:28px;">
+            <li><span class="spot-check">✓</span> Send to all connected guests with one click</li>
+            <li><span class="spot-check">✓</span> Target by audience — new vs. returning, dwell time</li>
+            <li><span class="spot-check">✓</span> Set duration from 15 minutes to a full day</li>
+            <li><span class="spot-check">✓</span> Schedule offers in advance for predictable quiet periods</li>
+            <li><span class="spot-check">✓</span> Combine with Splash Page Zones for area-specific offers</li>
+          </ul>
+
+          <div style="margin-top:32px; padding:20px 24px; border-radius:14px; background:var(--bg-2); border:1px solid var(--line-2);">
+            <div style="font-family:var(--mono); font-size:10px; color:var(--fg-4); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px;">Stop scheduling for</div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <span style="padding:5px 12px; border-radius:7px; background:rgba(255,43,43,0.08); border:1px solid rgba(255,43,43,0.15); font-size:13px; color:var(--fg-2);">Tuesday lulls</span>
+              <span style="padding:5px 12px; border-radius:7px; background:rgba(255,43,43,0.08); border:1px solid rgba(255,43,43,0.15); font-size:13px; color:var(--fg-2);">Post-lunch slumps</span>
+              <span style="padding:5px 12px; border-radius:7px; background:rgba(255,43,43,0.08); border:1px solid rgba(255,43,43,0.15); font-size:13px; color:var(--fg-2);">Overstocked items</span>
+              <span style="padding:5px 12px; border-radius:7px; background:rgba(255,43,43,0.08); border:1px solid rgba(255,43,43,0.15); font-size:13px; color:var(--fg-2);">Event intermissions</span>
+              <span style="padding:5px 12px; border-radius:7px; background:rgba(255,43,43,0.08); border:1px solid rgba(255,43,43,0.15); font-size:13px; color:var(--fg-2);">End-of-day clearance</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= OUTCOMES GRID ======================= -->
+  <section class="fp-outcomes">
+    <div class="fp-outcomes-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">What you'll gain</div>
+        <h2>Stop seeing WiFi as a utility.<br>Start using it as a <em>sales tool</em>.</h2>
+        <p class="lead">Every guest connected to your network is an opportunity. Dweller Flash Offers turn that passive connection into active, measurable in-venue revenue.</p>
+      </div>
+
+      <div class="fp-outcomes-grid">
+
+        <div class="fp-outcome-card reveal">
+          <div class="fp-outcome-icon fp-outcome-icon--red">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h4>Drive instant revenue</h4>
+          <p>Convert browsing time into purchasing action. A connected guest is already in your venue, already on their phone — you just need to give them a reason to spend right now.</p>
+          <span class="fp-outcome-stat">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Immediate impact on revenue
+          </span>
+        </div>
+
+        <div class="fp-outcome-card reveal d1">
+          <div class="fp-outcome-icon fp-outcome-icon--green">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+          </div>
+          <h4>Increase average spend</h4>
+          <p>Encourage add-on sales and impulse buys at the exact moment of decision. A well-timed offer on an accessory, a dessert, or a second drink consistently increases transaction values.</p>
+          <span class="fp-outcome-stat">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+            Higher basket &amp; basket frequency
+          </span>
+        </div>
+
+        <div class="fp-outcome-card reveal">
+          <div class="fp-outcome-icon fp-outcome-icon--violet">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h4>Engage in-venue guests</h4>
+          <p>Deliver real value and create a dynamic, interactive environment. Guests who receive a relevant, well-timed offer feel recognised and rewarded — not marketed at.</p>
+          <span class="fp-outcome-stat">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            Positive brand experience
+          </span>
+        </div>
+
+        <div class="fp-outcome-card reveal d1">
+          <div class="fp-outcome-icon fp-outcome-icon--amber">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg>
+          </div>
+          <h4>Manage inventory in real time</h4>
+          <p>Run targeted promotions to move specific products quickly. End-of-day overstocking, slow-moving lines, or last-minute cancellations — deploy an offer in seconds and let your WiFi audience do the rest.</p>
+          <span class="fp-outcome-stat">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            Agile stock management
+          </span>
+        </div>
+
+      </div>
+
+      <div class="fp-callout-wrap reveal">
+        <div class="fp-callout">
+          <div class="fp-callout-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div class="fp-callout-body">
+            <h4>Your WiFi is already generating revenue — you just can't see it yet</h4>
+            <p>By presenting an exclusive, time-limited deal to a guest who can act on it immediately, you create a powerful incentive to purchase. You're not just providing WiFi; you're creating an interactive and rewarding in-venue experience that directly impacts your bottom line.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================= RELATED FEATURES ======================= -->
+  <section class="fp-related">
+    <div class="wrap">
+      <div class="sec-head sec-head--center reveal">
+        <div class="kicker">Keep exploring</div>
+        <h2>Features that make Dweller<br>Flash Offers even more powerful</h2>
+      </div>
+
+      <div class="fp-related-grid">
+
+        <a href="feature-splash-page-zones.html" class="fp-rel-card reveal">
+          <div class="fp-rel-icon fp-rel-icon--red">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h4>Splash Page Zones</h4>
+          <p>Combine Zones with Dweller Offers to serve area-specific deals — the bar promotion only fires to guests connected to a bar-area access point.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="features.html" class="fp-rel-card reveal d1">
+          <div class="fp-rel-icon fp-rel-icon--amber">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h4>Scheduled Content</h4>
+          <p>Set Dweller Offers to fire automatically at known quiet periods — Tuesday 3pm, post-lunch Sunday, or the moment doors open on a weekday.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="features.html" class="fp-rel-card reveal d2">
+          <div class="fp-rel-icon fp-rel-icon--violet">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <h4>A/B Testing</h4>
+          <p>Run two versions of a Dweller Offer simultaneously to discover which headline, discount level, or timing drives the highest redemption rate.</p>
+          <svg class="fp-rel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= CTA ======================= -->
+  <section class="cta-sec" id="cta">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <h2>Ready to turn your<br>WiFi into a sales engine?</h2>
+        <p>Start your free 14-day trial. Full access to Dweller Flash Offers, scheduling, zones, and every other feature — zero risk.</p>
+        <form class="cta-form" onsubmit="return false;">
+          <input type="email" placeholder="you@venue.com" aria-label="Email address">
+          <button class="btn-solid" type="submit">Start free trial
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </button>
+        </form>
+        <p class="cta-meta">No credit card required · Setup in &lt;2 minutes · Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="ft">
+    <div class="wrap-wide">
+      <div class="ft-grid">
+        <div class="ft-brand-col">
+          <a class="brand" href="index.html" aria-label="Fydelia home">
+            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+            <span class="brand-text">fydelia</span>
+          </a>
+          <p>The industry-leading captive portal and WiFi marketing platform that helps venues spark conversations and capture high-value user data. We turn simple guest WiFi access into a powerful engine for lead-gen and customer loyalty.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="splash-pages.html">Splash Pages</a></li>
+            <li><a href="hardware.html">Supported Hardware</a></li>
+<li><a href="for-venues.html">For Venues</a></li>
+<li><a href="for-resellers.html">For Resellers &amp; MSPs</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://www.fydelia.com/knowledge-base/">Documentation &amp; Support</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="blog.html">Blog</a></li>
+<li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="information-system-security-policy.html">InfoSys Security Policy</a></li>
+            <li><a href="security-assurance-plan">Security Assurance Plan</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+442033688870">(+44) 203-368-8870</a></li>
+            <li><a href="mailto:support@fydelia.com">support@fydelia.com</a></li>
+            <li>Brighton, United Kingdom</li>
+            <li>Dubai, UAE</li>
+          </ul>
+          <div class="ft-social">
+            <a href="https://instagram.com/fydeliawifi" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.facebook.com/fydelia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@fydeliawifi/videos" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="ft-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <span>&copy; 2026 Fydelia</span>
+        <span>All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+
+<script>
+// ===== Theme toggle =====
+const toggle = document.getElementById('themeToggle');
+if (toggle) {
+  const saved = localStorage.getItem('fy-theme');
+  if (saved) document.body.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.body.setAttribute('data-theme', next);
+    localStorage.setItem('fy-theme', next);
+  });
+}
+
+// ===== Live countdown on hero notification =====
+(function() {
+  const el = document.getElementById('timerDisplay');
+  if (!el) return;
+  let total = 38 * 60 + 22;
+  setInterval(() => {
+    if (total <= 0) { total = 60 * 60; }
+    total--;
+    const m = String(Math.floor(total / 60)).padStart(2,'0');
+    const s = String(total % 60).padStart(2,'0');
+    el.textContent = m + ':' + s;
+  }, 1000);
+})();
+
+// ===== Scroll reveal =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+reveals.forEach(el => io.observe(el));
+
+// ===== Outcome card mouse glow =====
+document.querySelectorAll('.fp-outcome-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+});
+
+// ===== Mobile menu =====
+(function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const drawer     = document.getElementById('menuDrawer');
+  const backdrop   = document.getElementById('menuBackdrop');
+  const closeBtn   = document.getElementById('menuClose');
+  if (!menuToggle || !drawer) return;
+  const drawerLinks = drawer.querySelectorAll('.menu-drawer-nav a, .menu-drawer-signin, .menu-drawer-cta');
+  function openMenu() {
+    menuToggle.setAttribute('aria-expanded','true');
+    drawer.classList.add('active'); drawer.setAttribute('aria-hidden','false');
+    backdrop.classList.add('active'); backdrop.setAttribute('aria-hidden','false');
+    document.body.classList.add('menu-open');
+  }
+  function closeMenu() {
+    menuToggle.setAttribute('aria-expanded','false');
+    drawer.classList.remove('active'); drawer.setAttribute('aria-hidden','true');
+    backdrop.classList.remove('active'); backdrop.setAttribute('aria-hidden','true');
+    document.body.classList.remove('menu-open');
+  }
+  menuToggle.addEventListener('click', () => menuToggle.getAttribute('aria-expanded')==='true' ? closeMenu() : openMenu());
+  closeBtn.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  drawerLinks.forEach(l => l.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key==='Escape' && drawer.classList.contains('active')) closeMenu(); });
+  document.getElementById('themeToggleMobile')?.addEventListener('click', () => document.getElementById('themeToggle')?.click());
+})();
+</script>
+
+</body>
+</html>
