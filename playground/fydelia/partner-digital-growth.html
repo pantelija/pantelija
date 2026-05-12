@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fydelia eyes the skies - Fydelia Blog</title>
-<meta name="description" content="An April Fools' Day fantasy: what if Fydelia brought guest WiFi to astronauts in space? A fictional story from the Fydelia team.">
+<title>Fydelia - Partner Digital Growth</title>
+<meta name="description" content="Explore how Fydelia helps IT and hospitality partners grow their digital footprint, build client relationships, and generate sustainable revenue through guest WiFi.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles/core.css">
 <link rel="stylesheet" href="styles/sections.css">
 <style>
-/* ======================= BLOG POST TEMPLATE ======================= */
+/* ======================= TEXT PAGE TEMPLATE ======================= */
 
 /* ---------- Hero ---------- */
 .tp-hero {
@@ -47,12 +47,6 @@
   position: relative;
   max-width: 720px;
 }
-.tp-hero-top {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 28px;
-}
 .tp-hero-back {
   display: inline-flex;
   align-items: center;
@@ -60,350 +54,69 @@
   font-size: 13px;
   font-weight: 500;
   color: var(--fg-3);
+  margin-bottom: 28px;
   transition: color 0.2s var(--ease), gap 0.2s var(--ease);
-  text-decoration: none;
 }
 .tp-hero-back:hover { color: var(--fg); gap: 8px; }
 .tp-hero-back svg { width: 14px; height: 14px; transform: rotate(180deg); }
 .tp-hero h1 {
-  font-size: clamp(28px, 4vw, 48px);
+  font-size: clamp(32px, 4vw, 52px);
   letter-spacing: -0.03em;
   line-height: 1.1;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
-
-/* ---------- Article meta ---------- */
-.art-meta {
+.tp-hero .lead {
+  font-size: clamp(16px, 1.2vw, 18px);
+  color: var(--fg-3);
+  line-height: 1.55;
+  max-width: 600px;
+}
+.tp-meta {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px;
-}
-
-/* Tag pill */
-.art-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--red);
-  background: var(--red-glow-soft);
-  border: 1px solid rgba(255,43,43,0.18);
-  border-radius: 100px;
-  padding: 4px 12px;
-  text-decoration: none;
-  transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
-}
-.art-tag:hover {
-  background: rgba(255,43,43,0.18);
-  border-color: rgba(255,43,43,0.35);
-}
-.art-tag-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--red);
-  flex-shrink: 0;
-}
-
-/* Divider dot between meta items */
-.art-meta-sep {
-  width: 3px; height: 3px;
-  border-radius: 50%;
-  background: var(--fg-4);
-  flex-shrink: 0;
-}
-
-/* Author chip */
-.art-author {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-}
-.art-author-avatar {
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  background: var(--bg-3);
-  border: 1px solid var(--line-2);
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.art-author-avatar svg {
-  width: 16px; height: 16px;
-  color: var(--fg-4);
-}
-.art-author-name {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--fg-2);
-  transition: color 0.2s var(--ease);
-}
-.art-author:hover .art-author-name { color: var(--fg); }
-
-/* Date & read time */
-.art-meta-info {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
+  gap: 24px;
+  margin-top: 24px;
   font-family: var(--mono);
   font-size: 12px;
   color: var(--fg-4);
   letter-spacing: 0.04em;
 }
+.tp-meta span { display: inline-flex; align-items: center; gap: 6px; }
+.tp-meta-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--red);
+}
 
-/* ---------- Prose body ---------- */
+/* ---------- Body ---------- */
 .tp-body {
   padding: 80px 0 100px;
 }
 .tp-prose {
-  max-width: 720px;
+  max-width: 1100px;
 }
 
-/* Headings inside prose */
-.tp-prose h2 {
-  font-size: clamp(20px, 2vw, 26px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin-top: 52px;
-  margin-bottom: 18px;
-  padding-top: 32px;
-  border-top: 1px solid var(--line);
-  color: var(--fg);
-}
-.tp-prose h2:first-child {
-  margin-top: 0;
-  padding-top: 0;
-  border-top: none;
-}
-
-/* Paragraphs */
-.tp-prose p {
-  font-size: 16px;
-  line-height: 1.78;
-  color: var(--fg-2);
-  margin-bottom: 20px;
-}
-
-/* Links */
-.tp-prose a {
-  color: var(--white);
-  text-decoration: underline;
-  text-decoration-color: rgba(255, 43, 43, 0.3);
-  text-underline-offset: 3px;
-  transition: text-decoration-color 0.2s var(--ease);
-}
-.tp-prose a:hover {
-  text-decoration-color: var(--red);
-}
-
-/* Blockquote */
-.tp-prose blockquote {
+/* ---------- Flip embed ---------- */
+.flip-embed {
   position: relative;
-  margin: 36px 0;
-  padding: 22px 28px;
-  background: var(--bg-2);
-  border-left: 3px solid var(--red);
-  border-radius: 0 var(--r-sm) var(--r-sm) 0;
-}
-.tp-prose blockquote::before {
-  content: '\201C';
-  position: absolute;
-  top: -4px;
-  left: 20px;
-  font-size: 64px;
-  line-height: 1;
-  color: var(--red);
-  opacity: 0.2;
-  font-family: Georgia, serif;
-  pointer-events: none;
-}
-.tp-prose blockquote p {
-  margin-bottom: 0;
-  font-size: 16px;
-  font-style: italic;
-  line-height: 1.65;
-  color: var(--fg-2);
-}
-.tp-prose blockquote p + p {
-  margin-top: 10px;
-}
-.tp-prose blockquote cite {
-  display: block;
-  margin-top: 12px;
-  font-size: 12px;
-  font-family: var(--mono);
-  font-style: normal;
-  letter-spacing: 0.04em;
-  color: var(--fg-4);
-}
-
-/* Strong */
-.tp-prose strong {
-  font-weight: 600;
-  color: var(--fg);
-}
-
-/* Divider */
-.tp-prose hr {
-  border: none;
-  height: 1px;
-  background: var(--line);
-  margin: 56px 0;
-}
-
-/* ---------- Article figure (photo + caption) ---------- */
-.art-figure {
-  margin: 40px 0;
-  border-radius: var(--r);
-  overflow: hidden;
-  border: 1px solid var(--line);
-}
-.art-figure img {
+  padding-top: max(60%, 324px);
   width: 100%;
-  height: auto;
-  display: block;
-  background: var(--bg-3);
+  height: 0;
+  border-radius: 12px;
+  overflow: hidden;
 }
-.art-figure figcaption {
-  padding: 12px 18px;
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--fg-4);
-  border-top: 1px solid var(--line);
-  background: var(--bg-2);
-  font-style: italic;
-}
-
-/* ---------- April Fools disclaimer ---------- */
-.art-disclaimer {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 18px 20px;
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  margin-bottom: 40px;
-}
-.art-disclaimer-icon {
-  font-size: 20px;
-  flex-shrink: 0;
-  line-height: 1.5;
-}
-.art-disclaimer-text {
-  font-family: var(--mono);
-  font-size: 12px;
-  line-height: 1.6;
-  color: var(--fg-4);
-  letter-spacing: 0.02em;
-}
-.art-disclaimer-text strong {
-  color: var(--fg-3);
-  font-weight: 600;
+.flip-embed iframe {
+  position: absolute;
+  border: none;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
 }
 
-/* ---------- Author card ---------- */
-.art-author-card {
-  display: flex;
-  gap: 20px;
-  padding: 28px;
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  margin-top: 56px;
-}
-.art-author-card-avatar {
-  width: 52px; height: 52px;
-  border-radius: 50%;
-  background: var(--bg-3);
-  border: 1px solid var(--line-2);
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-}
-.art-author-card-avatar svg {
-  width: 24px; height: 24px;
-  color: var(--fg-4);
-}
-.art-author-card-body {
-  flex: 1;
-  min-width: 0;
-}
-.art-author-card-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--fg-4);
-  margin-bottom: 4px;
-}
-.art-author-card-name {
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--fg);
-  margin-bottom: 8px;
-}
-.art-author-card-bio {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--fg-3);
-  margin: 0;
-}
-
-/* ---------- CTA strip ---------- */
-.art-cta {
-  margin-top: 64px;
-  padding: 32px;
-  background: linear-gradient(135deg, var(--bg-2) 0%, var(--bg-3) 100%);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-.art-cta-text { flex: 1; }
-.art-cta-eyebrow {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 6px;
-}
-.art-cta-heading {
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--fg);
-  margin-bottom: 6px;
-}
-.art-cta-sub {
-  font-size: 14px;
-  color: var(--fg-2);
-  line-height: 1.5;
-  margin: 0;
-}
-@media (max-width: 600px) {
-  .art-cta { flex-direction: column; align-items: flex-start; }
-}
-
-/* ---------- Responsive ---------- */
 @media (max-width: 768px) {
   .tp-hero { padding: 100px 0 48px; }
   .tp-body { padding: 48px 0 64px; }
-  .art-meta { gap: 12px; }
-  .art-author-card { flex-direction: column; gap: 14px; }
+  .tp-meta { flex-wrap: wrap; gap: 12px; }
 }
 /* --- Footer social icons --- */
 .ft-social {
@@ -513,103 +226,30 @@
       <div class="hero-glow hero-glow--b"></div>
     </div>
     <div class="wrap tp-hero-inner">
-
-      <!-- Back link + tag -->
-      <div class="tp-hero-top">
-        <a class="tp-hero-back" href="#">
-          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
-          All posts
-        </a>
-        <a class="art-tag" href="#">
-          <span class="art-tag-dot" aria-hidden="true"></span>
-          World of WiFi
-        </a>
-      </div>
-
-      <!-- Title -->
-      <h1>Fydelia eyes the skies 🚀</h1>
-
-      <!-- Article meta row -->
-      <div class="art-meta">
-        <a class="art-author" href="#">
-          <span class="art-author-avatar" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
-          </span>
-          <span class="art-author-name">Fydelia Team</span>
-        </a>
-        <span class="art-meta-sep" aria-hidden="true"></span>
-        <div class="art-meta-info">
-          <time datetime="2025-04-01">Apr 1, 2025</time>
-          <span aria-hidden="true">·</span>
-          <span>2 min read</span>
-        </div>
-      </div>
-
+      <a class="tp-hero-back" href="index">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+        Back to home
+      </a>
+      <h1>Partner Digital Growth</h1>
+      <p class="lead">See how Fydelia partners are building lasting digital growth through guest WiFi, first-party data capture, and integrated marketing campaigns.</p>
+ 
     </div>
   </section>
 
-  <!-- ======================= ARTICLE BODY ======================= -->
+  <!-- ======================= BODY ======================= -->
   <section class="tp-body">
-    <div class="wrap tp-prose">
-
-      <!-- April Fools disclaimer -->
-      <div class="art-disclaimer">
-        <span class="art-disclaimer-icon">🌝</span>
-        <p class="art-disclaimer-text"><strong>April Fools' Day, 2025.</strong> This post is entirely fictional. No astronauts were inconvenienced in its making. The footfloat metric, however, remains under serious consideration.</p>
-      </div>
-
-      <!-- Hero image -->
-      <figure class="art-figure">
-        <img src="https://www.fydelia.com/wp-content/uploads/2025/03/spacewifi.webp" alt="Fydelia guest WiFi in space" width="1312" height="736">
-        <figcaption>Artist's impression of the world's first extraterrestrial splash page. Loading times may vary at 28,000 km/h.</figcaption>
-      </figure>
-
-      <p>🚀 In a bold move to go where no one has gone before, Fydelia has partnered with a leading space tourism firm to become the <strong>first company to install guest WiFi on extraterrestrial outposts</strong>, starting with the International Space Station.</p>
-
-      <blockquote>
-        <p>"We don't expect much traffic initially, but with the rise of space tourism, even our <a href="new-features">group-wide single sign-on feature</a> could soon be used beyond Earth. We hope to see increased foot-floats over time. And who knows? Since WiFi is often the <strong>first brand impression</strong> a user gets, we might start seeing Fydelians in orbit before they ever touch down on the planet."</p>
-        <cite>- Steve, CEO, Fydelia</cite>
-      </blockquote>
-
-      <p>At first glance, it might sound like a joke, but <strong>in zero gravity, a simple login process becomes mission-critical</strong>. Fumbling with multi-screen login flows while floating upside down in a pressure suit? No thanks. Our lightweight, space-optimised splash pages are designed for <strong>minimum fuss and maximum floatability</strong>.</p>
-
-      <p>We're also reviewing our terminology to match our new galactic user base. For example, traditional hospitality KPIs like "footfall" just don't cut it in zero G. So we're piloting a more appropriate metric: <strong>"footfloats."</strong> Early indicators are promising: one test astronaut floated through our login page four times in under a minute.</p>
-
-      <p>Fydelia has always been on the move. In recent years, we've powered guest WiFi in locations as diverse as <strong>posh beach clubs in Dubai, Discover Fiji tour buses</strong>, and even on a converted fishing trawler off the coast of Iceland. We've seen Lavazza coffee machines in orbit and Teslas floating in space, so we figured it was time for <strong>a couple of <a href="hardware">UniFi access points</a> to join them.</strong></p>
-
-      <p>We're even in early talks to embed <strong>Hotspot 2.0 protocols into EVA suits</strong>, just in case astronauts want seamless roaming between modules.</p>
-
-      <p>At Fydelia, innovation isn't just our mission. It's our launchpad. Out here, <strong>nothing is beyond our orbit.</strong> 🚀</p>
-
-      <hr>
-
-      <!-- Author card -->
-      <div class="art-author-card">
-        <div class="art-author-card-avatar" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
-        </div>
-        <div class="art-author-card-body">
-          <p class="art-author-card-label">Written by</p>
-          <p class="art-author-card-name">Fydelia Team</p>
-          <p class="art-author-card-bio">The Fydelia team builds guest WiFi tools for hospitality venues on Earth. Extraterrestrial deployments are currently in the exploratory phase.</p>
-        </div>
-      </div>
-
-      <!-- CTA strip -->
-      <div class="art-cta">
-        <div class="art-cta-text">
-          <p class="art-cta-eyebrow">Back on Earth</p>
-          <p class="art-cta-heading">Ready to launch your guest WiFi?</p>
-          <p class="art-cta-sub">No EVA suit required. Start a free 14-day trial and have your splash page live in minutes.</p>
-        </div>
-        <a class="btn-solid" target="_blank" rel="noopener" href="https://www.fydelia.com/onboarding/" style="white-space:nowrap;">
-          Get started free
-          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
-        </a>
-      </div>
-
-    </div>
+    <div style="position:relative; width:100%; max-width:1000px; margin:0 auto; aspect-ratio: 16/10;">
+  <iframe
+    src="https://online.fliphtml5.com/nnocz/Partner-Digital-Growth-Deck/"
+    style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
+    allowfullscreen
+    allow="fullscreen"
+    scrolling="no"
+    title="Partner Digital Growth">
+  </iframe>
+</div>
   </section>
+
   <!-- ======================= FOOTER ======================= -->
   <footer class="ft">
     <div class="wrap-wide">
@@ -711,10 +351,10 @@ const io = new IntersectionObserver((entries) => {
 reveals.forEach(el => io.observe(el));
 
 // ===== Mobile menu =====
-const menuToggle   = document.getElementById('menuToggle');
-const menuClose    = document.getElementById('menuClose');
+const menuToggle = document.getElementById('menuToggle');
+const menuClose = document.getElementById('menuClose');
 const menuBackdrop = document.getElementById('menuBackdrop');
-const menuDrawer   = document.getElementById('menuDrawer');
+const menuDrawer = document.getElementById('menuDrawer');
 function openMenu() {
   menuToggle.setAttribute('aria-expanded', 'true');
   menuBackdrop.classList.add('active');
@@ -729,8 +369,8 @@ function closeMenu() {
   menuDrawer.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('menu-open');
 }
-if (menuToggle)   menuToggle.addEventListener('click', openMenu);
-if (menuClose)    menuClose.addEventListener('click', closeMenu);
+if (menuToggle) menuToggle.addEventListener('click', openMenu);
+if (menuClose) menuClose.addEventListener('click', closeMenu);
 if (menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
 menuDrawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 </script>
