@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fydelia - The guest WiFi platform that turns your customers into superfans</title>
+<meta name="description" content="Fydelia is the guest WiFi platform that turns your customers into superfans. Outstanding support from people who care about your success. Works with the CRM and hardware you already use.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/core.css">
+<link rel="stylesheet" href="styles/sections.css">
+<link rel="stylesheet" href="styles/mockups.css">
+
+<style>
+  /* --- Footer social icons --- */
+.ft-social {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 18px;
+  margin-left: -6px;
+}
+.ft-social-link {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  color: var(--fg-4);
+  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.ft-social-link svg { width: 16px; height: 16px; }
+.ft-social-link:hover { color: var(--fg); background: var(--bg-3); }
+</style>
+</head>
+<body>
+
+<!-- Grain overlay -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="Fydelia home">
+      <span class="brand-mark" aria-hidden="true">
+        <span class="brand-dot"></span>
+      </span>
+      <span class="brand-text">fydelia</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#integrations">Integrations</a></li>
+      <li><a href="#hardware">Hardware</a></li>
+      <li><a href="#customers">Customers</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button id="themeToggle" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+      <a class="btn-ghost" href="#">Sign in</a>
+      <a class="btn-solid" href="#cta">Start free trial
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <!-- Mobile burger -->
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer + backdrop -->
+<div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+<aside id="menuDrawer" class="menu-drawer" aria-hidden="true">
+  <div class="menu-drawer-head">
+    <span class="menu-drawer-title">Menu</span>
+    <button id="menuClose" class="menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu-drawer-nav">
+    <a href="#features">Features</a>
+    <a href="#integrations">Integrations</a>
+    <a href="#hardware">Hardware</a>
+    <a href="#customers">Customers</a>
+    <a href="#pricing">Pricing</a>
+  </nav>
+  <div class="menu-drawer-foot">
+    <div class="menu-drawer-theme">
+      <span class="menu-drawer-theme-label">Dark mode</span>
+      <button id="themeToggleMobile" class="theme-switch" aria-label="Toggle theme" title="Toggle light/dark">
+        <span class="theme-switch-thumb">
+          <svg class="ts-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </span>
+      </button>
+    </div>
+    <a class="btn-ghost menu-drawer-signin" href="#">Sign in</a>
+    <a class="btn-solid menu-drawer-cta" href="#cta">Start free trial
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
+</aside>
+
+<main id="top">
+
+  <!-- ======================= HERO ======================= -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-grid"></div>
+      <div class="hero-glow hero-glow--a"></div>
+      <div class="hero-glow hero-glow--b"></div>
+    </div>
+    <div class="wrap hero-wrap">
+      <div class="hero-copy">
+        <h1 class="hero-title">
+          <span class="ht-line">The guest WiFi platform</span>
+          <span class="ht-line">that turns your customers</span>
+          <span class="ht-line">into <em>superfans.</em></span>
+        </h1>
+        <p class="hero-sub">Turn your WiFi into a marketing tool that brings customers back. Built by nice people who care. Create your branded WiFi login page in under 10 seconds.</p>
+
+        <form class="hero-form" onsubmit="return false;">
+          <div class="hero-form-field">
+            <input id="heroUrl" class="hero-form-input" type="text" placeholder="yourwebsite.com" autocomplete="off">
+          </div>
+          <button id="heroGenerate" type="submit" class="btn-solid btn-lg">
+            Create my page
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+          </button>
+        </form>
+
+        <ul class="hero-bullets">
+          <li><span class="tick"></span> Just want to see our brochure? <a href="#" style="color: var(--red); margin-left: 4px;">Download our brochure →</a></li>
+        </ul>
+      </div>
+
+      <div class="hero-stage">
+        <!-- Phone mockup holder (drawn in mockups.css) -->
+        <div id="heroPhone" class="phone phone--hero">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-status">
+              <span class="ps-time">9:41</span>
+              <span class="ps-right">
+                <svg viewBox="0 0 18 12" aria-hidden="true"><path d="M1 6a6 6 0 0 1 12 0"/><path d="M3 8a3.5 3.5 0 0 1 7 0"/><circle cx="6.5" cy="10" r="1.25"/></svg>
+                <svg viewBox="0 0 24 12" aria-hidden="true"><rect x="1" y="1" width="20" height="10" rx="2.5"/><rect x="3" y="3" width="16" height="6" rx="1"/></svg>
+              </span>
+            </div>
+            <!-- splash content injected by JS -->
+            <div class="phone-body" id="splashBody">
+              <div class="splash-skeleton">
+                <div class="sk-logo"></div>
+                <div class="sk-title"></div>
+                <div class="sk-text"></div>
+                <div class="sk-text sk-text--short"></div>
+                <div class="sk-input"></div>
+                <div class="sk-input"></div>
+                <div class="sk-cta"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating chips around phone -->
+          <div class="hero-chip hero-chip--1">
+            <span class="chip-dot chip-dot--green"></span>
+            <span>Plugs into CRM</span>
+            <span class="chip-meta">+1,284 guests</span>
+          </div>
+          <div class="hero-chip hero-chip--2">
+            <span class="chip-icon">⚡</span>
+            <span>Smart offer live</span>
+            <span class="chip-meta">03:42</span>
+          </div>
+          <div class="hero-chip hero-chip--3">
+            <span class="chip-dot chip-dot--red"></span>
+            <span>Promo Card live</span>
+            <span class="chip-meta">#4,912</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ticker under hero -->
+    <div class="hero-ticker wrap">
+      <div class="ticker-item"><span class="tk-num" data-count="48000" data-suffix="+">0</span><span class="tk-label">Venues we partner with</span></div>
+      <div class="ticker-div"></div>
+      <div class="ticker-item"><span class="tk-num" data-count="212" data-suffix="M+">0</span><span class="tk-label">Guests signed up</span></div>
+      <div class="ticker-div"></div>
+      <div class="ticker-item"><span class="tk-num" data-count="100" data-suffix="+">0</span><span class="tk-label">Direct CRM integrations</span></div>
+      <div class="ticker-div"></div>
+      <div class="ticker-item"><span class="tk-num" data-count="99.9" data-suffix="%" data-decimals="1">0</span><span class="tk-label">Uptime guarantee</span></div>
+    </div>
+  </section>
+
+  <!-- ======================= LOGO MARQUEE ======================= -->
+  <section class="logos">
+    <div class="wrap">
+      <p class="logos-kicker">Trusted by:</p>
+    </div>
+    <div class="logo-track-wrap">
+      <div class="logo-track">
+        <!-- Duplicated 2x for seamless loop. Logos are type-set wordmarks -->
+        <span class="logo-item" style="font-family: 'Space Grotesk'; font-weight:700; letter-spacing:-0.02em;">HARBOUR&nbsp;&amp;&nbsp;CO</span>
+        <span class="logo-item" style="font-family:'JetBrains Mono'; font-weight:500;">northfield.</span>
+        <span class="logo-item" style="font-family:'Space Grotesk'; font-weight:500; font-style:italic;">Maison Verte</span>
+        <span class="logo-item" style="font-family:'Space Grotesk'; font-weight:700;">◉ ORBIT</span>
+        <span class="logo-item" style="font-family:'Space Grotesk'; font-weight:600; letter-spacing:0.25em; text-transform:uppercase;">PROVISION</span>
+        <span class="logo-item" style="font-family:'Space Grotesk'; font-weight:700;">Tavolo<span style="color:var(--red)">.</span></span>
+        <span class="logo-item" style="font-family:'JetBrains Mono';">[kiln.works]</span>
+        <span class="logo-item" style="font-family:'Space Grotesk'; font-weight:700; font-style:italic;">Salt&nbsp;&amp;&nbsp;Sable</span>
+        <span class="logo-item" style="font-family:'Space Grotesk'; font-weight:600;">◆ PENNYLANE</span>
+        <span class="logo-item" style="font-family:'Space Grotesk'; font-weight:700; letter-spacing:-0.04em;">brewhaus</span>
+        <!-- dup -->
+        <span class="logo-item" style="font-family: 'Space Grotesk'; font-weight:700; letter-spacing:-0.02em;">HARBOUR&nbsp;&amp;&nbsp;CO</span>
+        <span class="logo-item" style="font-family:'JetBrains Mono'; font-weight:500;">northfield.</span>
+        <span class="logo-item" style="font-family:'Space Grotesk'; font-weight:500; font-style:italic;">Maison Verte</span>
+        <span class="logo-item" style="font-family:'Space Grotesk'; font-weight:700;">◉ ORBIT</span>
+        <span class="logo-item" style="font-family:'Space Grotesk'; font-weight:600; letter-spacing:0.25em; text-transform:uppercase;">PROVISION</span>
+        <span class="logo-item" style="font-family:'Space Grotesk'; font-weight:700;">Tavolo<span style="color:var(--red)">.</span></span>
+        <span class="logo-item" style="font-family:'JetBrains Mono';">[kiln.works]</span>
+        <span class="logo-item" style="font-family:'Space Grotesk'; font-weight:700; font-style:italic;">Salt&nbsp;&amp;&nbsp;Sable</span>
+        <span class="logo-item" style="font-family:'Space Grotesk'; font-weight:600;">◆ PENNYLANE</span>
+        <span class="logo-item" style="font-family:'Space Grotesk'; font-weight:700; letter-spacing:-0.04em;">brewhaus</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Placeholders for the rest - filled by other files -->
+  <div id="adcards-section"></div>
+  <div id="flash-section"></div>
+  <div id="scrollreveal-section"></div>
+  <div id="integrations-section"></div>
+  <div id="hardware-section"></div>
+  <div id="gamification-section"></div>
+  <div id="stats-section"></div>
+  <div id="why-section"></div>
+  <div id="testimonials-section"></div>
+  <div id="cta-section"></div>
+  <div id="footer-section"></div>
+
+</main>
+
+<!-- Tweaks panel -->
+<div id="tweaks-panel" class="tweaks-panel hidden" aria-hidden="true">
+  <div class="tp-head">
+    <span class="tp-title">Tweaks</span>
+    <span class="tp-hint">Live toggles</span>
+  </div>
+  <div class="tp-body">
+    <div class="tp-row">
+      <label class="tp-label">Accent</label>
+      <div class="tp-swatches" id="tpSwatches">
+        <button class="tp-swatch active" data-accent="#FF2B2B" style="--s:#FF2B2B" title="Scarlet"></button>
+        <button class="tp-swatch" data-accent="#CA2D2C" style="--s:#CA2D2C" title="Classic"></button>
+        <button class="tp-swatch" data-accent="#E11D48" style="--s:#E11D48" title="Crimson"></button>
+        <button class="tp-swatch" data-accent="#7A1A19" style="--s:#7A1A19" title="Burgundy"></button>
+      </div>
+    </div>
+    <div class="tp-row">
+      <label class="tp-label">Grain</label>
+      <button id="tpGrain" class="tp-toggle active">On</button>
+    </div>
+    <div class="tp-row">
+      <label class="tp-label">Density</label>
+      <div class="tp-seg" id="tpDensity">
+        <button class="active" data-density="airy">Airy</button>
+        <button data-density="compact">Compact</button>
+      </div>
+    </div>
+    <div class="tp-row">
+      <label class="tp-label">Hero variant</label>
+      <div class="tp-seg" id="tpHero">
+        <button class="active" data-hero="phone">Phone</button>
+        <button data-hero="split">Split</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tweak defaults for host -->
+<script>
+const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
+  "accent": "#FF2B2B",
+  "grain": true,
+  "density": "airy",
+  "heroVariant": "phone",
+  "theme": "dark"
+}/*EDITMODE-END*/;
+</script>
+
+<script src="scripts/sections-copywriter.js"></script>
+<script src="scripts/hero-copywriter.js"></script>
+<script src="scripts/interactions.js"></script>
+<script src="scripts/tweaks.js"></script>
+
+</body>
+</html>

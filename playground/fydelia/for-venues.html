@@ -1009,6 +1009,44 @@
 .ft-social-link svg { width: 16px; height: 16px; }
 .ft-social-link:hover { color: var(--fg); background: var(--bg-3); }
 
+/* --- Currency switcher --- */
+.currency-switcher {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.currency-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 100px;
+  border: 1px solid var(--line-2);
+  background: var(--bg-2);
+  color: var(--fg-3);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+}
+.currency-btn:hover {
+  border-color: var(--line-strong);
+  color: var(--fg);
+}
+.currency-btn.active {
+  border-color: rgba(255,43,43,0.4);
+  background: rgba(255,43,43,0.08);
+  color: var(--red);
+}
+.currency-btn .currency-symbol {
+  font-weight: 600;
+  font-size: 14px;
+}
+
 /* --- Responsive --- */
 @media (max-width: 980px) {
   .setup-steps { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
@@ -1553,6 +1591,13 @@
 
       <div class="pricing-cards">
 
+        <!-- Currency switcher -->
+        <div class="currency-switcher">
+          <button class="currency-btn active" data-currency="GBP"><span class="currency-symbol">£</span> GBP</button>
+          <button class="currency-btn" data-currency="USD"><span class="currency-symbol">$</span> USD</button>
+          <button class="currency-btn" data-currency="EUR"><span class="currency-symbol">€</span> EUR</button>
+        </div>
+
         <!-- Food & Beverage -->
         <div class="pricing-card pricing-card--featured-1 reveal">
           <span class="card-category">Category</span>
@@ -1863,6 +1908,32 @@ reveals.forEach(el => io.observe(el));
       if (desktopBtn) desktopBtn.click();
     });
   }
+})();
+
+// Currency switcher
+(function() {
+  const prices = {
+    GBP: { symbol: '£', values: [35, 45, 65] },
+    USD: { symbol: '$', values: [45, 55, 80] },
+    EUR: { symbol: '€', values: [40, 50, 75] }
+  };
+
+  const buttons = document.querySelectorAll('.currency-btn');
+  const amounts = document.querySelectorAll('.pricing-card .amount');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const currency = btn.dataset.currency;
+      const data = prices[currency];
+
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      amounts.forEach((el, i) => {
+        el.textContent = data.symbol + data.values[i];
+      });
+    });
+  });
 })();
 </script>
 

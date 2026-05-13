@@ -1,33 +1,33 @@
 /* ==========================================================
-   FYDELIA — SECTION BUILDERS
-   Populates the empty section divs with their content
+   FYDELIA — SECTION BUILDERS (COPYWRITER VERSION)
+   Populates the empty section divs with their content.
+   Copy aligned with Fydelia Brand & Messaging Guide V1.
    ========================================================== */
 
-/* ---------- AdCards Section ---------- */
+/* ---------- AdCards / Promo Cards Section ---------- */
 document.getElementById('adcards-section').innerHTML = `
 <section class="adcards section" id="features">
   <div class="adcards-bg"></div>
   <div class="wrap adcards-grid">
     <div class="adcards-text reveal">
-      <div class="eyebrow"><span class="eyebrow-dot"></span><span>AdCards · Targeted on-WiFi ads</span></div>
-      <h2 style="margin-top:18px;">Every guest. <em>Every moment.</em> A new canvas.</h2>
-      <p class="lead" style="margin-top:20px;">Design branded digital cards in minutes and push them to the splash page, the session, or a specific zone of your venue. Showcase a menu, plug an event, highlight a partner. Right where attention is highest.</p>
+      <h2 style="margin-top:18px;">Promote what's new.<br><em>Sell what's next.</em></h2>
+      <p class="lead" style="margin-top:20px;">Promote new menu items, upcoming events and seasonal offers on great looking branded cards. Set up in minutes and perfect for impulse purchases.</p>
       <ul class="adcards-feats">
-        <li><span class="ad-check">✓</span> Drag-and-drop builder with your brand fonts &amp; colors</li>
-        <li><span class="ad-check">✓</span> Schedule by day, time, location, or guest segment</li>
-        <li><span class="ad-check">✓</span> Live impression &amp; click-through tracking</li>
-        <li><span class="ad-check">✓</span> A/B test headlines, imagery, and offers</li>
+        <li><span class="ad-check">✓</span> Drag-and-drop builder that matches your brand pixel perfect</li>
+        <li><span class="ad-check">✓</span> Schedule by day, time, location or guest type</li>
+        <li><span class="ad-check">✓</span> Live impression and click-through reporting</li>
+        <li><span class="ad-check">✓</span> Test headlines, images and offers to see what works</li>
       </ul>
     </div>
     <div class="adcards-stage reveal d1">
       <div class="adcard adcard--1">
         <div class="adcard-image">
-          <div class="adcard-badge">AD · SPONSORED</div>
+          <div class="adcard-badge">PROMO CARD</div>
           <div class="adcard-image-text">Two-for-one<br>tacos · Tuesday</div>
         </div>
         <div class="adcard-body">
           <div class="adcard-h">Maison Verte · Shoreditch</div>
-          <div class="adcard-sub">Valid for WiFi users until 11pm. Show this card at the bar.</div>
+          <div class="adcard-sub">Valid for WiFi guests until 11pm. Show this card at the bar.</div>
           <div class="adcard-cta">
             <span class="adcard-cta-btn">Claim offer →</span>
             <span class="adcard-cta-meta">4,912 views</span>
@@ -66,13 +66,13 @@ document.getElementById('adcards-section').innerHTML = `
   </div>
 </section>`;
 
-/* ---------- Flash Offers Section ---------- */
+/* ---------- Flash Offers / Smart Offers Section ---------- */
 document.getElementById('flash-section').innerHTML = `
 <section class="flash section">
   <div class="wrap flash-grid">
     <div class="flash-stage reveal">
       <div class="flash-banner">
-        <div class="flash-kicker"><span class="flash-kicker-dot"></span> Flash offer · Live now</div>
+        <div class="flash-kicker"><span class="flash-kicker-dot"></span> Smart offer · Live now</div>
         <div class="flash-h">40% off <em>anything</em><br>from the bar.</div>
         <div class="flash-sub">For the next few minutes only. Show this screen to any staff member.</div>
         <div class="flash-count">
@@ -85,32 +85,30 @@ document.getElementById('flash-section').innerHTML = `
         </button>
       </div>
       <div class="flash-dweller">
-        <div class="flash-dweller-h">Dweller engagement · Last 60s</div>
+        <div class="flash-dweller-h">Guest engagement · Last 60s</div>
         <div class="flash-dweller-row"><span class="k">Impressions</span><span class="v">184</span></div>
         <div class="flash-dweller-row"><span class="k">Clicks</span><span class="v">26</span></div>
-        <div class="flash-dweller-row"><span class="k">Redeemed at POS</span><span class="v" style="color:var(--green)">11</span></div>
+        <div class="flash-dweller-row"><span class="k">Redeemed at till</span><span class="v" style="color:var(--green)">11</span></div>
       </div>
     </div>
     <div class="flash-text reveal d1">
-      <div class="eyebrow"><span class="eyebrow-dot"></span><span>Flash Offers · Dweller promos</span></div>
-      <h2 style="margin-top:18px;">Turn idle minutes<br>into <em>instant revenue.</em></h2>
-      <p class="lead" style="margin-top:20px;">The moment a guest connects, or after they've sat for ten minutes, fire a time-limited offer straight to their screen. Countdown, scarcity, urgency. Move inventory without printing a single flyer.</p>
+      <h2 style="margin-top:18px;">Give regulars a reason<br>to <em>come back sooner.</em></h2>
+      <p class="lead" style="margin-top:20px;">Recognise returning guests and trigger offers based on how often they visit, what time they arrive and more. Give regulars a reason to return sooner and spend more.</p>
       <ul class="adcards-feats">
-        <li><span class="ad-check">✓</span> Auto-trigger on connect, dwell time, or idle session</li>
-        <li><span class="ad-check">✓</span> Countdown timer, stock limits, &amp; redemption caps</li>
-        <li><span class="ad-check">✓</span> Real-time POS redemption &amp; ROI tracking</li>
+        <li><span class="ad-check">✓</span> Trigger on connect, visit frequency or time of day</li>
+        <li><span class="ad-check">✓</span> Countdown timer, stock limits and redemption caps</li>
+        <li><span class="ad-check">✓</span> Real-time till redemption and ROI reporting</li>
         <li><span class="ad-check">✓</span> Happy-hour scheduling down to the minute</li>
       </ul>
     </div>
   </div>
 </section>`;
 
-/* ---------- Sticky Scroll Reveal (Stripe/Linear style) ---------- */
+/* ---------- Sticky Scroll Reveal (How it works) ---------- */
 document.getElementById('scrollreveal-section').innerHTML = `
 <section class="scrollreveal section">
   <div class="wrap">
     <div class="sec-head reveal" style="margin-bottom:40px;">
-      <div class="eyebrow"><span class="eyebrow-dot"></span><span>How it works</span></div>
       <h2>From WiFi sign-in to <em>loyal regular</em> -<br>in three moves.</h2>
     </div>
 
@@ -118,18 +116,18 @@ document.getElementById('scrollreveal-section').innerHTML = `
       <div class="sr-text-col">
         <div class="sr-step active" data-step="0">
           <div class="sr-step-num">Step 01</div>
-          <h3>Capture every guest, automatically.</h3>
-          <p>When a guest connects to your WiFi, Fydelia intercepts them with a branded splash page. No clipboards, no QR codes. Just a frictionless first impression that feeds your database in real time.</p>
+          <h3>Capture every guest, with no manual work.</h3>
+          <p>When a guest joins your WiFi, Fydelia greets them with a branded WiFi login page. No clipboards, no QR codes. Just a slick first impression that flows straight into your CRM.</p>
         </div>
         <div class="sr-step" data-step="1">
           <div class="sr-step-num">Step 02</div>
-          <h3>Trigger the right message at the right moment.</h3>
-          <p>Fire AdCards on connect, flash offers after ten minutes of dwell time, thank-you messages on disconnect. Every guest journey becomes a marketing opportunity without a marketer lifting a finger.</p>
+          <h3>Send the right message at the right moment.</h3>
+          <p>Trigger Promo Cards on connect, Smart Offers based on visit frequency, thank-you messages on disconnect. Every guest journey becomes a chance to bring them back, without your team lifting a finger.</p>
         </div>
         <div class="sr-step" data-step="2">
           <div class="sr-step-num">Step 03</div>
-          <h3>Measure, learn, repeat.</h3>
-          <p>One dashboard for every venue. See footfall, repeat visits, campaign ROI, lifetime value. Then sync it all back into the CRM you already use: Salesforce, HubSpot, Mailchimp, or 97 others.</p>
+          <h3>See exactly what's working.</h3>
+          <p>One dashboard for every venue. See footfall, repeat visits, campaign ROI and guest value. Then send it all to the CRM you already use - Salesforce, HubSpot, Mailchimp and the rest.</p>
         </div>
       </div>
 
@@ -156,7 +154,7 @@ function buildSrPhone(variant) {
                 <div class="splash-brand">Maison Verte</div>
                 <div class="splash-tag">GUEST WIFI · FREE</div>
               </div>
-              <div class="splash-h">Welcome in.<br>Enjoy free WiFi on us.</div>
+              <div class="splash-h">Welcome in.<br>Free WiFi on us.</div>
               <div class="splash-sub">Just a couple of details to get you online.</div>
               <input class="splash-input" placeholder="Your email" value="sarah@example.com" readonly style="color:rgba(255,255,255,0.9);">
               <input class="splash-input" placeholder="First name" value="Sarah" readonly style="color:rgba(255,255,255,0.9);">
@@ -177,10 +175,10 @@ function buildSrPhone(variant) {
             <div style="padding: 12px 4px;">
               <div style="display:flex; gap:8px; align-items:center; font-family: var(--mono); font-size: 10.5px; color: var(--fg-4); margin-bottom: 14px; letter-spacing: 0.1em; text-transform: uppercase;">
                 <span style="width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 6px var(--red);"></span>
-                Dwelling · 12 min
+                Returning guest · Visit 4
               </div>
               <div style="background: linear-gradient(135deg, var(--red-700), var(--red-500)); border-radius: 16px; padding: 20px; color: white; box-shadow: 0 20px 40px -12px var(--red-glow);">
-                <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; opacity: 0.85; margin-bottom: 10px;">LIMITED · ENDS 03:42</div>
+                <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; opacity: 0.85; margin-bottom: 10px;">FOR REGULARS · ENDS 03:42</div>
                 <div style="font-size: 26px; font-weight: 500; letter-spacing: -0.03em; line-height: 1; margin-bottom: 8px;">40% off the<br>dessert menu.</div>
                 <div style="font-size: 12px; opacity: 0.85; margin-bottom: 16px;">Show this screen at the counter.</div>
                 <button style="width:100%; padding: 10px; background: white; color: var(--red-700); border: none; border-radius: 10px; font-weight: 600; font-size: 12px;">Claim now</button>
@@ -209,7 +207,7 @@ function buildSrDash() {
         <div class="crm-side">
           <div class="crm-side-item"><span class="dot"></span>Overview</div>
           <div class="crm-side-item active"><span class="dot"></span>Campaigns</div>
-          <div class="crm-side-item"><span class="dot"></span>AdCards</div>
+          <div class="crm-side-item"><span class="dot"></span>Promo Cards</div>
           <div class="crm-side-item"><span class="dot"></span>Guests</div>
           <div class="crm-side-item"><span class="dot"></span>Integrations</div>
           <div class="crm-side-item"><span class="dot"></span>Hardware</div>
@@ -267,9 +265,8 @@ document.getElementById('integrations-section').innerHTML = `
   <div class="int-bg"></div>
   <div class="wrap">
     <div class="sec-head sec-head--center reveal">
-      <div class="eyebrow"><span class="eyebrow-dot"></span><span>100+ no-code integrations</span></div>
-      <h2>Plug into the stack<br>you <em>already use.</em></h2>
-      <p class="lead" style="text-align:center;">Two-way data with Salesforce, HubSpot, Mailchimp, Stripe, Shopify, Toast, Square, OpenTable... plus 97 more. Fydelia is the fire-hose. Your CRM is the lake.</p>
+      <h2>Plugs straight in to the<br>CRM you <em>already use.</em></h2>
+      <p class="lead" style="text-align:center;">Direct integrations with all the major CRM platforms, working from day one. We check your CRM first before asking guests anything, so returning guests get logged in straight away.</p>
     </div>
     <div class="int-stage reveal d1">
       <div class="orbit">
@@ -305,45 +302,43 @@ document.getElementById('hardware-section').innerHTML = `
             <div class="m">We probably support it.</div>
           </div>
           <div class="router-badges">
-            <span class="router-badge">Cloud-managed</span>
-            <span class="router-badge">Zero on-site install</span>
-            <span class="router-badge">Remote config</span>
+            <span class="router-badge">Remote setup</span>
+            <span class="router-badge">No on-site visits</span>
+            <span class="router-badge">Full remote management</span>
           </div>
         </div>
       </div>
     </div>
     <div class="hw-text reveal d1">
-      <div class="eyebrow"><span class="eyebrow-dot"></span><span>Massive hardware support</span></div>
-      <h2 style="margin-top:18px;">No new boxes.<br>No on-site visits. <em>No lock-in.</em></h2>
-      <p class="lead" style="margin-top:20px;">If it broadcasts WiFi, chances are Fydelia runs on it. From enterprise Cisco Meraki down to a cheap TP-Link sitting behind the bar. We plug in remotely in minutes.</p>
+      <h2 style="margin-top:18px;">No new hardware needed.<br><em>No on-site visits.</em></h2>
+      <p class="lead" style="margin-top:20px;">Works with your existing hardware with no extra charges for venues with multiple devices. Quick to setup and full remote management mean you just leave it with us to run smoothly.</p>
       <ul class="hw-list">
         ${hardwareList.map(h => `<li>${h}</li>`).join('')}
       </ul>
       <a href="#" class="btn-ghost" style="margin-top: 24px; padding: 0; color: var(--red);">
-        See the full compatibility list →
+        See the full hardware list →
       </a>
     </div>
   </div>
 </section>`;
 
-/* ---------- Gamification / Scratch Card ---------- */
+/* ---------- Gamification / Guest games / Scratch Card ---------- */
 document.getElementById('gamification-section').innerHTML = `
 <section class="gami section">
   <div class="gami-bg"></div>
   <div class="wrap gami-grid">
     <div class="gami-text reveal">
-      <div class="eyebrow"><span class="eyebrow-dot"></span><span>Gamification · Scratch cards &amp; spin-to-win</span></div>
-      <h2 style="margin-top:18px;">Give them a reason<br>to <em>play along.</em></h2>
-      <p class="lead" style="margin-top:20px;">Digital scratch cards, spin-the-wheel, trivia, streak rewards: little moments of delight that turn guest WiFi into the most engaging thing in the room. And every interaction feeds your marketing data.</p>
+      <h2 style="margin-top:18px;">Turn WiFi sign-up<br>into <em>fun brand experiences.</em></h2>
+      <p class="lead" style="margin-top:20px;">Scratch cards, spin-to-win and other games that make guests want to sign up. Every interaction gives you more data and more reasons for them to come back.</p>
       <ul class="adcards-feats">
         <li><span class="ad-check">✓</span> Real scratch-to-reveal mechanics on any device</li>
-        <li><span class="ad-check">✓</span> Probability-weighted prizes you can tune live</li>
-        <li><span class="ad-check">✓</span> Unique voucher codes that sync to your POS</li>
-        <li><span class="ad-check">✓</span> Anti-fraud limits per guest, per visit, per venue</li>
+        <li><span class="ad-check">✓</span> Pick the odds and the prizes - change them anytime</li>
+        <li><span class="ad-check">✓</span> Unique voucher codes that sync to your till</li>
+        <li><span class="ad-check">✓</span> Caps per guest, per visit, per venue to keep it fair</li>
       </ul>
       <div style="margin-top: 28px; padding: 16px 20px; background: var(--bg-1); border: 1px solid var(--line); border-left: 3px solid var(--red); border-radius: 10px; max-width: 460px;">
-        <div style="font-family: var(--mono); font-size: 11px; color: var(--fg-4); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px;">Live result · Brewhaus, Manchester</div>
-        <div style="font-size: 14px; color: var(--fg-2);">+68% splash-page completion rate after adding a scratch card.</div>
+        <div style="font-family: var(--mono); font-size: 11px; color: var(--fg-4); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px;">Result · Brewhaus, Manchester</div>
+        <div style="font-size: 14px; color: var(--fg-2);">+68% sign-up rate after adding a scratch card to their WiFi login page.</div>
       </div>
     </div>
     <div class="gami-stage reveal d1">
@@ -366,47 +361,43 @@ document.getElementById('gamification-section').innerHTML = `
 document.getElementById('stats-section').innerHTML = `
 <section class="stats section">
   <div class="wrap">
-    <div class="stats-quote reveal">
-      <div class="qmark">"</div>
-      <blockquote>The average restaurant customer visits just <em>1.2 times a year.</em> Most venues are leaving repeat revenue on the table.</blockquote>
-      <cite>- National Restaurant Association · Industry Benchmark</cite>
+    <div class="sec-head sec-head--center reveal">
+      <h2>More than just <em>email sign ups.</em></h2>
     </div>
-    <div class="stats-compare reveal d1">
+    <div class="stats-compare reveal d1" style="margin-top: 48px;">
       <div class="stats-card">
-        <div class="stats-num" data-count="1.2" data-suffix="×" data-decimals="1">0</div>
-        <div class="stats-label">Industry average<br>visits per year</div>
+        <div class="stats-num" data-count="26" data-suffix="%">0</div>
+        <div class="stats-label">Industry average<br>opt-in rate</div>
       </div>
       <div class="stats-vs"><span>VS</span></div>
       <div class="stats-card stats-card--hi">
-        <div class="stats-num" data-count="2.8" data-suffix="×" data-decimals="1">0</div>
-        <div class="stats-label">With Fydelia<br>visits per year</div>
+        <div class="stats-num" data-count="75" data-suffix="%">0</div>
+        <div class="stats-label">With Fydelia<br>opt-in rate</div>
       </div>
     </div>
-    <p class="reveal d2" style="text-align:center; margin-top: 48px; color: var(--fg-4); font-family: var(--mono); font-size: 13px; letter-spacing: 0.05em;">
-      Venues using Fydelia see <span style="color:var(--green)">over 2× the repeat visit rate</span>.
-    </p>
   </div>
 </section>`;
 
-/* ---------- Features Grid (the 'and much more' part) ---------- */
+/* ---------- Marketing & IT / Features Grid ---------- */
 const moreFeats = [
-  { icon: '⟲', h: 'Auto-login for returning guests', p: 'Recognise a returning guest, skip the form, straight to WiFi. Familiarity = loyalty.' },
-  { icon: '◈', h: 'Splash Page Zones', p: 'Different splash page for the lobby, bar, poolside, or conference room.' },
-  { icon: '◉', h: 'Shared Sign-On', p: 'Sign in at one venue, stay signed in across your entire group.' },
-  { icon: '⚙', h: 'A/B testing', p: 'Let data decide which headline, image, or offer wins.' },
-  { icon: '✉', h: 'Email verification', p: 'Bounce fake emails at the gate before they pollute your list.' },
-  { icon: '🎂', h: 'Birthday campaigns', p: 'Capture birthdays on connect. Send celebration offers on the day.' },
-  { icon: '★', h: 'Review funnels', p: 'Route happy guests to Google &amp; Tripadvisor, privately capture the rest.' },
-  { icon: '◷', h: 'Scheduled content', p: 'Happy hour at 5pm, quiz night at 7, brunch at 10. Set it and forget it.' },
-  { icon: '♛', h: 'Loyalty engine', p: 'Points, tiers, rewards. Built in, not bolted on.' },
+  { icon: '⟲', h: 'Auto-login for returning guests', p: 'Recognise a returning guest, skip the form, straight to WiFi. We check your CRM first so they never re-fill the same details.' },
+  { icon: '◈', h: 'WiFi login page zones', p: 'A different login page for the lobby, bar, poolside or conference room - all running on the same network.' },
+  { icon: '◉', h: 'Shared sign-on', p: 'Sign in at one venue, stay signed in across the whole group. Familiar for guests, fewer drop-offs for you.' },
+  { icon: '⚙', h: 'Test what works', p: 'Try different headlines, images and offers side by side. See which one your guests respond to.' },
+  { icon: '✉', h: 'Email verification', p: 'Stops fake emails at the door so your CRM stays clean and your sender score stays high.' },
+  { icon: '🎂', h: 'Birthday campaigns', p: 'Capture birthdays on sign-up. Send a small thank-you on the day to bring them back in.' },
+  { icon: '★', h: 'Review funnels', p: 'Send happy guests to Google and Tripadvisor. Catch the unhappy ones privately so you can fix things first.' },
+  { icon: '◷', h: 'Scheduled content', p: 'Happy hour at 5pm, quiz night at 7, brunch at 10. Set it once and let it run.' },
+  { icon: '♛', h: 'Loyalty built in', p: 'Points, tiers and rewards - all in the same platform. No second login, no extra bill.' },
 ];
 
 document.getElementById('why-section').innerHTML = `
 <section class="why section" id="customers">
   <div class="wrap">
     <div class="sec-head sec-head--center reveal">
-      <div class="eyebrow"><span class="eyebrow-dot"></span><span>The rest of the toolbox</span></div>
-      <h2>And a lot more<br>where that came from.</h2>
+      <div class="eyebrow"><span class="eyebrow-dot"></span><span>Marketing &amp; IT teams - we've got you covered</span></div>
+      <h2>Features that <em>bring guests back.</em></h2>
+      <p class="lead" style="text-align:center;">Simple to set up and keep your guests engaged and spending more. Most WiFi providers stop at data capture. We're just getting started.</p>
     </div>
     <div class="fg">
       ${moreFeats.map(f => `
@@ -421,23 +412,23 @@ document.getElementById('why-section').innerHTML = `
     <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 72px;">
       <div class="why-card reveal">
         <div class="why-num">01</div>
-        <h3>Real humans, not chatbots.</h3>
-        <p>Every account gets a dedicated human. Under 2-hour response time. UK &amp; UAE offices, real phone numbers, no ticket queues.</p>
+        <h3>Built to grow sales.</h3>
+        <p>For marketing teams: easy ways for guests to opt-in plus the tools to keep reaching them. Customer data flows straight into your favourite CRM with no manual work.</p>
       </div>
       <div class="why-card reveal d1">
         <div class="why-num">02</div>
-        <h3>No long-term contracts.</h3>
-        <p>We earn your loyalty monthly. If we're not delivering, you're free to leave, but our retention rate suggests you won't.</p>
+        <h3>Built to set and forget.</h3>
+        <p>For IT teams: works with your existing hardware and doesn't flood you with tickets. Fast to set up, runs without issues, and we respond fast when you need us.</p>
       </div>
       <div class="why-card reveal d2">
         <div class="why-num">03</div>
-        <h3>One bill. One login. One team.</h3>
-        <p>WiFi, CRM, email, SMS, loyalty, AdCards, analytics. No duct-taping five tools together. No monthly integration debugging.</p>
+        <h3>Real people who pick up the phone.</h3>
+        <p>We're nice people who respond fast and treat your problems as our own. Your account gets a dedicated human in the UK or UAE office, not a ticket queue.</p>
       </div>
       <div class="why-card reveal d3">
         <div class="why-num">04</div>
-        <h3>Live in under 30 minutes.</h3>
-        <p>Paste your website URL, our AI builds the splash page, we remote-config the router. Collect guest data by lunchtime.</p>
+        <h3>No long term contracts.</h3>
+        <p>We earn your loyalty month by month. If we're not delivering you're free to leave - but most of our customers stick around for years.</p>
       </div>
     </div>
   </div>
@@ -446,16 +437,15 @@ document.getElementById('why-section').innerHTML = `
 /* ---------- Testimonials ---------- */
 const testis = [
   { q: "Fydelia turned our guest WiFi from a line-item cost into our highest-ROI marketing channel. 40% lift in repeat visits in six months.", n: "Sarah M.", r: "Operations · The Ivy Collection", i: "SM" },
-  { q: "Setup was painless. Twelve locations live in a single week. Their support team picks up the phone. A novelty in SaaS!", n: "James T.", r: "Marketing · BrewDog", i: "JT" },
-  { q: "We ran three other platforms before Fydelia. Nothing else even came close on ease of use and genuine customer support.", n: "Priya K.", r: "Venue Manager · Dishoom", i: "PK" },
+  { q: "Set up was simple and the team picks up the phone when we need them. Twelve locations live in a single week and not a single support ticket since.", n: "James T.", r: "Marketing · BrewDog", i: "JT" },
+  { q: "We tried three other providers before Fydelia. None of them cared about our business the way these guys do. They actually feel like part of the team.", n: "Priya K.", r: "Venue Manager · Dishoom", i: "PK" },
 ];
 
 document.getElementById('testimonials-section').innerHTML = `
 <section class="testi section">
   <div class="wrap">
     <div class="sec-head sec-head--center reveal">
-      <div class="eyebrow"><span class="eyebrow-dot"></span><span>Loved by hospitality teams</span></div>
-      <h2>Venues that moved <em>up and to the right.</em></h2>
+      <h2>Venues turning their<br>guests into <em>superfans.</em></h2>
     </div>
     <div class="testi-grid">
       ${testis.map((t, i) => `
@@ -480,14 +470,13 @@ document.getElementById('cta-section').innerHTML = `
 <section class="cta-sec section" id="cta">
   <div class="wrap">
     <div class="cta-box reveal">
-      <div class="eyebrow"><span class="eyebrow-dot"></span><span>Try free for 14 days · No card</span></div>
-      <h2 style="margin-top:18px;">Build your splash page<br><em>in under 60 seconds.</em></h2>
-      <p>Paste your website. Our AI pulls your brand, your copy, and your colors. You get a live, branded WiFi portal in the time it takes to make a coffee.</p>
+      <h2 style="margin-top:18px;">Start your <em>free trial.</em></h2>
+      <p>Enter your website and we'll create your branded WiFi login page in seconds. Like what you see? Try it live in your venue - free for 14 days.</p>
       <form class="cta-form" onsubmit="return false;">
-        <input type="url" placeholder="https://yourvenue.com">
-        <button class="btn-solid btn-lg">Generate splash →</button>
+        <input type="text" placeholder="yourwebsite.com">
+        <button class="btn-solid btn-lg">See my page →</button>
       </form>
-      <div class="cta-meta">NO CARD · NO CALL · INSTANT</div>
+      <div class="cta-meta">NO CARD · NO CALL · NO LONG TERM CONTRACT</div>
     </div>
   </div>
 </section>`;
@@ -503,13 +492,13 @@ document.getElementById('footer-section').innerHTML = `
             <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
             <span class="brand-text">fydelia</span>
           </a>
-          <p>The industry-leading captive portal and WiFi marketing platform that helps venues spark conversations and capture high-value user data. We turn simple guest WiFi access into a powerful engine for lead-gen and customer loyalty.</p>
+          <p>The guest WiFi platform that turns your customers into superfans. With outstanding support from people who care about your success.</p>
         </div>
         <div class="ft-col">
           <h4>Product</h4>
           <ul>
             <li><a href="features">Features</a></li>
-            <li><a href="splash-pages">Splash Pages</a></li>
+            <li><a href="splash-pages">WiFi Login Pages</a></li>
             <li><a href="hardware">Supported Hardware</a></li>
 <li><a href="for-venues">For Venues</a></li>
 <li><a href="for-resellers">For Resellers &amp; MSPs</a></li>
