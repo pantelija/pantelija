@@ -275,21 +275,11 @@ body[data-theme="light"] .theme-switch-thumb .ts-sun { opacity: 1; transform: sc
   font-family: var(--sans); font-weight: 600; font-size: 18px; letter-spacing: -0.04em;
   color: var(--fg);
 }
-.brand-mark {
-  width: 26px; height: 26px; border-radius: 7px;
-  background: linear-gradient(135deg, var(--red-500), var(--red-700));
-  display: grid; place-items: center;
-  box-shadow: 0 0 16px -2px var(--red-glow), 0 1px 0 rgba(255,255,255,0.2) inset;
-  position: relative;
+.brand-logo {
+  height: 28px;
+  width: auto;
+  display: block;
 }
-.brand-mark::before {
-  content: ''; position: absolute; inset: 4px;
-  border: 1.5px solid rgba(255,255,255,0.7); border-radius: 3px;
-  border-top-color: transparent; border-left-color: transparent;
-  transform: rotate(-45deg);
-}
-.brand-dot { width: 4px; height: 4px; border-radius: 50%; background: white; position: absolute; bottom: 5px; left: 5px; }
-.brand-text { letter-spacing: -0.04em; }
 
 .nav-links { display: flex; gap: 4px; list-style: none; }
 .nav-links a {

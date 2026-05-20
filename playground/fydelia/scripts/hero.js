@@ -125,10 +125,15 @@
   // Auto-demo on load
   setTimeout(() => generateSplash('maisonverte.com'), 900);
 
-  // Manual trigger
+  // Manual trigger — play animation then redirect to onboarding
   generateBtn.addEventListener('click', () => {
     const url = urlInput.value.trim();
+    if (!url) return;
     generateSplash(url);
+    const full = url.match(/^https?:\/\//) ? url : 'https://' + url;
+    setTimeout(() => {
+      window.location.href = 'https://www.fydelia.com/onboarding/?url=' + encodeURIComponent(full);
+    }, 1800);
   });
   urlInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') { e.preventDefault(); generateBtn.click(); }

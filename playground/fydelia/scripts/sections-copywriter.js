@@ -436,9 +436,9 @@ document.getElementById('why-section').innerHTML = `
 
 /* ---------- Testimonials ---------- */
 const testis = [
-  { q: "Fydelia turned our guest WiFi from a line-item cost into our highest-ROI marketing channel. 40% lift in repeat visits in six months.", n: "Sarah M.", r: "Operations · The Ivy Collection", i: "SM" },
-  { q: "Set up was simple and the team picks up the phone when we need them. Twelve locations live in a single week and not a single support ticket since.", n: "James T.", r: "Marketing · BrewDog", i: "JT" },
-  { q: "We tried three other providers before Fydelia. None of them cared about our business the way these guys do. They actually feel like part of the team.", n: "Priya K.", r: "Venue Manager · Dishoom", i: "PK" },
+  { q: "Fydelia have lived up to their promise of delivering us much improved opt-in rates for our WiFi users, becoming the biggest source of database opt-ins. The team are great to work with, proactive with recommendations and always looking to optimise further.", n: "Beth Palmer", r: "Senior Brand Manager · Wahaca" },
+  { q: "I highly recommend working with Fydelia, not just for their innovative system but for the responsiveness, knowledge, and personable approach of the team. Steve & Tom are top people to work with!", n: "Gaia Cionnini", r: "Marketing Manager · Ping Pong Restaurants" },
+  { q: "Fydelia worked with us to find ways it could work and we've created a really powerful marketing tool for our businesses.", n: "Ash Dilks", r: "Marketing Manager · Great Northern Group" },
 ];
 
 document.getElementById('testimonials-section').innerHTML = `
@@ -453,7 +453,6 @@ document.getElementById('testimonials-section').innerHTML = `
           <div class="testi-stars">★ ★ ★ ★ ★</div>
           <blockquote>"${t.q}"</blockquote>
           <div class="testi-author">
-            <div class="testi-avatar">${t.i}</div>
             <div class="testi-meta">
               <div class="n">${t.n}</div>
               <div class="r">${t.r}</div>
@@ -472,7 +471,7 @@ document.getElementById('cta-section').innerHTML = `
     <div class="cta-box reveal">
       <h2 style="margin-top:18px;">Start your <em>free trial.</em></h2>
       <p>Enter your website and we'll create your branded WiFi login page in seconds. Like what you see? Try it live in your venue - free for 14 days.</p>
-      <form class="cta-form" onsubmit="return false;">
+      <form class="cta-form" onsubmit="var u=this.querySelector('input').value.trim();if(!u)return false;u=u.match(/^https?:\\/\\//)?u:'https://'+u;window.location.href='https://www.fydelia.com/onboarding/?url='+encodeURIComponent(u);return false;">
         <input type="text" placeholder="yourwebsite.com">
         <button class="btn-solid btn-lg">See my page →</button>
       </form>
@@ -489,8 +488,7 @@ document.getElementById('footer-section').innerHTML = `
       <div class="ft-grid">
         <div class="ft-brand-col">
           <a class="brand" href="index" aria-label="Fydelia home">
-            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
-            <span class="brand-text">fydelia</span>
+            <img class="brand-logo" src="images/logo/fydelia-logo-red.avif" alt="Fydelia">
           </a>
           <p>The guest WiFi platform that turns your customers into superfans. With outstanding support from people who care about your success.</p>
         </div>

@@ -122,7 +122,6 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  text-decoration: none;
 }
 .art-author-avatar {
   width: 28px; height: 28px;
@@ -134,9 +133,14 @@
   overflow: hidden;
   flex-shrink: 0;
 }
-.art-author-avatar svg {
-  width: 16px; height: 16px;
-  color: var(--fg-4);
+.art-author-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 50%;
+  display: block;
+  align-self: stretch;
+  justify-self: stretch;
 }
 .art-author-name {
   font-size: 13px;
@@ -144,7 +148,6 @@
   color: var(--fg-2);
   transition: color 0.2s var(--ease);
 }
-.art-author:hover .art-author-name { color: var(--fg); }
 
 /* Date & read time */
 .art-meta-info {
@@ -343,11 +346,17 @@
   border: 1px solid var(--line-2);
   display: grid;
   place-items: center;
+  overflow: hidden;
   flex-shrink: 0;
 }
-.art-author-card-avatar svg {
-  width: 24px; height: 24px;
-  color: var(--fg-4);
+.art-author-card-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 50%;
+  display: block;
+  align-self: stretch;
+  justify-self: stretch;
 }
 .art-author-card-body {
   flex: 1;
@@ -452,8 +461,7 @@
 <nav id="nav">
   <div class="nav-inner">
     <a class="brand" href="index" aria-label="Fydelia home">
-      <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
-      <span class="brand-text">fydelia</span>
+      <img class="brand-logo" src="images/logo/fydelia-logo-red.avif" alt="Fydelia">
     </a>
     <ul class="nav-links">
       <li><a href="features">Features</a></li>
@@ -548,12 +556,12 @@
 
       <!-- Article meta row -->
       <div class="art-meta">
-        <a class="art-author" href="#">
+        <span class="art-author">
           <span class="art-author-avatar" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+            <img src="images/avatars/alojz.jpg" alt="Alojz Jakob">
           </span>
           <span class="art-author-name">Alojz Jakob</span>
-        </a>
+        </span>
         <span class="art-meta-sep" aria-hidden="true"></span>
         <div class="art-meta-info">
           <time datetime="2021-03-01">Mar 1, 2021</time>
@@ -598,7 +606,7 @@
       <!-- Author card -->
       <div class="art-author-card">
         <div class="art-author-card-avatar" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+          <img src="images/avatars/alojz.jpg" alt="Alojz Jakob">
         </div>
         <div class="art-author-card-body">
           <p class="art-author-card-label">Written by</p>
@@ -629,8 +637,7 @@
       <div class="ft-grid">
         <div class="ft-brand-col">
           <a class="brand" href="index" aria-label="Fydelia home">
-            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
-            <span class="brand-text">fydelia</span>
+            <img class="brand-logo" src="images/logo/fydelia-logo-red.avif" alt="Fydelia">
           </a>
           <p>The industry-leading captive portal and WiFi marketing platform that helps venues spark conversations and capture high-value user data. We turn simple guest WiFi access into a powerful engine for lead-gen and customer loyalty.</p>
         </div>

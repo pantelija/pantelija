@@ -791,8 +791,7 @@
 <nav id="nav">
   <div class="nav-inner">
     <a class="brand" href="index" aria-label="Fydelia home">
-      <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
-      <span class="brand-text">fydelia</span>
+      <img class="brand-logo" src="images/logo/fydelia-logo-red.avif" alt="Fydelia">
     </a>
     <ul class="nav-links">
       <li><a href="features">Features</a></li>
@@ -1149,7 +1148,7 @@
       <div class="cta-box reveal">
         <h2>Ready to get started?</h2>
         <p>Start your free 14-day trial today. Full access, zero risk, and we'll even handle the setup.</p>
-        <form class="cta-form" onsubmit="return false;">
+        <form class="cta-form" onsubmit="var u=this.querySelector('input').value.trim();if(!u)return false;u=u.match(/^https?:\/\//)?u:'https://'+u;window.location.href='https://www.fydelia.com/onboarding/?url='+encodeURIComponent(u);return false;">
            <input type="url" placeholder="https://www.example.com" aria-label="Website URL">
           <button class="btn-solid" type="submit">Start free trial
             <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
@@ -1167,8 +1166,7 @@
       <div class="ft-grid">
         <div class="ft-brand-col">
           <a class="brand" href="index" aria-label="Fydelia home">
-            <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
-            <span class="brand-text">fydelia</span>
+            <img class="brand-logo" src="images/logo/fydelia-logo-red.avif" alt="Fydelia">
           </a>
           <p>The industry-leading captive portal and WiFi marketing platform that helps venues spark conversations and capture high-value user data. We turn simple guest WiFi access into a powerful engine for lead-gen and customer loyalty.</p>
         </div>
