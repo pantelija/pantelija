@@ -4,214 +4,89 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>XML Sitemap Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: #f1f5f9;
-      color: #1e293b;
-      min-height: 100vh;
-      padding: 40px 20px;
+      background-color: #f8fafc;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
-
-    .container {
-      max-width: 860px;
-      margin: 0 auto;
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
     }
-
-    header {
-      margin-bottom: 36px;
-    }
-
-    header h1 {
-      font-size: 1.7rem;
-      font-weight: 700;
-      color: #0f172a;
-      letter-spacing: -0.5px;
-    }
-
-    header p {
-      margin-top: 6px;
-      font-size: 0.9rem;
-      color: #64748b;
-    }
-
-    .card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 20px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-    }
-
-    label {
-      display: block;
-      font-size: 0.82rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #64748b;
-      margin-bottom: 10px;
-    }
-
     textarea {
-      width: 100%;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      color: #1e293b;
-      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
-      font-size: 0.85rem;
-      line-height: 1.6;
-      padding: 14px 16px;
       resize: vertical;
-      transition: border-color 0.2s;
-      outline: none;
-    }
-
-    textarea:focus {
-      border-color: #6366f1;
-      background: #fff;
-    }
-
-    textarea::placeholder {
-      color: #94a3b8;
-    }
-
-    #url-input { min-height: 160px; }
-    #output    { min-height: 260px; color: #166534; background: #f0fdf4; border-color: #bbf7d0; }
-
-    .toolbar {
-      display: flex;
-      gap: 10px;
-      margin-top: 16px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    button {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity 0.15s, transform 0.1s, background 0.15s;
-    }
-
-    button:active { transform: scale(0.97); }
-
-    .btn-primary {
-      background: #6366f1;
-      color: #fff;
-    }
-    .btn-primary:hover { background: #4f46e5; }
-
-    .btn-secondary {
-      background: #f1f5f9;
-      color: #475569;
-      border: 1px solid #e2e8f0;
-    }
-    .btn-secondary:hover { background: #e2e8f0; }
-
-    .btn-encode {
-      background: #eff6ff;
-      color: #1d4ed8;
-      border: 1px solid #bfdbfe;
-    }
-    .btn-encode:hover { background: #dbeafe; }
-
-    .btn-copy {
-      background: #f0fdf4;
-      color: #15803d;
-      border: 1px solid #86efac;
-    }
-    .btn-copy:hover { background: #dcfce7; }
-    .btn-copy.copied {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .stat {
-      margin-left: auto;
-      font-size: 0.8rem;
-      color: #94a3b8;
-    }
-
-    .output-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .badge {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      color: #1d4ed8;
-      border-radius: 6px;
-      padding: 3px 10px;
-      font-size: 0.75rem;
-      font-weight: 600;
     }
   </style>
 </head>
-<body>
+<body class="p-4 md:p-8">
 
-<div class="container">
-  <header>
-    <h1>🗺 XML Sitemap Generator</h1>
-    <p>Paste one URL per line — get a ready-to-use sitemap.xml</p>
+<div class="max-w-3xl mx-auto">
+  <!-- Header -->
+  <header class="mb-8 text-center">
+    <h1 class="text-3xl font-bold text-slate-800">XML Sitemap Generator</h1>
+    <p class="text-slate-600 mt-2">Paste one URL per line — get a ready-to-use sitemap.xml</p>
   </header>
 
-  <div class="card">
-    <label for="url-input">URLs — one per line</label>
-    <textarea id="url-input" placeholder="https://example.com/&#10;https://example.com/about&#10;https://example.com/contact"></textarea>
-    <div class="toolbar">
-      <button class="btn-primary" onclick="generate()">
-        ⚡ Generate Sitemap
+  <!-- Input Card -->
+  <div class="glass-panel p-6 rounded-2xl shadow-sm mb-6 border border-slate-200">
+    <div class="flex flex-col gap-2 mb-4">
+      <label class="font-semibold text-slate-700">URLs — one per line</label>
+      <textarea id="url-input" rows="7"
+        class="w-full p-4 border border-slate-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all font-mono text-sm bg-white text-slate-800"
+        placeholder="https://example.com/&#10;https://example.com/about&#10;https://example.com/contact"></textarea>
+      <p class="text-xs text-slate-500" id="url-count"></p>
+    </div>
+
+    <div class="flex flex-wrap gap-2 items-center">
+      <button onclick="generate()"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl transition-colors shadow-lg shadow-blue-200 active:scale-95 transform">
+        Generate Sitemap
       </button>
-      <button class="btn-encode" onclick="convertEncoding()" title="Replace %20 with + in all URLs">
-        🔄 %20 → +
+      <button onclick="convertEncoding()"
+        class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-3 px-5 rounded-xl border border-slate-300 transition-colors active:scale-95 transform">
+        %20 → +
       </button>
-      <button class="btn-secondary" onclick="clearAll()">
-        ✕ Clear
+      <button onclick="clearAll()"
+        class="bg-slate-100 hover:bg-slate-200 text-slate-500 font-semibold py-3 px-5 rounded-xl border border-slate-300 transition-colors active:scale-95 transform">
+        Clear
       </button>
-      <span class="stat" id="url-count"></span>
     </div>
   </div>
 
-  <div class="card">
-    <div class="output-header">
-      <label style="margin-bottom:0">Generated XML</label>
-      <span class="badge" id="entry-badge" style="display:none"></span>
+  <!-- Output Card -->
+  <div id="resultArea" class="hidden">
+    <div class="flex justify-between items-center mb-2">
+      <label class="font-semibold text-slate-700">Generated XML</label>
+      <div class="flex gap-2 items-center">
+        <span id="entry-badge" class="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded-md"></span>
+        <button id="copy-btn" onclick="copyOutput()"
+          class="text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 px-3 py-1 rounded-md transition-colors">
+          Copy to Clipboard
+        </button>
+        <button onclick="download()" id="dl-btn"
+          class="text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 px-3 py-1 rounded-md transition-colors">
+          Download sitemap.xml
+        </button>
+      </div>
     </div>
-    <textarea id="output" readonly placeholder="Your sitemap XML will appear here…"></textarea>
-    <div class="toolbar">
-      <button class="btn-copy" id="copy-btn" onclick="copyOutput()" disabled>
-        📋 Copy to Clipboard
-      </button>
-      <button class="btn-secondary" onclick="download()" id="dl-btn" disabled>
-        ⬇ Download sitemap.xml
-      </button>
+    <textarea id="output" readonly rows="12"
+      class="w-full p-4 bg-slate-100 border border-slate-300 rounded-xl shadow-inner text-slate-800 font-mono text-sm outline-none"
+      placeholder="Your sitemap XML will appear here…"></textarea>
+
+    <div id="toast" class="hidden mt-4 p-3 bg-emerald-100 text-emerald-700 rounded-lg text-center text-sm font-medium">
+      Copied to clipboard!
     </div>
   </div>
 </div>
 
 <script>
-  const inputEl  = document.getElementById('url-input');
+  const inputEl = document.getElementById('url-input');
   const outputEl = document.getElementById('output');
-  const countEl  = document.getElementById('url-count');
-  const badgeEl  = document.getElementById('entry-badge');
-  const copyBtn  = document.getElementById('copy-btn');
-  const dlBtn    = document.getElementById('dl-btn');
+  const countEl = document.getElementById('url-count');
+  const badgeEl = document.getElementById('entry-badge');
+  const resultArea = document.getElementById('resultArea');
 
   inputEl.addEventListener('input', () => {
     const n = validUrls().length;
@@ -219,10 +94,7 @@
   });
 
   function validUrls() {
-    return inputEl.value
-      .split('\n')
-      .map(l => l.trim())
-      .filter(l => l.length > 0);
+    return inputEl.value.split('\n').map(l => l.trim()).filter(l => l.length > 0);
   }
 
   function escapeXml(url) {
@@ -240,23 +112,17 @@
 
   function convertEncoding() {
     if (!inputEl.value.trim()) return;
-    // Replace %20 with + only in query strings (after ?) to be safe;
-    // but since user asked for a simple global replace, do it everywhere in the URL
-    inputEl.value = inputEl.value
-      .split('\n')
-      .map(line => line.replace(/%20/g, '+'))
-      .join('\n');
-    // Trigger counter update
+    inputEl.value = inputEl.value.split('\n').map(line => line.replace(/%20/g, '+')).join('\n');
     inputEl.dispatchEvent(new Event('input'));
   }
 
   function generate() {
     const urls = validUrls();
     if (!urls.length) {
+      resultArea.classList.remove('hidden');
       outputEl.value = '';
       outputEl.placeholder = 'No URLs found — paste at least one URL above.';
-      setDisabled(true);
-      badgeEl.style.display = 'none';
+      badgeEl.textContent = '';
       return;
     }
 
@@ -276,43 +142,35 @@ ${entries}
 
     outputEl.value = xml;
     badgeEl.textContent = `${urls.length} URL${urls.length !== 1 ? 's' : ''}`;
-    badgeEl.style.display = 'inline';
-    setDisabled(false);
-  }
-
-  function setDisabled(state) {
-    copyBtn.disabled = state;
-    dlBtn.disabled   = state;
+    resultArea.classList.remove('hidden');
+    resultArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   function copyOutput() {
     if (!outputEl.value) return;
     navigator.clipboard.writeText(outputEl.value).then(() => {
-      copyBtn.textContent = '✓ Copied!';
-      copyBtn.classList.add('copied');
-      setTimeout(() => {
-        copyBtn.innerHTML = '📋 Copy to Clipboard';
-        copyBtn.classList.remove('copied');
-      }, 2000);
+      const toast = document.getElementById('toast');
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 2000);
     });
   }
 
   function download() {
     if (!outputEl.value) return;
     const blob = new Blob([outputEl.value], { type: 'application/xml' });
-    const a    = document.createElement('a');
-    a.href     = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
     a.download = 'sitemap.xml';
     a.click();
     URL.revokeObjectURL(a.href);
   }
 
   function clearAll() {
-    inputEl.value  = '';
+    inputEl.value = '';
     outputEl.value = '';
     countEl.textContent = '';
-    badgeEl.style.display = 'none';
-    setDisabled(true);
+    badgeEl.textContent = '';
+    resultArea.classList.add('hidden');
   }
 </script>
 </body>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown to HTML Converter</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #f8fafc;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .workspace {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      min-height: 0;
+    }
+    @media (max-width: 768px) {
+      .workspace { grid-template-columns: 1fr; }
+    }
+    .editor-panel {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    #markdown-input {
+      flex: 1;
+      resize: none;
+      min-height: 480px;
+      width: 100%;
+      outline: none;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .output-grid {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 16px;
+      flex: 1;
+      min-height: 0;
+    }
+    .preview-pane {
+      overflow-y: auto;
+      min-height: 210px;
+    }
+    .html-pane {
+      overflow-y: auto;
+      min-height: 210px;
+      font-family: 'SFMono-Regular', Consolas, monospace;
+      font-size: 12px;
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+
+    /* Rendered Markdown Styling */
+    .preview-pane h1, .preview-pane h2, .preview-pane h3, .preview-pane h4 {
+      margin-top: 1em; margin-bottom: 0.5em; font-weight: 600; line-height: 1.25;
+    }
+    .preview-pane h1 { font-size: 1.8em; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.3em; }
+    .preview-pane h2 { font-size: 1.4em; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.3em; }
+    .preview-pane h3 { font-size: 1.2em; }
+    .preview-pane h4 { font-size: 1em; }
+    .preview-pane a { color: #3b82f6; text-decoration: none; }
+    .preview-pane a:hover { text-decoration: underline; }
+    .preview-pane ul, .preview-pane ol { padding-left: 2em; margin-bottom: 1em; }
+    .preview-pane p { margin-bottom: 0.8em; }
+    .preview-pane blockquote {
+      padding: 0 1em; color: #64748b;
+      border-left: 0.25em solid #cbd5e1; margin: 0 0 1em 0;
+    }
+    .preview-pane hr {
+      height: 1px; padding: 0; margin: 20px 0;
+      background-color: #e2e8f0; border: 0;
+    }
+    .preview-pane table { border-collapse: collapse; width: 100%; margin-bottom: 1em; }
+    .preview-pane th, .preview-pane td {
+      padding: 6px 13px; border: 1px solid #e2e8f0;
+    }
+    .preview-pane tr:nth-child(even) { background-color: #f8fafc; }
+    .preview-pane code {
+      background: #f1f5f9; padding: 2px 5px; border-radius: 4px; font-size: 0.85em;
+    }
+    .preview-pane pre code { background: none; padding: 0; }
+    .preview-pane pre {
+      background: #1e293b; color: #e2e8f0; padding: 14px 16px;
+      border-radius: 8px; overflow-x: auto; margin-bottom: 1em;
+    }
+
+    /* Filter button active state */
+    .btn-filter-active {
+      background-color: #ef4444 !important;
+      color: #fff !important;
+      border-color: #ef4444 !important;
+    }
+  </style>
+</head>
+<body class="p-4 md:p-8" style="min-height:100vh;">
+
+<div class="max-w-7xl mx-auto flex flex-col" style="min-height: calc(100vh - 64px);">
+  <!-- Header -->
+  <header class="mb-6 text-center">
+    <h1 class="text-3xl font-bold text-slate-800">Markdown to HTML Converter</h1>
+    <p class="text-slate-600 mt-2">Live preview and raw HTML output with optional modifiers.</p>
+  </header>
+
+  <div class="workspace flex-1">
+    <!-- Left: Input -->
+    <div class="glass-panel rounded-2xl shadow-sm border border-slate-200 flex flex-col overflow-hidden">
+      <div class="px-5 py-3 border-b border-slate-200 flex items-center justify-between">
+        <span class="font-semibold text-slate-700">Markdown Input</span>
+      </div>
+      <textarea id="markdown-input"
+        class="flex-1 p-4 border-0 bg-white text-slate-800 focus:outline-none"
+        placeholder="Type markdown here..."># Quote Character Test
+
+Markdown engines sometimes convert standard quotes into HTML entities like &#39; or smart quotes.
+
+This editor will automatically force all of them back into standard single quotes: '
+
+Try typing or pasting entity quotes like `&#39;` directly into the panel to see them clean up in the raw output block below.</textarea>
+    </div>
+
+    <!-- Right: Output -->
+    <div class="glass-panel rounded-2xl shadow-sm border border-slate-200 flex flex-col overflow-hidden">
+      <div class="px-5 py-3 border-b border-slate-200 flex items-center justify-between">
+        <span class="font-semibold text-slate-700">Output</span>
+        <button id="copy-btn" onclick="copyHtmlOutput()"
+          class="text-xs bg-blue-600 hover:bg-blue-700 text-white font-semibold px-3 py-1.5 rounded-lg transition-colors shadow shadow-blue-200 active:scale-95 transform">
+          Copy Raw HTML
+        </button>
+      </div>
+
+      <!-- Modifier Bar -->
+      <div class="px-5 py-2.5 bg-slate-50 border-b border-slate-200 flex gap-2 items-center flex-wrap">
+        <span class="text-xs font-semibold text-slate-500 mr-1">Modifiers:</span>
+        <button id="strip-strong-btn" onclick="toggleFilter('strong')"
+          class="text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-slate-600 hover:bg-slate-100 transition-colors">
+          Remove Strong
+        </button>
+        <button id="strip-hr-btn" onclick="toggleFilter('hr')"
+          class="text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-slate-600 hover:bg-slate-100 transition-colors">
+          Remove Horizontal Rule
+        </button>
+      </div>
+
+      <!-- Output Panes -->
+      <div class="flex-1 p-4 overflow-y-auto flex flex-col gap-4">
+        <div class="flex flex-col flex-1">
+          <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Visual Preview</p>
+          <div id="visual-preview"
+            class="preview-pane flex-1 p-4 bg-white border border-slate-200 rounded-xl text-slate-800 text-sm"></div>
+        </div>
+        <div class="flex flex-col flex-1">
+          <div class="flex items-center justify-between mb-2">
+            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Raw HTML Code</p>
+            <button onclick="copyHtmlOutput()"
+              class="text-xs bg-blue-600 hover:bg-blue-700 text-white font-semibold px-3 py-1.5 rounded-lg transition-colors shadow shadow-blue-200 active:scale-95 transform">
+              Copy Raw HTML
+            </button>
+          </div>
+          <div id="html-output"
+            class="html-pane flex-1 p-4 bg-slate-900 text-emerald-300 border border-slate-700 rounded-xl text-xs"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 p-3 bg-emerald-100 text-emerald-700 rounded-xl shadow-lg text-sm font-medium px-6">
+    Copied to clipboard!
+  </div>
+</div>
+
+<script>
+  const markdownInput = document.getElementById('markdown-input');
+  const visualPreview = document.getElementById('visual-preview');
+  const htmlOutput = document.getElementById('html-output');
+  const copyBtn = document.getElementById('copy-btn');
+
+  const filters = { removeStrong: false, removeHr: false };
+
+  marked.setOptions({ breaks: true, gfm: true });
+
+  function convertMarkdown() {
+    const markdownText = markdownInput.value;
+    let finalHtml = marked.parse(markdownText);
+
+    if (filters.removeStrong) {
+      finalHtml = finalHtml.replace(/<strong>([\s\S]*?)<\/strong>/gi, '$1');
+    }
+    if (filters.removeHr) {
+      finalHtml = finalHtml.replace(/<hr\s*\/?>\n?/gi, '');
+    }
+
+    finalHtml = finalHtml
+      .replace(/&#39;/g, "'")
+      .replace(/[‘’]/g, "'");
+
+    visualPreview.innerHTML = finalHtml;
+    htmlOutput.textContent = finalHtml;
+  }
+
+  function toggleFilter(type) {
+    if (type === 'strong') {
+      filters.removeStrong = !filters.removeStrong;
+      document.getElementById('strip-strong-btn').classList.toggle('btn-filter-active', filters.removeStrong);
+    } else if (type === 'hr') {
+      filters.removeHr = !filters.removeHr;
+      document.getElementById('strip-hr-btn').classList.toggle('btn-filter-active', filters.removeHr);
+    }
+    convertMarkdown();
+  }
+
+  markdownInput.addEventListener('input', convertMarkdown);
+
+  function copyHtmlOutput() {
+    const htmlText = htmlOutput.textContent;
+    if (!htmlText) return;
+
+    navigator.clipboard.writeText(htmlText).then(() => {
+      const toast = document.getElementById('toast');
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 2000);
+    }).catch(err => {
+      console.error('Failed to copy text: ', err);
+    });
+  }
+
+  convertMarkdown();
+</script>
+</body>
+</html>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fydelia - The guest WiFi platform that turns your customers into superfans</title>
-<meta name="description" content="Fydelia is the guest WiFi platform that turns your customers into superfans. Outstanding support from people who care about your success. Works with the CRM and hardware you already use.">
+<title>Fydelia - Guest WiFi that actually works as you imagined</title>
+<meta name="description" content="Fydelia is guest WiFi marketing for hospitality. Collect first-party data, automate marketing, and grow repeat visits from your venues.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -84,7 +84,7 @@
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a class="brand" href="index" aria-label="Fydelia home">
+    <a class="brand" href="#top" aria-label="Fydelia home">
       <img class="brand-logo" src="images/logo/fydelia-logo-red.avif" alt="Fydelia">
     </a>
     <ul class="nav-links">
@@ -101,7 +101,7 @@
           <svg class="ts-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         </span>
       </button>
-      <a class="btn-ghost" href="https://ondemand.fydelia.com/">Sign in</a>
+    <a class="btn-ghost" href="https://ondemand.fydelia.com/">Sign in</a>
       <a class="btn-solid" href="https://www.fydelia.com/onboarding/">Try free for 14 days
         <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
       </a>
@@ -126,14 +126,14 @@
     </button>
   </div>
   <nav class="menu-drawer-nav">
-    <a href="features">Features</a>
-    <a href="splash-pages">Splash Pages</a>
-    <a href="case-studies">Case Studies</a>
-    <a href="pricing">Pricing</a>
-    <a href="hardware">Supported Hardware</a>
-    <a href="blog">Blog</a>
-    <a href="contact">Contact</a>
-    <a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a>
+      <a href="features">Features</a>
+      <a href="splash-pages">Splash Pages</a>
+      <a href="case-studies">Case Studies</a>
+      <a href="pricing">Pricing</a>
+      <a href="hardware">Supported Hardware</a>
+      <a href="blog">Blog</a>
+      <a href="contact">Contact</a>
+      <a href="https://www.fydelia.com/knowledge-base/">Docs &amp; Support</a></li>
   </nav>
   <div class="menu-drawer-foot">
     <div class="menu-drawer-theme">
@@ -163,25 +163,32 @@
     </div>
     <div class="wrap hero-wrap">
       <div class="hero-copy">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span>AI splash page builder · live in 30s</span>
+        </div>
         <h1 class="hero-title">
-          <span class="ht-line">The guest WiFi platform</span>
-          <span class="ht-line">that turns your customers</span>
-          <span class="ht-line">into <em>superfans.</em></span>
+          <span class="ht-line">Guest WiFi</span>
+          <span class="ht-line">that <em>actually</em> works</span>
+          <span class="ht-line ht-line--muted">as you imagined.</span>
         </h1>
-        <p class="hero-sub">Turn your WiFi into a marketing tool that brings customers back. Built by nice people who care. Create your branded WiFi login page in under 10 seconds.</p>
+        <p class="hero-sub">Fydelia turns every router into a marketing engine. Branded splash pages, CRM fire-hose, AdCards, flash offers, scratch-card games. One platform, zero duct-tape.</p>
 
         <form class="hero-form" onsubmit="return false;">
           <div class="hero-form-field">
-            <input id="heroUrl" class="hero-form-input" type="text" placeholder="yourwebsite.com" autocomplete="off">
+            <span class="hero-form-prefix">https://</span>
+            <input id="heroUrl" class="hero-form-input" type="text" placeholder="yourvenue.com" autocomplete="off">
           </div>
           <button id="heroGenerate" type="submit" class="btn-solid btn-lg">
-            Create my page
+            Generate splash
             <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L11.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08l3.158-2.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
           </button>
         </form>
 
         <ul class="hero-bullets">
-          <li><span class="tick"></span> Just want to see our brochure? <a href="#" style="color: var(--red); margin-left: 4px;">Download our brochure →</a></li>
+          <li><span class="tick"></span> No credit card</li>
+          <li><span class="tick"></span> 14-day free trial</li>
+          <li><span class="tick"></span> Setup in &lt;30 min</li>
         </ul>
       </div>
 
@@ -214,17 +221,17 @@
           <!-- Floating chips around phone -->
           <div class="hero-chip hero-chip--1">
             <span class="chip-dot chip-dot--green"></span>
-            <span>Plugs into CRM</span>
-            <span class="chip-meta">+1,284 guests</span>
+            <span>CRM synced</span>
+            <span class="chip-meta">+1,284 leads</span>
           </div>
           <div class="hero-chip hero-chip--2">
             <span class="chip-icon">⚡</span>
-            <span>Smart offer live</span>
+            <span>Flash offer live</span>
             <span class="chip-meta">03:42</span>
           </div>
           <div class="hero-chip hero-chip--3">
             <span class="chip-dot chip-dot--red"></span>
-            <span>Promo Card live</span>
+            <span>AdCard impression</span>
             <span class="chip-meta">#4,912</span>
           </div>
         </div>
@@ -233,13 +240,13 @@
 
     <!-- Ticker under hero -->
     <div class="hero-ticker wrap">
-      <div class="ticker-item"><span class="tk-num" data-count="48000" data-suffix="+">0</span><span class="tk-label">Venues we partner with</span></div>
+      <div class="ticker-item"><span class="tk-num" data-count="48000" data-suffix="+">0</span><span class="tk-label">Venues connected</span></div>
       <div class="ticker-div"></div>
-      <div class="ticker-item"><span class="tk-num" data-count="212" data-suffix="M+">0</span><span class="tk-label">Guests signed up</span></div>
+      <div class="ticker-item"><span class="tk-num" data-count="212" data-suffix="M+">0</span><span class="tk-label">Guests captured</span></div>
       <div class="ticker-div"></div>
-      <div class="ticker-item"><span class="tk-num" data-count="100" data-suffix="+">0</span><span class="tk-label">Direct CRM integrations</span></div>
+      <div class="ticker-item"><span class="tk-num" data-count="100" data-suffix="+">0</span><span class="tk-label">No-code integrations</span></div>
       <div class="ticker-div"></div>
-      <div class="ticker-item"><span class="tk-num" data-count="99.9" data-suffix="%" data-decimals="1">0</span><span class="tk-label">Uptime guarantee</span></div>
+      <div class="ticker-item"><span class="tk-num" data-count="99.98" data-suffix="%" data-decimals="2">0</span><span class="tk-label">Uptime</span></div>
     </div>
   </section>
 
@@ -341,8 +348,8 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 
-<script src="scripts/sections-copywriter.js"></script>
-<script src="scripts/hero-copywriter.js"></script>
+<script src="scripts/sections.js"></script>
+<script src="scripts/hero.js"></script>
 <script src="scripts/interactions.js"></script>
 <script src="scripts/tweaks.js"></script>
 
