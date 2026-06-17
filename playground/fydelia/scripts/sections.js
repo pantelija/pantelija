@@ -483,8 +483,8 @@ document.getElementById('cta-section').innerHTML = `
       <div class="eyebrow"><span class="eyebrow-dot"></span><span>Try free for 14 days · No card</span></div>
       <h2 style="margin-top:18px;">Build your splash page<br><em>in under 60 seconds.</em></h2>
       <p>Paste your website. Our AI pulls your brand, your copy, and your colors. You get a live, branded WiFi portal in the time it takes to make a coffee.</p>
-      <form class="cta-form" onsubmit="var u=this.querySelector('input').value.trim();if(!u)return false;u=u.match(/^https?:\\/\\//)?u:'https://'+u;window.location.href='https://www.fydelia.com/onboarding/?url='+encodeURIComponent(u);return false;">
-        <input type="url" placeholder="https://yourvenue.com">
+      <form class="cta-form" onsubmit="var u=this.querySelector('input').value.trim();if(!u)return false;u=u.match(/^https?:\\/\\//)?u:'https://'+u;window.location.href='https://www.fydelia.com/onboarding/?site='+encodeURIComponent(u);return false;">
+        <input type="url" placeholder="https://yourvenue.com" onblur="var v=this.value.trim();if(v&&!v.match(/^https?:\\/\\//)){this.value='https://'+v;}">
         <button class="btn-solid btn-lg">Generate splash →</button>
       </form>
       <div class="cta-meta">NO CARD · NO CALL · INSTANT</div>

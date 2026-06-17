@@ -132,11 +132,15 @@
     generateSplash(url);
     const full = url.match(/^https?:\/\//) ? url : 'https://' + url;
     setTimeout(() => {
-      window.location.href = 'https://www.fydelia.com/onboarding/?url=' + encodeURIComponent(full);
+      window.location.href = 'https://www.fydelia.com/onboarding/?site=' + encodeURIComponent(full);
     }, 1800);
   });
   urlInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') { e.preventDefault(); generateBtn.click(); }
+  });
+  urlInput.addEventListener('blur', () => {
+    var v = urlInput.value.trim();
+    if (v && !v.match(/^https?:\/\//)) { urlInput.value = 'https://' + v; }
   });
 
   // Cycle demo splashes every 9s when user is idle

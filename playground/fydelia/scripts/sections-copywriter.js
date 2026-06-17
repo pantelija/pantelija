@@ -471,8 +471,8 @@ document.getElementById('cta-section').innerHTML = `
     <div class="cta-box reveal">
       <h2 style="margin-top:18px;">Start your <em>free trial.</em></h2>
       <p>Enter your website and we'll create your branded WiFi login page in seconds. Like what you see? Try it live in your venue - free for 14 days.</p>
-      <form class="cta-form" onsubmit="var u=this.querySelector('input').value.trim();if(!u)return false;u=u.match(/^https?:\\/\\//)?u:'https://'+u;window.location.href='https://www.fydelia.com/onboarding/?url='+encodeURIComponent(u);return false;">
-        <input type="text" placeholder="yourwebsite.com">
+      <form class="cta-form" onsubmit="var u=this.querySelector('input').value.trim();if(!u)return false;u=u.match(/^https?:\\/\\//)?u:'https://'+u;window.location.href='https://www.fydelia.com/onboarding/?site='+encodeURIComponent(u);return false;">
+        <input type="text" placeholder="yourwebsite.com" onblur="var v=this.value.trim();if(v&&!v.match(/^https?:\\/\\//)){this.value='https://'+v;}">
         <button class="btn-solid btn-lg">See my page →</button>
       </form>
       <div class="cta-meta">NO CARD · NO CALL · NO LONG TERM CONTRACT</div>

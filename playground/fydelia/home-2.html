@@ -182,9 +182,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </h1>
         <p class="hero-sub">Turn your WiFi into a marketing tool that brings customers back. Built by nice people who care. Create your branded WiFi login page in under 10 seconds.</p>
 
+        <script type="text/javascript">function checkHeroURL(el){var v=el.value.trim();if(v&&!v.match(/^https?:\/\//)){el.value='https://'+v;}}</script>
         <form class="hero-form" onsubmit="return false;">
           <div class="hero-form-field">
-            <input id="heroUrl" class="hero-form-input" type="text" placeholder="yourwebsite.com" autocomplete="off">
+            <input id="heroUrl" class="hero-form-input" type="text" placeholder="yourwebsite.com" autocomplete="off" onblur="checkHeroURL(this)">
           </div>
           <button id="heroGenerate" type="submit" class="btn-solid btn-lg">
             Create my page

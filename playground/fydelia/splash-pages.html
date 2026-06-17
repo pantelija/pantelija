@@ -1548,8 +1548,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <em>in under 60 seconds.</em>
         </h2>
         <p>Paste your website. Our AI pulls your brand, your copy, and your colors. You get a live, branded WiFi portal in the time it takes to make a coffee.</p>
-        <form class="cta-form" onsubmit="var u=this.querySelector('input').value.trim();if(!u)return false;u=u.match(/^https?:\/\//)?u:'https://'+u;window.location.href='https://www.fydelia.com/onboarding/?url='+encodeURIComponent(u);return false;">
-          <input type="url" placeholder="https://yourvenue.com">
+        <script type="text/javascript">function checkSiteURL(abc) {
+  var string = abc.value.trim();
+  if (string && !string.match(/^https?:\/\//)) {
+    string = "https://" + string;
+  }
+  abc.value = string;
+  return abc;
+}</script>
+        <form class="cta-form" onsubmit="var u=this.querySelector('input').value.trim();if(!u)return false;u=u.match(/^https?:\/\//)?u:'https://'+u;window.location.href='https://www.fydelia.com/onboarding/?site='+encodeURIComponent(u);return false;">
+          <input type="url" placeholder="https://yourvenue.com" onblur="checkSiteURL(this)">
           <button class="btn-solid btn-lg">Generate splash &rarr;</button>
         </form>
         <div class="cta-meta">NO CARD &middot; NO CALL &middot; INSTANT</div>

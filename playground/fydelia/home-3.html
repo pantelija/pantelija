@@ -186,10 +186,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </h1>
         <p class="hero-sub">Fydelia turns every router into a marketing engine. Branded splash pages, CRM fire-hose, AdCards, flash offers, scratch-card games. One platform, zero duct-tape.</p>
 
+        <script type="text/javascript">function checkHeroURL(el){var v=el.value.trim();if(v&&!v.match(/^https?:\/\//)){el.value='https://'+v;}}</script>
         <form class="hero-form" onsubmit="return false;">
           <div class="hero-form-field">
-            <span class="hero-form-prefix">https://</span>
-            <input id="heroUrl" class="hero-form-input" type="text" placeholder="yourvenue.com" autocomplete="off">
+            <input id="heroUrl" class="hero-form-input" type="text" placeholder="yourvenue.com" autocomplete="off" onblur="checkHeroURL(this)">
           </div>
           <button id="heroGenerate" type="submit" class="btn-solid btn-lg">
             Generate splash
